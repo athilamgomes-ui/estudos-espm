@@ -146,6 +146,7 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
   <nav class="abas" role="tablist">
     <button role="tab" data-t="painel" aria-selected="true">Painel</button>
     <button role="tab" data-t="cronograma" aria-selected="false">Cronograma</button>
+    <button role="tab" data-t="prioridades" aria-selected="false">Prioridades</button>
     <button role="tab" data-t="aulas" aria-selected="false">Aulas</button>
     <button role="tab" data-t="redacoes" aria-selected="false">Redações</button>
     <button role="tab" data-t="simulados" aria-selected="false">Simulados</button>
@@ -171,6 +172,18 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
         <tbody id="grade"></tbody>
       </table>
     </div>
+  </section>
+
+  <section id="prioridades" hidden>
+    <div class="aviso ok" style="border-color:var(--accent);background:var(--accent-soft)">
+      Ordem tirada da leitura de <strong>1.199 questões</strong> das 15 provas da ESPM entre 2019 e 2026.
+      A frequência define a <strong>ordem e a profundidade</strong>, não uma lista de exclusão —
+      a cauda também cai, e quando você errar nela num simulado ela sobe de faixa.
+    </div>
+    <div class="filtros" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr))">
+      <select id="pMat"></select>
+    </div>
+    <div id="listaPri"></div>
   </section>
 
   <section id="aulas" hidden>
@@ -303,13 +316,14 @@ async function abrirApp () {
   $('#sub').textContent = `Vestibular ESPM São Paulo · domingo, 29 de novembro de 2026`
 
   montarFiltros(); pintarPainel(); pintarCronograma(); pintarAulas()
-  carregarRedacoes(); montarAcertos(); carregarSimulados()
+  carregarRedacoes(); montarAcertos(); carregarSimulados(); carregarPrioridades()
 }
 
 // ---------------------------------------------------------------- abas
+const ABAS = ['painel', 'cronograma', 'prioridades', 'aulas', 'redacoes', 'simulados']
 document.querySelectorAll('nav.abas button').forEach(b => b.onclick = () => {
   document.querySelectorAll('nav.abas button').forEach(x => x.setAttribute('aria-selected', x === b))
-  ;['painel', 'cronograma', 'aulas', 'redacoes', 'simulados'].forEach(t => $('#' + t).hidden = t !== b.dataset.t)
+  ABAS.forEach(t => $('#' + t).hidden = t !== b.dataset.t)
 })
 
 // ---------------------------------------------------------------- painel
@@ -364,15 +378,20 @@ function horasDisponiveis () {
 function pintarCronograma () {
   const disp = horasDisponiveis()
   const semanas = Math.max((PROVA - new Date()) / 6048e5, .1)
-  const restaAula = pendentes().reduce((s, a) => s + (a.minutos_est || 0), 0) / 60
+  // Assistir e resolver sao coisas diferentes: as correcoes de exercicio do CEM
+  // nao entram como video, viram tempo de resolver questao.
+  const h = f => pendentes(f).reduce((s, a) => s + (a.minutos_est || 0), 0) / 60
+  const assistir = h(a => a.tipo === 'teoria' || a.tipo === 'simulado')
+  const resolver = h(a => a.tipo === 'exercicio')
   const restaRedacao = Math.round(semanas * REDACOES_SEMANA * MIN_REDACAO / 60)
-  const preciso = restaAula + restaRedacao
+  const preciso = assistir + resolver + restaRedacao
   const folga = disp - preciso
   const metaDia = preciso / Math.max((PROVA - new Date()) / 864e5, 1)
 
   $('#kpis').innerHTML = `
     <div class="card kpi"><div class="v num">${Math.round(disp)}h</div><div class="k">disponíveis</div></div>
-    <div class="card kpi"><div class="v num">${Math.round(restaAula)}h</div><div class="k">de aula pendente</div></div>
+    <div class="card kpi"><div class="v num">${Math.round(assistir)}h</div><div class="k">assistindo aula</div></div>
+    <div class="card kpi"><div class="v num">${Math.round(resolver)}h</div><div class="k">resolvendo exercício</div></div>
     <div class="card kpi"><div class="v num">${restaRedacao}h</div><div class="k">escrevendo redação</div></div>
     <div class="card kpi"><div class="v num" style="color:${folga < 0 ? 'var(--bad)' : 'var(--ok)'}">${folga < 0 ? '−' : '+'}${Math.abs(Math.round(folga))}h</div><div class="k">folga</div></div>
     <div class="card kpi"><div class="v num">${metaDia.toFixed(1)}h</div><div class="k">meta por dia</div></div>`
@@ -389,9 +408,9 @@ function pintarCronograma () {
       revisão e imprevisto — pouco para ${Math.round(semanas)} semanas. Vale cortar as aulas
       de 1 e 2 estrelas das matérias de menor peso.`
   } else {
-    txt = `<strong>No ritmo.</strong> Depois de assistir tudo e escrever as redações sobram
-      ${Math.round(folga)} horas para simulados, revisão e a preparação da entrevista —
-      que sozinha vale 25% da nota final.`
+    txt = `<strong>No ritmo.</strong> Depois de assistir as aulas, resolver os exercícios e escrever
+      as redações sobram ${Math.round(folga)} horas para simulados, revisão e a preparação da
+      entrevista — que sozinha vale 25% da nota final.`
   }
   $('#diagnostico').innerHTML = `<div class="aviso ${cls}">${txt}</div>`
 
@@ -486,6 +505,78 @@ async function marcar (aula_id, feita) {
     atualizado_em: new Date().toISOString()
   }, { onConflict: 'user_id,aula_id' })
   if (error) alert('Não consegui salvar: ' + error.message)
+}
+
+// ---------------------------------------------------------------- prioridades
+// Frequencia real de cada assunto nas 15 provas, lida questao a questao.
+let PRI = []
+
+async function carregarPrioridades () {
+  // o PostgREST corta a resposta em 1000 linhas — pagina ate acabar
+  let todas = [], de = 0
+  while (true) {
+    const { data } = await sb.from('questoes_espm').select('materia_id,formato')
+      .order('id').range(de, de + 499)
+    if (!data?.length) break
+    todas = todas.concat(data)
+    if (data.length < 500) break
+    de += 500
+  }
+  const cont = new Map()
+  todas.forEach(q => {
+    if (!q.formato) return
+    const k = q.materia_id + '|' + q.formato
+    cont.set(k, (cont.get(k) || 0) + 1)
+  })
+  PRI = [...cont].map(([k, n]) => {
+    const [materia_id, assunto] = k.split('|')
+    return { materia_id, assunto, n, porProva: n / 15 }
+  }).sort((a, b) => b.n - a.n)
+
+  $('#pMat').innerHTML = '<option value="">A prova inteira</option>' +
+    MATERIAS.filter(m => PRI.some(p => p.materia_id === m.id))
+      .map(m => `<option value="${m.id}">${m.nome} · ${m.peso_espm}% da nota</option>`).join('')
+  $('#pMat').onchange = pintarPrioridades
+  pintarPrioridades()
+}
+
+function pintarPrioridades () {
+  const m = $('#pMat').value
+  const lista = PRI.filter(p => !m || p.materia_id === m)
+  const total = lista.reduce((s, p) => s + p.n, 0)
+  const mx = lista[0]?.n || 1
+  const nomeMat = id => (MATERIAS.find(x => x.id === id) || {}).nome || id
+
+  // Faixas por frequencia acumulada: 50% no topo, 80% no meio, o resto e cauda.
+  let acum = 0
+  const linhas = lista.map(p => {
+    const antes = acum; acum += p.n
+    const faixa = antes / total < .5 ? 1 : (antes / total < .8 ? 2 : 3)
+    return { ...p, faixa }
+  })
+  const FAIXA = {
+    1: ['Estudar a fundo e revisar', 'var(--bad)'],
+    2: ['Uma passada sólida', 'var(--warn)'],
+    3: ['Revisão rápida, para não ser pega de surpresa', 'var(--ink3)']
+  }
+  let atual = 0
+  $('#listaPri').innerHTML = '<div class="card rolar"><table><thead><tr>' +
+    '<th>Assunto</th>' + (m ? '' : '<th>Matéria</th>') +
+    '<th class="n">Questões</th><th class="n">Por prova</th><th>Frequência</th>' +
+    '</tr></thead><tbody>' +
+    linhas.map(p => {
+      let cab = ''
+      if (p.faixa !== atual) {
+        atual = p.faixa
+        cab = `<tr><td colspan="${m ? 4 : 5}" style="padding-top:16px;border:none">
+          <strong style="color:${FAIXA[p.faixa][1]}">${FAIXA[p.faixa][0]}</strong></td></tr>`
+      }
+      return cab + `<tr>
+        <td>${p.assunto}</td>${m ? '' : `<td class="small muted">${nomeMat(p.materia_id)}</td>`}
+        <td class="n">${p.n}</td><td class="n">${p.porProva.toFixed(1)}</td>
+        <td><div class="barra" style="margin:0;max-width:150px"><i style="width:${p.n / mx * 100}%"></i></div></td>
+      </tr>`
+    }).join('') + '</tbody></table></div>'
 }
 
 // ---------------------------------------------------------------- redacoes
