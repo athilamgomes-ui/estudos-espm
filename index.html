@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Estudos · ESPM 2027</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+<style>
+:root{
+  --bg:#faf9f7; --card:#fff; --ink:#1a1a1a; --ink2:#5b5b5b; --ink3:#8a8a8a;
+  --line:#e6e3de; --accent:#7c3aed; --accent-soft:#f3edff;
+  --ok:#0f8a5f; --warn:#b45309; --bad:#c0392b;
+  --r:14px; --sh:0 1px 2px rgba(0,0,0,.04), 0 8px 24px -12px rgba(0,0,0,.12);
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#131316;--card:#1c1c21;--ink:#f0efed;--ink2:#a8a6a2;--ink3:#77746f;
+        --line:#2e2e35;--accent:#a78bfa;--accent-soft:#241d38;
+        --ok:#4ade80;--warn:#fbbf24;--bad:#f87171;
+        --sh:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.6);}
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);
+  font:15px/1.5 ui-sans-serif,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:20px 16px 80px}
+h1,h2,h3{margin:0;font-weight:650;letter-spacing:-.02em}
+h1{font-size:22px}
+h2{font-size:15px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);font-weight:600}
+button{font:inherit;cursor:pointer;border-radius:10px;border:1px solid var(--line);
+  background:var(--card);color:var(--ink);padding:8px 14px;transition:.15s}
+button:hover{border-color:var(--accent)}
+button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+button.primary:hover{filter:brightness(1.08)}
+input,select,textarea{font:inherit;padding:9px 11px;border-radius:10px;border:1px solid var(--line);
+  background:var(--card);color:var(--ink);width:100%}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:transparent}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh)}
+.muted{color:var(--ink2)}.small{font-size:13px}.tiny{font-size:12px;color:var(--ink3)}
+.num{font-variant-numeric:tabular-nums}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+
+/* ---------- login ---------- */
+#login{max-width:380px;margin:14vh auto;padding:28px}
+#login h1{margin-bottom:6px}
+#login .f{margin-top:14px}
+#login label{display:block;font-size:13px;color:var(--ink2);margin-bottom:5px}
+#msg{margin-top:14px;font-size:13px;min-height:18px}
+#msg.erro{color:var(--bad)} #msg.ok{color:var(--ok)}
+
+/* ---------- topo ---------- */
+header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;
+  padding-bottom:18px;margin-bottom:18px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.contagem{text-align:right}
+.contagem .d{font-size:34px;font-weight:700;letter-spacing:-.04em;line-height:1}
+.contagem .l{font-size:12px;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em}
+
+/* ---------- abas ---------- */
+nav.abas{display:flex;gap:4px;margin-bottom:20px;overflow-x:auto;padding-bottom:2px}
+nav.abas button{border:none;background:transparent;color:var(--ink2);padding:8px 13px;
+  border-radius:9px;white-space:nowrap}
+nav.abas button[aria-selected=true]{background:var(--accent-soft);color:var(--accent);font-weight:600}
+section[hidden]{display:none}
+
+/* ---------- painel ---------- */
+.grade{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.mat{padding:15px}
+.mat .top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.mat .nome{font-weight:600}
+.peso{font-size:11px;padding:2px 7px;border-radius:99px;background:var(--accent-soft);
+  color:var(--accent);font-weight:650;white-space:nowrap}
+.barra{height:7px;background:var(--line);border-radius:99px;overflow:hidden;margin:11px 0 7px}
+.barra i{display:block;height:100%;background:var(--accent);border-radius:99px;transition:width .4s}
+.mat .det{display:flex;justify-content:space-between;font-size:12.5px;color:var(--ink2)}
+
+/* ---------- cronograma ---------- */
+.kpis{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-bottom:14px}
+.kpi{padding:14px}
+.kpi .v{font-size:26px;font-weight:700;letter-spacing:-.03em;line-height:1.1}
+.kpi .k{font-size:11.5px;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;margin-top:5px}
+.aviso{padding:14px 16px;border-radius:var(--r);border-left:3px solid;margin-bottom:14px;font-size:14px}
+.aviso.ok{background:color-mix(in srgb,var(--ok) 9%,transparent);border-color:var(--ok)}
+.aviso.warn{background:color-mix(in srgb,var(--warn) 11%,transparent);border-color:var(--warn)}
+.aviso.bad{background:color-mix(in srgb,var(--bad) 10%,transparent);border-color:var(--bad)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line)}
+th{font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink3);font-weight:600}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+.rolar{overflow-x:auto}
+
+/* ---------- aulas ---------- */
+.filtros{display:grid;gap:9px;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));margin-bottom:14px}
+.mod{margin-bottom:9px;overflow:hidden}
+.mod>summary{padding:11px 15px;cursor:pointer;display:flex;justify-content:space-between;
+  align-items:center;gap:10px;list-style:none;font-weight:550}
+.mod>summary::-webkit-details-marker{display:none}
+.mod>summary:hover{background:var(--accent-soft)}
+.mod .cont{font-size:12.5px;color:var(--ink3);font-weight:400;white-space:nowrap}
+.aula{display:flex;gap:11px;align-items:flex-start;padding:9px 15px;border-top:1px solid var(--line)}
+.aula input[type=checkbox]{width:17px;height:17px;margin-top:2px;flex:none;accent-color:var(--accent);cursor:pointer}
+.aula .t{flex:1;min-width:0;font-size:14px}
+.aula.feita .t{color:var(--ink3);text-decoration:line-through}
+.aula .meta{display:flex;gap:7px;align-items:center;flex:none;font-size:12px;color:var(--ink3)}
+.est{color:#eab308;letter-spacing:-1px}
+.tag{font-size:10.5px;padding:1.5px 6px;border-radius:5px;border:1px solid var(--line);color:var(--ink3)}
+.tag.ex{border-color:transparent;background:var(--accent-soft);color:var(--accent)}
+.bloq{opacity:.5}
+
+/* ---------- formularios ---------- */
+.form{display:grid;gap:11px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  padding:16px;margin-bottom:16px}
+.form label{display:block;font-size:12px;color:var(--ink2);margin-bottom:4px}
+.form .full{grid-column:1/-1}
+.vazio{padding:34px 20px;text-align:center;color:var(--ink3);font-size:14px}
+</style>
+</head>
+<body>
+
+<div id="login" class="card" hidden>
+  <h1>Estudos ESPM</h1>
+  <p class="small muted">Seu progresso fica salvo e sincroniza entre os aparelhos.</p>
+  <div class="f"><label for="em">E-mail</label><input id="em" type="email" autocomplete="email"></div>
+  <div class="f"><label for="se">Senha</label><input id="se" type="password" autocomplete="current-password"></div>
+  <div class="f row" style="margin-top:16px">
+    <button class="primary" id="bEntrar" style="flex:1">Entrar</button>
+    <button id="bCriar">Criar conta</button>
+  </div>
+  <div id="msg"></div>
+</div>
+
+<div class="wrap" id="app" hidden>
+  <header>
+    <div>
+      <h1>Estudos ESPM</h1>
+      <div class="small muted" id="sub">—</div>
+    </div>
+    <div class="row" style="align-items:flex-start">
+      <div class="contagem">
+        <div class="d num" id="dias">—</div>
+        <div class="l">dias para a prova</div>
+      </div>
+      <button id="bSair" class="small">Sair</button>
+    </div>
+  </header>
+
+  <nav class="abas" role="tablist">
+    <button role="tab" data-t="painel" aria-selected="true">Painel</button>
+    <button role="tab" data-t="cronograma" aria-selected="false">Cronograma</button>
+    <button role="tab" data-t="aulas" aria-selected="false">Aulas</button>
+    <button role="tab" data-t="redacoes" aria-selected="false">Redações</button>
+    <button role="tab" data-t="simulados" aria-selected="false">Simulados</button>
+  </nav>
+
+  <section id="painel">
+    <h2 style="margin-bottom:11px">Progresso por matéria</h2>
+    <div class="grade" id="cards"></div>
+    <p class="tiny" style="margin-top:14px">
+      O percentual em cada cartão é do peso na nota final da ESPM:
+      Entrevista 40 + Redação 40 + Prova 80 = 160 pontos.
+      A prova tem 80 questões — Português 20, Matemática 20, Inglês 10, Humanidades 30.
+    </p>
+  </section>
+
+  <section id="cronograma" hidden>
+    <div class="kpis" id="kpis"></div>
+    <div id="diagnostico"></div>
+    <div class="card rolar" style="padding:4px 14px 10px">
+      <h2 style="margin:14px 0 4px">Sua grade semanal</h2>
+      <table>
+        <thead><tr><th>Dia</th><th class="n">Horas</th><th>Observação</th></tr></thead>
+        <tbody id="grade"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="aulas" hidden>
+    <div class="filtros">
+      <select id="fMat"></select>
+      <select id="fDisc"></select>
+      <select id="fEst">
+        <option value="">Toda relevância</option>
+        <option value="5">Só 5 estrelas</option>
+        <option value="4">4 estrelas ou mais</option>
+        <option value="3">3 estrelas ou mais</option>
+      </select>
+      <select id="fSt">
+        <option value="">Todas</option>
+        <option value="pendente">Só pendentes</option>
+        <option value="assistida">Só concluídas</option>
+      </select>
+      <select id="fTipo">
+        <option value="">Aula e exercício</option>
+        <option value="teoria">Só videoaula</option>
+        <option value="exercicio">Só exercícios</option>
+      </select>
+    </div>
+    <div id="resumoAulas" class="small muted" style="margin-bottom:12px"></div>
+    <div id="lista"></div>
+  </section>
+
+  <section id="redacoes" hidden>
+    <form class="form card" id="fRed">
+      <div><label>Data</label><input type="date" name="escrita_em" required></div>
+      <div style="grid-column:span 2"><label>Tema</label><input name="tema" required placeholder="Tema da proposta"></div>
+      <div><label>Banca</label>
+        <select name="banca"><option>ESPM</option><option>FUVEST</option><option>Insper</option>
+        <option>ESPM (simulado)</option><option>ENEM</option><option>Outra</option></select></div>
+      <div><label>Gênero</label>
+        <select name="genero"><option>Dissertativo-argumentativo</option><option>Carta</option>
+        <option>Manifesto</option><option>Artigo de opinião</option><option>Relato</option><option>Outro</option></select></div>
+      <div><label>Minutos</label><input type="number" name="minutos" min="0" placeholder="90"></div>
+      <div><label>Nota</label><input type="number" name="nota_total" step="0.1" placeholder="880"></div>
+      <div><label>Escala</label><input type="number" name="nota_maxima" value="1000"></div>
+      <div class="full"><label>O que o corretor apontou</label>
+        <textarea name="pontos_fracos" rows="2" placeholder="Repertório genérico na C2; proposta de intervenção sem detalhamento"></textarea></div>
+      <div class="full"><label>O que funcionou</label>
+        <textarea name="pontos_fortes" rows="2"></textarea></div>
+      <div class="full"><button class="primary" type="submit">Registrar redação</button></div>
+    </form>
+    <div id="listaRed"></div>
+  </section>
+
+  <section id="simulados" hidden>
+    <form class="form card" id="fSim">
+      <div><label>Data</label><input type="date" name="feito_em" required></div>
+      <div style="grid-column:span 2"><label>Origem</label>
+        <input name="origem" required placeholder="ESPM 2024-2 Prova A"></div>
+      <div><label>Minutos</label><input type="number" name="minutos" min="0" placeholder="300"></div>
+      <div class="full"><label>Acertos por matéria</label>
+        <div class="grade" id="acertos"></div></div>
+      <div class="full"><label>Observações</label><textarea name="observacoes" rows="2"></textarea></div>
+      <div class="full"><button class="primary" type="submit">Registrar simulado</button></div>
+    </form>
+    <div id="listaSim"></div>
+  </section>
+</div>
+
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm'
+
+const URL_SB = 'https://tqllverzuakiyciwkbte.supabase.co'
+// Chave publicavel: feita para ficar visivel no navegador. O que protege os dados
+// sao as regras de acesso do banco (RLS) — cada linha so abre para a dona logada.
+const KEY_SB = 'sb_publishable_eX7i_P76hKCfb4ocJ7zTzg_UilLA6J_'
+const sb = createClient(URL_SB, KEY_SB)
+
+const PROVA = new Date('2026-11-29T00:00:00-03:00')
+const VIAGEM = { de: '2026-09-04', ate: '2026-09-12', horas: 2 }
+// Grade informada: seg/ter/qua/sex 6h; qui 3h30 (compromisso 19:30); sab 13h,
+// mas 9h nos dois primeiros sabados do mes; domingo livre.
+const HORAS = { 0: 0, 1: 6, 2: 6, 3: 6, 4: 3.5, 5: 6, 6: 13 }
+const SAB_OCUPADO = 9
+const MIN_REDACAO = 90            // por redacao escrita
+const REDACOES_SEMANA = 2
+
+const $ = s => document.querySelector(s)
+const iso = d => d.toISOString().slice(0, 10)
+const hhmm = min => {
+  const h = Math.floor(Math.abs(min) / 60), m = Math.round(Math.abs(min) % 60)
+  return (min < 0 ? '−' : '') + (h ? h + 'h' : '') + (m ? (h ? ' ' : '') + m + 'min' : (h ? '' : '0h'))
+}
+const horas = min => Math.round(min / 60)
+
+let AULAS = [], PROG = new Map(), MATERIAS = [], DISCIPLINAS = [], USER = null
+
+// ---------------------------------------------------------------- login
+async function iniciar () {
+  const { data: { session } } = await sb.auth.getSession()
+  if (session) { USER = session.user; return abrirApp() }
+  $('#login').hidden = false
+}
+
+$('#bEntrar').onclick = async () => {
+  const { data, error } = await sb.auth.signInWithPassword({ email: $('#em').value.trim(), password: $('#se').value })
+  if (error) return aviso(error.message, 'erro')
+  USER = data.user; $('#login').hidden = true; abrirApp()
+}
+
+$('#bCriar').onclick = async () => {
+  const { data, error } = await sb.auth.signUp({ email: $('#em').value.trim(), password: $('#se').value })
+  if (error) return aviso(error.message, 'erro')
+  if (data.session) { USER = data.user; $('#login').hidden = true; return abrirApp() }
+  aviso('Conta criada. Confirme pelo link que chegou no seu e-mail e depois entre.', 'ok')
+}
+
+$('#bSair').onclick = async () => { await sb.auth.signOut(); location.reload() }
+const aviso = (t, c) => { const m = $('#msg'); m.textContent = t; m.className = c || '' }
+
+// ---------------------------------------------------------------- carga
+async function abrirApp () {
+  $('#app').hidden = false
+  const [mats, discs, aulas, prog] = await Promise.all([
+    sb.from('materias').select('*').order('ordem'),
+    sb.from('disciplinas').select('*').order('ordem'),
+    sb.from('aulas').select('*').order('curso_id').order('modulo').order('ordem').limit(2000),
+    sb.from('progresso').select('aula_id,status')
+  ])
+  MATERIAS = mats.data || []; DISCIPLINAS = discs.data || []; AULAS = aulas.data || []
+  ;(prog.data || []).forEach(p => PROG.set(p.aula_id, p.status))
+
+  const dias = Math.ceil((PROVA - new Date()) / 864e5)
+  $('#dias').textContent = dias
+  $('#sub').textContent = `Vestibular ESPM São Paulo · domingo, 29 de novembro de 2026`
+
+  montarFiltros(); pintarPainel(); pintarCronograma(); pintarAulas()
+  carregarRedacoes(); montarAcertos(); carregarSimulados()
+}
+
+// ---------------------------------------------------------------- abas
+document.querySelectorAll('nav.abas button').forEach(b => b.onclick = () => {
+  document.querySelectorAll('nav.abas button').forEach(x => x.setAttribute('aria-selected', x === b))
+  ;['painel', 'cronograma', 'aulas', 'redacoes', 'simulados'].forEach(t => $('#' + t).hidden = t !== b.dataset.t)
+})
+
+// ---------------------------------------------------------------- painel
+const pendentes = f => AULAS.filter(a => (!f || f(a)) && PROG.get(a.id) !== 'assistida')
+
+function pintarPainel () {
+  $('#cards').innerHTML = MATERIAS.map(m => {
+    const da = AULAS.filter(a => a.materia_id === m.id)
+    if (!da.length && m.id !== 'entrevista') return ''
+    if (m.id === 'entrevista') return `
+      <div class="card mat">
+        <div class="top"><span class="nome">${m.nome}</span><span class="peso">${m.peso_espm}%</span></div>
+        <div class="barra"><i style="width:0%"></i></div>
+        <div class="det"><span>Sem material nos cursos</span><span>40 pontos</span></div>
+      </div>`
+    const feitas = da.filter(a => PROG.get(a.id) === 'assistida')
+    const totMin = da.reduce((s, a) => s + (a.minutos_est || 0), 0)
+    const feitoMin = feitas.reduce((s, a) => s + (a.minutos_est || 0), 0)
+    const pct = totMin ? Math.round(feitoMin / totMin * 100) : 0
+    return `
+      <div class="card mat">
+        <div class="top"><span class="nome">${m.nome}</span><span class="peso">${m.peso_espm}%</span></div>
+        <div class="barra"><i style="width:${pct}%"></i></div>
+        <div class="det">
+          <span>${feitas.length} de ${da.length} aulas</span>
+          <span class="num">${horas(totMin - feitoMin)}h restantes</span>
+        </div>
+      </div>`
+  }).join('')
+}
+
+// ---------------------------------------------------------------- cronograma
+function horasDoDia (d) {
+  const dow = d.getDay()
+  const dia = iso(d)
+  if (dia >= VIAGEM.de && dia <= VIAGEM.ate) return VIAGEM.horas
+  if (dow === 6) {
+    // dois primeiros sabados do mes tem compromisso das 18h as 22h
+    const nSab = Math.floor((d.getDate() - 1) / 7) + 1
+    return nSab <= 2 ? SAB_OCUPADO : HORAS[6]
+  }
+  return HORAS[dow]
+}
+
+function horasDisponiveis () {
+  let t = 0, d = new Date(); d.setHours(0, 0, 0, 0)
+  d.setDate(d.getDate() + 1)                       // conta a partir de amanha
+  for (; d < PROVA; d.setDate(d.getDate() + 1)) t += horasDoDia(d)
+  return t
+}
+
+function pintarCronograma () {
+  const disp = horasDisponiveis()
+  const semanas = Math.max((PROVA - new Date()) / 6048e5, .1)
+  const restaAula = pendentes().reduce((s, a) => s + (a.minutos_est || 0), 0) / 60
+  const restaRedacao = Math.round(semanas * REDACOES_SEMANA * MIN_REDACAO / 60)
+  const preciso = restaAula + restaRedacao
+  const folga = disp - preciso
+  const metaDia = preciso / Math.max((PROVA - new Date()) / 864e5, 1)
+
+  $('#kpis').innerHTML = `
+    <div class="card kpi"><div class="v num">${Math.round(disp)}h</div><div class="k">disponíveis</div></div>
+    <div class="card kpi"><div class="v num">${Math.round(restaAula)}h</div><div class="k">de aula pendente</div></div>
+    <div class="card kpi"><div class="v num">${restaRedacao}h</div><div class="k">escrevendo redação</div></div>
+    <div class="card kpi"><div class="v num" style="color:${folga < 0 ? 'var(--bad)' : 'var(--ok)'}">${folga < 0 ? '−' : '+'}${Math.abs(Math.round(folga))}h</div><div class="k">folga</div></div>
+    <div class="card kpi"><div class="v num">${metaDia.toFixed(1)}h</div><div class="k">meta por dia</div></div>`
+
+  let cls = 'ok', txt
+  if (folga < 0) {
+    cls = 'bad'
+    txt = `<strong>O plano não cabe no tempo.</strong> Faltam ${Math.abs(Math.round(folga))} horas.
+      Corte pelo filtro de relevância na aba Aulas, começando pelas matérias de menor peso —
+      Inglês vale 6,25% da nota e Matemática 12,5%, enquanto Redação vale 25%.`
+  } else if (folga < disp * .18) {
+    cls = 'warn'
+    txt = `<strong>Cabe, mas sem margem.</strong> Sobram ${Math.round(folga)} horas para simulado,
+      revisão e imprevisto — pouco para ${Math.round(semanas)} semanas. Vale cortar as aulas
+      de 1 e 2 estrelas das matérias de menor peso.`
+  } else {
+    txt = `<strong>No ritmo.</strong> Depois de assistir tudo e escrever as redações sobram
+      ${Math.round(folga)} horas para simulados, revisão e a preparação da entrevista —
+      que sozinha vale 25% da nota final.`
+  }
+  $('#diagnostico').innerHTML = `<div class="aviso ${cls}">${txt}</div>`
+
+  const nomes = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado']
+  const obs = { 0: 'Descanso', 4: 'Compromisso a partir das 19h30', 6: '7h30 às 22h, com pausa de almoço' }
+  $('#grade').innerHTML = nomes.map((n, i) => `
+    <tr><td>${n}</td><td class="n">${i === 6 ? '13h / 9h' : HORAS[i] + 'h'}</td>
+    <td class="small muted">${i === 6 ? 'Nos dois primeiros sábados do mês, 9h (compromisso 18h–22h)' : (obs[i] || '15h às 22h, com 1h de descanso')}</td></tr>`).join('') +
+    `<tr><td>Viagem</td><td class="n">${VIAGEM.horas}h</td>
+     <td class="small muted">4 a 12 de setembro, a trabalho</td></tr>`
+}
+
+// ---------------------------------------------------------------- aulas
+function montarFiltros () {
+  $('#fMat').innerHTML = '<option value="">Todas as matérias</option>' +
+    MATERIAS.filter(m => AULAS.some(a => a.materia_id === m.id))
+      .map(m => `<option value="${m.id}">${m.nome} · ${m.peso_espm}%</option>`).join('')
+  $('#fMat').onchange = () => { montarDisciplinas(); pintarAulas() }
+  ;['#fDisc', '#fEst', '#fSt', '#fTipo'].forEach(s => $(s).onchange = pintarAulas)
+  montarDisciplinas()
+}
+
+function montarDisciplinas () {
+  const m = $('#fMat').value
+  const ds = DISCIPLINAS.filter(d => (!m || d.materia_id === m) && AULAS.some(a => a.disciplina_id === d.id))
+  $('#fDisc').innerHTML = '<option value="">Todas as disciplinas</option>' +
+    ds.map(d => `<option value="${d.id}">${d.nome}</option>`).join('')
+}
+
+function filtradas () {
+  const m = $('#fMat').value, d = $('#fDisc').value, e = +$('#fEst').value || 0
+  const st = $('#fSt').value, tp = $('#fTipo').value
+  return AULAS.filter(a =>
+    (!m || a.materia_id === m) && (!d || a.disciplina_id === d) &&
+    (!e || (a.estrelas_enem || 0) >= e) &&
+    (!tp || a.tipo === tp) &&
+    (!st || (st === 'assistida') === (PROG.get(a.id) === 'assistida')))
+}
+
+function pintarAulas () {
+  const fs = filtradas()
+  const min = fs.reduce((s, a) => s + (a.minutos_est || 0), 0)
+  const feitas = fs.filter(a => PROG.get(a.id) === 'assistida').length
+  $('#resumoAulas').textContent =
+    `${fs.length} aulas · ${horas(min)}h no total · ${feitas} concluídas`
+
+  // Agrupa por disciplina e depois por modulo — sem isso os "Modulo 01" de
+  // Filosofia, Historia e Sociologia ficam intercalados na mesma lista.
+  const ordemDisc = new Map(DISCIPLINAS.map((d, i) => [d.id, i]))
+  const grupos = new Map()
+  fs.slice().sort((a, b) =>
+    (ordemDisc.get(a.disciplina_id) ?? 99) - (ordemDisc.get(b.disciplina_id) ?? 99) ||
+    (a.modulo || '').localeCompare(b.modulo || '', 'pt') || a.ordem - b.ordem
+  ).forEach(a => {
+    const d = DISCIPLINAS.find(x => x.id === a.disciplina_id)
+    const k = (d ? d.nome + ' · ' : '') + (a.modulo || '—')
+    if (!grupos.has(k)) grupos.set(k, [])
+    grupos.get(k).push(a)
+  })
+  const hoje = iso(new Date())
+
+  $('#lista').innerHTML = [...grupos].map(([mod, as]) => {
+    const f = as.filter(a => PROG.get(a.id) === 'assistida').length
+    const h = horas(as.reduce((s, a) => s + (a.minutos_est || 0), 0))
+    return `<details class="card mod"${f < as.length && grupos.size < 14 ? ' open' : ''}>
+      <summary><span>${mod}</span><span class="cont">${f}/${as.length} · ${h}h</span></summary>
+      ${as.map(a => {
+        const feita = PROG.get(a.id) === 'assistida'
+        const bloq = a.libera_em && a.libera_em > hoje
+        return `<label class="aula${feita ? ' feita' : ''}${bloq ? ' bloq' : ''}">
+          <input type="checkbox" data-id="${a.id}"${feita ? ' checked' : ''}${bloq ? ' disabled' : ''}>
+          <span class="t">${a.titulo}${bloq ? ` <span class="tiny">— libera em ${a.libera_em.split('-').reverse().join('/')}</span>` : ''}</span>
+          <span class="meta">
+            ${a.tipo === 'exercicio' ? '<span class="tag ex">exercícios</span>' : ''}
+            ${a.tipo === 'material' ? '<span class="tag">PDF</span>' : ''}
+            ${a.estrelas_enem ? `<span class="est" title="Relevância no ENEM">${'★'.repeat(a.estrelas_enem)}</span>` : ''}
+            <span class="num">${hhmm(a.minutos_est || 0)}</span>
+          </span></label>`
+      }).join('')}</details>`
+  }).join('') || '<div class="card vazio">Nenhuma aula com esses filtros.</div>'
+
+  $('#lista').querySelectorAll('input[type=checkbox]').forEach(c => c.onchange = () => marcar(+c.dataset.id, c.checked))
+}
+
+async function marcar (aula_id, feita) {
+  const status = feita ? 'assistida' : 'pendente'
+  PROG.set(aula_id, status)
+  pintarPainel(); pintarCronograma()
+  const { error } = await sb.from('progresso').upsert({
+    user_id: USER.id, aula_id, status,
+    assistida_em: feita ? new Date().toISOString() : null,
+    atualizado_em: new Date().toISOString()
+  }, { onConflict: 'user_id,aula_id' })
+  if (error) alert('Não consegui salvar: ' + error.message)
+}
+
+// ---------------------------------------------------------------- redacoes
+$('#fRed').onsubmit = async e => {
+  e.preventDefault()
+  const d = Object.fromEntries(new FormData(e.target))
+  d.user_id = USER.id
+  ;['minutos', 'nota_total', 'nota_maxima'].forEach(k => d[k] = d[k] ? +d[k] : null)
+  const { error } = await sb.from('redacoes').insert(d)
+  if (error) return alert(error.message)
+  e.target.reset(); carregarRedacoes()
+}
+
+async function carregarRedacoes () {
+  const { data } = await sb.from('redacoes').select('*').order('escrita_em', { ascending: false })
+  if (!data?.length) return $('#listaRed').innerHTML = '<div class="card vazio">Nenhuma redação registrada ainda.</div>'
+  const comNota = data.filter(r => r.nota_total != null)
+  const media = comNota.length
+    ? Math.round(comNota.reduce((s, r) => s + r.nota_total / r.nota_maxima * 1000, 0) / comNota.length) : null
+  $('#listaRed').innerHTML = `
+    <div class="kpis">
+      <div class="card kpi"><div class="v num">${data.length}</div><div class="k">escritas</div></div>
+      <div class="card kpi"><div class="v num">${media ?? '—'}</div><div class="k">média (base 1000)</div></div>
+      <div class="card kpi"><div class="v num">${comNota.length ? Math.round(Math.max(...comNota.map(r => r.nota_total / r.nota_maxima * 1000))) : '—'}</div><div class="k">melhor nota</div></div>
+    </div>
+    <div class="card rolar"><table>
+      <thead><tr><th>Data</th><th>Tema</th><th>Banca</th><th class="n">Nota</th><th>A corrigir</th></tr></thead>
+      <tbody>${data.map(r => `<tr>
+        <td class="num">${r.escrita_em.split('-').reverse().join('/')}</td>
+        <td>${r.tema}</td><td class="small muted">${r.banca || '—'}</td>
+        <td class="n">${r.nota_total != null ? r.nota_total : '—'}</td>
+        <td class="small muted">${r.pontos_fracos || '—'}</td></tr>`).join('')}</tbody>
+    </table></div>`
+}
+
+// ---------------------------------------------------------------- simulados
+function montarAcertos () {
+  $('#acertos').innerHTML = MATERIAS.filter(m => m.questoes > 0).map(m => `
+    <div><label>${m.nome} <span class="tiny">(${m.questoes} q.)</span></label>
+    <input type="number" min="0" max="${m.questoes}" data-mat="${m.id}" placeholder="0"></div>`).join('')
+}
+
+$('#fSim').onsubmit = async e => {
+  e.preventDefault()
+  const d = Object.fromEntries(new FormData(e.target))
+  const { data: sim, error } = await sb.from('simulados')
+    .insert({ user_id: USER.id, feito_em: d.feito_em, origem: d.origem,
+              minutos: d.minutos ? +d.minutos : null, observacoes: d.observacoes })
+    .select().single()
+  if (error) return alert(error.message)
+
+  // Uma linha por questao, para o acerto ficar por materia (e depois por assunto)
+  const linhas = []
+  $('#acertos').querySelectorAll('input').forEach(i => {
+    const mat = MATERIAS.find(m => m.id === i.dataset.mat)
+    const acertos = +i.value || 0
+    for (let n = 1; n <= mat.questoes; n++)
+      linhas.push({ user_id: USER.id, simulado_id: sim.id, numero: n,
+                    materia_id: mat.id, acertou: n <= acertos })
+  })
+  if (linhas.length) await sb.from('simulado_respostas').insert(linhas)
+  e.target.reset(); carregarSimulados()
+}
+
+async function carregarSimulados () {
+  const { data } = await sb.from('simulados').select('*, simulado_respostas(materia_id,acertou)')
+    .order('feito_em', { ascending: false })
+  if (!data?.length) return $('#listaSim').innerHTML = '<div class="card vazio">Nenhum simulado registrado ainda.</div>'
+  const mats = MATERIAS.filter(m => m.questoes > 0)
+  $('#listaSim').innerHTML = `<div class="card rolar"><table>
+    <thead><tr><th>Data</th><th>Origem</th>${mats.map(m => `<th class="n">${m.nome.split(' ')[0]}</th>`).join('')}<th class="n">Total</th></tr></thead>
+    <tbody>${data.map(s => {
+      const r = s.simulado_respostas || []
+      const ok = r.filter(x => x.acertou).length
+      return `<tr><td class="num">${s.feito_em.split('-').reverse().join('/')}</td><td>${s.origem || '—'}</td>
+        ${mats.map(m => {
+          const rm = r.filter(x => x.materia_id === m.id)
+          return `<td class="n">${rm.length ? rm.filter(x => x.acertou).length + '/' + rm.length : '—'}</td>`
+        }).join('')}
+        <td class="n"><strong>${r.length ? ok + '/' + r.length : '—'}</strong></td></tr>`
+    }).join('')}</tbody></table></div>`
+}
+
+iniciar()
+</script>
+</body>
+</html>
