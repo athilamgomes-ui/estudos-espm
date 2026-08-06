@@ -295,6 +295,13 @@ const HORAS = { 0: 0, 1: 6, 2: 6, 3: 6, 4: 3.5, 5: 6, 6: 13 }
 const SAB_OCUPADO = 9
 const MIN_REDACAO = 90            // por redacao escrita
 const REDACOES_SEMANA = 2
+// As 4 ultimas semanas nao levam aula nova: sao de resolver questao, corrigir e
+// simular. Os itens dessa fase ficam no curso 'refino', com data propria.
+const SEMANAS_REFINO = 4
+const INICIO_REFINO = new Date(PROVA - SEMANAS_REFINO * 6048e5)
+// Ate a faixa 2 cabe no tempo e cobre 80% das questoes da prova; a faixa 3
+// (cauda) e revisada na fase de refino.
+const FAIXA_PADRAO = 2
 
 const $ = s => document.querySelector(s)
 const iso = d => d.toISOString().slice(0, 10)
@@ -443,42 +450,41 @@ function horasDisponiveis () {
 }
 
 function pintarCronograma () {
-  const disp = horasDisponiveis()
-  const semanas = Math.max((PROVA - new Date()) / 6048e5, .1)
-  // Assistir e resolver sao coisas diferentes: as correcoes de exercicio do CEM
-  // nao entram como video, viram tempo de resolver questao.
-  const h = f => pendentes(f).reduce((s, a) => s + (a.minutos_est || 0), 0) / 60
-  const assistir = h(a => a.tipo === 'teoria' || a.tipo === 'simulado')
-  const resolver = h(a => a.tipo === 'exercicio')
-  const restaRedacao = Math.round(semanas * REDACOES_SEMANA * MIN_REDACAO / 60)
-  const preciso = assistir + resolver + restaRedacao
-  const folga = disp - preciso
-  const metaDia = preciso / Math.max((PROVA - new Date()) / 864e5, 1)
+  const amanha = new Date(); amanha.setHours(0, 0, 0, 0); amanha.setDate(amanha.getDate() + 1)
+  const dispConteudo = minutosDisponiveis(amanha, INICIO_REFINO) / 60
+  const dispRefino = minutosDisponiveis(INICIO_REFINO, PROVA) / 60
+  const semConteudo = Math.max((INICIO_REFINO - new Date()) / 6048e5, .1)
+
+  const carga = cargaConteudo() / 60
+  const redConteudo = Math.round(semConteudo * REDACOES_SEMANA * MIN_REDACAO / 60)
+  const precisoConteudo = carga + redConteudo
+  const folga = dispConteudo - precisoConteudo
+  const refino = AULAS.filter(ehRefino).reduce((s, a) => s + (a.minutos_est || 0), 0) / 60
+  const intensidade = dispConteudo > 0 ? Math.min(precisoConteudo / dispConteudo, 1) : 1
 
   $('#kpis').innerHTML = `
-    <div class="card kpi"><div class="v num">${Math.round(disp)}h</div><div class="k">disponíveis</div></div>
-    <div class="card kpi"><div class="v num">${Math.round(assistir)}h</div><div class="k">assistindo aula</div></div>
-    <div class="card kpi"><div class="v num">${Math.round(resolver)}h</div><div class="k">resolvendo exercício</div></div>
-    <div class="card kpi"><div class="v num">${restaRedacao}h</div><div class="k">escrevendo redação</div></div>
-    <div class="card kpi"><div class="v num" style="color:${folga < 0 ? 'var(--bad)' : 'var(--ok)'}">${folga < 0 ? '−' : '+'}${Math.abs(Math.round(folga))}h</div><div class="k">folga</div></div>
-    <div class="card kpi"><div class="v num">${metaDia.toFixed(1)}h</div><div class="k">meta por dia</div></div>`
+    <div class="card kpi"><div class="v num">${Math.round(dispConteudo)}h</div>
+      <div class="k">para conteúdo · até ${INICIO_REFINO.getDate()}/${INICIO_REFINO.getMonth() + 1}</div></div>
+    <div class="card kpi"><div class="v num">${Math.round(carga)}h</div><div class="k">de aula e exercício</div></div>
+    <div class="card kpi"><div class="v num">${redConteudo}h</div><div class="k">escrevendo redação</div></div>
+    <div class="card kpi"><div class="v num" style="color:${folga < 0 ? 'var(--bad)' : 'var(--ok)'}">${folga < 0 ? '−' : '+'}${Math.abs(Math.round(folga))}h</div><div class="k">folga na fase de conteúdo</div></div>
+    <div class="card kpi"><div class="v num">${(intensidade * 100).toFixed(0)}%</div><div class="k">do seu dia ocupado</div></div>
+    <div class="card kpi"><div class="v num">${Math.round(refino)}h</div><div class="k">de questão nas 4 semanas finais</div></div>`
 
   let cls = 'ok', txt
+  const rot = FAIXA_PADRAO === 1 ? 'a fundo' : 'a fundo + sólido'
   if (folga < 0) {
     cls = 'bad'
-    txt = `<strong>O plano não cabe no tempo.</strong> Faltam ${Math.abs(Math.round(folga))} horas.
-      Na aba Aulas, use o filtro de prioridade: marcar <em>“só o que estudar a fundo”</em>
-      deixa o que soma metade das questões da prova. O plano semanal abaixo já respeita
-      essa ordem — o que ficar de fora é o de menor frequência.`
-  } else if (folga < disp * .18) {
-    cls = 'warn'
-    txt = `<strong>Cabe, mas sem margem.</strong> Sobram ${Math.round(folga)} horas para simulado,
-      revisão e imprevisto — pouco para ${Math.round(semanas)} semanas. Vale cortar as aulas
-      de 1 e 2 estrelas das matérias de menor peso.`
+    txt = `<strong>Nem a faixa “${rot}” cabe até ${INICIO_REFINO.getDate()}/${INICIO_REFINO.getMonth() + 1}.</strong>
+      Faltam ${Math.abs(Math.round(folga))} horas. O plano vai priorizar o que mais cai e o resto fica de fora.`
   } else {
-    txt = `<strong>No ritmo.</strong> Depois de assistir as aulas, resolver os exercícios e escrever
-      as redações sobram ${Math.round(folga)} horas para simulados, revisão e a preparação da
-      entrevista — que sozinha vale 25% da nota final.`
+    txt = `<strong>Fecha.</strong> As aulas da faixa “${rot}” — que cobrem 80% das questões da prova —
+      cabem nas ${Math.round(dispConteudo)} horas até ${INICIO_REFINO.getDate()}/${INICIO_REFINO.getMonth() + 1},
+      ocupando <strong>${(intensidade * 100).toFixed(0)}% do seu dia</strong>, com a mesma intensidade
+      da primeira à última semana. Depois disso entram as
+      <strong>4 semanas de refinamento</strong>: ${Math.round(refino)} horas resolvendo as
+      1.043 questões das provas passadas, corrigindo e fazendo 4 simulados completos —
+      sem aula nova.`
   }
   $('#diagnostico').innerHTML = `<div class="aviso ${cls}">${txt}</div>`
 
@@ -497,11 +503,27 @@ function pintarCronograma () {
 const SEM = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb']
 const MES = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez']
 
-function montarPlano () {
+const ehRefino = a => a.curso_id === 'refino'
+
+// Minutos de aula que ainda faltam na fase de conteúdo, dentro da faixa escolhida
+function cargaConteudo (faixaMax = FAIXA_PADRAO) {
+  return pendentes(a => !ehRefino(a) && a.tipo !== 'material' &&
+    (FREQ.get(a.assunto_id)?.faixa || 3) <= faixaMax)
+    .reduce((s, a) => s + (a.minutos_est || 0), 0)
+}
+
+function minutosDisponiveis (de, ate) {
+  let t = 0
+  for (const d = new Date(de); d < ate; d.setDate(d.getDate() + 1)) t += horasDoDia(d) * 60
+  return t
+}
+
+function montarPlano (faixaMax = FAIXA_PADRAO) {
   // Uma fila por matéria, da maior para a menor prioridade
   const filas = new Map()
   MATERIAS.forEach(m => {
-    const da = pendentes(a => a.materia_id === m.id && a.tipo !== 'material')
+    const da = pendentes(a => a.materia_id === m.id && !ehRefino(a) && a.tipo !== 'material' &&
+      (FREQ.get(a.assunto_id)?.faixa || 3) <= faixaMax)
       .sort((x, y) =>
         (FREQ.get(x.assunto_id)?.faixa || 3) - (FREQ.get(y.assunto_id)?.faixa || 3) ||
         (FREQ.get(y.assunto_id)?.n || 0) - (FREQ.get(x.assunto_id)?.n || 0) ||
@@ -509,13 +531,34 @@ function montarPlano () {
     if (da.length) filas.set(m.id, { fila: da, peso: m.peso_espm, credito: 0 })
   })
 
+  const amanha = new Date(); amanha.setHours(0, 0, 0, 0); amanha.setDate(amanha.getDate() + 1)
+  // Carga espalhada por igual: cada dia recebe a mesma FRAÇÃO das suas horas,
+  // em vez de encher os primeiros dias e afunilar no fim.
+  const dispConteudo = minutosDisponiveis(amanha, INICIO_REFINO)
+  const intensidade = dispConteudo > 0
+    ? Math.min(cargaConteudo(faixaMax) / dispConteudo, 1) : 1
+
+  const refinoPorDia = new Map()
+  AULAS.filter(ehRefino).forEach(a => {
+    if (!refinoPorDia.has(a.libera_em)) refinoPorDia.set(a.libera_em, [])
+    refinoPorDia.get(a.libera_em).push(a)
+  })
+
   const dias = []
-  const d = new Date(); d.setHours(0, 0, 0, 0); d.setDate(d.getDate() + 1)
-  for (; d < PROVA && [...filas.values()].some(f => f.fila.length); d.setDate(d.getDate() + 1)) {
-    let restam = horasDoDia(d) * 60
-    if (restam <= 0) { dias.push({ data: new Date(d), itens: [], folga: true }); continue }
-    const hoje = iso(d), itens = []
-    // sorteia a matéria pelo peso na nota: revezamento proporcional
+  for (const d = new Date(amanha); d < PROVA; d.setDate(d.getDate() + 1)) {
+    const hoje = iso(d)
+    const capacidade = horasDoDia(d) * 60
+    if (capacidade <= 0) { dias.push({ data: new Date(d), itens: [], folga: true }); continue }
+
+    if (d >= INICIO_REFINO) {
+      const itens = (refinoPorDia.get(hoje) || [])
+        .filter(a => PROG.get(a.id) !== 'assistida')
+      dias.push({ data: new Date(d), itens, refino: true })
+      continue
+    }
+
+    let restam = capacidade * intensidade
+    const itens = []
     while (restam > 0) {
       const vivas = [...filas.entries()].filter(([, f]) => f.fila.length)
       if (!vivas.length) break
@@ -530,6 +573,10 @@ function montarPlano () {
     }
     dias.push({ data: new Date(d), itens })
   }
+  // o que não coube (faixa acima do limite, ou tempo curto) fica de fora
+  const sobrou = [...filas.values()].reduce((s, f) => s + f.fila.length, 0)
+  dias.intensidade = intensidade
+  dias.sobrou = sobrou
   return dias
 }
 
@@ -547,21 +594,23 @@ function pintarPlano () {
   })
 
   const hoje = iso(new Date())
-  $('#plano').innerHTML = semanas.slice(0, 8).map((s, i) => {
+  $('#plano').innerHTML = semanas.map((s, i) => {
     const fim = new Date(s.inicio); fim.setDate(fim.getDate() + 6)
     const todos = s.dias.flatMap(d => d.itens)
     const min = todos.reduce((t, a) => t + (a.minutos_est || 0), 0)
     const feitos = todos.filter(a => PROG.get(a.id) === 'assistida').length
-    const redacoes = Math.round(REDACOES_SEMANA)
+    const refino = s.dias.some(d => d.refino)
     return `<details class="card mod"${i === 0 ? ' open' : ''}>
       <summary>
         <span>${i === 0 ? 'Esta semana' : `${s.inicio.getDate()} de ${MES[s.inicio.getMonth()]}`}
-          <span class="tiny">— ${s.inicio.getDate()}/${s.inicio.getMonth() + 1} a ${fim.getDate()}/${fim.getMonth() + 1}</span></span>
+          <span class="tiny">— ${s.inicio.getDate()}/${s.inicio.getMonth() + 1} a ${fim.getDate()}/${fim.getMonth() + 1}${refino ? ' · refinamento' : ''}</span></span>
         <span class="cont">${feitos}/${todos.length} · ${horas(min)}h</span>
       </summary>
       <div style="padding:4px 15px 12px">
+        ${refino ? `<div class="tiny" style="padding:8px 0 0;color:var(--accent)">
+          🎯 Semana de refinamento — sem aula nova, só resolver questão, corrigir e simular</div>` : ''}
         <div class="tiny" style="padding:8px 0 4px">
-          ✍️ Escrever ${redacoes} redações nesta semana — registre na aba Redações
+          ✍️ Escrever ${REDACOES_SEMANA} redações nesta semana — registre na aba Redações
         </div>
       </div>
       ${s.dias.map(dia => {
@@ -591,10 +640,13 @@ function pintarPlano () {
   $('#plano').querySelectorAll('input[type=checkbox]').forEach(c =>
     c.onchange = () => marcar(+c.dataset.id, c.checked))
 
-  if (semanas.length > 8) {
-    $('#plano').insertAdjacentHTML('beforeend',
-      `<p class="tiny" style="margin-top:12px">Mostrando as 8 primeiras de ${semanas.length} semanas.
-       As demais aparecem conforme você avança.</p>`)
+  if (dias.sobrou) {
+    $('#plano').insertAdjacentHTML('afterbegin',
+      `<div class="aviso warn" style="margin-bottom:12px">
+        <strong>${dias.sobrou} aulas ficaram de fora do plano.</strong> São as de menor frequência
+        na ESPM — a “cauda”. Elas não somem: voltam como revisão rápida nas 4 semanas finais,
+        e você continua podendo assistir qualquer uma pela aba Aulas.
+      </div>`)
   }
 }
 
