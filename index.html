@@ -6,17 +6,14 @@
 <title>Estudos · ESPM 2027</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
 <style>
+/* Tema escuro fixo, em qualquer computador — nao segue mais o modo claro/escuro
+   do sistema (pedido dela: no Mac abria preto e em outra maquina abria branco). */
 :root{
-  --bg:#faf9f7; --card:#fff; --ink:#1a1a1a; --ink2:#5b5b5b; --ink3:#8a8a8a;
-  --line:#e6e3de; --accent:#7c3aed; --accent-soft:#f3edff;
-  --ok:#0f8a5f; --warn:#b45309; --bad:#c0392b;
-  --r:14px; --sh:0 1px 2px rgba(0,0,0,.04), 0 8px 24px -12px rgba(0,0,0,.12);
-}
-@media (prefers-color-scheme:dark){
-  :root{--bg:#131316;--card:#1c1c21;--ink:#f0efed;--ink2:#a8a6a2;--ink3:#77746f;
-        --line:#2e2e35;--accent:#a78bfa;--accent-soft:#241d38;
-        --ok:#4ade80;--warn:#fbbf24;--bad:#f87171;
-        --sh:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.6);}
+  color-scheme:dark;
+  --bg:#131316; --card:#1c1c21; --ink:#f0efed; --ink2:#a8a6a2; --ink3:#77746f;
+  --line:#2e2e35; --accent:#a78bfa; --accent-soft:#241d38;
+  --ok:#4ade80; --warn:#fbbf24; --bad:#f87171;
+  --r:14px; --sh:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.6);
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
@@ -30,7 +27,7 @@ h2{font-size:15px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3
 button{font:inherit;cursor:pointer;border-radius:10px;border:1px solid var(--line);
   background:var(--card);color:var(--ink);padding:8px 14px;transition:.15s}
 button:hover{border-color:var(--accent)}
-button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+button.primary{background:var(--accent);border-color:var(--accent);color:#15121f;font-weight:600}
 button.primary:hover{filter:brightness(1.08)}
 input,select,textarea{font:inherit;padding:9px 11px;border-radius:10px;border:1px solid var(--line);
   background:var(--card);color:var(--ink);width:100%}
@@ -442,16 +439,20 @@ function horasDoDia (d) {
   return HORAS[dow]
 }
 
+// O plano comeca HOJE, nunca amanha: senao, a cada dia que passa a primeira
+// linha do cronograma escorrega para a frente e o dia de hoje some.
+function inicioDoPlano () {
+  const d = new Date(); d.setHours(0, 0, 0, 0); return d
+}
+
 function horasDisponiveis () {
-  let t = 0, d = new Date(); d.setHours(0, 0, 0, 0)
-  d.setDate(d.getDate() + 1)                       // conta a partir de amanha
-  for (; d < PROVA; d.setDate(d.getDate() + 1)) t += horasDoDia(d)
+  let t = 0
+  for (const d = inicioDoPlano(); d < PROVA; d.setDate(d.getDate() + 1)) t += horasDoDia(d)
   return t
 }
 
 function pintarCronograma () {
-  const amanha = new Date(); amanha.setHours(0, 0, 0, 0); amanha.setDate(amanha.getDate() + 1)
-  const dispConteudo = minutosDisponiveis(amanha, INICIO_REFINO) / 60
+  const dispConteudo = minutosDisponiveis(inicioDoPlano(), INICIO_REFINO) / 60
   const dispRefino = minutosDisponiveis(INICIO_REFINO, PROVA) / 60
   const semConteudo = Math.max((INICIO_REFINO - new Date()) / 6048e5, .1)
 
@@ -505,6 +506,22 @@ const MES = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out
 
 const ehRefino = a => a.curso_id === 'refino'
 
+// Como o cronograma nomeia cada item: "Matéria: Aula 07 - Título no cursinho".
+// A matéria é a disciplina do curso (Geografia e Atualidades, Matemática...),
+// que é como ela chama a matéria; em Redação as trilhas viram só "Redação".
+// Os itens da fase de refino já são frases inteiras — esses ficam como estão.
+function nomeMateria (a) {
+  if (a.materia_id === 'redacao') return 'Redação'
+  return DISCIPLINAS.find(d => d.id === a.disciplina_id)?.nome ||
+         MATERIAS.find(m => m.id === a.materia_id)?.nome || ''
+}
+
+function rotuloAula (a) {
+  const t = (a.titulo || '').trim()
+  const nome = ehRefino(a) ? '' : nomeMateria(a)
+  return nome ? `${nome}: ${t}` : t
+}
+
 // Minutos de aula que ainda faltam na fase de conteúdo, dentro da faixa escolhida
 function cargaConteudo (faixaMax = FAIXA_PADRAO) {
   return pendentes(a => !ehRefino(a) && a.tipo !== 'material' &&
@@ -531,10 +548,10 @@ function montarPlano (faixaMax = FAIXA_PADRAO) {
     if (da.length) filas.set(m.id, { fila: da, peso: m.peso_espm, credito: 0 })
   })
 
-  const amanha = new Date(); amanha.setHours(0, 0, 0, 0); amanha.setDate(amanha.getDate() + 1)
+  const comeco = inicioDoPlano()
   // Carga espalhada por igual: cada dia recebe a mesma FRAÇÃO das suas horas,
   // em vez de encher os primeiros dias e afunilar no fim.
-  const dispConteudo = minutosDisponiveis(amanha, INICIO_REFINO)
+  const dispConteudo = minutosDisponiveis(comeco, INICIO_REFINO)
   const intensidade = dispConteudo > 0
     ? Math.min(cargaConteudo(faixaMax) / dispConteudo, 1) : 1
 
@@ -545,7 +562,7 @@ function montarPlano (faixaMax = FAIXA_PADRAO) {
   })
 
   const dias = []
-  for (const d = new Date(amanha); d < PROVA; d.setDate(d.getDate() + 1)) {
+  for (const d = new Date(comeco); d < PROVA; d.setDate(d.getDate() + 1)) {
     const hoje = iso(d)
     const capacidade = horasDoDia(d) * 60
     if (capacidade <= 0) { dias.push({ data: new Date(d), itens: [], folga: true }); continue }
@@ -628,7 +645,7 @@ function pintarPlano () {
             const f = FREQ.get(a.assunto_id)
             return `<label class="aula${feita ? ' feita' : ''}" style="padding-left:22px">
               <input type="checkbox" data-id="${a.id}"${feita ? ' checked' : ''}>
-              <span class="t">${a.titulo}
+              <span class="t">${rotuloAula(a)}
                 ${f ? `<span class="tiny" style="display:block">${f.assunto}</span>` : ''}</span>
               <span class="meta">${a.tipo === 'exercicio' ? '<span class="tag ex">exercícios</span>' : ''}
                 <span class="num">${hhmm(a.minutos_est || 0)}</span></span></label>`
