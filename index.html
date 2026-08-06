@@ -179,6 +179,9 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
       Ordem tirada da leitura de <strong>1.199 questões</strong> das 15 provas da ESPM entre 2019 e 2026.
       A frequência define a <strong>ordem e a profundidade</strong>, não uma lista de exclusão —
       a cauda também cai, e quando você errar nela num simulado ela sobe de faixa.
+      <div style="margin-top:10px">Clique num assunto para ver <strong>quais aulas assistir</strong>.
+      Para Lógica, Sequências e P.G., que nenhum curso cobre, use a
+      <a href="exercicios.html" style="font-weight:600">lista de exercícios da ESPM com gabarito</a>.</div>
     </div>
     <div class="filtros" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr))">
       <select id="pMat"></select>
@@ -206,6 +209,12 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
         <option value="teoria">Só videoaula</option>
         <option value="exercicio">Só exercícios</option>
       </select>
+      <select id="fFaixa">
+        <option value="">Toda prioridade</option>
+        <option value="1">Só o que estudar a fundo</option>
+        <option value="2">A fundo + passada sólida</option>
+      </select>
+      <select id="fAssunto"><option value="">Todos os assuntos</option></select>
     </div>
     <div id="resumoAulas" class="small muted" style="margin-bottom:12px"></div>
     <div id="lista"></div>
@@ -274,7 +283,14 @@ const hhmm = min => {
 }
 const horas = min => Math.round(min / 60)
 
-let AULAS = [], PROG = new Map(), MATERIAS = [], DISCIPLINAS = [], USER = null
+let AULAS = [], PROG = new Map(), MATERIAS = [], DISCIPLINAS = [], ASSUNTOS = [], USER = null
+// assunto_id -> {nome, n, porProva, faixa}. Preenchido por carregarPrioridades().
+const FREQ = new Map()
+const FAIXA = {
+  1: ['A fundo', 'var(--bad)'],
+  2: ['Sólido', 'var(--warn)'],
+  3: ['Revisão', 'var(--ink3)']
+}
 
 // ---------------------------------------------------------------- login
 async function iniciar () {
@@ -302,21 +318,25 @@ const aviso = (t, c) => { const m = $('#msg'); m.textContent = t; m.className = 
 // ---------------------------------------------------------------- carga
 async function abrirApp () {
   $('#app').hidden = false
-  const [mats, discs, aulas, prog] = await Promise.all([
+  const [mats, discs, assu, aulas, prog] = await Promise.all([
     sb.from('materias').select('*').order('ordem'),
     sb.from('disciplinas').select('*').order('ordem'),
+    sb.from('assuntos').select('*').order('id'),
     sb.from('aulas').select('*').order('curso_id').order('modulo').order('ordem').limit(2000),
     sb.from('progresso').select('aula_id,status')
   ])
-  MATERIAS = mats.data || []; DISCIPLINAS = discs.data || []; AULAS = aulas.data || []
+  MATERIAS = mats.data || []; DISCIPLINAS = discs.data || []
+  ASSUNTOS = assu.data || []; AULAS = aulas.data || []
   ;(prog.data || []).forEach(p => PROG.set(p.aula_id, p.status))
 
   const dias = Math.ceil((PROVA - new Date()) / 864e5)
   $('#dias').textContent = dias
   $('#sub').textContent = `Vestibular ESPM São Paulo · domingo, 29 de novembro de 2026`
 
+  // A frequência precisa estar pronta antes de pintar as aulas, que mostram a faixa
+  await carregarPrioridades()
   montarFiltros(); pintarPainel(); pintarCronograma(); pintarAulas()
-  carregarRedacoes(); montarAcertos(); carregarSimulados(); carregarPrioridades()
+  carregarRedacoes(); montarAcertos(); carregarSimulados()
 }
 
 // ---------------------------------------------------------------- abas
@@ -428,9 +448,20 @@ function montarFiltros () {
   $('#fMat').innerHTML = '<option value="">Todas as matérias</option>' +
     MATERIAS.filter(m => AULAS.some(a => a.materia_id === m.id))
       .map(m => `<option value="${m.id}">${m.nome} · ${m.peso_espm}%</option>`).join('')
-  $('#fMat').onchange = () => { montarDisciplinas(); pintarAulas() }
-  ;['#fDisc', '#fEst', '#fSt', '#fTipo'].forEach(s => $(s).onchange = pintarAulas)
-  montarDisciplinas()
+  $('#fMat').onchange = () => { montarDisciplinas(); montarAssuntos(); pintarAulas() }
+  ;['#fDisc', '#fEst', '#fSt', '#fTipo', '#fFaixa', '#fAssunto'].forEach(s => $(s).onchange = pintarAulas)
+  montarDisciplinas(); montarAssuntos()
+}
+
+function montarAssuntos () {
+  const m = $('#fMat').value
+  const comAula = ASSUNTOS.filter(a => (!m || a.materia_id === m) && AULAS.some(x => x.assunto_id === a.id))
+  comAula.sort((a, b) => (FREQ.get(b.id)?.n || 0) - (FREQ.get(a.id)?.n || 0))
+  $('#fAssunto').innerHTML = '<option value="">Todos os assuntos</option>' +
+    comAula.map(a => {
+      const f = FREQ.get(a.id)
+      return `<option value="${a.id}">${a.nome}${f?.n ? ` · ${f.n} q.` : ''}</option>`
+    }).join('')
 }
 
 function montarDisciplinas () {
@@ -443,10 +474,13 @@ function montarDisciplinas () {
 function filtradas () {
   const m = $('#fMat').value, d = $('#fDisc').value, e = +$('#fEst').value || 0
   const st = $('#fSt').value, tp = $('#fTipo').value
+  const fx = +$('#fFaixa').value || 0, as = +$('#fAssunto').value || 0
   return AULAS.filter(a =>
     (!m || a.materia_id === m) && (!d || a.disciplina_id === d) &&
     (!e || (a.estrelas_enem || 0) >= e) &&
     (!tp || a.tipo === tp) &&
+    (!as || a.assunto_id === as) &&
+    (!fx || (FREQ.get(a.assunto_id)?.faixa || 3) <= fx) &&
     (!st || (st === 'assistida') === (PROG.get(a.id) === 'assistida')))
 }
 
@@ -480,10 +514,13 @@ function pintarAulas () {
       ${as.map(a => {
         const feita = PROG.get(a.id) === 'assistida'
         const bloq = a.libera_em && a.libera_em > hoje
+        const f = FREQ.get(a.assunto_id)
         return `<label class="aula${feita ? ' feita' : ''}${bloq ? ' bloq' : ''}">
           <input type="checkbox" data-id="${a.id}"${feita ? ' checked' : ''}${bloq ? ' disabled' : ''}>
-          <span class="t">${a.titulo}${bloq ? ` <span class="tiny">— libera em ${a.libera_em.split('-').reverse().join('/')}</span>` : ''}</span>
+          <span class="t">${a.titulo}${bloq ? ` <span class="tiny">— libera em ${a.libera_em.split('-').reverse().join('/')}</span>` : ''}
+            ${f ? `<span class="tiny" style="display:block">${f.assunto}${f.n ? ` · ${f.n} questões em 15 provas` : ''}</span>` : ''}</span>
           <span class="meta">
+            ${f ? `<span class="tag" style="border-color:${FAIXA[f.faixa][1]};color:${FAIXA[f.faixa][1]}" title="Prioridade pela frequência na ESPM">${FAIXA[f.faixa][0]}</span>` : ''}
             ${a.tipo === 'exercicio' ? '<span class="tag ex">exercícios</span>' : ''}
             ${a.tipo === 'material' ? '<span class="tag">PDF</span>' : ''}
             ${a.estrelas_enem ? `<span class="est" title="Relevância no ENEM">${'★'.repeat(a.estrelas_enem)}</span>` : ''}
@@ -533,6 +570,22 @@ async function carregarPrioridades () {
     return { materia_id, assunto, n, porProva: n / 15 }
   }).sort((a, b) => b.n - a.n)
 
+  // Faixa por frequência acumulada dentro da matéria: 50% no topo, 80% no meio.
+  MATERIAS.forEach(m => {
+    const da = PRI.filter(p => p.materia_id === m.id)
+    const tot = da.reduce((s, p) => s + p.n, 0)
+    let acum = 0
+    da.forEach(p => {
+      p.faixa = acum / tot < .5 ? 1 : (acum / tot < .8 ? 2 : 3)
+      acum += p.n
+      const a = ASSUNTOS.find(x => x.materia_id === p.materia_id && x.nome === p.assunto)
+      if (a) FREQ.set(a.id, p)
+    })
+  })
+  // Redação não tem questão de múltipla escolha: vale 25% inteiro, tudo no topo.
+  ASSUNTOS.filter(a => a.materia_id === 'redacao')
+    .forEach(a => FREQ.set(a.id, { assunto: a.nome, n: null, faixa: 1 }))
+
   $('#pMat').innerHTML = '<option value="">A prova inteira</option>' +
     MATERIAS.filter(m => PRI.some(p => p.materia_id === m.id))
       .map(m => `<option value="${m.id}">${m.nome} · ${m.peso_espm}% da nota</option>`).join('')
@@ -551,10 +604,9 @@ function pintarPrioridades () {
   let acum = 0
   const linhas = lista.map(p => {
     const antes = acum; acum += p.n
-    const faixa = antes / total < .5 ? 1 : (antes / total < .8 ? 2 : 3)
-    return { ...p, faixa }
+    return { ...p, faixa: antes / total < .5 ? 1 : (antes / total < .8 ? 2 : 3) }
   })
-  const FAIXA = {
+  const ROTULO = {
     1: ['Estudar a fundo e revisar', 'var(--bad)'],
     2: ['Uma passada sólida', 'var(--warn)'],
     3: ['Revisão rápida, para não ser pega de surpresa', 'var(--ink3)']
@@ -569,14 +621,25 @@ function pintarPrioridades () {
       if (p.faixa !== atual) {
         atual = p.faixa
         cab = `<tr><td colspan="${m ? 4 : 5}" style="padding-top:16px;border:none">
-          <strong style="color:${FAIXA[p.faixa][1]}">${FAIXA[p.faixa][0]}</strong></td></tr>`
+          <strong style="color:${ROTULO[p.faixa][1]}">${ROTULO[p.faixa][0]}</strong></td></tr>`
       }
-      return cab + `<tr>
-        <td>${p.assunto}</td>${m ? '' : `<td class="small muted">${nomeMat(p.materia_id)}</td>`}
+      const a = ASSUNTOS.find(x => x.materia_id === p.materia_id && x.nome === p.assunto)
+      const naulas = a ? AULAS.filter(x => x.assunto_id === a.id).length : 0
+      return cab + `<tr${a ? ` style="cursor:pointer" data-ir="${a.id}" title="Ver as ${naulas} aulas desse assunto"` : ''}>
+        <td>${p.assunto}${naulas ? ` <span class="tiny">· ${naulas} aulas</span>` : ''}</td>${m ? '' : `<td class="small muted">${nomeMat(p.materia_id)}</td>`}
         <td class="n">${p.n}</td><td class="n">${p.porProva.toFixed(1)}</td>
         <td><div class="barra" style="margin:0;max-width:150px"><i style="width:${p.n / mx * 100}%"></i></div></td>
       </tr>`
     }).join('') + '</tbody></table></div>'
+
+  // clicar num assunto abre a aba Aulas já filtrada por ele
+  $('#listaPri').querySelectorAll('tr[data-ir]').forEach(tr => tr.onclick = () => {
+    $('#fMat').value = ''; montarDisciplinas(); $('#fDisc').value = ''
+    $('#fFaixa').value = ''; $('#fAssunto').value = tr.dataset.ir
+    pintarAulas()
+    document.querySelector('nav.abas button[data-t=aulas]').click()
+    window.scrollTo(0, 0)
+  })
 }
 
 // ---------------------------------------------------------------- redacoes
