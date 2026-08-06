@@ -56,7 +56,9 @@ header{display:flex;justify-content:space-between;align-items:flex-start;gap:16p
 .contagem .l{font-size:12px;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em}
 
 /* ---------- abas ---------- */
-nav.abas{display:flex;gap:4px;margin-bottom:20px;overflow-x:auto;padding-bottom:2px}
+/* No celular as abas quebram em duas linhas — antes ficavam fora da tela,
+   e "Aulas" era inalcançável. */
+nav.abas{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:20px}
 nav.abas button{border:none;background:transparent;color:var(--ink2);padding:8px 13px;
   border-radius:9px;white-space:nowrap}
 nav.abas button[aria-selected=true]{background:var(--accent-soft);color:var(--accent);font-weight:600}
@@ -166,8 +168,15 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
   <section id="cronograma" hidden>
     <div class="kpis" id="kpis"></div>
     <div id="diagnostico"></div>
-    <div class="card rolar" style="padding:4px 14px 10px">
-      <h2 style="margin:14px 0 4px">Sua grade semanal</h2>
+    <h2 style="margin:26px 0 4px">Semana a semana</h2>
+    <p class="small muted" style="margin:0 0 12px">
+      O plano se refaz a partir do que ainda está pendente — o que você não fechar numa semana
+      volta sozinho na seguinte. Marcar aqui é o mesmo que marcar na aba Aulas.
+    </p>
+    <div id="plano"></div>
+
+    <div class="card rolar" style="padding:4px 14px 10px;margin-top:22px">
+      <h2 style="margin:14px 0 4px">Sua grade de horas</h2>
       <table>
         <thead><tr><th>Dia</th><th class="n">Horas</th><th>Observação</th></tr></thead>
         <tbody id="grade"></tbody>
@@ -348,7 +357,7 @@ async function abrirApp () {
 
   // A frequência precisa estar pronta antes de pintar as aulas, que mostram a faixa
   await carregarPrioridades()
-  montarFiltros(); pintarCronograma(); pintarAulas(); carregarListas()
+  montarFiltros(); pintarCronograma(); pintarPlano(); pintarAulas(); carregarListas()
   await carregarRedacoes()
   pintarPainel(); montarAcertos(); carregarSimulados()
 }
@@ -458,8 +467,9 @@ function pintarCronograma () {
   if (folga < 0) {
     cls = 'bad'
     txt = `<strong>O plano não cabe no tempo.</strong> Faltam ${Math.abs(Math.round(folga))} horas.
-      Corte pelo filtro de relevância na aba Aulas, começando pelas matérias de menor peso —
-      Inglês vale 6,25% da nota e Matemática 12,5%, enquanto Redação vale 25%.`
+      Na aba Aulas, use o filtro de prioridade: marcar <em>“só o que estudar a fundo”</em>
+      deixa o que soma metade das questões da prova. O plano semanal abaixo já respeita
+      essa ordem — o que ficar de fora é o de menor frequência.`
   } else if (folga < disp * .18) {
     cls = 'warn'
     txt = `<strong>Cabe, mas sem margem.</strong> Sobram ${Math.round(folga)} horas para simulado,
@@ -479,6 +489,113 @@ function pintarCronograma () {
     <td class="small muted">${i === 6 ? 'Nos dois primeiros sábados do mês, 9h (compromisso 18h–22h)' : (obs[i] || '15h às 22h, com 1h de descanso')}</td></tr>`).join('') +
     `<tr><td>Viagem</td><td class="n">${VIAGEM.horas}h</td>
      <td class="small muted">4 a 12 de setembro, a trabalho</td></tr>`
+}
+
+// ---------------------------------------------------------------- plano semanal
+// Nao guarda plano fixo: monta na hora a partir do que esta pendente, ordenado
+// por prioridade. Assim, o que nao for feito reaparece sozinho na semana seguinte.
+const SEM = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb']
+const MES = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez']
+
+function montarPlano () {
+  // Uma fila por matéria, da maior para a menor prioridade
+  const filas = new Map()
+  MATERIAS.forEach(m => {
+    const da = pendentes(a => a.materia_id === m.id && a.tipo !== 'material')
+      .sort((x, y) =>
+        (FREQ.get(x.assunto_id)?.faixa || 3) - (FREQ.get(y.assunto_id)?.faixa || 3) ||
+        (FREQ.get(y.assunto_id)?.n || 0) - (FREQ.get(x.assunto_id)?.n || 0) ||
+        (x.modulo || '').localeCompare(y.modulo || '', 'pt') || x.ordem - y.ordem)
+    if (da.length) filas.set(m.id, { fila: da, peso: m.peso_espm, credito: 0 })
+  })
+
+  const dias = []
+  const d = new Date(); d.setHours(0, 0, 0, 0); d.setDate(d.getDate() + 1)
+  for (; d < PROVA && [...filas.values()].some(f => f.fila.length); d.setDate(d.getDate() + 1)) {
+    let restam = horasDoDia(d) * 60
+    if (restam <= 0) { dias.push({ data: new Date(d), itens: [], folga: true }); continue }
+    const hoje = iso(d), itens = []
+    // sorteia a matéria pelo peso na nota: revezamento proporcional
+    while (restam > 0) {
+      const vivas = [...filas.entries()].filter(([, f]) => f.fila.length)
+      if (!vivas.length) break
+      vivas.forEach(([, f]) => f.credito += f.peso)
+      const [, esc] = vivas.reduce((a, b) => b[1].credito > a[1].credito ? b : a)
+      const i = esc.fila.findIndex(a => !a.libera_em || a.libera_em <= hoje)
+      if (i < 0) { esc.credito = -1e9; continue }   // tudo dela ainda bloqueado hoje
+      const a = esc.fila[i]
+      if ((a.minutos_est || 0) > restam && itens.length) break
+      esc.fila.splice(i, 1); esc.credito = 0
+      itens.push(a); restam -= (a.minutos_est || 0)
+    }
+    dias.push({ data: new Date(d), itens })
+  }
+  return dias
+}
+
+function pintarPlano () {
+  const dias = montarPlano()
+  // agrupa por semana começando na segunda
+  const semanas = []
+  dias.forEach(dia => {
+    const seg = new Date(dia.data)
+    seg.setDate(seg.getDate() - ((seg.getDay() + 6) % 7))
+    const k = iso(seg)
+    let s = semanas.find(x => x.k === k)
+    if (!s) { s = { k, inicio: seg, dias: [] }; semanas.push(s) }
+    s.dias.push(dia)
+  })
+
+  const hoje = iso(new Date())
+  $('#plano').innerHTML = semanas.slice(0, 8).map((s, i) => {
+    const fim = new Date(s.inicio); fim.setDate(fim.getDate() + 6)
+    const todos = s.dias.flatMap(d => d.itens)
+    const min = todos.reduce((t, a) => t + (a.minutos_est || 0), 0)
+    const feitos = todos.filter(a => PROG.get(a.id) === 'assistida').length
+    const redacoes = Math.round(REDACOES_SEMANA)
+    return `<details class="card mod"${i === 0 ? ' open' : ''}>
+      <summary>
+        <span>${i === 0 ? 'Esta semana' : `${s.inicio.getDate()} de ${MES[s.inicio.getMonth()]}`}
+          <span class="tiny">— ${s.inicio.getDate()}/${s.inicio.getMonth() + 1} a ${fim.getDate()}/${fim.getMonth() + 1}</span></span>
+        <span class="cont">${feitos}/${todos.length} · ${horas(min)}h</span>
+      </summary>
+      <div style="padding:4px 15px 12px">
+        <div class="tiny" style="padding:8px 0 4px">
+          ✍️ Escrever ${redacoes} redações nesta semana — registre na aba Redações
+        </div>
+      </div>
+      ${s.dias.map(dia => {
+        const dt = dia.data, ehHoje = iso(dt) === hoje
+        if (!dia.itens.length) return `<div class="aula" style="opacity:.5">
+          <span class="t small">${SEM[dt.getDay()]} ${dt.getDate()}/${dt.getMonth() + 1} — descanso</span></div>`
+        const hDia = dia.itens.reduce((t, a) => t + (a.minutos_est || 0), 0)
+        return `<div style="border-top:1px solid var(--line);padding:9px 15px 2px;
+             background:${ehHoje ? 'var(--accent-soft)' : 'transparent'}">
+            <strong class="small">${SEM[dt.getDay()]} ${dt.getDate()}/${dt.getMonth() + 1}${ehHoje ? ' · hoje' : ''}</strong>
+            <span class="tiny"> · ${hhmm(hDia)}</span>
+          </div>` +
+          dia.itens.map(a => {
+            const feita = PROG.get(a.id) === 'assistida'
+            const f = FREQ.get(a.assunto_id)
+            return `<label class="aula${feita ? ' feita' : ''}" style="padding-left:22px">
+              <input type="checkbox" data-id="${a.id}"${feita ? ' checked' : ''}>
+              <span class="t">${a.titulo}
+                ${f ? `<span class="tiny" style="display:block">${f.assunto}</span>` : ''}</span>
+              <span class="meta">${a.tipo === 'exercicio' ? '<span class="tag ex">exercícios</span>' : ''}
+                <span class="num">${hhmm(a.minutos_est || 0)}</span></span></label>`
+          }).join('')
+      }).join('')}
+    </details>`
+  }).join('') || '<div class="card vazio">Tudo em dia — nenhuma aula pendente.</div>'
+
+  $('#plano').querySelectorAll('input[type=checkbox]').forEach(c =>
+    c.onchange = () => marcar(+c.dataset.id, c.checked))
+
+  if (semanas.length > 8) {
+    $('#plano').insertAdjacentHTML('beforeend',
+      `<p class="tiny" style="margin-top:12px">Mostrando as 8 primeiras de ${semanas.length} semanas.
+       As demais aparecem conforme você avança.</p>`)
+  }
 }
 
 // ---------------------------------------------------------------- aulas
@@ -544,10 +661,12 @@ function pintarAulas () {
   })
   const hoje = iso(new Date())
 
-  $('#lista').innerHTML = [...grupos].map(([mod, as]) => {
+  $('#lista').innerHTML = [...grupos].map(([mod, as], i) => {
     const f = as.filter(a => PROG.get(a.id) === 'assistida').length
     const h = horas(as.reduce((s, a) => s + (a.minutos_est || 0), 0))
-    return `<details class="card mod"${f < as.length && grupos.size < 14 ? ' open' : ''}>
+    // Abre os primeiros grupos sempre: com tudo fechado a tela parecia vazia.
+    const abrir = f < as.length && (grupos.size <= 20 || i < 3)
+    return `<details class="card mod"${abrir ? ' open' : ''}>
       <summary><span>${mod}</span><span class="cont">${f}/${as.length} · ${h}h</span></summary>
       ${as.map(a => {
         const feita = PROG.get(a.id) === 'assistida'
@@ -573,7 +692,7 @@ function pintarAulas () {
 async function marcar (aula_id, feita) {
   const status = feita ? 'assistida' : 'pendente'
   PROG.set(aula_id, status)
-  pintarPainel(); pintarCronograma()
+  pintarPainel(); pintarCronograma(); pintarPlano()
   const { error } = await sb.from('progresso').upsert({
     user_id: USER.id, aula_id, status,
     assistida_em: feita ? new Date().toISOString() : null,
