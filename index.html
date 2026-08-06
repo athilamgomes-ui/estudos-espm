@@ -147,6 +147,7 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
     <button role="tab" data-t="painel" aria-selected="true">Painel</button>
     <button role="tab" data-t="cronograma" aria-selected="false">Cronograma</button>
     <button role="tab" data-t="prioridades" aria-selected="false">Prioridades</button>
+    <button role="tab" data-t="listas" aria-selected="false">Listas</button>
     <button role="tab" data-t="aulas" aria-selected="false">Aulas</button>
     <button role="tab" data-t="redacoes" aria-selected="false">Redações</button>
     <button role="tab" data-t="simulados" aria-selected="false">Simulados</button>
@@ -187,6 +188,17 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
       <select id="pMat"></select>
     </div>
     <div id="listaPri"></div>
+  </section>
+
+  <section id="listas" hidden>
+    <div class="aviso ok" style="border-color:var(--accent);background:var(--accent-soft)">
+      Uma lista em PDF por assunto, montada com as <strong>questões das próprias provas da ESPM</strong>
+      de 2019 a 2026 e o gabarito oficial no fim. Dá para imprimir ou resolver no celular.
+      <div style="margin-top:8px" class="small">O texto foi extraído dos cadernos em PDF —
+      fórmulas e figuras podem sair imperfeitas. Cada questão traz a prova e o número
+      para conferir no original.</div>
+    </div>
+    <div id="listaPdf"></div>
   </section>
 
   <section id="aulas" hidden>
@@ -283,7 +295,8 @@ const hhmm = min => {
 }
 const horas = min => Math.round(min / 60)
 
-let AULAS = [], PROG = new Map(), MATERIAS = [], DISCIPLINAS = [], ASSUNTOS = [], USER = null
+let AULAS = [], PROG = new Map(), MATERIAS = [], DISCIPLINAS = [], ASSUNTOS = []
+let REDACOES = [], USER = null
 // assunto_id -> {nome, n, porProva, faixa}. Preenchido por carregarPrioridades().
 const FREQ = new Map()
 const FAIXA = {
@@ -335,12 +348,13 @@ async function abrirApp () {
 
   // A frequência precisa estar pronta antes de pintar as aulas, que mostram a faixa
   await carregarPrioridades()
-  montarFiltros(); pintarPainel(); pintarCronograma(); pintarAulas()
-  carregarRedacoes(); montarAcertos(); carregarSimulados()
+  montarFiltros(); pintarCronograma(); pintarAulas(); carregarListas()
+  await carregarRedacoes()
+  pintarPainel(); montarAcertos(); carregarSimulados()
 }
 
 // ---------------------------------------------------------------- abas
-const ABAS = ['painel', 'cronograma', 'prioridades', 'aulas', 'redacoes', 'simulados']
+const ABAS = ['painel', 'cronograma', 'prioridades', 'listas', 'aulas', 'redacoes', 'simulados']
 document.querySelectorAll('nav.abas button').forEach(b => b.onclick = () => {
   document.querySelectorAll('nav.abas button').forEach(x => x.setAttribute('aria-selected', x === b))
   ABAS.forEach(t => $('#' + t).hidden = t !== b.dataset.t)
@@ -359,6 +373,30 @@ function pintarPainel () {
         <div class="barra"><i style="width:0%"></i></div>
         <div class="det"><span>Sem material nos cursos</span><span>40 pontos</span></div>
       </div>`
+    // Redação não se mede por aula assistida, e sim pelas redações escritas e corrigidas.
+    if (m.id === 'redacao') {
+      const meta = Math.round((PROVA - new Date()) / 6048e5 * REDACOES_SEMANA)
+      const comNota = REDACOES.filter(r => r.nota_total != null)
+      const media = comNota.length
+        ? Math.round(comNota.reduce((s, r) => s + r.nota_total / (r.nota_maxima || 1000) * 1000, 0) / comNota.length)
+        : null
+      const ult = comNota.slice(0, 3)
+      const tend = ult.length >= 2
+        ? Math.round(ult[0].nota_total / (ult[0].nota_maxima || 1000) * 1000) -
+          Math.round(ult[ult.length - 1].nota_total / (ult[ult.length - 1].nota_maxima || 1000) * 1000)
+        : null
+      return `
+        <div class="card mat">
+          <div class="top"><span class="nome">${m.nome}</span><span class="peso">${m.peso_espm}%</span></div>
+          <div class="barra"><i style="width:${Math.min(REDACOES.length / Math.max(meta, 1) * 100, 100)}%"></i></div>
+          <div class="det">
+            <span>${REDACOES.length} escritas de ~${meta} até a prova</span>
+            <span class="num">${media != null ? 'média ' + media : 'sem nota'}</span>
+          </div>
+          ${tend != null ? `<div class="tiny" style="margin-top:6px;color:${tend >= 0 ? 'var(--ok)' : 'var(--bad)'}">
+            ${tend >= 0 ? '+' : ''}${tend} pontos nas últimas ${ult.length}</div>` : ''}
+        </div>`
+    }
     const feitas = da.filter(a => PROG.get(a.id) === 'assistida')
     const totMin = da.reduce((s, a) => s + (a.minutos_est || 0), 0)
     const feitoMin = feitas.reduce((s, a) => s + (a.minutos_est || 0), 0)
@@ -642,6 +680,32 @@ function pintarPrioridades () {
   })
 }
 
+// ---------------------------------------------------------------- listas em pdf
+let LISTAS = []
+
+async function carregarListas () {
+  try { LISTAS = await (await fetch('listas.json')).json() } catch { LISTAS = [] }
+  if (!LISTAS.length) return $('#listaPdf').innerHTML = '<div class="card vazio">Nenhuma lista disponível.</div>'
+  const total = LISTAS.reduce((s, l) => s + l.n, 0)
+  $('#listaPdf').innerHTML = MATERIAS.filter(m => LISTAS.some(l => l.materia === m.id)).map(m => {
+    const da = LISTAS.filter(l => l.materia === m.id).sort((a, b) => b.n - a.n)
+    return `<h2 style="margin:22px 0 10px">${m.nome} · ${m.peso_espm}% da nota</h2>
+      <div class="grade">${da.map(l => {
+        const a = ASSUNTOS.find(x => x.materia_id === l.materia && x.nome === l.assunto)
+        const f = a ? FREQ.get(a.id) : null
+        return `<a class="card mat" href="${l.arquivo}" target="_blank" rel="noopener"
+             style="text-decoration:none;color:inherit;display:block">
+          <div class="top"><span class="nome">${l.assunto}</span>
+            ${f ? `<span class="peso" style="background:transparent;border:1px solid ${FAIXA[f.faixa][1]};color:${FAIXA[f.faixa][1]}">${FAIXA[f.faixa][0]}</span>` : ''}</div>
+          <div class="det" style="margin-top:10px">
+            <span>${l.n} questões · ${l.porProva} por prova</span><span>PDF ↓</span></div>
+        </a>`
+      }).join('')}</div>`
+  }).join('') +
+  `<p class="tiny" style="margin-top:22px">${LISTAS.length} listas · ${total} questões no total ·
+   assuntos com menos de 10 questões em 15 provas não têm lista própria.</p>`
+}
+
 // ---------------------------------------------------------------- redacoes
 $('#fRed').onsubmit = async e => {
   e.preventDefault()
@@ -650,11 +714,13 @@ $('#fRed').onsubmit = async e => {
   ;['minutos', 'nota_total', 'nota_maxima'].forEach(k => d[k] = d[k] ? +d[k] : null)
   const { error } = await sb.from('redacoes').insert(d)
   if (error) return alert(error.message)
-  e.target.reset(); carregarRedacoes()
+  e.target.reset(); await carregarRedacoes(); pintarPainel()
 }
+
 
 async function carregarRedacoes () {
   const { data } = await sb.from('redacoes').select('*').order('escrita_em', { ascending: false })
+  REDACOES = data || []
   if (!data?.length) return $('#listaRed').innerHTML = '<div class="card vazio">Nenhuma redação registrada ainda.</div>'
   const comNota = data.filter(r => r.nota_total != null)
   const media = comNota.length
