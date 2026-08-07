@@ -298,12 +298,14 @@ const REDACOES_SEMANA = 2
 // simular. Os itens dessa fase ficam no curso 'refino', com data propria.
 const SEMANAS_REFINO = 4
 const INICIO_REFINO = new Date(PROVA - SEMANAS_REFINO * 6048e5)
-// Dia 1 do cronograma. O plano e ESTATICO: o que caiu no dia 12 e do dia 12
+// Dia 1 do cronograma: 06/08/2026, o primeiro dia que ela viu no painel — nao
+// adiantar isso, ela reclamou na hora que o dia 6/8 sumiu da pagina.
+// O plano e ESTATICO: o que caiu no dia 12 e do dia 12
 // para sempre — marcar (ou deixar de marcar) uma aula nao remaneja mais nada.
 // O que nao for feito fica como ATRASADO no dia dele, e ela faz junto com o do
 // dia seguinte. Pedido dela em 07/08/2026: "o que pertence ao dia x e do dia x".
 // ⚠️ Mudar esta data reescreve o cronograma inteiro. So com o aval dela.
-const INICIO_PLANO = new Date('2026-08-07T00:00:00-03:00')
+const INICIO_PLANO = new Date('2026-08-06T00:00:00-03:00')
 // Ate a faixa 2 cabe no tempo e cobre 80% das questoes da prova; a faixa 3
 // (cauda) e revisada na fase de refino.
 const FAIXA_PADRAO = 2
@@ -507,6 +509,9 @@ function pintarCronograma () {
 // O plano nao fica gravado em tabela: e recalculado sempre a partir das MESMAS
 // entradas (aulas, prioridade, horas do dia), entao da sempre o mesmo resultado.
 const SEM = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb']
+// Por extenso no bloco de atraso: abreviado dava "era de ter 4/8", que ela leu
+// como o verbo "ter" e nao como terca-feira.
+const SEM_INTEIRO = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado']
 const MES = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez']
 
 const ehRefino = a => a.curso_id === 'refino'
@@ -723,7 +728,7 @@ const linhaAtraso = ({ a, data }) => `
   <label class="aula" style="padding-left:14px">
     <input type="checkbox" data-id="${a.id}">
     <span class="t">${rotuloAula(a)}
-      <span class="tiny" style="display:block">era de ${SEM[data.getDay()]} ${data.getDate()}/${data.getMonth() + 1}</span></span>
+      <span class="tiny" style="display:block">estava marcada para ${data.getDate()}/${data.getMonth() + 1}, ${SEM_INTEIRO[data.getDay()]}</span></span>
     <span class="meta"><span class="num">${hhmm(a.minutos_est || 0)}</span></span></label>`
 
 // Uma linha de aula no plano. Em dia que já passou, o que não foi feito leva a
