@@ -168,9 +168,9 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
     <div id="diagnostico"></div>
     <h2 style="margin:26px 0 4px">Semana a semana</h2>
     <p class="small muted" style="margin:0 0 12px">
-      O plano se refaz a partir do que ainda está pendente — o que você não fechar numa semana
-      volta sozinho na seguinte. Os dias que já passaram continuam aqui, com o que estava
-      marcado e você não fez. Marcar aqui é o mesmo que marcar na aba Aulas.
+      O plano é fixo: o que está no dia 12 é do dia 12 e não muda mais. Se você não fizer,
+      aquilo fica marcado como atraso no dia dele — no dia seguinte você faz o do dia e vai
+      encaixando o que ficou para trás. Marcar aqui é o mesmo que marcar na aba Aulas.
     </p>
     <div id="plano"></div>
 
@@ -298,10 +298,12 @@ const REDACOES_SEMANA = 2
 // simular. Os itens dessa fase ficam no curso 'refino', com data propria.
 const SEMANAS_REFINO = 4
 const INICIO_REFINO = new Date(PROVA - SEMANAS_REFINO * 6048e5)
-// Dia em que o cronograma passou a valer. Os dias entre ele e ontem continuam
-// no plano, para ela ver o que estava marcado e nao fez. Nao mexer nessa data:
-// mudar aqui reescreve todo o passado do cronograma.
-const INICIO_PLANO = new Date('2026-08-06T00:00:00-03:00')
+// Dia 1 do cronograma. O plano e ESTATICO: o que caiu no dia 12 e do dia 12
+// para sempre — marcar (ou deixar de marcar) uma aula nao remaneja mais nada.
+// O que nao for feito fica como ATRASADO no dia dele, e ela faz junto com o do
+// dia seguinte. Pedido dela em 07/08/2026: "o que pertence ao dia x e do dia x".
+// ⚠️ Mudar esta data reescreve o cronograma inteiro. So com o aval dela.
+const INICIO_PLANO = new Date('2026-08-07T00:00:00-03:00')
 // Ate a faixa 2 cabe no tempo e cobre 80% das questoes da prova; a faixa 3
 // (cauda) e revisada na fase de refino.
 const FAIXA_PADRAO = 2
@@ -445,20 +447,15 @@ function horasDoDia (d) {
   return HORAS[dow]
 }
 
-// O plano comeca HOJE, nunca amanha: senao, a cada dia que passa a primeira
-// linha do cronograma escorrega para a frente e o dia de hoje some.
-function inicioDoPlano () {
-  const d = new Date(); d.setHours(0, 0, 0, 0); return d
-}
-
 function horasDisponiveis () {
   let t = 0
-  for (const d = inicioDoPlano(); d < PROVA; d.setDate(d.getDate() + 1)) t += horasDoDia(d)
+  for (const d = new Date(INICIO_PLANO); d < PROVA; d.setDate(d.getDate() + 1)) t += horasDoDia(d)
   return t
 }
 
 function pintarCronograma () {
-  const dispConteudo = minutosDisponiveis(inicioDoPlano(), INICIO_REFINO) / 60
+  const hoje0 = new Date(); hoje0.setHours(0, 0, 0, 0)
+  const dispConteudo = minutosDisponiveis(hoje0, INICIO_REFINO) / 60
   const dispRefino = minutosDisponiveis(INICIO_REFINO, PROVA) / 60
   const semConteudo = Math.max((INICIO_REFINO - new Date()) / 6048e5, .1)
 
@@ -467,7 +464,7 @@ function pintarCronograma () {
   const precisoConteudo = carga + redConteudo
   const folga = dispConteudo - precisoConteudo
   const refino = AULAS.filter(ehRefino).reduce((s, a) => s + (a.minutos_est || 0), 0) / 60
-  const intensidade = dispConteudo > 0 ? Math.min(precisoConteudo / dispConteudo, 1) : 1
+  const intensidade = intensidadeDoPlano()
 
   $('#kpis').innerHTML = `
     <div class="card kpi"><div class="v num">${Math.round(dispConteudo)}h</div>
@@ -505,8 +502,10 @@ function pintarCronograma () {
 }
 
 // ---------------------------------------------------------------- plano semanal
-// Nao guarda plano fixo: monta na hora a partir do que esta pendente, ordenado
-// por prioridade. Assim, o que nao for feito reaparece sozinho na semana seguinte.
+// Plano ESTATICO (regra dela, 07/08/2026): o que pertence ao dia x e do dia x.
+// Nada e remanejado quando ela deixa de fazer algo — o nao feito vira atraso.
+// O plano nao fica gravado em tabela: e recalculado sempre a partir das MESMAS
+// entradas (aulas, prioridade, horas do dia), entao da sempre o mesmo resultado.
 const SEM = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb']
 const MES = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez']
 
@@ -549,14 +548,13 @@ const ordemDaFila = (x, y) =>
   (FREQ.get(y.assunto_id)?.n || 0) - (FREQ.get(x.assunto_id)?.n || 0) ||
   (x.modulo || '').localeCompare(y.modulo || '', 'pt') || x.ordem - y.ordem
 
-// Uma fila por matéria. `comAsFeitas` inclui as aulas já assistidas — usado só
-// para redesenhar os dias que já passaram.
-function filasPorMateria (faixaMax, comAsFeitas) {
+// Uma fila por matéria, com TODAS as aulas — inclusive as já assistidas. O plano
+// não pode depender do que já foi feito: é isso que o mantém sempre igual.
+function filasPorMateria (faixaMax) {
   const filas = new Map()
   MATERIAS.forEach(m => {
     const da = AULAS.filter(a => a.materia_id === m.id && !ehRefino(a) && a.tipo !== 'material' &&
-      (FREQ.get(a.assunto_id)?.faixa || 3) <= faixaMax &&
-      (comAsFeitas || PROG.get(a.id) !== 'assistida')).sort(ordemDaFila)
+      (FREQ.get(a.assunto_id)?.faixa || 3) <= faixaMax).sort(ordemDaFila)
     if (da.length) filas.set(m.id, { fila: da, peso: m.peso_espm, credito: 0 })
   })
   return filas
@@ -565,19 +563,26 @@ function filasPorMateria (faixaMax, comAsFeitas) {
 const cargaDasFilas = filas => [...filas.values()]
   .reduce((s, f) => s + f.fila.reduce((t, a) => t + (a.minutos_est || 0), 0), 0)
 
+// A fração do dia que cada dia do plano recebe. É FIXA: carga total da fase de
+// conteúdo dividida pela janela inteira, do dia 1 até o começo do refinamento.
+// Não é recalculada com o tempo — senão o plano voltaria a se mexer sozinho.
+function intensidadeDoPlano (faixaMax = FAIXA_PADRAO) {
+  const janela = minutosDisponiveis(INICIO_PLANO, INICIO_REFINO)
+  return janela > 0 ? Math.min(cargaDasFilas(filasPorMateria(faixaMax)) / janela, 1) : 1
+}
+
 // Espalha as filas dia a dia entre `de` e `ate`. Cada dia recebe a mesma FRAÇÃO
 // das suas horas (intensidade), em vez de encher os primeiros e afunilar no fim.
-function distribuir (dias, filas, de, ate, intensidade, opc) {
-  const { comAsFeitas, refinoPorDia, passado } = opc
+// Nada aqui olha para o progresso: dois dias iguais dão sempre o mesmo resultado.
+function distribuir (dias, filas, de, ate, intensidade, refinoPorDia, hoje0) {
   for (const d = new Date(de); d < ate; d.setDate(d.getDate() + 1)) {
     const dia = iso(d)
+    const passado = d < hoje0
     const capacidade = horasDoDia(d) * 60
     if (capacidade <= 0) { dias.push({ data: new Date(d), itens: [], folga: true, passado }); continue }
 
     if (d >= INICIO_REFINO) {
-      const itens = (refinoPorDia.get(dia) || [])
-        .filter(a => comAsFeitas || PROG.get(a.id) !== 'assistida')
-      dias.push({ data: new Date(d), itens, refino: true, passado })
+      dias.push({ data: new Date(d), itens: refinoPorDia.get(dia) || [], refino: true, passado })
       continue
     }
 
@@ -599,8 +604,14 @@ function distribuir (dias, filas, de, ate, intensidade, opc) {
   }
 }
 
+// O plano é ESTÁTICO. Ele é montado uma única vez, do dia 1 (INICIO_PLANO) até a
+// prova, a partir de coisas que não mudam: a lista de aulas, a ordem de
+// prioridade e as horas de cada dia da semana. O progresso dela não entra na
+// conta — por isso o dia 12 mostra hoje, amanhã e em outubro exatamente as
+// mesmas aulas. O que não for feito não é remanejado: fica marcado como atraso
+// no dia dele, e ela faz junto com o do dia seguinte.
 function montarPlano (faixaMax = FAIXA_PADRAO) {
-  const hoje0 = inicioDoPlano()
+  const hoje0 = new Date(); hoje0.setHours(0, 0, 0, 0)
   const refinoPorDia = new Map()
   AULAS.filter(ehRefino).forEach(a => {
     if (!refinoPorDia.has(a.libera_em)) refinoPorDia.set(a.libera_em, [])
@@ -608,25 +619,9 @@ function montarPlano (faixaMax = FAIXA_PADRAO) {
   })
 
   const dias = []
-
-  // 1) Os dias que JÁ PASSARAM. Reconstruídos com a fila completa (inclusive as
-  //    aulas já assistidas), para que marcar uma aula como feita não mude o que
-  //    estava marcado nos dias anteriores. É aqui que ela vê o que ficou para trás.
-  if (INICIO_PLANO < hoje0) {
-    const filas = filasPorMateria(faixaMax, true)
-    const janela = minutosDisponiveis(INICIO_PLANO, INICIO_REFINO)
-    distribuir(dias, filas, INICIO_PLANO, hoje0,
-      janela > 0 ? Math.min(cargaDasFilas(filas) / janela, 1) : 1,
-      { comAsFeitas: true, refinoPorDia, passado: true })
-  }
-
-  // 2) De hoje até a prova: só o que continua pendente — então o que ela não fez
-  //    nos dias anteriores volta sozinho para cá.
-  const filas = filasPorMateria(faixaMax, false)
-  const disp = minutosDisponiveis(hoje0, INICIO_REFINO)
-  const intensidade = disp > 0 ? Math.min(cargaDasFilas(filas) / disp, 1) : 1
-  distribuir(dias, filas, hoje0, PROVA, intensidade,
-    { comAsFeitas: false, refinoPorDia, passado: false })
+  const filas = filasPorMateria(faixaMax)
+  const intensidade = intensidadeDoPlano(faixaMax)
+  distribuir(dias, filas, INICIO_PLANO, PROVA, intensidade, refinoPorDia, hoje0)
 
   dias.intensidade = intensidade
   // o que não coube (faixa acima do limite, ou tempo curto) fica de fora
@@ -697,10 +692,11 @@ function pintarPlano () {
   const atr = dias.atrasadas || []
   const cabecaAtraso = atr.length ? `
     <div class="aviso bad" style="margin-bottom:12px">
-      <strong>${atr.length} ${atr.length > 1 ? 'aulas ficaram' : 'aula ficou'} para trás.</strong>
-      ${atr.length > 1 ? 'Elas estavam' : 'Ela estava'} marcada${atr.length > 1 ? 's' : ''} nos dias abaixo e não
-      ${atr.length > 1 ? 'foram' : 'foi'} feita${atr.length > 1 ? 's' : ''} — já ${atr.length > 1 ? 'voltaram' : 'voltou'} para o plano de hoje em diante.
-      Se você fez alguma, marque aqui:
+      <strong>${atr.length} ${atr.length > 1 ? 'aulas ficaram' : 'aula ficou'} em atraso.</strong>
+      ${atr.length > 1 ? 'São as que estavam' : 'É a que estava'} marcada${atr.length > 1 ? 's' : ''} em dias
+      que já passaram. ${atr.length > 1 ? 'Elas continuam no dia delas' : 'Ela continua no dia dela'} — o plano
+      de hoje em diante não muda por causa ${atr.length > 1 ? 'delas' : 'dela'}: faça o de hoje e vá encaixando
+      estas aqui. Se já fez alguma, marque:
       <div style="margin:8px -14px -6px">${atr.slice(0, 5).map(linhaAtraso).join('')}</div>
       ${atr.length > 5 ? `<details style="margin:0 -14px -6px">
         <summary class="tiny" style="cursor:pointer;padding:9px 14px">
