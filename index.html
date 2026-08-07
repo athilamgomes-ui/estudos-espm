@@ -103,6 +103,7 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
 .est{color:#eab308;letter-spacing:-1px}
 .tag{font-size:10.5px;padding:1.5px 6px;border-radius:5px;border:1px solid var(--line);color:var(--ink3)}
 .tag.ex{border-color:transparent;background:var(--accent-soft);color:var(--accent)}
+.tag.atraso{border-color:var(--bad);color:var(--bad)}
 .bloq{opacity:.5}
 
 /* ---------- formularios ---------- */
@@ -168,7 +169,8 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
     <h2 style="margin:26px 0 4px">Semana a semana</h2>
     <p class="small muted" style="margin:0 0 12px">
       O plano se refaz a partir do que ainda está pendente — o que você não fechar numa semana
-      volta sozinho na seguinte. Marcar aqui é o mesmo que marcar na aba Aulas.
+      volta sozinho na seguinte. Os dias que já passaram continuam aqui, com o que estava
+      marcado e você não fez. Marcar aqui é o mesmo que marcar na aba Aulas.
     </p>
     <div id="plano"></div>
 
@@ -296,6 +298,10 @@ const REDACOES_SEMANA = 2
 // simular. Os itens dessa fase ficam no curso 'refino', com data propria.
 const SEMANAS_REFINO = 4
 const INICIO_REFINO = new Date(PROVA - SEMANAS_REFINO * 6048e5)
+// Dia em que o cronograma passou a valer. Os dias entre ele e ontem continuam
+// no plano, para ela ver o que estava marcado e nao fez. Nao mexer nessa data:
+// mudar aqui reescreve todo o passado do cronograma.
+const INICIO_PLANO = new Date('2026-08-06T00:00:00-03:00')
 // Ate a faixa 2 cabe no tempo e cobre 80% das questoes da prova; a faixa 3
 // (cauda) e revisada na fase de refino.
 const FAIXA_PADRAO = 2
@@ -535,42 +541,43 @@ function minutosDisponiveis (de, ate) {
   return t
 }
 
-function montarPlano (faixaMax = FAIXA_PADRAO) {
-  // Uma fila por matéria, da maior para a menor prioridade
+// Ordem canônica da fila: faixa de prioridade, depois quanto o assunto cai,
+// depois a ordem do próprio curso. Não depende do que já foi feito — é isso que
+// deixa a reconstrução do passado estável.
+const ordemDaFila = (x, y) =>
+  (FREQ.get(x.assunto_id)?.faixa || 3) - (FREQ.get(y.assunto_id)?.faixa || 3) ||
+  (FREQ.get(y.assunto_id)?.n || 0) - (FREQ.get(x.assunto_id)?.n || 0) ||
+  (x.modulo || '').localeCompare(y.modulo || '', 'pt') || x.ordem - y.ordem
+
+// Uma fila por matéria. `comAsFeitas` inclui as aulas já assistidas — usado só
+// para redesenhar os dias que já passaram.
+function filasPorMateria (faixaMax, comAsFeitas) {
   const filas = new Map()
   MATERIAS.forEach(m => {
-    const da = pendentes(a => a.materia_id === m.id && !ehRefino(a) && a.tipo !== 'material' &&
-      (FREQ.get(a.assunto_id)?.faixa || 3) <= faixaMax)
-      .sort((x, y) =>
-        (FREQ.get(x.assunto_id)?.faixa || 3) - (FREQ.get(y.assunto_id)?.faixa || 3) ||
-        (FREQ.get(y.assunto_id)?.n || 0) - (FREQ.get(x.assunto_id)?.n || 0) ||
-        (x.modulo || '').localeCompare(y.modulo || '', 'pt') || x.ordem - y.ordem)
+    const da = AULAS.filter(a => a.materia_id === m.id && !ehRefino(a) && a.tipo !== 'material' &&
+      (FREQ.get(a.assunto_id)?.faixa || 3) <= faixaMax &&
+      (comAsFeitas || PROG.get(a.id) !== 'assistida')).sort(ordemDaFila)
     if (da.length) filas.set(m.id, { fila: da, peso: m.peso_espm, credito: 0 })
   })
+  return filas
+}
 
-  const comeco = inicioDoPlano()
-  // Carga espalhada por igual: cada dia recebe a mesma FRAÇÃO das suas horas,
-  // em vez de encher os primeiros dias e afunilar no fim.
-  const dispConteudo = minutosDisponiveis(comeco, INICIO_REFINO)
-  const intensidade = dispConteudo > 0
-    ? Math.min(cargaConteudo(faixaMax) / dispConteudo, 1) : 1
+const cargaDasFilas = filas => [...filas.values()]
+  .reduce((s, f) => s + f.fila.reduce((t, a) => t + (a.minutos_est || 0), 0), 0)
 
-  const refinoPorDia = new Map()
-  AULAS.filter(ehRefino).forEach(a => {
-    if (!refinoPorDia.has(a.libera_em)) refinoPorDia.set(a.libera_em, [])
-    refinoPorDia.get(a.libera_em).push(a)
-  })
-
-  const dias = []
-  for (const d = new Date(comeco); d < PROVA; d.setDate(d.getDate() + 1)) {
-    const hoje = iso(d)
+// Espalha as filas dia a dia entre `de` e `ate`. Cada dia recebe a mesma FRAÇÃO
+// das suas horas (intensidade), em vez de encher os primeiros e afunilar no fim.
+function distribuir (dias, filas, de, ate, intensidade, opc) {
+  const { comAsFeitas, refinoPorDia, passado } = opc
+  for (const d = new Date(de); d < ate; d.setDate(d.getDate() + 1)) {
+    const dia = iso(d)
     const capacidade = horasDoDia(d) * 60
-    if (capacidade <= 0) { dias.push({ data: new Date(d), itens: [], folga: true }); continue }
+    if (capacidade <= 0) { dias.push({ data: new Date(d), itens: [], folga: true, passado }); continue }
 
     if (d >= INICIO_REFINO) {
-      const itens = (refinoPorDia.get(hoje) || [])
-        .filter(a => PROG.get(a.id) !== 'assistida')
-      dias.push({ data: new Date(d), itens, refino: true })
+      const itens = (refinoPorDia.get(dia) || [])
+        .filter(a => comAsFeitas || PROG.get(a.id) !== 'assistida')
+      dias.push({ data: new Date(d), itens, refino: true, passado })
       continue
     }
 
@@ -581,19 +588,51 @@ function montarPlano (faixaMax = FAIXA_PADRAO) {
       if (!vivas.length) break
       vivas.forEach(([, f]) => f.credito += f.peso)
       const [, esc] = vivas.reduce((a, b) => b[1].credito > a[1].credito ? b : a)
-      const i = esc.fila.findIndex(a => !a.libera_em || a.libera_em <= hoje)
-      if (i < 0) { esc.credito = -1e9; continue }   // tudo dela ainda bloqueado hoje
+      const i = esc.fila.findIndex(a => !a.libera_em || a.libera_em <= dia)
+      if (i < 0) { esc.credito = -1e9; continue }   // tudo dela ainda bloqueado nesse dia
       const a = esc.fila[i]
       if ((a.minutos_est || 0) > restam && itens.length) break
       esc.fila.splice(i, 1); esc.credito = 0
       itens.push(a); restam -= (a.minutos_est || 0)
     }
-    dias.push({ data: new Date(d), itens })
+    dias.push({ data: new Date(d), itens, passado })
   }
-  // o que não coube (faixa acima do limite, ou tempo curto) fica de fora
-  const sobrou = [...filas.values()].reduce((s, f) => s + f.fila.length, 0)
+}
+
+function montarPlano (faixaMax = FAIXA_PADRAO) {
+  const hoje0 = inicioDoPlano()
+  const refinoPorDia = new Map()
+  AULAS.filter(ehRefino).forEach(a => {
+    if (!refinoPorDia.has(a.libera_em)) refinoPorDia.set(a.libera_em, [])
+    refinoPorDia.get(a.libera_em).push(a)
+  })
+
+  const dias = []
+
+  // 1) Os dias que JÁ PASSARAM. Reconstruídos com a fila completa (inclusive as
+  //    aulas já assistidas), para que marcar uma aula como feita não mude o que
+  //    estava marcado nos dias anteriores. É aqui que ela vê o que ficou para trás.
+  if (INICIO_PLANO < hoje0) {
+    const filas = filasPorMateria(faixaMax, true)
+    const janela = minutosDisponiveis(INICIO_PLANO, INICIO_REFINO)
+    distribuir(dias, filas, INICIO_PLANO, hoje0,
+      janela > 0 ? Math.min(cargaDasFilas(filas) / janela, 1) : 1,
+      { comAsFeitas: true, refinoPorDia, passado: true })
+  }
+
+  // 2) De hoje até a prova: só o que continua pendente — então o que ela não fez
+  //    nos dias anteriores volta sozinho para cá.
+  const filas = filasPorMateria(faixaMax, false)
+  const disp = minutosDisponiveis(hoje0, INICIO_REFINO)
+  const intensidade = disp > 0 ? Math.min(cargaDasFilas(filas) / disp, 1) : 1
+  distribuir(dias, filas, hoje0, PROVA, intensidade,
+    { comAsFeitas: false, refinoPorDia, passado: false })
+
   dias.intensidade = intensidade
-  dias.sobrou = sobrou
+  // o que não coube (faixa acima do limite, ou tempo curto) fica de fora
+  dias.sobrou = [...filas.values()].reduce((s, f) => s + f.fila.length, 0)
+  dias.atrasadas = dias.filter(d => d.passado).flatMap(d =>
+    d.itens.filter(a => PROG.get(a.id) !== 'assistida').map(a => ({ a, data: d.data })))
   return dias
 }
 
@@ -611,17 +650,25 @@ function pintarPlano () {
   })
 
   const hoje = iso(new Date())
-  $('#plano').innerHTML = semanas.map((s, i) => {
+  const segundaDeHoje = new Date(); segundaDeHoje.setHours(0, 0, 0, 0)
+  segundaDeHoje.setDate(segundaDeHoje.getDate() - ((segundaDeHoje.getDay() + 6) % 7))
+  const kSemanaAtual = iso(segundaDeHoje)
+
+  const html = semanas.map(s => {
     const fim = new Date(s.inicio); fim.setDate(fim.getDate() + 6)
     const todos = s.dias.flatMap(d => d.itens)
     const min = todos.reduce((t, a) => t + (a.minutos_est || 0), 0)
     const feitos = todos.filter(a => PROG.get(a.id) === 'assistida').length
     const refino = s.dias.some(d => d.refino)
-    return `<details class="card mod"${i === 0 ? ' open' : ''}>
+    const atrasadas = s.dias.filter(d => d.passado)
+      .flatMap(d => d.itens).filter(a => PROG.get(a.id) !== 'assistida').length
+    const atual = s.k === kSemanaAtual
+    const passada = s.k < kSemanaAtual
+    return `<details class="card mod"${atual || atrasadas ? ' open' : ''}>
       <summary>
-        <span>${i === 0 ? 'Esta semana' : `${s.inicio.getDate()} de ${MES[s.inicio.getMonth()]}`}
-          <span class="tiny">— ${s.inicio.getDate()}/${s.inicio.getMonth() + 1} a ${fim.getDate()}/${fim.getMonth() + 1}${refino ? ' · refinamento' : ''}</span></span>
-        <span class="cont">${feitos}/${todos.length} · ${horas(min)}h</span>
+        <span>${atual ? 'Esta semana' : `${s.inicio.getDate()} de ${MES[s.inicio.getMonth()]}`}
+          <span class="tiny">— ${s.inicio.getDate()}/${s.inicio.getMonth() + 1} a ${fim.getDate()}/${fim.getMonth() + 1}${passada ? ' · já passou' : ''}${refino ? ' · refinamento' : ''}</span></span>
+        <span class="cont">${atrasadas ? `<span class="tag atraso">${atrasadas} em atraso</span> ` : ''}${feitos}/${todos.length} · ${horas(min)}h</span>
       </summary>
       <div style="padding:4px 15px 12px">
         ${refino ? `<div class="tiny" style="padding:8px 0 0;color:var(--accent)">
@@ -635,36 +682,66 @@ function pintarPlano () {
         if (!dia.itens.length) return `<div class="aula" style="opacity:.5">
           <span class="t small">${SEM[dt.getDay()]} ${dt.getDate()}/${dt.getMonth() + 1} — descanso</span></div>`
         const hDia = dia.itens.reduce((t, a) => t + (a.minutos_est || 0), 0)
+        const naoFeitas = dia.passado && dia.itens.filter(a => PROG.get(a.id) !== 'assistida').length
         return `<div style="border-top:1px solid var(--line);padding:9px 15px 2px;
              background:${ehHoje ? 'var(--accent-soft)' : 'transparent'}">
             <strong class="small">${SEM[dt.getDay()]} ${dt.getDate()}/${dt.getMonth() + 1}${ehHoje ? ' · hoje' : ''}</strong>
-            <span class="tiny"> · ${hhmm(hDia)}</span>
-          </div>` +
-          dia.itens.map(a => {
-            const feita = PROG.get(a.id) === 'assistida'
-            const f = FREQ.get(a.assunto_id)
-            return `<label class="aula${feita ? ' feita' : ''}" style="padding-left:22px">
-              <input type="checkbox" data-id="${a.id}"${feita ? ' checked' : ''}>
-              <span class="t">${rotuloAula(a)}
-                ${f ? `<span class="tiny" style="display:block">${f.assunto}</span>` : ''}</span>
-              <span class="meta">${a.tipo === 'exercicio' ? '<span class="tag ex">exercícios</span>' : ''}
-                <span class="num">${hhmm(a.minutos_est || 0)}</span></span></label>`
-          }).join('')
+            <span class="tiny"> · ${hhmm(hDia)}${naoFeitas ? ` · <span style="color:var(--bad)">${naoFeitas} não ${naoFeitas > 1 ? 'feitas' : 'feita'}</span>` : ''}</span>
+          </div>` + dia.itens.map(a => item(a, dia.passado)).join('')
       }).join('')}
     </details>`
   }).join('') || '<div class="card vazio">Tudo em dia — nenhuma aula pendente.</div>'
 
+  // O que ficou para trás nos dias que já passaram, junto e com a data original.
+  // É o primeiro bloco da aba: ela vê o que era de ontem e não fez, e marca aqui.
+  const atr = dias.atrasadas || []
+  const cabecaAtraso = atr.length ? `
+    <div class="aviso bad" style="margin-bottom:12px">
+      <strong>${atr.length} ${atr.length > 1 ? 'aulas ficaram' : 'aula ficou'} para trás.</strong>
+      ${atr.length > 1 ? 'Elas estavam' : 'Ela estava'} marcada${atr.length > 1 ? 's' : ''} nos dias abaixo e não
+      ${atr.length > 1 ? 'foram' : 'foi'} feita${atr.length > 1 ? 's' : ''} — já ${atr.length > 1 ? 'voltaram' : 'voltou'} para o plano de hoje em diante.
+      Se você fez alguma, marque aqui:
+      <div style="margin:8px -14px -6px">${atr.slice(0, 5).map(linhaAtraso).join('')}</div>
+      ${atr.length > 5 ? `<details style="margin:0 -14px -6px">
+        <summary class="tiny" style="cursor:pointer;padding:9px 14px">
+          ver as outras ${atr.length - 5}</summary>
+        ${atr.slice(5, 60).map(linhaAtraso).join('')}
+        ${atr.length > 60 ? `<div class="tiny" style="padding:9px 14px">e mais ${atr.length - 60} — veja nas semanas abaixo.</div>` : ''}
+      </details>` : ''}
+    </div>` : ''
+
+  const cabecaSobrou = dias.sobrou ? `
+    <div class="aviso warn" style="margin-bottom:12px">
+      <strong>${dias.sobrou} aulas ficaram de fora do plano.</strong> São as de menor frequência
+      na ESPM — a “cauda”. Elas não somem: voltam como revisão rápida nas 4 semanas finais,
+      e você continua podendo assistir qualquer uma pela aba Aulas.
+    </div>` : ''
+
+  $('#plano').innerHTML = cabecaAtraso + cabecaSobrou + html
   $('#plano').querySelectorAll('input[type=checkbox]').forEach(c =>
     c.onchange = () => marcar(+c.dataset.id, c.checked))
+}
 
-  if (dias.sobrou) {
-    $('#plano').insertAdjacentHTML('afterbegin',
-      `<div class="aviso warn" style="margin-bottom:12px">
-        <strong>${dias.sobrou} aulas ficaram de fora do plano.</strong> São as de menor frequência
-        na ESPM — a “cauda”. Elas não somem: voltam como revisão rápida nas 4 semanas finais,
-        e você continua podendo assistir qualquer uma pela aba Aulas.
-      </div>`)
-  }
+// Uma linha do bloco "ficou para trás": traz a data em que a aula estava marcada.
+const linhaAtraso = ({ a, data }) => `
+  <label class="aula" style="padding-left:14px">
+    <input type="checkbox" data-id="${a.id}">
+    <span class="t">${rotuloAula(a)}
+      <span class="tiny" style="display:block">era de ${SEM[data.getDay()]} ${data.getDate()}/${data.getMonth() + 1}</span></span>
+    <span class="meta"><span class="num">${hhmm(a.minutos_est || 0)}</span></span></label>`
+
+// Uma linha de aula no plano. Em dia que já passou, o que não foi feito leva a
+// marca de atraso em vez de sumir.
+function item (a, passado) {
+  const feita = PROG.get(a.id) === 'assistida'
+  const f = FREQ.get(a.assunto_id)
+  return `<label class="aula${feita ? ' feita' : ''}" style="padding-left:22px">
+    <input type="checkbox" data-id="${a.id}"${feita ? ' checked' : ''}>
+    <span class="t">${rotuloAula(a)}
+      ${f ? `<span class="tiny" style="display:block">${f.assunto}</span>` : ''}</span>
+    <span class="meta">${passado && !feita ? '<span class="tag atraso">não feita</span>' : ''}
+      ${a.tipo === 'exercicio' ? '<span class="tag ex">exercícios</span>' : ''}
+      <span class="num">${hhmm(a.minutos_est || 0)}</span></span></label>`
 }
 
 // ---------------------------------------------------------------- aulas
