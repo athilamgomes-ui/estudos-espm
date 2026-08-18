@@ -294,6 +294,15 @@ const HORAS = { 0: 0, 1: 6, 2: 6, 3: 6, 4: 3.5, 5: 6, 6: 13 }
 const SAB_OCUPADO = 9
 const MIN_REDACAO = 90            // por redacao escrita
 const REDACOES_SEMANA = 2
+// Tempo REAL por aula, informado por ela em 07/08/2026. A rotina dela e:
+// assistir (ou ler o PDF) -> resolver questoes e corrigir -> anotacoes de
+// cabeca -> corrigir as anotacoes em outra cor -> flashcards no Knowt.
+// Isso da ~2h por aula. Matematica leva mais: a base esta fraca e ela precisa
+// resolver com calma. O minutos_est do catalogo so contava o video.
+const MIN_AULA = 120
+const MIN_AULA_MAT = 165
+// Dia com pelo menos 5h ganha uma aula de matematica na marra (ver distribuir).
+const MIN_DIA_MATEMATICA = 5 * 60
 // As 4 ultimas semanas nao levam aula nova: sao de resolver questao, corrigir e
 // simular. Os itens dessa fase ficam no curso 'refino', com data propria.
 const SEMANAS_REFINO = 4
@@ -515,6 +524,35 @@ const SEM_INTEIRO = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta'
 const MES = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez']
 
 const ehRefino = a => a.curso_id === 'refino'
+const ehLista = a => a.curso_id === 'listas'
+const ehRedacaoEscrita = a => a.curso_id === 'redacao_escrita'
+// Itens com data propria (libera_em manda): refino e as redacoes a escrever.
+const temDataFixa = a => ehRefino(a) || ehRedacaoEscrita(a)
+// Entra no plano? Fora: os PDFs de apostila e os videos de CORRECAO de
+// exercicio do CEM — ela resolve sozinha e so ve a correcao quando erra
+// (regra de 05/08, reforcada em 07/08: "19 videoaulas de correcao nao precisa").
+const planejavel = a => !temDataFixa(a) && a.tipo !== 'material' && a.tipo !== 'exercicio'
+
+// Quanto tempo o dia perde com este item. Aula usa o tempo REAL da rotina dela,
+// nao a duracao do video; lista, redacao e refino usam o que foi gerado.
+function minutosPlanejados (a) {
+  if (ehLista(a) || temDataFixa(a)) return a.minutos_est || 0
+  return a.materia_id === 'matematica' ? MIN_AULA_MAT : MIN_AULA
+}
+
+// Ordem dentro do dia (pedido dela, 07/08): historia primeiro, depois
+// geografia, depois literatura — ela entende geografia e literatura melhor
+// quando ja viu a historia daquele periodo. Matematica abre o dia, com a
+// cabeca descansada, porque e a materia em que ela tem mais dificuldade.
+const ORDEM_DIA = ['matematica', 'mat_geral', 'hist_geral', 'hist_brasil', 'geografia',
+  'artes_lit', 'gramatica', 'interpretacao', 'ingles_texto', 'ingles_gram',
+  'red_estrutura', 'red_repertorio', 'red_generos']
+function postoNoDia (a) {
+  const disc = a.disciplina_id ||
+    ASSUNTOS.find(x => x.id === a.assunto_id)?.disciplina_id || a.materia_id
+  const i = ORDEM_DIA.indexOf(disc)
+  return i < 0 ? ORDEM_DIA.length : i
+}
 
 // Como o cronograma nomeia cada item: "Matéria: Aula 07 - Título no cursinho".
 // A matéria é a disciplina do curso (Geografia e Atualidades, Matemática...),
@@ -528,15 +566,15 @@ function nomeMateria (a) {
 
 function rotuloAula (a) {
   const t = (a.titulo || '').trim()
-  const nome = ehRefino(a) ? '' : nomeMateria(a)
+  // Lista, redação a escrever e itens de refino já dizem no título do que são.
+  const nome = (ehRefino(a) || ehLista(a) || ehRedacaoEscrita(a)) ? '' : nomeMateria(a)
   return nome ? `${nome}: ${t}` : t
 }
 
 // Minutos de aula que ainda faltam na fase de conteúdo, dentro da faixa escolhida
 function cargaConteudo (faixaMax = FAIXA_PADRAO) {
-  return pendentes(a => !ehRefino(a) && a.tipo !== 'material' &&
-    (FREQ.get(a.assunto_id)?.faixa || 3) <= faixaMax)
-    .reduce((s, a) => s + (a.minutos_est || 0), 0)
+  return pendentes(a => planejavel(a) && naFaixa(a, faixaMax))
+    .reduce((s, a) => s + minutosPlanejados(a), 0)
 }
 
 function minutosDisponiveis (de, ate) {
@@ -553,20 +591,88 @@ const ordemDaFila = (x, y) =>
   (FREQ.get(y.assunto_id)?.n || 0) - (FREQ.get(x.assunto_id)?.n || 0) ||
   (x.modulo || '').localeCompare(y.modulo || '', 'pt') || x.ordem - y.ordem
 
+// Matemática vai na ORDEM DO CURSO, não por incidência (pedido dela em 07/08:
+// "minha base é muito fraca, estudar por ordem de incidência não está dando
+// certo"). A incidência continua visível na etiqueta de cada aula.
+const ordemDoCurso = (x, y) =>
+  (x.modulo || '').localeCompare(y.modulo || '', 'pt') || x.ordem - y.ordem
+
+// Humanidades reveza História e o resto (Geografia, Filosofia, Sociologia), com
+// História na ordem cronológica do curso. Assim quase todo dia tem uma aula de
+// história para amarrar a geografia e a literatura daquele dia — que é como ela
+// aprende (07/08). Revezar, e não colocar toda a história primeiro, evita adiar
+// Geopolítica, que é o assunto que mais cai em Humanidades (83 questões).
+function filaHumanas (aulas) {
+  const hist = aulas.filter(a => a.disciplina_id === 'hist_geral' || a.disciplina_id === 'hist_brasil')
+    .sort(ordemDoCurso)
+  const resto = aulas.filter(a => !(a.disciplina_id === 'hist_geral' || a.disciplina_id === 'hist_brasil'))
+    .sort(ordemDaFila)
+  const fila = []
+  while (hist.length || resto.length) {
+    if (hist.length) fila.push(hist.shift())
+    if (resto.length) fila.push(resto.shift())
+  }
+  return fila
+}
+
+// Encaixa cada bloco de lista logo depois da última aula do assunto que ele
+// cobre (pedido dela: resolver as questões prontas depois de ver a aula).
+// Assunto sem aula nenhuma no curso — Sequências e padrões, por exemplo — vai
+// para a frente da fila: ali a lista é o único material que existe.
+function intercalarListas (aulas, listas) {
+  const porAssunto = new Map()
+  listas.forEach(l => {
+    if (!porAssunto.has(l.assunto_id)) porAssunto.set(l.assunto_id, [])
+    porAssunto.get(l.assunto_id).push(l)
+  })
+  porAssunto.forEach(v => v.sort((a, b) => a.ordem - b.ordem))
+  const ultima = new Map()
+  aulas.forEach((a, i) => ultima.set(a.assunto_id, i))
+  // Assunto sem nenhuma aula no curso (Sequências e padrões, Cultura e arte...):
+  // a lista é o único material que existe. Espalha ao longo da fila em vez de
+  // empilhar tudo no começo, senão as primeiras semanas viram só lista.
+  const orfas = [...porAssunto].filter(([aid]) => !ultima.has(aid))
+    .sort((a, b) => (FREQ.get(b[0])?.n || 0) - (FREQ.get(a[0])?.n || 0))
+    .flatMap(([, v]) => v)
+  const passo = orfas.length ? Math.max(1, Math.floor(aulas.length / orfas.length)) : 0
+  const fila = []
+  aulas.forEach((a, i) => {
+    fila.push(a)
+    if (ultima.get(a.assunto_id) === i) fila.push(...(porAssunto.get(a.assunto_id) || []))
+    if (passo && i % passo === passo - 1 && orfas.length) fila.push(orfas.shift())
+  })
+  fila.push(...orfas)
+  return fila
+}
+
+// A base de Matemática (Apostilas 1 A e 1 B: potenciação, radiciação, produtos
+// notáveis, fatoração, equações, proporção, porcentagem) entra INTEIRA, mesmo
+// com incidência baixa na prova. Sem ela o resto não para em pé, e a base fraca
+// é justamente o que ela relatou em 07/08. Pular Potenciação porque "só cai 6
+// vezes em 15 provas" seria o erro clássico.
+const baseDeMatematica = a => a.materia_id === 'matematica' &&
+  /^Apostila 1/.test(a.modulo || '')
+
+function naFaixa (a, faixaMax) {
+  return baseDeMatematica(a) || (FREQ.get(a.assunto_id)?.faixa || 3) <= faixaMax
+}
+
 // Uma fila por matéria, com TODAS as aulas — inclusive as já assistidas. O plano
 // não pode depender do que já foi feito: é isso que o mantém sempre igual.
 function filasPorMateria (faixaMax) {
   const filas = new Map()
   MATERIAS.forEach(m => {
-    const da = AULAS.filter(a => a.materia_id === m.id && !ehRefino(a) && a.tipo !== 'material' &&
-      (FREQ.get(a.assunto_id)?.faixa || 3) <= faixaMax).sort(ordemDaFila)
-    if (da.length) filas.set(m.id, { fila: da, peso: m.peso_espm, credito: 0 })
+    const da = AULAS.filter(a => a.materia_id === m.id && planejavel(a) && naFaixa(a, faixaMax))
+    const aulas = m.id === 'humanidades' ? filaHumanas(da.filter(a => !ehLista(a)))
+      : da.filter(a => !ehLista(a)).sort(m.id === 'matematica' ? ordemDoCurso : ordemDaFila)
+    const fila = intercalarListas(aulas, da.filter(ehLista))
+    if (fila.length) filas.set(m.id, { fila, peso: m.peso_espm, credito: 0 })
   })
   return filas
 }
 
 const cargaDasFilas = filas => [...filas.values()]
-  .reduce((s, f) => s + f.fila.reduce((t, a) => t + (a.minutos_est || 0), 0), 0)
+  .reduce((s, f) => s + f.fila.reduce((t, a) => t + minutosPlanejados(a), 0), 0)
 
 // A fração do dia que cada dia do plano recebe. É FIXA: carga total da fase de
 // conteúdo dividida pela janela inteira, do dia 1 até o começo do refinamento.
@@ -579,21 +685,36 @@ function intensidadeDoPlano (faixaMax = FAIXA_PADRAO) {
 // Espalha as filas dia a dia entre `de` e `ate`. Cada dia recebe a mesma FRAÇÃO
 // das suas horas (intensidade), em vez de encher os primeiros e afunilar no fim.
 // Nada aqui olha para o progresso: dois dias iguais dão sempre o mesmo resultado.
-function distribuir (dias, filas, de, ate, intensidade, refinoPorDia, hoje0) {
+function distribuir (dias, filas, de, ate, intensidade, fixosPorDia, hoje0) {
   for (const d = new Date(de); d < ate; d.setDate(d.getDate() + 1)) {
     const dia = iso(d)
     const passado = d < hoje0
     const capacidade = horasDoDia(d) * 60
     if (capacidade <= 0) { dias.push({ data: new Date(d), itens: [], folga: true, passado }); continue }
 
-    if (d >= INICIO_REFINO) {
-      dias.push({ data: new Date(d), itens: refinoPorDia.get(dia) || [], refino: true, passado })
-      continue
+    // Itens com data própria entram primeiro e comem o tempo do dia: as
+    // redações a escrever (2 por semana) e, no fim, os simulados do refino.
+    const itens = [...(fixosPorDia.get(dia) || [])]
+    const refino = d >= INICIO_REFINO
+    let restam = capacidade * intensidade -
+      itens.reduce((t, a) => t + minutosPlanejados(a), 0)
+
+    // Matemática todo dia longo. Ela pediu tempo e constância na matéria em que
+    // tem mais dificuldade; pela rotação por peso (12,5% da nota) caía uma aula
+    // a cada 5 dias, o que não recupera base nenhuma. Nas quintas (3h30) e nos
+    // dias de viagem não força, senão o dia vira só matemática.
+    const fMat = filas.get('matematica')
+    if (!refino && fMat && fMat.fila.length && capacidade >= MIN_DIA_MATEMATICA) {
+      const i = fMat.fila.findIndex(a => !a.libera_em || a.libera_em <= dia)
+      if (i >= 0 && minutosPlanejados(fMat.fila[i]) <= restam) {
+        const a = fMat.fila.splice(i, 1)[0]
+        fMat.credito = 0
+        itens.push(a); restam -= minutosPlanejados(a)
+      }
     }
 
-    let restam = capacidade * intensidade
-    const itens = []
-    while (restam > 0) {
+    // Nas 4 semanas finais não entra aula nova — regra dela.
+    while (!refino && restam > 0) {
       const vivas = [...filas.entries()].filter(([, f]) => f.fila.length)
       if (!vivas.length) break
       vivas.forEach(([, f]) => f.credito += f.peso)
@@ -601,11 +722,12 @@ function distribuir (dias, filas, de, ate, intensidade, refinoPorDia, hoje0) {
       const i = esc.fila.findIndex(a => !a.libera_em || a.libera_em <= dia)
       if (i < 0) { esc.credito = -1e9; continue }   // tudo dela ainda bloqueado nesse dia
       const a = esc.fila[i]
-      if ((a.minutos_est || 0) > restam && itens.length) break
+      if (minutosPlanejados(a) > restam && itens.length) break
       esc.fila.splice(i, 1); esc.credito = 0
-      itens.push(a); restam -= (a.minutos_est || 0)
+      itens.push(a); restam -= minutosPlanejados(a)
     }
-    dias.push({ data: new Date(d), itens, passado })
+    itens.sort((x, y) => postoNoDia(x) - postoNoDia(y))
+    dias.push({ data: new Date(d), itens, refino, passado })
   }
 }
 
@@ -617,20 +739,27 @@ function distribuir (dias, filas, de, ate, intensidade, refinoPorDia, hoje0) {
 // no dia dele, e ela faz junto com o do dia seguinte.
 function montarPlano (faixaMax = FAIXA_PADRAO) {
   const hoje0 = new Date(); hoje0.setHours(0, 0, 0, 0)
-  const refinoPorDia = new Map()
-  AULAS.filter(ehRefino).forEach(a => {
-    if (!refinoPorDia.has(a.libera_em)) refinoPorDia.set(a.libera_em, [])
-    refinoPorDia.get(a.libera_em).push(a)
+  const fixosPorDia = new Map()
+  AULAS.filter(temDataFixa).forEach(a => {
+    if (!fixosPorDia.has(a.libera_em)) fixosPorDia.set(a.libera_em, [])
+    fixosPorDia.get(a.libera_em).push(a)
   })
 
   const dias = []
   const filas = filasPorMateria(faixaMax)
   const intensidade = intensidadeDoPlano(faixaMax)
-  distribuir(dias, filas, INICIO_PLANO, PROVA, intensidade, refinoPorDia, hoje0)
+  distribuir(dias, filas, INICIO_PLANO, PROVA, intensidade, fixosPorDia, hoje0)
 
   dias.intensidade = intensidade
   // o que não coube (faixa acima do limite, ou tempo curto) fica de fora
   dias.sobrou = [...filas.values()].reduce((s, f) => s + f.fila.length, 0)
+  dias.sobrouMin = [...filas.values()].reduce((s, f) =>
+    s + f.fila.reduce((t, a) => t + minutosPlanejados(a), 0), 0)
+  dias.sobrouPorMateria = [...filas.entries()]
+    .filter(([, f]) => f.fila.length)
+    .map(([id, f]) => [MATERIAS.find(m => m.id === id)?.nome || id, f.fila.length,
+      f.fila.reduce((t, a) => t + minutosPlanejados(a), 0)])
+    .sort((a, b) => b[2] - a[2])
   dias.atrasadas = dias.filter(d => d.passado).flatMap(d =>
     d.itens.filter(a => PROG.get(a.id) !== 'assistida').map(a => ({ a, data: d.data })))
   return dias
@@ -657,7 +786,7 @@ function pintarPlano () {
   const html = semanas.map(s => {
     const fim = new Date(s.inicio); fim.setDate(fim.getDate() + 6)
     const todos = s.dias.flatMap(d => d.itens)
-    const min = todos.reduce((t, a) => t + (a.minutos_est || 0), 0)
+    const min = todos.reduce((t, a) => t + minutosPlanejados(a), 0)
     const feitos = todos.filter(a => PROG.get(a.id) === 'assistida').length
     const refino = s.dias.some(d => d.refino)
     const atrasadas = s.dias.filter(d => d.passado)
@@ -674,14 +803,15 @@ function pintarPlano () {
         ${refino ? `<div class="tiny" style="padding:8px 0 0;color:var(--accent)">
           🎯 Semana de refinamento — sem aula nova, só resolver questão, corrigir e simular</div>` : ''}
         <div class="tiny" style="padding:8px 0 4px">
-          ✍️ Escrever ${REDACOES_SEMANA} redações nesta semana — registre na aba Redações
+          ✍️ As ${REDACOES_SEMANA} redações da semana já estão no dia delas, com o tema —
+          depois de escrever, registre a nota na aba Redações
         </div>
       </div>
       ${s.dias.map(dia => {
         const dt = dia.data, ehHoje = iso(dt) === hoje
         if (!dia.itens.length) return `<div class="aula" style="opacity:.5">
           <span class="t small">${SEM[dt.getDay()]} ${dt.getDate()}/${dt.getMonth() + 1} — descanso</span></div>`
-        const hDia = dia.itens.reduce((t, a) => t + (a.minutos_est || 0), 0)
+        const hDia = dia.itens.reduce((t, a) => t + minutosPlanejados(a), 0)
         const naoFeitas = dia.passado && dia.itens.filter(a => PROG.get(a.id) !== 'assistida').length
         return `<div style="border-top:1px solid var(--line);padding:9px 15px 2px;
              background:${ehHoje ? 'var(--accent-soft)' : 'transparent'}">
@@ -711,11 +841,19 @@ function pintarPlano () {
       </details>` : ''}
     </div>` : ''
 
+  // Honestidade: o que nao cabe nao e "cauda", e escopo que sobrou. Mostra
+  // quanto e, por materia, para a decisao de cortar ser dela e com numero.
   const cabecaSobrou = dias.sobrou ? `
-    <div class="aviso warn" style="margin-bottom:12px">
-      <strong>${dias.sobrou} aulas ficaram de fora do plano.</strong> São as de menor frequência
-      na ESPM — a “cauda”. Elas não somem: voltam como revisão rápida nas 4 semanas finais,
-      e você continua podendo assistir qualquer uma pela aba Aulas.
+    <div class="aviso bad" style="margin-bottom:12px">
+      <strong>${dias.sobrou} itens não cabem no tempo até 1/11</strong>
+      (${horas(dias.sobrouMin)}h). No seu ritmo real — 2h por aula, 2h45 em Matemática —
+      o material dos dois cursos é maior do que os dias que faltam. O plano acima já
+      pega o que mais cai primeiro; o que sobra é o fim de cada fila:
+      <div class="tiny" style="margin-top:6px">${dias.sobrouPorMateria.map(([m, n, min]) =>
+        `${m}: ${n} itens (${horas(min)}h)`).join(' · ')}</div>
+      <div class="tiny" style="margin-top:6px">Dá para mudar isso de três jeitos:
+        estudar mais horas, tratar as aulas de faixa “Sólido” com menos profundidade,
+        ou cortar assunto. Fale comigo qual você prefere.</div>
     </div>` : ''
 
   $('#plano').innerHTML = cabecaAtraso + cabecaSobrou + html
@@ -729,20 +867,24 @@ const linhaAtraso = ({ a, data }) => `
     <input type="checkbox" data-id="${a.id}">
     <span class="t">${rotuloAula(a)}
       <span class="tiny" style="display:block">estava marcada para ${data.getDate()}/${data.getMonth() + 1}, ${SEM_INTEIRO[data.getDay()]}</span></span>
-    <span class="meta"><span class="num">${hhmm(a.minutos_est || 0)}</span></span></label>`
+    <span class="meta"><span class="num">${hhmm(minutosPlanejados(a))}</span></span></label>`
 
 // Uma linha de aula no plano. Em dia que já passou, o que não foi feito leva a
 // marca de atraso em vez de sumir.
 function item (a, passado) {
   const feita = PROG.get(a.id) === 'assistida'
   const f = FREQ.get(a.assunto_id)
+  // A etiqueta de importância anda junto com a aula — em Matemática ela estuda
+  // na ordem do curso, então precisa ver ali quanto aquele assunto cai.
+  const imp = f ? `<span class="peso" style="background:transparent;border:1px solid ${FAIXA[f.faixa][1]};color:${FAIXA[f.faixa][1]}">${FAIXA[f.faixa][0]}${f.n ? ` · ${f.n}q` : ''}</span>` : ''
   return `<label class="aula${feita ? ' feita' : ''}" style="padding-left:22px">
     <input type="checkbox" data-id="${a.id}"${feita ? ' checked' : ''}>
     <span class="t">${rotuloAula(a)}
       ${f ? `<span class="tiny" style="display:block">${f.assunto}</span>` : ''}</span>
     <span class="meta">${passado && !feita ? '<span class="tag atraso">não feita</span>' : ''}
-      ${a.tipo === 'exercicio' ? '<span class="tag ex">exercícios</span>' : ''}
-      <span class="num">${hhmm(a.minutos_est || 0)}</span></span></label>`
+      ${ehLista(a) ? `<a class="tag ex" href="${a.url}" target="_blank" rel="noopener">abrir PDF</a>` : ''}
+      ${imp}
+      <span class="num">${hhmm(minutosPlanejados(a))}</span></span></label>`
 }
 
 // ---------------------------------------------------------------- aulas
