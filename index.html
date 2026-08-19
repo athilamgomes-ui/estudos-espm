@@ -288,10 +288,17 @@ const sb = createClient(URL_SB, KEY_SB)
 
 const PROVA = new Date('2026-11-29T00:00:00-03:00')
 const VIAGEM = { de: '2026-09-04', ate: '2026-09-12', horas: 2 }
-// Grade informada: seg/ter/qua/sex 6h; qui 3h30 (compromisso 19:30); sab 13h,
-// mas 9h nos dois primeiros sabados do mes; domingo livre.
-const HORAS = { 0: 0, 1: 6, 2: 6, 3: 6, 4: 3.5, 5: 6, 6: 13 }
-const SAB_OCUPADO = 9
+// Grade nova, informada por ela em 18/08/2026 (a antiga era seg/ter/qua/sex 6h,
+// qui 3h30 e sab 13h):
+//   seg, qua, sex  14h as 22h, 1h de descanso ............ 7h
+//   ter, qui       15h as 22h, 1h de descanso ............ 6h  (quinta agora vai ate a noite)
+//   sabado         7h30 as 19h30, 1h de almoco
+//                  1o e 2o do mes: compromisso so as 18h30 .. 10h
+//                  demais: compromisso das 16h as 18h30 ..... 8h30
+//   domingo        descanso
+// Atencao: inverteu — agora os DOIS PRIMEIROS sabados sao os mais longos.
+const HORAS = { 0: 0, 1: 7, 2: 6, 3: 7, 4: 6, 5: 7, 6: 8.5 }
+const SAB_PRIMEIROS = 10
 const MIN_REDACAO = 90            // por redacao escrita
 const REDACOES_SEMANA = 2
 // Tempo REAL por aula, informado por ela em 07/08/2026. A rotina dela e:
@@ -451,9 +458,9 @@ function horasDoDia (d) {
   const dia = iso(d)
   if (dia >= VIAGEM.de && dia <= VIAGEM.ate) return VIAGEM.horas
   if (dow === 6) {
-    // dois primeiros sabados do mes tem compromisso das 18h as 22h
+    // 1o e 2o sabado do mes: compromisso só às 18h30, então rende mais
     const nSab = Math.floor((d.getDate() - 1) / 7) + 1
-    return nSab <= 2 ? SAB_OCUPADO : HORAS[6]
+    return nSab <= 2 ? SAB_PRIMEIROS : HORAS[6]
   }
   return HORAS[dow]
 }
@@ -471,7 +478,9 @@ function pintarCronograma () {
   const semConteudo = Math.max((INICIO_REFINO - new Date()) / 6048e5, .1)
 
   const carga = cargaConteudo() / 60
-  const redConteudo = Math.round(semConteudo * REDACOES_SEMANA * MIN_REDACAO / 60)
+  // as redações agora são itens com data própria — conta as que ainda faltam
+  const redConteudo = Math.round(pendentes(ehRedacaoEscrita)
+    .reduce((t, a) => t + (a.minutos_est || 0), 0) / 60)
   const precisoConteudo = carga + redConteudo
   const folga = dispConteudo - precisoConteudo
   const refino = AULAS.filter(ehRefino).reduce((s, a) => s + (a.minutos_est || 0), 0) / 60
@@ -504,10 +513,18 @@ function pintarCronograma () {
   $('#diagnostico').innerHTML = `<div class="aviso ${cls}">${txt}</div>`
 
   const nomes = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado']
-  const obs = { 0: 'Descanso', 4: 'Compromisso a partir das 19h30', 6: '7h30 às 22h, com pausa de almoço' }
+  const obs = {
+    0: 'Descanso',
+    1: '14h às 22h, com 1h de descanso', 3: '14h às 22h, com 1h de descanso',
+    5: '14h às 22h, com 1h de descanso',
+    2: '15h às 22h, com 1h de descanso', 4: '15h às 22h, com 1h de descanso',
+    6: '7h30 às 19h30, com pausa de almoço'
+  }
   $('#grade').innerHTML = nomes.map((n, i) => `
-    <tr><td>${n}</td><td class="n">${i === 6 ? '13h / 9h' : HORAS[i] + 'h'}</td>
-    <td class="small muted">${i === 6 ? 'Nos dois primeiros sábados do mês, 9h (compromisso 18h–22h)' : (obs[i] || '15h às 22h, com 1h de descanso')}</td></tr>`).join('') +
+    <tr><td>${n}</td><td class="n">${i === 6 ? `${hhmm(SAB_PRIMEIROS * 60)} / ${hhmm(HORAS[6] * 60)}` : hhmm(HORAS[i] * 60)}</td>
+    <td class="small muted">${i === 6
+      ? '1º e 2º sábado do mês: 10h (compromisso só às 18h30). Nos outros, 8h30 (compromisso das 16h às 18h30)'
+      : obs[i]}</td></tr>`).join('') +
     `<tr><td>Viagem</td><td class="n">${VIAGEM.horas}h</td>
      <td class="small muted">4 a 12 de setembro, a trabalho</td></tr>`
 }
