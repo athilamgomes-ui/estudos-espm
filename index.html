@@ -314,17 +314,25 @@ const MIN_DIA_MATEMATICA = 5 * 60
 // simular. Os itens dessa fase ficam no curso 'refino', com data propria.
 const SEMANAS_REFINO = 4
 const INICIO_REFINO = new Date(PROVA - SEMANAS_REFINO * 6048e5)
-// Dia 1 do cronograma: 06/08/2026, o primeiro dia que ela viu no painel — nao
-// adiantar isso, ela reclamou na hora que o dia 6/8 sumiu da pagina.
+// Dia 1 do cronograma. Foi 06/08 e passou para 19/08 num RE-BASELINE unico,
+// combinado com ela: o plano acumulava atraso por construcao (tinha 30% mais
+// material do que dia), e o atrasado era justamente a base, que ela precisa na
+// ordem. Movendo o dia 1 para hoje, a fila inteira volta a comecar de hoje NA
+// MESMA ORDEM — nada se perde, a linha de raciocinio fica de pe e o atraso
+// zera. Isso e excecao, nao rotina: dai para frente vale a regra estatica.
 // O plano e ESTATICO: o que caiu no dia 12 e do dia 12
 // para sempre — marcar (ou deixar de marcar) uma aula nao remaneja mais nada.
 // O que nao for feito fica como ATRASADO no dia dele, e ela faz junto com o do
 // dia seguinte. Pedido dela em 07/08/2026: "o que pertence ao dia x e do dia x".
 // ⚠️ Mudar esta data reescreve o cronograma inteiro. So com o aval dela.
-const INICIO_PLANO = new Date('2026-08-06T00:00:00-03:00')
+const INICIO_PLANO = new Date('2026-08-19T00:00:00-03:00')
 // Ate a faixa 2 cabe no tempo e cobre 80% das questoes da prova; a faixa 3
 // (cauda) e revisada na fase de refino.
 const FAIXA_PADRAO = 2
+// O dia nunca nasce 100% cheio. Um plano sem folga transforma qualquer
+// imprevisto em divida, e divida vira bola de neve — foi o que aconteceu nas
+// duas primeiras semanas. 15% do dia fica livre para respirar e recuperar.
+const INTENSIDADE_MAX = 0.85
 
 const $ = s => document.querySelector(s)
 const iso = d => d.toISOString().slice(0, 10)
@@ -473,42 +481,56 @@ function horasDisponiveis () {
 
 function pintarCronograma () {
   const hoje0 = new Date(); hoje0.setHours(0, 0, 0, 0)
-  const dispConteudo = minutosDisponiveis(hoje0, INICIO_REFINO) / 60
-  const dispRefino = minutosDisponiveis(INICIO_REFINO, PROVA) / 60
-  const semConteudo = Math.max((INICIO_REFINO - new Date()) / 6048e5, .1)
-
-  const carga = cargaConteudo() / 60
-  // as redações agora são itens com data própria — conta as que ainda faltam
-  const redConteudo = Math.round(pendentes(ehRedacaoEscrita)
-    .reduce((t, a) => t + (a.minutos_est || 0), 0) / 60)
-  const precisoConteudo = carga + redConteudo
-  const folga = dispConteudo - precisoConteudo
-  const refino = AULAS.filter(ehRefino).reduce((s, a) => s + (a.minutos_est || 0), 0) / 60
-  const intensidade = intensidadeDoPlano()
+  // UMA conta só, até a prova. Antes havia três números diferentes na tela
+  // (folga até 1/11, material total, itens que não cabem) e ela não conseguia
+  // conciliá-los — com razão: mediam janelas diferentes. Agora é tudo no mesmo
+  // horizonte, hoje -> 29/11, e o que não cabe aparece uma vez só.
+  const totalAteProva = minutosDisponiveis(hoje0, PROVA) / 60
+  const aulas = cargaConteudo() / 60                       // aulas + listas pendentes
+  const redacao = pendentes(ehRedacaoEscrita).reduce((t, a) => t + (a.minutos_est || 0), 0) / 60
+  const refino = pendentes(ehRefino).reduce((t, a) => t + (a.minutos_est || 0), 0) / 60
+  // O “quanto falta” NÃO é uma conta paralela: é exatamente o que sobrou da fila
+  // depois de montar o plano dia a dia. Assim o número do cartão, o do texto e o
+  // do aviso lá embaixo são sempre o mesmo — foi a confusão de 19/08.
+  const plano = montarPlano()
+  const falta = (plano.sobrouMin || 0) / 60
+  const sobra = aulas - falta                             // o que realmente cabe
+  const intensidade = plano.intensidade
 
   $('#kpis').innerHTML = `
-    <div class="card kpi"><div class="v num">${Math.round(dispConteudo)}h</div>
-      <div class="k">para conteúdo · até ${INICIO_REFINO.getDate()}/${INICIO_REFINO.getMonth() + 1}</div></div>
-    <div class="card kpi"><div class="v num">${Math.round(carga)}h</div><div class="k">de aula e exercício</div></div>
-    <div class="card kpi"><div class="v num">${redConteudo}h</div><div class="k">escrevendo redação</div></div>
-    <div class="card kpi"><div class="v num" style="color:${folga < 0 ? 'var(--bad)' : 'var(--ok)'}">${folga < 0 ? '−' : '+'}${Math.abs(Math.round(folga))}h</div><div class="k">folga na fase de conteúdo</div></div>
-    <div class="card kpi"><div class="v num">${(intensidade * 100).toFixed(0)}%</div><div class="k">do seu dia ocupado</div></div>
-    <div class="card kpi"><div class="v num">${Math.round(refino)}h</div><div class="k">de questão nas 4 semanas finais</div></div>`
+    <div class="card kpi"><div class="v num">${Math.round(totalAteProva)}h</div>
+      <div class="k">de estudo até a prova</div></div>
+    <div class="card kpi"><div class="v num">${Math.round(aulas)}h</div>
+      <div class="k">de aula e lista de questões</div></div>
+    <div class="card kpi"><div class="v num">${Math.round(redacao + refino)}h</div>
+      <div class="k">reservadas para redação e simulados</div></div>
+    <div class="card kpi"><div class="v num" style="color:${plano.cobertura >= .7 ? 'var(--ok)' : 'var(--warn)'}">${(plano.cobertura * 100).toFixed(0)}%</div>
+      <div class="k">das questões caem em assuntos que você vai estudar</div></div>
+    <div class="card kpi"><div class="v num">${(intensidade * 100).toFixed(0)}%</div>
+      <div class="k">do seu dia ocupado</div></div>
+    <div class="card kpi"><div class="v num">${Math.round(refino)}h</div>
+      <div class="k">de simulado e revisão em novembro</div></div>`
 
-  let cls = 'ok', txt
   const rot = FAIXA_PADRAO === 1 ? 'a fundo' : 'a fundo + sólido'
-  if (folga < 0) {
+  let cls = 'ok', txt
+  if (falta > 0) {
     cls = 'bad'
-    txt = `<strong>Nem a faixa “${rot}” cabe até ${INICIO_REFINO.getDate()}/${INICIO_REFINO.getMonth() + 1}.</strong>
-      Faltam ${Math.abs(Math.round(folga))} horas. O plano vai priorizar o que mais cai e o resto fica de fora.`
+    cls = plano.cobertura >= .7 ? 'ok' : 'warn'
+    txt = `<strong>O plano passa por assuntos que valeram ${(plano.cobertura * 100).toFixed(0)}% das questões da prova</strong>
+      — ${plano.questoesCobertas} das ${plano.questoesTotal} questões das últimas 15 provas da ESPM.
+      Em alguns desses assuntos você vê as primeiras aulas e não o curso inteiro: o corte é
+      sempre no fim da fila, no aprofundamento, nunca no assunto todo.
+      <div class="tiny" style="margin-top:8px">Você tem ${Math.round(totalAteProva)}h até 29/11:
+      ${Math.round(redacao)}h de redação, ${Math.round(refino)}h de simulado e revisão, e
+      ${(100 - intensidade * 100).toFixed(0)}% de cada dia livre de propósito, para imprevisto não
+      virar dívida. Sobram ${Math.round(sobra)}h para aula e lista — e os dois cursos somam
+      ${Math.round(aulas)}h. As ${Math.round(falta)}h que ficam de fora <strong>não são dívida
+      sua</strong>: é material que nunca caberia em 100 dias, e o plano deixa de fora sempre
+      o que menos cai.</div>`
   } else {
-    txt = `<strong>Fecha.</strong> As aulas da faixa “${rot}” — que cobrem 80% das questões da prova —
-      cabem nas ${Math.round(dispConteudo)} horas até ${INICIO_REFINO.getDate()}/${INICIO_REFINO.getMonth() + 1},
-      ocupando <strong>${(intensidade * 100).toFixed(0)}% do seu dia</strong>, com a mesma intensidade
-      da primeira à última semana. Depois disso entram as
-      <strong>4 semanas de refinamento</strong>: ${Math.round(refino)} horas resolvendo as
-      1.043 questões das provas passadas, corrigindo e fazendo 4 simulados completos —
-      sem aula nova.`
+    txt = `<strong>Fecha.</strong> As ${Math.round(aulas)}h de aula e lista cabem nas
+      ${Math.round(sobra)}h que sobram depois da redação e dos simulados, ocupando
+      ${(intensidade * 100).toFixed(0)}% do seu dia — com 15% livre todo dia para imprevisto.`
   }
   $('#diagnostico').innerHTML = `<div class="aviso ${cls}">${txt}</div>`
 
@@ -733,7 +755,9 @@ const cargaDasFilas = filas => [...filas.values()]
 // Não é recalculada com o tempo — senão o plano voltaria a se mexer sozinho.
 function intensidadeDoPlano (faixaMax = FAIXA_PADRAO) {
   const janela = minutosDisponiveis(INICIO_PLANO, INICIO_REFINO)
-  return janela > 0 ? Math.min(cargaDasFilas(filasPorMateria(faixaMax)) / janela, 1) : 1
+  return janela > 0
+    ? Math.min(cargaDasFilas(filasPorMateria(faixaMax)) / janela, INTENSIDADE_MAX)
+    : INTENSIDADE_MAX
 }
 
 // Espalha as filas dia a dia entre `de` e `ate`. Cada dia recebe a mesma FRAÇÃO
@@ -767,14 +791,22 @@ function distribuir (dias, filas, de, ate, intensidade, fixosPorDia, hoje0) {
       }
     }
 
-    // Nas 4 semanas finais não entra aula nova — regra dela.
-    while (!refino && restam > 0) {
-      const vivas = [...filas.entries()].filter(([, f]) => f.fila.length)
+    // Nas 4 semanas finais não entra AULA nova — regra dela. Mas as listas de
+    // questões entram: as 4 semanas estavam só 28% ocupadas, e deixar 100h
+    // paradas ali enquanto falta tempo antes de 1/11 não faz sentido. Resolver
+    // questão é exatamente o que essa fase deveria ser.
+    // `travadas` evita laço infinito: uma matéria pode ter fila e mesmo assim
+    // nenhum item elegível hoje (aula ainda não liberada, ou aula nova durante
+    // as 4 semanas finais). Sem esse controle o while nunca terminava.
+    const travadas = new Set()
+    while (restam > 0) {
+      const vivas = [...filas.entries()].filter(([id, f]) => f.fila.length && !travadas.has(id))
       if (!vivas.length) break
       vivas.forEach(([, f]) => f.credito += f.peso)
-      const [, esc] = vivas.reduce((a, b) => b[1].credito > a[1].credito ? b : a)
-      const i = esc.fila.findIndex(a => !a.libera_em || a.libera_em <= dia)
-      if (i < 0) { esc.credito = -1e9; continue }   // tudo dela ainda bloqueado nesse dia
+      const [idEsc, esc] = vivas.reduce((a, b) => b[1].credito > a[1].credito ? b : a)
+      const i = esc.fila.findIndex(a => (!a.libera_em || a.libera_em <= dia) &&
+        (!refino || ehLista(a)))
+      if (i < 0) { travadas.add(idEsc); continue }   // nada dela serve nesse dia
       const a = esc.fila[i]
       if (minutosPlanejados(a) > restam && itens.length) break
       esc.fila.splice(i, 1); esc.credito = 0
@@ -809,6 +841,22 @@ function montarPlano (faixaMax = FAIXA_PADRAO) {
   dias.sobrou = [...filas.values()].reduce((s, f) => s + f.fila.length, 0)
   dias.sobrouMin = [...filas.values()].reduce((s, f) =>
     s + f.fila.reduce((t, a) => t + minutosPlanejados(a), 0), 0)
+  // Quanto da PROVA o plano cobre. É a pergunta que importa: horas que não cabem
+  // assustam sem informar, porque o que fica de fora é sempre o fim da fila — os
+  // assuntos que menos caem. Aqui soma-se quantas questões (em 15 provas) valem
+  // os assuntos que ela vai efetivamente estudar.
+  const noPlano = new Set()
+  dias.forEach(d => d.itens.forEach(a => a.assunto_id && noPlano.add(a.assunto_id)))
+  let cobertas = 0, totalQ = 0
+  FREQ.forEach((f, id) => {
+    if (!f.n) return
+    totalQ += f.n
+    if (noPlano.has(id)) cobertas += f.n
+  })
+  dias.cobertura = totalQ ? cobertas / totalQ : 0
+  dias.questoesCobertas = cobertas
+  dias.questoesTotal = totalQ
+
   dias.sobrouPorMateria = [...filas.entries()]
     .filter(([, f]) => f.fila.length)
     .map(([id, f]) => [MATERIAS.find(m => m.id === id)?.nome || id, f.fila.length,
@@ -898,9 +946,9 @@ function pintarPlano () {
   // Honestidade: o que nao cabe nao e "cauda", e escopo que sobrou. Mostra
   // quanto e, por materia, para a decisao de cortar ser dela e com numero.
   const cabecaSobrou = dias.sobrou ? `
-    <div class="aviso bad" style="margin-bottom:12px">
-      <strong>${dias.sobrou} itens não cabem no tempo até 1/11</strong>
-      (${horas(dias.sobrouMin)}h). No seu ritmo real — 2h por aula, 2h45 em Matemática —
+    <div class="aviso warn" style="margin-bottom:12px">
+      <strong>${dias.sobrou} itens ficam de fora</strong> (${horas(dias.sobrouMin)}h).
+      Não é atraso nem dívida: é o que não cabe em ${Math.round((PROVA - new Date()) / 864e5)} dias. No seu ritmo real — 2h por aula, 2h45 em Matemática —
       o material dos dois cursos é maior do que os dias que faltam. O plano acima já
       pega o que mais cai primeiro; o que sobra é o fim de cada fila:
       <div class="tiny" style="margin-top:6px">${dias.sobrouPorMateria.map(([m, n, min]) =>
