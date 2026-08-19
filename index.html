@@ -292,12 +292,12 @@ const VIAGEM = { de: '2026-09-04', ate: '2026-09-12', horas: 2 }
 // qui 3h30 e sab 13h):
 //   seg, qua, sex  14h as 22h, 1h de descanso ............ 7h
 //   ter, qui       15h as 22h, 1h de descanso ............ 6h  (quinta agora vai ate a noite)
-//   sabado         7h30 as 19h30, 1h de almoco
-//                  1o e 2o do mes: compromisso so as 18h30 .. 10h
-//                  demais: compromisso das 16h as 18h30 ..... 8h30
+//   sabado         1o e 2o do mes: 7h30 as 18h30, 1h de almoco ... 10h
+//                  demais: compromisso das 16h as 23h,
+//                          entao estuda 7h30 as 16h .............. 7h30
 //   domingo        descanso
 // Atencao: inverteu — agora os DOIS PRIMEIROS sabados sao os mais longos.
-const HORAS = { 0: 0, 1: 7, 2: 6, 3: 7, 4: 6, 5: 7, 6: 8.5 }
+const HORAS = { 0: 0, 1: 7, 2: 6, 3: 7, 4: 6, 5: 7, 6: 7.5 }
 const SAB_PRIMEIROS = 10
 const MIN_REDACAO = 90            // por redacao escrita
 const REDACOES_SEMANA = 2
@@ -523,7 +523,7 @@ function pintarCronograma () {
   $('#grade').innerHTML = nomes.map((n, i) => `
     <tr><td>${n}</td><td class="n">${i === 6 ? `${hhmm(SAB_PRIMEIROS * 60)} / ${hhmm(HORAS[6] * 60)}` : hhmm(HORAS[i] * 60)}</td>
     <td class="small muted">${i === 6
-      ? '1º e 2º sábado do mês: 10h (compromisso só às 18h30). Nos outros, 8h30 (compromisso das 16h às 18h30)'
+      ? '1º e 2º sábado do mês: 7h30 às 18h30 (10h). Nos outros, 7h30 às 16h — compromisso das 16h às 23h'
       : obs[i]}</td></tr>`).join('') +
     `<tr><td>Viagem</td><td class="n">${VIAGEM.horas}h</td>
      <td class="small muted">4 a 12 de setembro, a trabalho</td></tr>`
@@ -548,7 +548,14 @@ const temDataFixa = a => ehRefino(a) || ehRedacaoEscrita(a)
 // Entra no plano? Fora: os PDFs de apostila e os videos de CORRECAO de
 // exercicio do CEM — ela resolve sozinha e so ve a correcao quando erra
 // (regra de 05/08, reforcada em 07/08: "19 videoaulas de correcao nao precisa").
-const planejavel = a => !temDataFixa(a) && a.tipo !== 'material' && a.tipo !== 'exercicio'
+// Inglês (18/08, decisão dela): **aula de inglês sai do plano** — ela assiste
+// quando sentir necessidade, pela aba Aulas. No cronograma fica só a lista de
+// questões, que é o que treina compreensão de texto (64% do bloco, e foram 10
+// questões de gramática em 15 provas). Mais questão, menos vídeo.
+const aulaSobDemanda = a => a.materia_id === 'ingles' && a.curso_id !== 'listas'
+
+const planejavel = a => !temDataFixa(a) && a.tipo !== 'material' &&
+  a.tipo !== 'exercicio' && !aulaSobDemanda(a)
 
 // Quanto tempo o dia perde com este item. Aula usa o tempo REAL da rotina dela,
 // nao a duracao do video; lista, redacao e refino usam o que foi gerado.
@@ -652,14 +659,44 @@ function intercalarListas (aulas, listas) {
     .sort((a, b) => (FREQ.get(b[0])?.n || 0) - (FREQ.get(a[0])?.n || 0))
     .flatMap(([, v]) => v)
   const passo = orfas.length ? Math.max(1, Math.floor(aulas.length / orfas.length)) : 0
+  // ESPAÇAR e INTERCALAR, não amontoar: a parte 1 da lista vem logo depois das
+  // aulas do assunto (praticar o que acabou de ver), e as outras partes voltam
+  // mais tarde, espalhadas e misturadas com as de outros assuntos. É a prática
+  // espaçada + intercalada — em matemática, resolver problemas misturados em vez
+  // de um assunto por vez tem efeito grande em prova (Rohrer, d≈0,83), embora
+  // pareça mais difícil na hora de estudar.
+  const depois = []
   const fila = []
   aulas.forEach((a, i) => {
     fila.push(a)
-    if (ultima.get(a.assunto_id) === i) fila.push(...(porAssunto.get(a.assunto_id) || []))
+    if (ultima.get(a.assunto_id) === i) {
+      const partes = porAssunto.get(a.assunto_id) || []
+      if (partes.length) fila.push(partes[0])
+      depois.push(...partes.slice(1))
+    }
     if (passo && i % passo === passo - 1 && orfas.length) fila.push(orfas.shift())
   })
-  fila.push(...orfas)
-  return fila
+  depois.push(...orfas)
+  if (!depois.length) return fila
+  // reveza os assuntos para duas partes do mesmo assunto não caírem juntas
+  const porAss = new Map()
+  depois.forEach(l => {
+    if (!porAss.has(l.assunto_id)) porAss.set(l.assunto_id, [])
+    porAss.get(l.assunto_id).push(l)
+  })
+  const revezado = []
+  while ([...porAss.values()].some(v => v.length)) {
+    porAss.forEach(v => { if (v.length) revezado.push(v.shift()) })
+  }
+  // e distribui essas partes ao longo do resto da fila
+  const salto = Math.max(1, Math.floor(fila.length / (revezado.length + 1)))
+  const saida = []
+  fila.forEach((a, i) => {
+    saida.push(a)
+    if (i % salto === salto - 1 && revezado.length) saida.push(revezado.shift())
+  })
+  saida.push(...revezado)
+  return saida
 }
 
 // A base de Matemática (Apostilas 1 A e 1 B: potenciação, radiciação, produtos
