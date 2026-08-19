@@ -343,6 +343,10 @@ const hhmm = min => {
 const horas = min => Math.round(min / 60)
 
 let AULAS = [], PROG = new Map(), MATERIAS = [], DISCIPLINAS = [], ASSUNTOS = []
+// quando cada aula foi marcada como assistida — usado só para tirar do plano o
+// que ela já tinha feito ANTES do re-baseline de 19/08 (senão essas aulas
+// voltariam para o futuro, marcadas, ocupando hora que ela não precisa gastar)
+const PROG_EM = new Map()
 let REDACOES = [], USER = null
 // assunto_id -> {nome, n, porProva, faixa}. Preenchido por carregarPrioridades().
 const FREQ = new Map()
@@ -383,11 +387,14 @@ async function abrirApp () {
     sb.from('disciplinas').select('*').order('ordem'),
     sb.from('assuntos').select('*').order('id'),
     sb.from('aulas').select('*').order('curso_id').order('modulo').order('ordem').limit(2000),
-    sb.from('progresso').select('aula_id,status')
+    sb.from('progresso').select('aula_id,status,assistida_em')
   ])
   MATERIAS = mats.data || []; DISCIPLINAS = discs.data || []
   ASSUNTOS = assu.data || []; AULAS = aulas.data || []
-  ;(prog.data || []).forEach(p => PROG.set(p.aula_id, p.status))
+  ;(prog.data || []).forEach(p => {
+    PROG.set(p.aula_id, p.status)
+    if (p.assistida_em) PROG_EM.set(p.aula_id, p.assistida_em.slice(0, 10))
+  })
 
   const dias = Math.ceil((PROVA - new Date()) / 864e5)
   $('#dias').textContent = dias
@@ -735,10 +742,17 @@ function naFaixa (a, faixaMax) {
 
 // Uma fila por matéria, com TODAS as aulas — inclusive as já assistidas. O plano
 // não pode depender do que já foi feito: é isso que o mantém sempre igual.
+// O que ela já tinha estudado antes do dia 1 do plano não volta para o futuro:
+// já foi feito, não precisa de hora reservada. O que ela marcar de hoje em
+// diante continua no plano (é o que mantém o cronograma estático).
+const feitaAntesDoPlano = a => PROG.get(a.id) === 'assistida' &&
+  PROG_EM.get(a.id) && PROG_EM.get(a.id) < iso(INICIO_PLANO)
+
 function filasPorMateria (faixaMax) {
   const filas = new Map()
   MATERIAS.forEach(m => {
-    const da = AULAS.filter(a => a.materia_id === m.id && planejavel(a) && naFaixa(a, faixaMax))
+    const da = AULAS.filter(a => a.materia_id === m.id && planejavel(a) &&
+      naFaixa(a, faixaMax) && !feitaAntesDoPlano(a))
     const aulas = m.id === 'humanidades' ? filaHumanas(da.filter(a => !ehLista(a)))
       : da.filter(a => !ehLista(a)).sort(m.id === 'matematica' ? ordemDoCurso : ordemDaFila)
     const fila = intercalarListas(aulas, da.filter(ehLista))
