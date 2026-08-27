@@ -287,18 +287,22 @@ const KEY_SB = 'sb_publishable_eX7i_P76hKCfb4ocJ7zTzg_UilLA6J_'
 const sb = createClient(URL_SB, KEY_SB)
 
 const PROVA = new Date('2026-11-29T00:00:00-03:00')
-const VIAGEM = { de: '2026-09-04', ate: '2026-09-12', horas: 2 }
-// Grade nova, informada por ela em 18/08/2026 (a antiga era seg/ter/qua/sex 6h,
-// qui 3h30 e sab 13h):
-//   seg, qua, sex  14h as 22h, 1h de descanso ............ 7h
-//   ter, qui       15h as 22h, 1h de descanso ............ 6h  (quinta agora vai ate a noite)
-//   sabado         1o e 2o do mes: 7h30 as 18h30, 1h de almoco ... 10h
-//                  demais: compromisso das 16h as 23h,
-//                          entao estuda 7h30 as 16h .............. 7h30
+// Grade atualizada em 27/08/2026. A VIAGEM de 4 a 12 de setembro FOI CANCELADA
+// (eram 9 dias rendendo 2h; voltaram a ser dias normais, +42h no plano) e o
+// compromisso que ocupava a noite de quinta passou para as sextas:
+//   seg, qua       14h as 22h, 1h de descanso ..................... 7h
+//   ter, qui       15h as 22h, 1h de descanso ..................... 6h
+//   sexta          compromisso a partir das 18h30, entao 14h as 18h30 . 4h30
+//                  EXCETO a 3a sexta do mes, que fica livre ........ 7h
+//   sabado         7h30 as 18h30, 1h de almoco .................... 10h
+//                  EXCETO o 3o sabado (compromisso 17h as 18h30) ... 8h30
 //   domingo        descanso
-// Atencao: inverteu — agora os DOIS PRIMEIROS sabados sao os mais longos.
-const HORAS = { 0: 0, 1: 7, 2: 6, 3: 7, 4: 6, 5: 7, 6: 7.5 }
-const SAB_PRIMEIROS = 10
+// A regra e por ORDINAL do dia no mes: ela descreveu "1a, 2a e ultima sexta
+// ocupadas, so a 3a livre". Em mes com 5 sextas isso deixa a 4a ocupada tambem
+// — que e a leitura literal do "apenas a terceira e livre".
+const HORAS = { 0: 0, 1: 7, 2: 6, 3: 7, 4: 6, 5: 7, 6: 10 }
+const SEX_COMPROMISSO = 4.5   // 1a, 2a, 4a e ultima sexta do mes
+const SAB_TERCEIRO = 8.5      // 3o sabado do mes
 const MIN_REDACAO = 90            // por redacao escrita
 const REDACOES_SEMANA = 2
 // Tempo REAL por aula, informado por ela em 07/08/2026. A rotina dela e:
@@ -470,13 +474,10 @@ function pintarPainel () {
 // ---------------------------------------------------------------- cronograma
 function horasDoDia (d) {
   const dow = d.getDay()
-  const dia = iso(d)
-  if (dia >= VIAGEM.de && dia <= VIAGEM.ate) return VIAGEM.horas
-  if (dow === 6) {
-    // 1o e 2o sabado do mes: compromisso só às 18h30, então rende mais
-    const nSab = Math.floor((d.getDate() - 1) / 7) + 1
-    return nSab <= 2 ? SAB_PRIMEIROS : HORAS[6]
-  }
+  // n = qual ocorrencia deste dia da semana no mes (1a sexta, 2a sexta, 3o sabado...)
+  const n = Math.floor((d.getDate() - 1) / 7) + 1
+  if (dow === 5) return n === 3 ? HORAS[5] : SEX_COMPROMISSO
+  if (dow === 6) return n === 3 ? SAB_TERCEIRO : HORAS[6]
   return HORAS[dow]
 }
 
@@ -545,17 +546,15 @@ function pintarCronograma () {
   const obs = {
     0: 'Descanso',
     1: '14h às 22h, com 1h de descanso', 3: '14h às 22h, com 1h de descanso',
-    5: '14h às 22h, com 1h de descanso',
     2: '15h às 22h, com 1h de descanso', 4: '15h às 22h, com 1h de descanso',
-    6: '7h30 às 19h30, com pausa de almoço'
+    5: '14h às 18h30 — compromisso à noite. Na 3ª sexta do mês, 14h às 22h',
+    6: '7h30 às 18h30, com pausa de almoço. No 3º sábado, compromisso das 17h às 18h30'
   }
+  const faixa = { 5: `${hhmm(SEX_COMPROMISSO * 60)} / ${hhmm(HORAS[5] * 60)}`,
+                  6: `${hhmm(HORAS[6] * 60)} / ${hhmm(SAB_TERCEIRO * 60)}` }
   $('#grade').innerHTML = nomes.map((n, i) => `
-    <tr><td>${n}</td><td class="n">${i === 6 ? `${hhmm(SAB_PRIMEIROS * 60)} / ${hhmm(HORAS[6] * 60)}` : hhmm(HORAS[i] * 60)}</td>
-    <td class="small muted">${i === 6
-      ? '1º e 2º sábado do mês: 7h30 às 18h30 (10h). Nos outros, 7h30 às 16h — compromisso das 16h às 23h'
-      : obs[i]}</td></tr>`).join('') +
-    `<tr><td>Viagem</td><td class="n">${VIAGEM.horas}h</td>
-     <td class="small muted">4 a 12 de setembro, a trabalho</td></tr>`
+    <tr><td>${n}</td><td class="n">${faixa[i] || hhmm(HORAS[i] * 60)}</td>
+    <td class="small muted">${obs[i]}</td></tr>`).join('')
 }
 
 // ---------------------------------------------------------------- plano semanal
@@ -793,8 +792,8 @@ function distribuir (dias, filas, de, ate, intensidade, fixosPorDia, hoje0) {
 
     // Matemática todo dia longo. Ela pediu tempo e constância na matéria em que
     // tem mais dificuldade; pela rotação por peso (12,5% da nota) caía uma aula
-    // a cada 5 dias, o que não recupera base nenhuma. Nas quintas (3h30) e nos
-    // dias de viagem não força, senão o dia vira só matemática.
+    // a cada 5 dias, o que não recupera base nenhuma. Nas sextas com compromisso
+    // (4h30) não força, senão o dia vira só matemática.
     const fMat = filas.get('matematica')
     if (!refino && fMat && fMat.fila.length && capacidade >= MIN_DIA_MATEMATICA) {
       const i = fMat.fila.findIndex(a => !a.libera_em || a.libera_em <= dia)
