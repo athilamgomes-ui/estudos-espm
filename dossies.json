@@ -33,6 +33,17 @@
   "arquivo": "dossies/atualidades-ucrania.pdf"
  },
  {
+  "slug": "caderno-de-repertorios",
+  "titulo": "Caderno de repertórios",
+  "subtitulo": "Montado a partir dos repertórios que você já usa — e do método para parar de pesquisar antes de escrever",
+  "tipo": "repertorio",
+  "selo": "Redação · Ferramenta de trabalho",
+  "serve": "redação (25% da nota) · entrevista · Humanidades",
+  "minutos": 90,
+  "fechado_em": "fechado em 10 de setembro de 2026",
+  "arquivo": "dossies/caderno-de-repertorios.pdf"
+ },
+ {
   "slug": "repertorio-han-sociedade-do-cansaco",
   "titulo": "Byung-Chul Han — Sociedade do cansaço",
   "subtitulo": "O repertório que serve à redação e à entrevista ao mesmo tempo",
