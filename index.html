@@ -150,9 +150,9 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
       <div class="small muted" id="sub">—</div>
     </div>
     <div class="row" style="align-items:flex-start">
-      <div class="contagem">
+      <div class="contagem" id="contagem" title="Toque para trocar" style="cursor:pointer">
         <div class="d num" id="dias">—</div>
-        <div class="l">dias para a prova</div>
+        <div class="l" id="diasRot">dias para a prova</div>
       </div>
       <button id="bSair" class="small">Sair</button>
     </div>
@@ -540,8 +540,7 @@ async function abrirApp () {
     if (p.assistida_em) PROG_EM.set(p.aula_id, p.assistida_em.slice(0, 10))
   })
 
-  const dias = Math.ceil((PROVA - new Date()) / 864e5)
-  $('#dias').textContent = dias
+  pintarContagem()
   $('#sub').textContent = `Vestibular ESPM São Paulo · domingo, 29 de novembro de 2026`
 
   // A rotina precisa estar carregada antes de qualquer conta: a capacidade de
@@ -552,6 +551,24 @@ async function abrirApp () {
   montarFiltros(); pintarHoje(); pintarCronograma(); pintarPlano(); pintarAulas(); carregarListas()
   await carregarRedacoes()
   pintarPainel(); montarAcertos(); carregarSimulados()
+}
+
+// A contagem regressiva e util para uns e ansiogena para outros — ela disse que
+// "faltam 81 dias" a deixa ansiosa. Em vez de escolher por ela, o numero e um
+// botao: dias -> semanas -> so a data. Preferencia de exibicao fica no aparelho.
+function pintarContagem () {
+  const modos = ['dias', 'semanas', 'data']
+  let m = localStorage.getItem('contagem') || 'dias'
+  if (!modos.includes(m)) m = 'dias'
+  const hoje0 = new Date(); hoje0.setHours(0, 0, 0, 0)
+  const dias = Math.round((PROVA - hoje0) / 864e5)
+  if (m === 'dias') { $('#dias').textContent = dias; $('#diasRot').textContent = 'dias para a prova' }
+  if (m === 'semanas') { $('#dias').textContent = Math.floor(dias / 7); $('#diasRot').textContent = 'semanas para a prova' }
+  if (m === 'data') { $('#dias').textContent = '29/11'; $('#diasRot').textContent = 'domingo, o dia da prova' }
+  $('#contagem').onclick = () => {
+    localStorage.setItem('contagem', modos[(modos.indexOf(m) + 1) % modos.length])
+    pintarContagem()
+  }
 }
 
 // ---------------------------------------------------------------- abas
@@ -762,6 +779,7 @@ function pintarHoje () {
             <span class="small${PROG.get(a.id) === 'assistida' ? ' muted' : ''}" style="${PROG.get(a.id) === 'assistida' ? 'text-decoration:line-through' : ''}">
               ${rotuloAula(a)}
               ${ehLista(a) ? ` <a class="tag ex" href="${a.url}" target="_blank" rel="noopener">abrir PDF</a>` : ''}
+              ${ehLista(a) && qtdQuestoes(a) ? ` <span class="tag" style="border-color:var(--warn);color:var(--warn)">⏱ ${qtdQuestoes(a) * MIN_POR_QUESTAO} min no relógio</span>` : ''}
               <span class="tiny"> · ${hhmm(minutosPlanejados(a))}${atravessa ? ' · continua no bloco seguinte' : ''}</span>
             </span>
           </label>`).join('')}</div>` : ''}
@@ -943,8 +961,8 @@ function pintarCronograma () {
       <div class="k">de aula e lista de questões</div></div>
     <div class="card kpi"><div class="v num">${Math.round(redacao + refino)}h</div>
       <div class="k">reservadas para redação e simulados</div></div>
-    <div class="card kpi"><div class="v num" style="color:${plano.cobertura >= .7 ? 'var(--ok)' : 'var(--warn)'}">${(plano.cobertura * 100).toFixed(0)}%</div>
-      <div class="k">das questões caem em assuntos que você vai estudar</div></div>
+    <div class="card kpi"><div class="v num" style="color:${plano.cobertura >= .7 ? 'var(--ok)' : 'var(--warn)'}">${Math.round(plano.cobertura * 80)} de 80</div>
+      <div class="k">questões da prova em assuntos que você vai estudar</div></div>
     <div class="card kpi"><div class="v num">${(intensidade * 100).toFixed(0)}%</div>
       <div class="k">do seu dia ocupado</div></div>
     <div class="card kpi"><div class="v num">${Math.round(refino)}h</div>
@@ -955,9 +973,12 @@ function pintarCronograma () {
   if (falta > 0) {
     cls = 'bad'
     cls = plano.cobertura >= .7 ? 'ok' : 'warn'
-    txt = `<strong>O plano passa por assuntos que valeram ${(plano.cobertura * 100).toFixed(0)}% das questões da prova</strong>
-      — ${plano.questoesCobertas} das ${plano.questoesTotal} questões das últimas 15 provas da ESPM.
-      Em alguns desses assuntos você vê as primeiras aulas e não o curso inteiro: o corte é
+    txt = `<strong>Numa prova de 80 questões, o plano passa pelos assuntos de cerca de
+      ${Math.round(plano.cobertura * 80)}.</strong> A conta vem das últimas 15 provas da ESPM:
+      ${plano.questoesCobertas} das ${plano.questoesTotal} questões caíram em assuntos que você vai
+      estudar. O que fica de fora são <strong>${(80 - plano.cobertura * 80).toFixed(0)} questões</strong>,
+      espalhadas em assuntos que apareceram uma ou duas vezes em 15 provas — e mesmo essas você
+      pode acertar. Em alguns assuntos você vê as primeiras aulas e não o curso inteiro: o corte é
       sempre no fim da fila, no aprofundamento, nunca no assunto todo.
       <div class="tiny" style="margin-top:8px">Você tem ${Math.round(totalAteProva)}h até 29/11:
       ${Math.round(redacao)}h de redação, ${Math.round(refino)}h de simulado e revisão, e
@@ -1006,6 +1027,12 @@ const MES = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out
 
 const ehRefino = a => a.curso_id === 'refino'
 const ehLista = a => a.curso_id === 'listas'
+// Ritmo REAL da prova, lido no caderno de 2026-2: "o tempo total de prova e de
+// 5 (cinco) horas" para 80 questoes + redacao. Tirando ~60min de redacao sobram
+// 240min / 80 = 3min por questao. Cada lista vira ensaio de ritmo sem custar
+// tempo novo: o relogio corre so na parte de responder; corrigir e anotar depois.
+const MIN_POR_QUESTAO = 3
+const qtdQuestoes = a => { const m = /(\d+)\s+quest/.exec(a.titulo || ''); return m ? +m[1] : 0 }
 const ehRedacaoEscrita = a => a.curso_id === 'redacao_escrita'
 // Itens com data propria (libera_em manda): refino e as redacoes a escrever.
 const temDataFixa = a => ehRefino(a) || ehRedacaoEscrita(a)
@@ -1445,6 +1472,7 @@ function item (a, passado) {
       ${f ? `<span class="tiny" style="display:block">${f.assunto}</span>` : ''}</span>
     <span class="meta">${passado && !feita ? '<span class="tag atraso">não feita</span>' : ''}
       ${ehLista(a) ? `<a class="tag ex" href="${a.url}" target="_blank" rel="noopener">abrir PDF</a>` : ''}
+      ${ehLista(a) && qtdQuestoes(a) ? `<span class="tag" style="border-color:var(--warn);color:var(--warn)">⏱ ${qtdQuestoes(a) * MIN_POR_QUESTAO} min</span>` : ''}
       ${imp}
       <span class="num">${hhmm(minutosPlanejados(a))}</span></span></label>`
 }
