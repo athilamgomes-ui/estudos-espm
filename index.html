@@ -172,6 +172,7 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
   <section id="hoje">
     <div id="hojeTopo" style="margin-bottom:14px"></div>
     <div id="hojeLinha" class="card" style="overflow:hidden"></div>
+    <div id="hojeAmanha" style="margin-top:14px"></div>
     <p class="tiny" style="margin-top:12px">
       A rotina é sua e pode mudar: em <strong>Modelar rotina</strong> você ajusta horário,
       nome e tipo de cada bloco, para qualquer dia da semana. O cronograma inteiro
@@ -362,23 +363,32 @@ const ABERTURA = [
 ]
 const ROTINA_PADRAO = {
   0: [
-    b('07:30', '08:00', 'pessoal', 'Acordar sem despertador'),
-    b('08:00', '09:30', 'pessoal', 'Devocional / igreja'),
-    b('09:30', '19:00', 'pessoal', 'Domingo livre', 'Descanso de verdade — é isso que faz a semana render'),
+    b('07:15', '07:30', 'pessoal', 'Acordar'),
+    b('07:30', '08:15', 'pessoal', 'Corrida', 'A de domingo pode ser a mais longa da semana — sem pressa'),
+    b('08:15', '08:45', 'pessoal', 'Banho e café'),
+    b('09:00', '10:30', 'pessoal', 'Devocional / igreja'),
+    b('10:30', '19:00', 'pessoal', 'Domingo livre', 'Descanso de verdade — é isso que faz a semana render'),
     b('19:00', '19:20', 'pessoal', 'Planejar a semana', 'Olhar o cronograma e escolher onde encaixar o que ficou para trás'),
     b('19:20', '22:30', 'pessoal', 'Noite livre'),
     b('22:30', '22:35', 'pessoal', 'Dormir')
   ],
-  1: [...ABERTURA, ...MANHA_LONGA,
-    b('11:00', '12:00', 'pessoal', 'Livre / caminhada', '10 min de corpo em movimento recupera atenção melhor que ficar sentada'),
-    b('12:00', '13:00', 'refeicao', 'Almoço'),
-    b('13:00', '15:00', 'pessoal', 'Descanso de verdade', 'Série, deitar, o que quiser. Não é hora de estudar nem de sentir culpa'),
-    ...TARDE_NOITE],
-  3: null, 5: null,
+  1: null, 3: null, 5: null,   // montados abaixo: academia com treino diferente em cada um
+  // Terca: corrida no lugar do jantar das 18h30 (pedido dela, "terca a noite").
+  // Correr as 22h e dormir as 23h atrapalha o sono; as 18h30 e noite e nao custa
+  // sono. O jantar anda 20 min e o bloco 6 encurta 25 min — so isso.
   2: [...ABERTURA, ...MANHA_EXTRA,
     b('12:30', '13:30', 'refeicao', 'Almoço'),
     b('13:30', '15:00', 'pessoal', 'Descanso de verdade', 'Série, deitar, o que quiser'),
-    ...TARDE_NOITE],
+    b('15:00', '16:50', 'estudo', 'Estudo — bloco 4'),
+    b('16:50', '17:05', 'pausa', 'Pausa de pé'),
+    b('17:05', '18:30', 'estudo', 'Estudo — bloco 5'),
+    b('18:30', '19:10', 'pessoal', 'Corrida', 'Leve. Exercício aeróbico é um dos melhores remédios para ansiedade que existem'),
+    b('19:10', '19:50', 'refeicao', 'Banho e jantar'),
+    b('19:50', '21:25', 'estudo', 'Estudo — bloco 6'),
+    b('21:25', '21:55', 'estudo', 'Flashcards do dia no Knowt', 'Só do que você estudou HOJE. É a hora que fixa memória'),
+    b('21:55', '22:05', 'pessoal', 'Fechar o dia', 'Olhar o de amanhã e escrever as dúvidas que ficaram'),
+    b('22:05', '23:00', 'pessoal', 'Leitura livre', 'Livro que NÃO é do vestibular'),
+    b('23:00', '23:05', 'pessoal', 'Dormir', 'Hora fixa. Sono é quando a memória do dia é gravada')],
   4: null,
   6: [
     b('06:30', '07:00', 'pessoal', 'Acordar e devocional'),
@@ -400,8 +410,19 @@ const ROTINA_PADRAO = {
     b('23:00', '23:05', 'pessoal', 'Dormir')
   ]
 }
-ROTINA_PADRAO[3] = ROTINA_PADRAO[1]; ROTINA_PADRAO[5] = ROTINA_PADRAO[1]
-ROTINA_PADRAO[4] = ROTINA_PADRAO[2]
+// Seg/qua/sex: academia das 11h as 12h, treino na ordem que ela faz.
+const diaComAcademia = treino => [...ABERTURA, ...MANHA_LONGA,
+  b('11:00', '12:00', 'pessoal', `Academia — ${treino}`, 'Exercício regular é dos melhores remédios para ansiedade; e o corpo em movimento recupera a atenção para a tarde'),
+  b('12:00', '13:00', 'refeicao', 'Almoço'),
+  b('13:00', '15:00', 'pessoal', 'Descanso de verdade', 'Série, deitar, o que quiser. Não é hora de estudar nem de sentir culpa'),
+  ...TARDE_NOITE]
+ROTINA_PADRAO[1] = diaComAcademia('perna')
+ROTINA_PADRAO[3] = diaComAcademia('braço')
+ROTINA_PADRAO[5] = diaComAcademia('perna e braço')
+ROTINA_PADRAO[4] = [...ABERTURA, ...MANHA_EXTRA,
+  b('12:30', '13:30', 'refeicao', 'Almoço'),
+  b('13:30', '15:00', 'pessoal', 'Descanso de verdade', 'Série, deitar, o que quiser'),
+  ...TARDE_NOITE]
 
 const hm = t => (+t.slice(0, 2)) * 60 + (+t.slice(3, 5))
 const dur = x => hm(x.f) - hm(x.i)
@@ -640,14 +661,24 @@ function marcarBloco (dia, x, feito) {
 function encaixar (blocos, itens) {
   const estudo = blocos.filter(x => x.t === 'estudo')
   const mapa = new Map(estudo.map(x => [chaveBloco(x), []]))
+  if (!estudo.length) return mapa
   let bi = 0, usado = 0
   itens.forEach(a => {
-    if (bi >= estudo.length) { (mapa.get(chaveBloco(estudo[estudo.length - 1])) || []).push({ a }); return }
-    const min = minutosPlanejados(a)
-    const cabe = dur(estudo[bi]) - usado
-    mapa.get(chaveBloco(estudo[bi])).push({ a, atravessa: min > cabe && bi < estudo.length - 1 })
-    usado += min
-    while (bi < estudo.length - 1 && usado >= dur(estudo[bi])) { usado -= dur(estudo[bi]); bi++ }
+    let restante = minutosPlanejados(a), primeiro = true
+    while (restante > 0) {
+      const ultimo = bi >= estudo.length - 1
+      const blk = estudo[Math.min(bi, estudo.length - 1)]
+      const cabe = dur(blk) - usado
+      const atravessa = restante > cabe && !ultimo
+      // a continuacao aparece no bloco seguinte, sem checkbox, com o que resta
+      mapa.get(chaveBloco(blk)).push({ a, continua: !primeiro, atravessa, restam: restante })
+      if (!atravessa) {
+        usado += restante; restante = 0
+        if (!ultimo && usado >= dur(blk)) { usado = 0; bi++ }
+        break
+      }
+      restante -= cabe; usado = 0; bi++; primeiro = false
+    }
   })
   return mapa
 }
@@ -674,7 +705,9 @@ function pintarHoje () {
       <div class="row" style="justify-content:space-between;align-items:baseline">
         <div>
           <strong style="font-size:17px">${SEM_INTEIRO[agora.getDay()][0].toUpperCase() + SEM_INTEIRO[agora.getDay()].slice(1)}, ${agora.getDate()} de ${MESES[agora.getMonth()]}</strong>
-          <div class="small muted">${hhmm(totEstudo)} de estudo · ${itens.length} ${itens.length === 1 ? 'tarefa' : 'tarefas'} de conteúdo · ${feitasAulas} ${feitasAulas === 1 ? 'feita' : 'feitas'}</div>
+          <div class="small muted">${itens.length
+            ? `${hhmm(totEstudo)} de estudo · ${itens.length} ${itens.length === 1 ? 'tarefa' : 'tarefas'} de conteúdo · ${feitasAulas} ${feitasAulas === 1 ? 'feita' : 'feitas'}`
+            : (totEstudo ? 'Nenhum conteúdo planejado para hoje — veja o de amanhã logo abaixo' : 'Dia de descanso')}</div>
         </div>
         <button id="bEditar" class="small">${modoEditar ? 'Concluir edição' : 'Modelar rotina'}</button>
       </div>
@@ -683,7 +716,7 @@ function pintarHoje () {
     </div>`
   $('#bEditar').onclick = () => { modoEditar = !modoEditar; pintarHoje() }
 
-  if (modoEditar) return pintarEditor(agora)
+  if (modoEditar) { $('#hojeAmanha').innerHTML = ''; return pintarEditor(agora) }
 
   // O bloco de agora fica destacado; os que ja passaram, esmaecidos.
   $('#hojeLinha').innerHTML = blocos.map(x => {
@@ -692,6 +725,21 @@ function pintarHoje () {
     const passou = minAgora >= hm(x.f)
     const cor = TIPOS[x.t][1]
     const aulas = (mapa.get(chaveBloco(x)) || [])
+    // O titulo do bloco de estudo e O QUE ela vai estudar ("Matematica"), nao
+    // "bloco 1" — pedido dela em 08/09. O numero do bloco vai para a linha miuda.
+    let titulo = x.n, sub = x.d
+    if (x.t === 'estudo' && x.n.startsWith('Estudo — bloco')) {
+      if (aulas.length) {
+        titulo = [...new Set(aulas.map(({ a }) => nomeMateria(a)))].join(' · ')
+        sub = `${x.n}${x.d ? ' · ' + x.d : ''}`
+      } else if (itens.length) {
+        titulo = 'Folga do plano'
+        sub = 'Nada marcado aqui de propósito: use para terminar o que sobrou, revisar ou adiantar'
+      } else {
+        titulo = 'Sem conteúdo planejado'
+        sub = 'O plano recomeça amanhã — hoje é dia de descansar ou adiantar o de amanhã (lista abaixo)'
+      }
+    }
     return `<div class="bloco${ok ? ' ok' : ''}${agoraNele ? ' agora' : ''}" style="${passou && !ok ? 'opacity:.55' : ''}">
       <span class="h">${x.i}–${x.f}<div class="tiny" style="margin-top:2px">${hhmm(dur(x))}</div></span>
       <span class="pip" style="background:${cor}"></span>
@@ -699,10 +747,11 @@ function pintarHoje () {
         <label style="display:flex;flex-wrap:nowrap;gap:9px;align-items:flex-start;cursor:pointer">
           <input type="checkbox" data-bl="${chaveBloco(x)}"${ok ? ' checked' : ''}
             style="width:17px;height:17px;margin-top:2px;flex:none;accent-color:var(--accent)">
-          <span class="nm">${x.n}</span>
+          <span class="nm">${titulo}</span>
         </label>
-        ${x.d ? `<div class="tiny" style="margin:2px 0 0 26px">${x.d}</div>` : ''}
-        ${aulas.length ? `<div style="margin:7px 0 2px 26px">${aulas.map(({ a, atravessa }) => `
+        ${sub ? `<div class="tiny" style="margin:2px 0 0 26px">${sub}</div>` : ''}
+        ${aulas.length ? `<div style="margin:7px 0 2px 26px">${aulas.map(({ a, atravessa, continua, restam }) => continua ? `
+          <div class="tiny" style="padding:3px 0 3px 24px">↳ continua: ${rotuloAula(a)} · restam ${hhmm(restam)}${atravessa ? ' · segue no próximo' : ''}</div>` : `
           <label style="display:flex;flex-wrap:nowrap;gap:8px;align-items:flex-start;cursor:pointer;padding:3px 0">
             <input type="checkbox" data-id="${a.id}"${PROG.get(a.id) === 'assistida' ? ' checked' : ''}
               style="width:16px;height:16px;margin-top:2px;flex:none;accent-color:var(--accent)">
@@ -715,6 +764,20 @@ function pintarHoje () {
       </div>
     </div>`
   }).join('') || '<div class="vazio">Sem rotina para hoje. Toque em “Modelar rotina”.</div>'
+
+  const amanha = new Date(agora); amanha.setDate(amanha.getDate() + 1)
+  const dAmanha = montarPlano().find(d => iso(d.data) === iso(amanha))
+  const itensAmanha = (dAmanha && dAmanha.itens) || []
+  const minAmanha = itensAmanha.reduce((t, a) => t + minutosPlanejados(a), 0)
+  $('#hojeAmanha').innerHTML = `
+    <details class="card mod"${itens.length ? '' : ' open'}>
+      <summary><span>Amanhã, ${SEM_INTEIRO[amanha.getDay()]} ${amanha.getDate()}/${amanha.getMonth() + 1}</span>
+        <span class="cont">${itensAmanha.length} ${itensAmanha.length === 1 ? 'tarefa' : 'tarefas'} · ${hhmm(minAmanha)} · ${hhmm(minutosDoDia(amanha))} de estudo</span></summary>
+      ${itensAmanha.map(a => `<div class="aula" style="padding-left:15px">
+        <span class="t small">${rotuloAula(a)}</span>
+        <span class="meta"><span class="num">${hhmm(minutosPlanejados(a))}</span></span></div>`).join('') ||
+        '<div class="aula"><span class="t small muted">Descanso.</span></div>'}
+    </details>`
 
   $('#hojeLinha').querySelectorAll('input[data-bl]').forEach(c => c.onchange = () => {
     const x = blocos.find(y => chaveBloco(y) === c.dataset.bl)
