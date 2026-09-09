@@ -434,13 +434,14 @@ const dur = x => hm(x.f) - hm(x.i)
 const ordinalNoMes = d => Math.floor((d.getDate() - 1) / 7) + 1
 const MIN_REDACAO = 90            // por redacao escrita
 const REDACOES_SEMANA = 2
-// Tempo REAL por aula, informado por ela em 07/08/2026. A rotina dela e:
-// assistir (ou ler o PDF) -> resolver questoes e corrigir -> anotacoes de
-// cabeca -> corrigir as anotacoes em outra cor -> flashcards no Knowt.
-// Isso da ~2h por aula. Matematica leva mais: a base esta fraca e ela precisa
-// resolver com calma. O minutos_est do catalogo so contava o video.
-const MIN_AULA = 120
-const MIN_AULA_MAT = 165
+// Tempo por aula, definido por ela em 08/09/2026, agora em partes:
+//   1h10 de aula + 15 questoes (45 min, os mesmos 3 min por questao da prova)
+//   + 30 min de correcao = 2h25.
+// Os flashcards sairam da conta porque viraram bloco proprio na rotina (21h15).
+// Matematica usava 2h45 (estimativa minha de 18/08, base fraca); ela nao pediu
+// distincao agora, entao vale a mesma conta para todas as materias.
+const MIN_AULA = 70 + 45 + 30
+const MIN_AULA_MAT = MIN_AULA
 // Dia com pelo menos 5h ganha uma aula de matematica na marra (ver distribuir).
 const MIN_DIA_MATEMATICA = 5 * 60
 // As 4 ultimas semanas nao levam aula nova: sao de resolver questao, corrigir e
@@ -679,30 +680,57 @@ function marcarBloco (dia, x, feito) {
 // Encaixa as aulas do dia dentro dos blocos de estudo, na ordem. Uma aula de
 // 2h45 nao cabe num bloco de 1h50 — em vez de mentir, ela aparece no bloco em
 // que COMECA e leva a marca de que atravessa para o proximo.
+// Encaixa as aulas do dia nos blocos de estudo. Uma aula de 2h25 nao cabe num
+// bloco de 1h50, entao ela atravessa — mas so DENTRO da mesma sessao, ou seja,
+// blocos de estudo separados apenas por pausa. Atravessar a academia e o almoco
+// para voltar a mesma aula 4h depois nao e estudo, e interrupcao: nesse caso a
+// aula comeca na sessao seguinte e o bloco que sobrou fica como folga.
+function sessoesDe (blocos) {
+  const ses = []
+  let atual = null
+  blocos.forEach(x => {
+    if (x.t === 'estudo') {
+      if (!atual) { atual = []; ses.push(atual) }
+      atual.push(x)
+    } else if (x.t !== 'pausa') atual = null
+  })
+  return ses
+}
+
 function encaixar (blocos, itens) {
-  const estudo = blocos.filter(x => x.t === 'estudo')
-  const mapa = new Map(estudo.map(x => [chaveBloco(x), []]))
-  if (!estudo.length) return mapa
-  let bi = 0, usado = 0
+  const ses = sessoesDe(blocos)
+  const mapa = new Map(blocos.filter(x => x.t === 'estudo').map(x => [chaveBloco(x), []]))
+  if (!ses.length) return mapa
+  let si = 0, bi = 0, usado = 0
   itens.forEach(a => {
     let restante = minutosPlanejados(a), primeiro = true
-    while (restante > 0) {
-      const ultimo = bi >= estudo.length - 1
-      const blk = estudo[Math.min(bi, estudo.length - 1)]
+    // cabe no que resta desta sessao? se nao, e nao e a ultima, comeca na proxima
+    const restaSessao = () => ses[si].slice(bi).reduce((t, b2) => t + dur(b2), 0) - usado
+    if (restante > restaSessao() && si < ses.length - 1 && !primeiroDaSessaoVazio(mapa, ses[si])) {
+      si++; bi = 0; usado = 0
+    }
+    while (restante > 0 && si < ses.length) {
+      const blocos_ = ses[si]
+      const ultimo = bi >= blocos_.length - 1 && si >= ses.length - 1
+      const blk = blocos_[Math.min(bi, blocos_.length - 1)]
       const cabe = dur(blk) - usado
+      const fimDaSessao = bi >= blocos_.length - 1
       const atravessa = restante > cabe && !ultimo
-      // a continuacao aparece no bloco seguinte, sem checkbox, com o que resta
       mapa.get(chaveBloco(blk)).push({ a, continua: !primeiro, atravessa, restam: restante })
       if (!atravessa) {
         usado += restante; restante = 0
-        if (!ultimo && usado >= dur(blk)) { usado = 0; bi++ }
+        if (!fimDaSessao && usado >= dur(blk)) { usado -= dur(blk); bi++ }
+        else if (fimDaSessao && usado >= dur(blk) && si < ses.length - 1) { si++; bi = 0; usado = 0 }
         break
       }
-      restante -= cabe; usado = 0; bi++; primeiro = false
+      restante -= cabe; usado = 0; primeiro = false
+      if (fimDaSessao) { si++; bi = 0 } else bi++
     }
   })
   return mapa
 }
+const primeiroDaSessaoVazio = (mapa, sessao) =>
+  sessao.every(b2 => !(mapa.get(chaveBloco(b2)) || []).length)
 
 let modoEditar = false
 
@@ -748,11 +776,17 @@ function pintarHoje () {
     const aulas = (mapa.get(chaveBloco(x)) || [])
     // O titulo do bloco de estudo e O QUE ela vai estudar ("Matematica"), nao
     // "bloco 1" — pedido dela em 08/09. O numero do bloco vai para a linha miuda.
+    // Pedido dela (08/09): no lugar de "bloco 1" tem que estar o NOME DA AULA,
+    // igual aparece na aba Aulas — e nao numa lista embaixo do bloco.
+    const principal = aulas.find(y => !y.continua)
     let titulo = x.n, sub = x.d
     if (x.t === 'estudo' && x.n.startsWith('Estudo — bloco')) {
-      if (aulas.length) {
-        titulo = [...new Set(aulas.map(({ a }) => nomeMateria(a)))].join(' · ')
+      if (principal) {
+        titulo = rotuloAula(principal.a)
         sub = `${x.n}${x.d ? ' · ' + x.d : ''}`
+      } else if (aulas.length) {
+        titulo = `↳ continuação: ${rotuloAula(aulas[0].a)}`
+        sub = `${x.n} · restam ${hhmm(aulas[0].restam)}`
       } else if (itens.length) {
         titulo = 'Folga do plano'
         sub = 'Nada marcado aqui de propósito: use para terminar o que sobrou, revisar ou adiantar'
@@ -766,12 +800,19 @@ function pintarHoje () {
       <span class="pip" style="background:${cor}"></span>
       <div class="c">
         <label style="display:flex;flex-wrap:nowrap;gap:9px;align-items:flex-start;cursor:pointer">
-          <input type="checkbox" data-bl="${chaveBloco(x)}"${ok ? ' checked' : ''}
-            style="width:17px;height:17px;margin-top:2px;flex:none;accent-color:var(--accent)">
-          <span class="nm">${titulo}</span>
+          ${principal
+            ? `<input type="checkbox" data-id="${principal.a.id}"${PROG.get(principal.a.id) === 'assistida' ? ' checked' : ''}
+                 style="width:17px;height:17px;margin-top:2px;flex:none;accent-color:var(--accent)">`
+            : `<input type="checkbox" data-bl="${chaveBloco(x)}"${ok ? ' checked' : ''}
+                 style="width:17px;height:17px;margin-top:2px;flex:none;accent-color:var(--accent)">`}
+          <span class="nm"${principal && PROG.get(principal.a.id) === 'assistida' ? ' style="color:var(--ink3);text-decoration:line-through"' : ''}>${titulo}</span>
+          ${principal ? `<span class="meta" style="margin-left:auto;padding-left:8px">
+            ${ehLista(principal.a) ? `<a class="tag ex" href="${principal.a.url}" target="_blank" rel="noopener">abrir PDF</a>` : ''}
+            ${ehLista(principal.a) && qtdQuestoes(principal.a) ? `<span class="tag" style="border-color:var(--warn);color:var(--warn)">⏱ ${qtdQuestoes(principal.a) * MIN_POR_QUESTAO} min</span>` : ''}
+            <span class="num tiny">${hhmm(minutosPlanejados(principal.a))}</span></span>` : ''}
         </label>
         ${sub ? `<div class="tiny" style="margin:2px 0 0 26px">${sub}</div>` : ''}
-        ${aulas.length ? `<div style="margin:7px 0 2px 26px">${aulas.map(({ a, atravessa, continua, restam }) => continua ? `
+        ${aulas.filter(y => y !== principal).length ? `<div style="margin:7px 0 2px 26px">${aulas.filter(y => y !== principal).map(({ a, atravessa, continua, restam }) => continua ? `
           <div class="tiny" style="padding:3px 0 3px 24px">↳ continua: ${rotuloAula(a)} · restam ${hhmm(restam)}${atravessa ? ' · segue no próximo' : ''}</div>` : `
           <label style="display:flex;flex-wrap:nowrap;gap:8px;align-items:flex-start;cursor:pointer;padding:3px 0">
             <input type="checkbox" data-id="${a.id}"${PROG.get(a.id) === 'assistida' ? ' checked' : ''}
