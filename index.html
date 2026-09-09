@@ -106,6 +106,21 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
 .tag.atraso{border-color:var(--bad);color:var(--bad)}
 .bloq{opacity:.5}
 
+/* ---------- agenda do dia ---------- */
+.bloco{display:flex;gap:11px;padding:11px 14px;border-top:1px solid var(--line);align-items:flex-start}
+.bloco:first-child{border-top:none}
+.bloco .h{flex:none;width:92px;font-variant-numeric:tabular-nums;font-size:13px;color:var(--ink2);line-height:1.3}
+.bloco .c{flex:1;min-width:0}
+.bloco .nm{font-weight:550;font-size:14.5px}
+.bloco.ok .nm{color:var(--ink3);text-decoration:line-through}
+.bloco.agora{background:var(--accent-soft)}
+.pip{width:8px;height:8px;border-radius:99px;flex:none;margin-top:7px}
+@media (max-width:560px){
+  .bloco{flex-wrap:wrap}
+  .bloco .h{width:100%;display:flex;gap:8px;align-items:baseline}
+  .bloco .h .tiny{margin-top:0!important}
+}
+
 /* ---------- formularios ---------- */
 .form{display:grid;gap:11px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
   padding:16px;margin-bottom:16px}
@@ -144,7 +159,8 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
   </header>
 
   <nav class="abas" role="tablist">
-    <button role="tab" data-t="painel" aria-selected="true">Painel</button>
+    <button role="tab" data-t="hoje" aria-selected="true">Hoje</button>
+    <button role="tab" data-t="painel" aria-selected="false">Painel</button>
     <button role="tab" data-t="cronograma" aria-selected="false">Cronograma</button>
     <button role="tab" data-t="prioridades" aria-selected="false">Prioridades</button>
     <button role="tab" data-t="listas" aria-selected="false">Listas</button>
@@ -153,7 +169,17 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
     <button role="tab" data-t="simulados" aria-selected="false">Simulados</button>
   </nav>
 
-  <section id="painel">
+  <section id="hoje">
+    <div id="hojeTopo" style="margin-bottom:14px"></div>
+    <div id="hojeLinha" class="card" style="overflow:hidden"></div>
+    <p class="tiny" style="margin-top:12px">
+      A rotina é sua e pode mudar: em <strong>Modelar rotina</strong> você ajusta horário,
+      nome e tipo de cada bloco, para qualquer dia da semana. O cronograma inteiro
+      recalcula a partir do que você deixar marcado como estudo.
+    </p>
+  </section>
+
+  <section id="painel" hidden>
     <h2 style="margin-bottom:11px">Progresso por matéria</h2>
     <div class="grade" id="cards"></div>
     <p class="tiny" style="margin-top:14px">
@@ -287,22 +313,99 @@ const KEY_SB = 'sb_publishable_eX7i_P76hKCfb4ocJ7zTzg_UilLA6J_'
 const sb = createClient(URL_SB, KEY_SB)
 
 const PROVA = new Date('2026-11-29T00:00:00-03:00')
-// Grade atualizada em 27/08/2026. A VIAGEM de 4 a 12 de setembro FOI CANCELADA
-// (eram 9 dias rendendo 2h; voltaram a ser dias normais, +42h no plano) e o
-// compromisso que ocupava a noite de quinta passou para as sextas:
-//   seg, qua       14h as 22h, 1h de descanso ..................... 7h
-//   ter, qui       15h as 22h, 1h de descanso ..................... 6h
-//   sexta          compromisso a partir das 18h30, entao 14h as 18h30 . 4h30
-//                  EXCETO a 3a sexta do mes, que fica livre ........ 7h
-//   sabado         7h30 as 18h30, 1h de almoco .................... 10h
-//                  EXCETO o 3o sabado (compromisso 17h as 18h30) ... 8h30
-//   domingo        descanso
-// A regra e por ORDINAL do dia no mes: ela descreveu "1a, 2a e ultima sexta
-// ocupadas, so a 3a livre". Em mes com 5 sextas isso deixa a 4a ocupada tambem
-// — que e a leitura literal do "apenas a terceira e livre".
-const HORAS = { 0: 0, 1: 7, 2: 6, 3: 7, 4: 6, 5: 7, 6: 10 }
-const SEX_COMPROMISSO = 4.5   // 1a, 2a, 4a e ultima sexta do mes
-const SAB_TERCEIRO = 8.5      // 3o sabado do mes
+// ROTINA — a fonte da verdade do dia (08/09/2026).
+// Antes a capacidade era um mapa de horas solto; agora ela SAI da rotina: a
+// soma dos blocos de tipo 'estudo' de cada dia e quanto aquele dia rende. Assim
+// ela molda a rotina e o cronograma se ajusta sozinho, sem eu mexer em codigo.
+// Horarios que ela definiu: seg/qua/sex 8h-11h e 15h-22h · ter/qui 8h-12h30 e
+// 15h-22h · sabado igual ao que ja era · domingo descanso.
+// Tipos: estudo | pausa | refeicao | pessoal | compromisso
+// so: '3' o bloco so vale na 3a ocorrencia do dia no mes; '!3' vale em todas
+// menos a 3a (e como o compromisso do 3o sabado, das 17h as 18h30, entra).
+const TIPOS = {
+  estudo:      ['Estudo',     'var(--accent)'],
+  pausa:       ['Pausa',      'var(--ok)'],
+  refeicao:    ['Refeição',   'var(--warn)'],
+  pessoal:     ['Pessoal',    'var(--ink3)'],
+  compromisso: ['Compromisso','var(--bad)']
+}
+const b = (i, f, t, n, d) => ({ i, f, t, n, d: d || '' })
+const MANHA_LONGA = [
+  b('08:00', '09:50', 'estudo', 'Estudo — bloco 1', 'A matéria mais difícil do dia entra aqui: cérebro descansado'),
+  b('09:50', '10:05', 'pausa', 'Pausa de pé', 'Levantar, água, alongar. Sem celular — tela não descansa atenção'),
+  b('10:05', '11:00', 'estudo', 'Estudo — bloco 2')
+]
+const MANHA_EXTRA = [
+  b('08:00', '09:50', 'estudo', 'Estudo — bloco 1', 'A matéria mais difícil do dia entra aqui: cérebro descansado'),
+  b('09:50', '10:05', 'pausa', 'Pausa de pé', 'Levantar, água, alongar. Sem celular'),
+  b('10:05', '11:40', 'estudo', 'Estudo — bloco 2'),
+  b('11:40', '11:50', 'pausa', 'Pausa curta'),
+  b('11:50', '12:30', 'estudo', 'Estudo — bloco 3')
+]
+const TARDE_NOITE = [
+  b('15:00', '16:50', 'estudo', 'Estudo — bloco 4'),
+  b('16:50', '17:05', 'pausa', 'Pausa de pé'),
+  b('17:05', '18:30', 'estudo', 'Estudo — bloco 5'),
+  b('18:30', '19:15', 'refeicao', 'Jantar'),
+  b('19:15', '21:15', 'estudo', 'Estudo — bloco 6'),
+  b('21:15', '21:50', 'estudo', 'Flashcards do dia no Knowt', 'Só do que você estudou HOJE. É a hora que fixa memória'),
+  b('21:50', '22:00', 'pessoal', 'Fechar o dia', 'Olhar o de amanhã e escrever as dúvidas que ficaram'),
+  b('22:00', '23:00', 'pessoal', 'Leitura livre', 'Livro que NÃO é do vestibular. Desliga a cabeça do estudo'),
+  b('23:00', '23:05', 'pessoal', 'Dormir', 'Hora fixa. Sono é quando a memória do dia é gravada')
+]
+const ABERTURA = [
+  b('06:45', '07:10', 'pessoal', 'Acordar e devocional'),
+  b('07:10', '07:45', 'pessoal', 'Banho e arrumar'),
+  b('07:45', '08:00', 'refeicao', 'Café da manhã')
+]
+const ROTINA_PADRAO = {
+  0: [
+    b('07:30', '08:00', 'pessoal', 'Acordar sem despertador'),
+    b('08:00', '09:30', 'pessoal', 'Devocional / igreja'),
+    b('09:30', '19:00', 'pessoal', 'Domingo livre', 'Descanso de verdade — é isso que faz a semana render'),
+    b('19:00', '19:20', 'pessoal', 'Planejar a semana', 'Olhar o cronograma e escolher onde encaixar o que ficou para trás'),
+    b('19:20', '22:30', 'pessoal', 'Noite livre'),
+    b('22:30', '22:35', 'pessoal', 'Dormir')
+  ],
+  1: [...ABERTURA, ...MANHA_LONGA,
+    b('11:00', '12:00', 'pessoal', 'Livre / caminhada', '10 min de corpo em movimento recupera atenção melhor que ficar sentada'),
+    b('12:00', '13:00', 'refeicao', 'Almoço'),
+    b('13:00', '15:00', 'pessoal', 'Descanso de verdade', 'Série, deitar, o que quiser. Não é hora de estudar nem de sentir culpa'),
+    ...TARDE_NOITE],
+  3: null, 5: null,
+  2: [...ABERTURA, ...MANHA_EXTRA,
+    b('12:30', '13:30', 'refeicao', 'Almoço'),
+    b('13:30', '15:00', 'pessoal', 'Descanso de verdade', 'Série, deitar, o que quiser'),
+    ...TARDE_NOITE],
+  4: null,
+  6: [
+    b('06:30', '07:00', 'pessoal', 'Acordar e devocional'),
+    b('07:00', '07:20', 'pessoal', 'Banho e arrumar'),
+    b('07:20', '07:30', 'refeicao', 'Café da manhã'),
+    b('07:30', '09:20', 'estudo', 'Estudo — bloco 1'),
+    b('09:20', '09:35', 'pausa', 'Pausa de pé'),
+    b('09:35', '11:15', 'estudo', 'Estudo — bloco 2'),
+    b('11:15', '11:30', 'pausa', 'Pausa de pé'),
+    b('11:30', '13:00', 'estudo', 'Estudo — bloco 3'),
+    b('13:00', '14:00', 'refeicao', 'Almoço'),
+    b('14:00', '15:40', 'estudo', 'Estudo — bloco 4'),
+    b('15:40', '15:55', 'pausa', 'Pausa de pé'),
+    b('15:55', '17:00', 'estudo', 'Estudo — bloco 5'),
+    { ...b('17:00', '18:30', 'estudo', 'Estudo — bloco 6'), so: '!3' },
+    { ...b('17:00', '18:30', 'compromisso', 'Compromisso'), so: '3' },
+    b('18:30', '19:15', 'refeicao', 'Jantar'),
+    b('19:15', '20:00', 'estudo', 'Flashcards + fechar a semana', 'Flashcards do que viu na semana e olhar o que ficou para trás'),
+    b('20:00', '23:00', 'pessoal', 'Noite livre'),
+    b('23:00', '23:05', 'pessoal', 'Dormir')
+  ]
+}
+ROTINA_PADRAO[3] = ROTINA_PADRAO[1]; ROTINA_PADRAO[5] = ROTINA_PADRAO[1]
+ROTINA_PADRAO[4] = ROTINA_PADRAO[2]
+
+const hm = t => (+t.slice(0, 2)) * 60 + (+t.slice(3, 5))
+const dur = x => hm(x.f) - hm(x.i)
+// n-esima ocorrencia deste dia da semana no mes (3o sabado, 2a sexta...)
+const ordinalNoMes = d => Math.floor((d.getDate() - 1) / 7) + 1
 const MIN_REDACAO = 90            // por redacao escrita
 const REDACOES_SEMANA = 2
 // Tempo REAL por aula, informado por ela em 07/08/2026. A rotina dela e:
@@ -339,7 +442,10 @@ const FAIXA_PADRAO = 2
 const INTENSIDADE_MAX = 0.85
 
 const $ = s => document.querySelector(s)
-const iso = d => d.toISOString().slice(0, 10)
+// Data LOCAL, nunca UTC. toISOString() joga para UTC e, das 21h a meia-noite no
+// Brasil, "hoje" virava o dia seguinte — a rotina dela vai ate as 23h, entao a
+// aba Hoje mostraria o dia errado justo no fim do estudo (bug de 08/09/2026).
+const iso = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
 const hhmm = min => {
   const h = Math.floor(Math.abs(min) / 60), m = Math.round(Math.abs(min) % 60)
   return (min < 0 ? '−' : '') + (h ? h + 'h' : '') + (m ? (h ? ' ' : '') + m + 'min' : (h ? '' : '0h'))
@@ -352,6 +458,10 @@ let AULAS = [], PROG = new Map(), MATERIAS = [], DISCIPLINAS = [], ASSUNTOS = []
 // voltariam para o futuro, marcadas, ocupando hora que ela não precisa gastar)
 const PROG_EM = new Map()
 let REDACOES = [], USER = null
+// A rotina dela e os blocos marcados como feitos. Fica no Supabase (tabela
+// config, coluna horas_meta, que era jsonb e estava sem uso) para sincronizar
+// entre o tablet e o computador — localStorage nao serviria, ela estuda nos dois.
+let AGENDA = { rotina: null, grades: [], feitos: {} }
 // assunto_id -> {nome, n, porProva, faixa}. Preenchido por carregarPrioridades().
 const FREQ = new Map()
 const FAIXA = {
@@ -404,15 +514,18 @@ async function abrirApp () {
   $('#dias').textContent = dias
   $('#sub').textContent = `Vestibular ESPM São Paulo · domingo, 29 de novembro de 2026`
 
+  // A rotina precisa estar carregada antes de qualquer conta: a capacidade de
+  // cada dia sai dela, entao o cronograma inteiro depende disso.
+  await carregarAgenda()
   // A frequência precisa estar pronta antes de pintar as aulas, que mostram a faixa
   await carregarPrioridades()
-  montarFiltros(); pintarCronograma(); pintarPlano(); pintarAulas(); carregarListas()
+  montarFiltros(); pintarHoje(); pintarCronograma(); pintarPlano(); pintarAulas(); carregarListas()
   await carregarRedacoes()
   pintarPainel(); montarAcertos(); carregarSimulados()
 }
 
 // ---------------------------------------------------------------- abas
-const ABAS = ['painel', 'cronograma', 'prioridades', 'listas', 'aulas', 'redacoes', 'simulados']
+const ABAS = ['hoje', 'painel', 'cronograma', 'prioridades', 'listas', 'aulas', 'redacoes', 'simulados']
 document.querySelectorAll('nav.abas button').forEach(b => b.onclick = () => {
   document.querySelectorAll('nav.abas button').forEach(x => x.setAttribute('aria-selected', x === b))
   ABAS.forEach(t => $('#' + t).hidden = t !== b.dataset.t)
@@ -471,14 +584,260 @@ function pintarPainel () {
   }).join('')
 }
 
+// ---------------------------------------------------------------- agenda do dia
+// Por que existe: um plano so na cabeca ocupa memoria de trabalho e volta como
+// pensamento intrusivo (Masicampo & Baumeister, 2011 — um plano ESCRITO desliga
+// isso tao bem quanto terminar a tarefa). Ela pediu uma rotina para ansiedade;
+// a rotina escrita e o remedio, nao o enfeite.
+async function carregarAgenda () {
+  const { data } = await sb.from('config').select('horas_meta').eq('user_id', USER.id)
+  const g = data && data[0] && data[0].horas_meta
+  AGENDA.feitos = (g && g.feitos) || {}
+  AGENDA.grades = (g && g.grades) || [
+    { desde: '2026-08-19', legado: true },
+    { desde: '2026-09-08', rotina: estruturado(ROTINA_PADRAO) }
+  ]
+  const ult = AGENDA.grades[AGENDA.grades.length - 1]
+  AGENDA.rotina = ult.rotina || estruturado(ROTINA_PADRAO)
+}
+const estruturado = o => JSON.parse(JSON.stringify(o))
+
+let salvando = null
+async function salvarAgenda () {
+  clearTimeout(salvando)
+  salvando = setTimeout(async () => {
+    const { error } = await sb.from('config').upsert(
+      { user_id: USER.id, horas_meta: { grades: AGENDA.grades, feitos: AGENDA.feitos } },
+      { onConflict: 'user_id' })
+    if (error) console.warn('nao salvou a rotina', error.message)
+  }, 400)
+}
+
+// So guarda os ultimos 45 dias de marcacao — o resto e peso morto no jsonb.
+function podarFeitos () {
+  const limite = new Date(); limite.setDate(limite.getDate() - 45)
+  const lim = iso(limite)
+  Object.keys(AGENDA.feitos).forEach(k => { if (k < lim) delete AGENDA.feitos[k] })
+}
+
+const chaveBloco = x => `${x.i}|${x.n}`
+function marcarBloco (dia, x, feito) {
+  const l = AGENDA.feitos[dia] || (AGENDA.feitos[dia] = [])
+  const k = chaveBloco(x), i = l.indexOf(k)
+  if (feito && i < 0) l.push(k)
+  if (!feito && i >= 0) l.splice(i, 1)
+  podarFeitos(); salvarAgenda()
+}
+
+// Encaixa as aulas do dia dentro dos blocos de estudo, na ordem. Uma aula de
+// 2h45 nao cabe num bloco de 1h50 — em vez de mentir, ela aparece no bloco em
+// que COMECA e leva a marca de que atravessa para o proximo.
+function encaixar (blocos, itens) {
+  const estudo = blocos.filter(x => x.t === 'estudo')
+  const mapa = new Map(estudo.map(x => [chaveBloco(x), []]))
+  let bi = 0, usado = 0
+  itens.forEach(a => {
+    if (bi >= estudo.length) { (mapa.get(chaveBloco(estudo[estudo.length - 1])) || []).push({ a }); return }
+    const min = minutosPlanejados(a)
+    const cabe = dur(estudo[bi]) - usado
+    mapa.get(chaveBloco(estudo[bi])).push({ a, atravessa: min > cabe && bi < estudo.length - 1 })
+    usado += min
+    while (bi < estudo.length - 1 && usado >= dur(estudo[bi])) { usado -= dur(estudo[bi]); bi++ }
+  })
+  return mapa
+}
+
+let modoEditar = false
+
+function pintarHoje () {
+  const agora = new Date()
+  const hoje = iso(agora)
+  const minAgora = agora.getHours() * 60 + agora.getMinutes()
+  const blocos = blocosDoDia(agora)
+  const dia = montarPlano().find(d => iso(d.data) === hoje)
+  const itens = (dia && dia.itens) || []
+  const mapa = encaixar(blocos, itens)
+  const feitos = AGENDA.feitos[hoje] || []
+
+  const totEstudo = blocos.filter(x => x.t === 'estudo').reduce((t, x) => t + dur(x), 0)
+  const feitasAulas = itens.filter(a => PROG.get(a.id) === 'assistida').length
+  const blocosFeitos = blocos.filter(x => feitos.includes(chaveBloco(x))).length
+  const pct = blocos.length ? Math.round(blocosFeitos / blocos.length * 100) : 0
+
+  $('#hojeTopo').innerHTML = `
+    <div class="card" style="padding:16px">
+      <div class="row" style="justify-content:space-between;align-items:baseline">
+        <div>
+          <strong style="font-size:17px">${SEM_INTEIRO[agora.getDay()][0].toUpperCase() + SEM_INTEIRO[agora.getDay()].slice(1)}, ${agora.getDate()} de ${MESES[agora.getMonth()]}</strong>
+          <div class="small muted">${hhmm(totEstudo)} de estudo · ${itens.length} ${itens.length === 1 ? 'tarefa' : 'tarefas'} de conteúdo · ${feitasAulas} ${feitasAulas === 1 ? 'feita' : 'feitas'}</div>
+        </div>
+        <button id="bEditar" class="small">${modoEditar ? 'Concluir edição' : 'Modelar rotina'}</button>
+      </div>
+      <div class="barra" style="margin:13px 0 5px"><i style="width:${pct}%"></i></div>
+      <div class="tiny">${blocosFeitos} de ${blocos.length} blocos do dia concluídos</div>
+    </div>`
+  $('#bEditar').onclick = () => { modoEditar = !modoEditar; pintarHoje() }
+
+  if (modoEditar) return pintarEditor(agora)
+
+  // O bloco de agora fica destacado; os que ja passaram, esmaecidos.
+  $('#hojeLinha').innerHTML = blocos.map(x => {
+    const ok = feitos.includes(chaveBloco(x))
+    const agoraNele = minAgora >= hm(x.i) && minAgora < hm(x.f)
+    const passou = minAgora >= hm(x.f)
+    const cor = TIPOS[x.t][1]
+    const aulas = (mapa.get(chaveBloco(x)) || [])
+    return `<div class="bloco${ok ? ' ok' : ''}${agoraNele ? ' agora' : ''}" style="${passou && !ok ? 'opacity:.55' : ''}">
+      <span class="h">${x.i}–${x.f}<div class="tiny" style="margin-top:2px">${hhmm(dur(x))}</div></span>
+      <span class="pip" style="background:${cor}"></span>
+      <div class="c">
+        <label style="display:flex;flex-wrap:nowrap;gap:9px;align-items:flex-start;cursor:pointer">
+          <input type="checkbox" data-bl="${chaveBloco(x)}"${ok ? ' checked' : ''}
+            style="width:17px;height:17px;margin-top:2px;flex:none;accent-color:var(--accent)">
+          <span class="nm">${x.n}</span>
+        </label>
+        ${x.d ? `<div class="tiny" style="margin:2px 0 0 26px">${x.d}</div>` : ''}
+        ${aulas.length ? `<div style="margin:7px 0 2px 26px">${aulas.map(({ a, atravessa }) => `
+          <label style="display:flex;flex-wrap:nowrap;gap:8px;align-items:flex-start;cursor:pointer;padding:3px 0">
+            <input type="checkbox" data-id="${a.id}"${PROG.get(a.id) === 'assistida' ? ' checked' : ''}
+              style="width:16px;height:16px;margin-top:2px;flex:none;accent-color:var(--accent)">
+            <span class="small${PROG.get(a.id) === 'assistida' ? ' muted' : ''}" style="${PROG.get(a.id) === 'assistida' ? 'text-decoration:line-through' : ''}">
+              ${rotuloAula(a)}
+              ${ehLista(a) ? ` <a class="tag ex" href="${a.url}" target="_blank" rel="noopener">abrir PDF</a>` : ''}
+              <span class="tiny"> · ${hhmm(minutosPlanejados(a))}${atravessa ? ' · continua no bloco seguinte' : ''}</span>
+            </span>
+          </label>`).join('')}</div>` : ''}
+      </div>
+    </div>`
+  }).join('') || '<div class="vazio">Sem rotina para hoje. Toque em “Modelar rotina”.</div>'
+
+  $('#hojeLinha').querySelectorAll('input[data-bl]').forEach(c => c.onchange = () => {
+    const x = blocos.find(y => chaveBloco(y) === c.dataset.bl)
+    marcarBloco(hoje, x, c.checked); pintarHoje()
+  })
+  $('#hojeLinha').querySelectorAll('input[data-id]').forEach(c =>
+    c.onchange = () => marcar(+c.dataset.id, c.checked))
+}
+
+const MESES = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho',
+  'agosto', 'setembro', 'outubro', 'novembro', 'dezembro']
+
+// ---------------------------------------------------------------- editor da rotina
+// "Adaptável e capaz de ser modelada": ela edita o molde do dia da semana, e a
+// capacidade do cronograma inteiro se recalcula a partir disso.
+let diaEditando = null
+function pintarEditor (ref) {
+  const dow = diaEditando === null ? ref.getDay() : diaEditando
+  const lista = AGENDA.rotina[dow] || []
+  const horasEstudo = lista.filter(x => x.t === 'estudo').reduce((t, x) => t + dur(x), 0)
+
+  $('#hojeLinha').innerHTML = `
+    <div class="card" style="padding:14px;margin-bottom:12px">
+      <div class="row" style="gap:5px">
+        ${SEM.map((n, i) => `<button class="small dia" data-d="${i}"
+          style="${i === dow ? 'background:var(--accent-soft);border-color:var(--accent);color:var(--accent)' : ''}">${n}</button>`).join('')}
+      </div>
+      <div class="tiny" style="margin-top:10px">
+        Editando <strong>${SEM_INTEIRO[dow]}</strong> — vale para toda ${SEM_INTEIRO[dow]} daqui para a frente.
+        Somando <strong>${hhmm(horasEstudo)}</strong> de estudo.
+      </div>
+    </div>
+    <div class="card" style="overflow:hidden">
+      ${lista.map((x, k) => `
+        <div class="bloco" style="align-items:center">
+          <input value="${x.i}" data-k="${k}" data-c="i" style="width:74px;flex:none;padding:6px 8px;text-align:center">
+          <input value="${x.f}" data-k="${k}" data-c="f" style="width:74px;flex:none;padding:6px 8px;text-align:center">
+          <select data-k="${k}" data-c="t" style="width:128px;flex:none;padding:6px 8px">
+            ${Object.entries(TIPOS).map(([v, [rot]]) => `<option value="${v}"${x.t === v ? ' selected' : ''}>${rot}</option>`).join('')}
+          </select>
+          <input value="${x.n.replace(/"/g, '&quot;')}" data-k="${k}" data-c="n" style="flex:1;min-width:120px;padding:6px 8px">
+          <button class="small" data-rm="${k}" style="flex:none;border-color:var(--bad);color:var(--bad)">×</button>
+        </div>`).join('')}
+      <div class="bloco"><button id="bAdd" class="small">+ adicionar bloco</button>
+        <button id="bPadrao" class="small" style="margin-left:auto">Voltar ao padrão deste dia</button></div>
+    </div>
+    <p class="tiny" style="margin-top:10px">
+      Só os blocos de <strong>Estudo</strong> contam como tempo de conteúdo. Pausa, refeição e
+      pessoal são protegidos de propósito: é o que faz a rotina durar até 29/11.
+    </p>`
+
+  $('#hojeLinha').querySelectorAll('button.dia').forEach(b2 =>
+    b2.onclick = () => { diaEditando = +b2.dataset.d; pintarHoje() })
+  $('#hojeLinha').querySelectorAll('input[data-k],select[data-k]').forEach(el =>
+    el.onchange = () => {
+      garantirEpocaDeHoje()
+      const x = AGENDA.rotina[dow][+el.dataset.k]
+      const v = el.value.trim()
+      if ((el.dataset.c === 'i' || el.dataset.c === 'f') && !/^\d{2}:\d{2}$/.test(v)) { pintarHoje(); return }
+      x[el.dataset.c] = v
+      AGENDA.rotina[dow].sort((a, b2) => hm(a.i) - hm(b2.i))
+      invalidarPlano(); salvarAgenda(); pintarHoje(); pintarCronograma(); pintarPlano()
+    })
+  $('#hojeLinha').querySelectorAll('button[data-rm]').forEach(b2 =>
+    b2.onclick = () => {
+      garantirEpocaDeHoje()
+      AGENDA.rotina[dow].splice(+b2.dataset.rm, 1)
+      invalidarPlano(); salvarAgenda(); pintarHoje(); pintarCronograma(); pintarPlano()
+    })
+  $('#bAdd').onclick = () => {
+    garantirEpocaDeHoje()
+    const ult = lista[lista.length - 1]
+    AGENDA.rotina[dow].push({ i: ult ? ult.f : '08:00', f: ult ? ult.f : '09:00', t: 'estudo', n: 'Novo bloco', d: '' })
+    invalidarPlano(); salvarAgenda(); pintarHoje(); pintarCronograma(); pintarPlano()
+  }
+  $('#bPadrao').onclick = () => {
+    garantirEpocaDeHoje()
+    AGENDA.rotina[dow] = estruturado(ROTINA_PADRAO[dow])
+    invalidarPlano(); salvarAgenda(); pintarHoje(); pintarCronograma(); pintarPlano()
+  }
+}
+
 // ---------------------------------------------------------------- cronograma
-function horasDoDia (d) {
-  const dow = d.getDay()
-  // n = qual ocorrencia deste dia da semana no mes (1a sexta, 2a sexta, 3o sabado...)
-  const n = Math.floor((d.getDate() - 1) / 7) + 1
-  if (dow === 5) return n === 3 ? HORAS[5] : SEX_COMPROMISSO
-  if (dow === 6) return n === 3 ? SAB_TERCEIRO : HORAS[6]
-  return HORAS[dow]
+// Os blocos de um dia concreto: pega o molde do dia da semana e resolve as
+// excecoes de ordinal (o compromisso do 3o sabado).
+function blocosDe (rotina, d) {
+  const n = ordinalNoMes(d)
+  return (rotina[d.getDay()] || [])
+    .filter(x => !x.so || (x.so === '3' ? n === 3 : n !== 3))
+    .slice().sort((a, b2) => hm(a.i) - hm(b2.i))
+}
+const blocosDoDia = d => blocosDe(AGENDA.rotina, d)
+
+// GRADE POR EPOCA — sem isto, mexer na rotina hoje reescreveria os dias que ja
+// passaram e o atraso dela mudaria sozinho, quebrando a regra do plano estatico
+// ("o que pertence ao dia x e do dia x"). Cada epoca vale a partir de uma data;
+// um dia usa a grade que estava valendo NELE. Editar a rotina cria uma epoca
+// nova a partir de hoje e nao toca em nada para tras.
+// A epoca 'legado' e a grade que valeu de 19/08 a 07/09/2026, congelada.
+const GRADE_LEGADO = { 0: 0, 1: 420, 2: 360, 3: 420, 4: 360, 5: 420, 6: 600,
+  sexOcupada: 270, sabTerceiro: 510 }
+function minutosLegado (d) {
+  const dow = d.getDay(), n = ordinalNoMes(d)
+  if (dow === 5) return n === 3 ? GRADE_LEGADO[5] : GRADE_LEGADO.sexOcupada
+  if (dow === 6) return n === 3 ? GRADE_LEGADO.sabTerceiro : GRADE_LEGADO[6]
+  return GRADE_LEGADO[dow]
+}
+function gradeVigente (d) {
+  const dia = iso(d)
+  let g = null
+  for (const e of AGENDA.grades) if (e.desde <= dia) g = e
+  return g
+}
+function minutosDoDia (d) {
+  const g = gradeVigente(d)
+  if (!g) return 0
+  if (g.legado) return minutosLegado(d)
+  return blocosDe(g.rotina, d).filter(x => x.t === 'estudo').reduce((t, x) => t + dur(x), 0)
+}
+const horasDoDia = d => minutosDoDia(d) / 60
+
+// Toda edicao vale de HOJE em diante. Se a ultima epoca nao comeca hoje, abre uma.
+function garantirEpocaDeHoje () {
+  const hoje = iso(new Date())
+  const ult = AGENDA.grades[AGENDA.grades.length - 1]
+  if (ult && ult.desde === hoje && ult.rotina) return
+  AGENDA.grades.push({ desde: hoje, rotina: estruturado(AGENDA.rotina) })
+  AGENDA.rotina = AGENDA.grades[AGENDA.grades.length - 1].rotina
 }
 
 function horasDisponiveis () {
@@ -542,19 +901,24 @@ function pintarCronograma () {
   }
   $('#diagnostico').innerHTML = `<div class="aviso ${cls}">${txt}</div>`
 
+  // A tabela da grade tambem sai da rotina — nao ha mais numero escrito na mao.
   const nomes = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado']
-  const obs = {
-    0: 'Descanso',
-    1: '14h às 22h, com 1h de descanso', 3: '14h às 22h, com 1h de descanso',
-    2: '15h às 22h, com 1h de descanso', 4: '15h às 22h, com 1h de descanso',
-    5: '14h às 18h30 — compromisso à noite. Na 3ª sexta do mês, 14h às 22h',
-    6: '7h30 às 18h30, com pausa de almoço. No 3º sábado, compromisso das 17h às 18h30'
-  }
-  const faixa = { 5: `${hhmm(SEX_COMPROMISSO * 60)} / ${hhmm(HORAS[5] * 60)}`,
-                  6: `${hhmm(HORAS[6] * 60)} / ${hhmm(SAB_TERCEIRO * 60)}` }
-  $('#grade').innerHTML = nomes.map((n, i) => `
-    <tr><td>${n}</td><td class="n">${faixa[i] || hhmm(HORAS[i] * 60)}</td>
-    <td class="small muted">${obs[i]}</td></tr>`).join('')
+  $('#grade').innerHTML = nomes.map((n, i) => {
+    const l = (AGENDA.rotina[i] || [])
+    const est = l.filter(x => x.t === 'estudo')
+    const min = est.reduce((t, x) => t + dur(x), 0)
+    const excecao = l.some(x => x.so)
+    const semExc = est.filter(x => x.so !== '!3').reduce((t, x) => t + dur(x), 0)
+    const janelas = est.length
+      ? est.filter(x => x.so !== '3').map(x => `${x.i}–${x.f}`).join(' · ')
+      : 'Descanso'
+    return `<tr><td>${n}</td>
+      <td class="n">${hhmm(min)}${excecao ? ` / ${hhmm(semExc)}` : ''}</td>
+      <td class="small muted">${janelas}${excecao ? ' — no 3º do mês, compromisso das 17h às 18h30' : ''}</td></tr>`
+  }).join('') +
+    `<tr><td colspan="3" class="tiny">Só os blocos de estudo entram na conta. Pausas,
+      refeições e o tempo pessoal estão na aba <strong>Hoje</strong> e podem ser
+      remodelados lá — a capacidade do plano se recalcula sozinha.</td></tr>`
 }
 
 // ---------------------------------------------------------------- plano semanal
@@ -836,7 +1200,18 @@ function distribuir (dias, filas, de, ate, intensidade, fixosPorDia, hoje0) {
 // conta — por isso o dia 12 mostra hoje, amanhã e em outubro exatamente as
 // mesmas aulas. O que não for feito não é remanejado: fica marcado como atraso
 // no dia dele, e ela faz junto com o do dia seguinte.
+// O plano e estatico e caro de montar (dia a dia ate 29/11). Como agora tres
+// telas o leem, fica em cache; so a rotina o invalida — progresso nao muda plano.
+let planoCache = null
+const invalidarPlano = () => { planoCache = null }
 function montarPlano (faixaMax = FAIXA_PADRAO) {
+  if (faixaMax === FAIXA_PADRAO && planoCache) return planoCache
+  const r = montarPlanoRaw(faixaMax)
+  if (faixaMax === FAIXA_PADRAO) planoCache = r
+  return r
+}
+
+function montarPlanoRaw (faixaMax = FAIXA_PADRAO) {
   const hoje0 = new Date(); hoje0.setHours(0, 0, 0, 0)
   const fixosPorDia = new Map()
   AULAS.filter(temDataFixa).forEach(a => {
@@ -1096,7 +1471,7 @@ function pintarAulas () {
 async function marcar (aula_id, feita) {
   const status = feita ? 'assistida' : 'pendente'
   PROG.set(aula_id, status)
-  pintarPainel(); pintarCronograma(); pintarPlano()
+  pintarPainel(); pintarHoje(); pintarCronograma(); pintarPlano()
   const { error } = await sb.from('progresso').upsert({
     user_id: USER.id, aula_id, status,
     assistida_em: feita ? new Date().toISOString() : null,
