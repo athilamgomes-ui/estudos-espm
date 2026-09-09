@@ -1,0 +1,338 @@
+{
+ "gerado_em": "2026-09-09",
+ "fonte": "questoes_espm (leitura questao a questao)",
+ "provas": 15,
+ "total": 1199,
+ "itens": [
+  {
+   "materia_id": "portugues",
+   "assunto": "Literatura brasileira e portuguesa",
+   "n": 119
+  },
+  {
+   "materia_id": "ingles",
+   "assunto": "Compreensão de texto",
+   "n": 96
+  },
+  {
+   "materia_id": "humanidades",
+   "assunto": "Geopolítica e conflitos internacionais",
+   "n": 83
+  },
+  {
+   "materia_id": "portugues",
+   "assunto": "Interpretação e argumentação",
+   "n": 65
+  },
+  {
+   "materia_id": "humanidades",
+   "assunto": "História do Brasil",
+   "n": 56
+  },
+  {
+   "materia_id": "humanidades",
+   "assunto": "História geral moderna e contemporânea",
+   "n": 48
+  },
+  {
+   "materia_id": "portugues",
+   "assunto": "Gramática normativa e sintaxe",
+   "n": 42
+  },
+  {
+   "materia_id": "humanidades",
+   "assunto": "Cultura, arte e mídia",
+   "n": 37
+  },
+  {
+   "materia_id": "humanidades",
+   "assunto": "Meio ambiente, clima e energia",
+   "n": 36
+  },
+  {
+   "materia_id": "matematica",
+   "assunto": "Geometria plana",
+   "n": 34
+  },
+  {
+   "materia_id": "humanidades",
+   "assunto": "História antiga e medieval",
+   "n": 33
+  },
+  {
+   "materia_id": "humanidades",
+   "assunto": "Política brasileira e instituições",
+   "n": 27
+  },
+  {
+   "materia_id": "humanidades",
+   "assunto": "População, demografia e migrações",
+   "n": 26
+  },
+  {
+   "materia_id": "portugues",
+   "assunto": "Funções e figuras de linguagem",
+   "n": 26
+  },
+  {
+   "materia_id": "portugues",
+   "assunto": "Coesão, coerência e semântica",
+   "n": 24
+  },
+  {
+   "materia_id": "matematica",
+   "assunto": "Lógica e raciocínio",
+   "n": 22
+  },
+  {
+   "materia_id": "humanidades",
+   "assunto": "Globalização e economia mundial",
+   "n": 22
+  },
+  {
+   "materia_id": "ingles",
+   "assunto": "Vocabulário e phrasal verbs",
+   "n": 20
+  },
+  {
+   "materia_id": "matematica",
+   "assunto": "Sistemas e problemas com 2+ incógnitas",
+   "n": 20
+  },
+  {
+   "materia_id": "humanidades",
+   "assunto": "Economia, indústria e transportes",
+   "n": 20
+  },
+  {
+   "materia_id": "matematica",
+   "assunto": "Geometria analítica",
+   "n": 17
+  },
+  {
+   "materia_id": "matematica",
+   "assunto": "Análise combinatória",
+   "n": 14
+  },
+  {
+   "materia_id": "matematica",
+   "assunto": "Progressões",
+   "n": 14
+  },
+  {
+   "materia_id": "humanidades",
+   "assunto": "Agricultura e questão agrária",
+   "n": 14
+  },
+  {
+   "materia_id": "matematica",
+   "assunto": "Proporcionalidade e regra de três",
+   "n": 13
+  },
+  {
+   "materia_id": "ingles",
+   "assunto": "Tirinha e cartum",
+   "n": 13
+  },
+  {
+   "materia_id": "matematica",
+   "assunto": "Probabilidade",
+   "n": 12
+  },
+  {
+   "materia_id": "matematica",
+   "assunto": "Produtos notáveis, fatoração e expressões",
+   "n": 10
+  },
+  {
+   "materia_id": "matematica",
+   "assunto": "Sequências e padrões",
+   "n": 10
+  },
+  {
+   "materia_id": "matematica",
+   "assunto": "Logaritmo",
+   "n": 10
+  },
+  {
+   "materia_id": "matematica",
+   "assunto": "Equação do 1º grau",
+   "n": 10
+  },
+  {
+   "materia_id": "matematica",
+   "assunto": "Múltiplos, divisores e MMC/MDC",
+   "n": 10
+  },
+  {
+   "materia_id": "matematica",
+   "assunto": "Porcentagem",
+   "n": 10
+  },
+  {
+   "materia_id": "matematica",
+   "assunto": "Equação do 2º grau",
+   "n": 10
+  },
+  {
+   "materia_id": "matematica",
+   "assunto": "Função quadrática",
+   "n": 10
+  },
+  {
+   "materia_id": "ingles",
+   "assunto": "Gramática",
+   "n": 10
+  },
+  {
+   "materia_id": "matematica",
+   "assunto": "Geometria espacial",
+   "n": 9
+  },
+  {
+   "materia_id": "portugues",
+   "assunto": "Variação linguística",
+   "n": 8
+  },
+  {
+   "materia_id": "matematica",
+   "assunto": "Estatística e médias",
+   "n": 8
+  },
+  {
+   "materia_id": "humanidades",
+   "assunto": "Urbanização e questão urbana",
+   "n": 8
+  },
+  {
+   "materia_id": "humanidades",
+   "assunto": "Geografia física e cartografia",
+   "n": 8
+  },
+  {
+   "materia_id": "humanidades",
+   "assunto": "Atualidades diversas",
+   "n": 8
+  },
+  {
+   "materia_id": "portugues",
+   "assunto": "Artes visuais",
+   "n": 8
+  },
+  {
+   "materia_id": "matematica",
+   "assunto": "Função (composta, inversa, geral)",
+   "n": 8
+  },
+  {
+   "materia_id": "matematica",
+   "assunto": "Polinômios",
+   "n": 7
+  },
+  {
+   "materia_id": "humanidades",
+   "assunto": "Geografia do Brasil (regiões)",
+   "n": 7
+  },
+  {
+   "materia_id": "matematica",
+   "assunto": "Matrizes e determinantes",
+   "n": 7
+  },
+  {
+   "materia_id": "humanidades",
+   "assunto": "Desigualdade, raça e gênero",
+   "n": 7
+  },
+  {
+   "materia_id": "ingles",
+   "assunto": "Tom, propósito e tipo de texto",
+   "n": 7
+  },
+  {
+   "materia_id": "portugues",
+   "assunto": "Gêneros textuais e mídia",
+   "n": 6
+  },
+  {
+   "materia_id": "matematica",
+   "assunto": "Função exponencial",
+   "n": 6
+  },
+  {
+   "materia_id": "matematica",
+   "assunto": "Potenciação e radiciação",
+   "n": 6
+  },
+  {
+   "materia_id": "humanidades",
+   "assunto": "Filosofia",
+   "n": 5
+  },
+  {
+   "materia_id": "matematica",
+   "assunto": "Função afim",
+   "n": 5
+  },
+  {
+   "materia_id": "matematica",
+   "assunto": "Trigonometria",
+   "n": 4
+  },
+  {
+   "materia_id": "matematica",
+   "assunto": "Inequações",
+   "n": 4
+  },
+  {
+   "materia_id": "ingles",
+   "assunto": "Referência e coesão",
+   "n": 3
+  },
+  {
+   "materia_id": "humanidades",
+   "assunto": "Sociologia",
+   "n": 3
+  },
+  {
+   "materia_id": "matematica",
+   "assunto": "Conjuntos",
+   "n": 3
+  },
+  {
+   "materia_id": "matematica",
+   "assunto": "Juros",
+   "n": 3
+  },
+  {
+   "materia_id": "matematica",
+   "assunto": "Aritmética e operações",
+   "n": 3
+  },
+  {
+   "materia_id": "matematica",
+   "assunto": "Números complexos",
+   "n": 1
+  },
+  {
+   "materia_id": "portugues",
+   "assunto": "Variacao linguistica",
+   "n": 1
+  },
+  {
+   "materia_id": "humanidades",
+   "assunto": "Geopolitica e conflitos",
+   "n": 1
+  },
+  {
+   "materia_id": "humanidades",
+   "assunto": "Agricultura e questao agraria",
+   "n": 1
+  },
+  {
+   "materia_id": "portugues",
+   "assunto": "Funcoes e figuras de linguagem",
+   "n": 1
+  }
+ ]
+}

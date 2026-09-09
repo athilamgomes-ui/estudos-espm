@@ -312,6 +312,9 @@ const URL_SB = 'https://tqllverzuakiyciwkbte.supabase.co'
 // sao as regras de acesso do banco (RLS) — cada linha so abre para a dona logada.
 const KEY_SB = 'sb_publishable_eX7i_P76hKCfb4ocJ7zTzg_UilLA6J_'
 const sb = createClient(URL_SB, KEY_SB)
+// Selo desta versao do site. Serve para pedir os arquivos estaticos sem cair no
+// cache velho do navegador (GitHub Pages segura 10 min).
+const BUILD = '2026-09-09c'
 
 const PROVA = new Date('2026-11-29T00:00:00-03:00')
 // ROTINA — a fonte da verdade do dia (08/09/2026).
@@ -493,7 +496,7 @@ let REDACOES = [], USER = null
 // config, coluna horas_meta, que era jsonb e estava sem uso) para sincronizar
 // entre o tablet e o computador — localStorage nao serviria, ela estuda nos dois.
 let AGENDA = { rotina: null, grades: [], feitos: {} }
-// assunto_id -> {nome, n, porProva, faixa}. Preenchido por carregarPrioridades().
+// assunto_id -> {nome, n, porProva, faixa}. Preenchido por aplicarPrioridades().
 const FREQ = new Map()
 const FAIXA = {
   1: ['A fundo', 'var(--bad)'],
@@ -525,33 +528,151 @@ $('#bSair').onclick = async () => { await sb.auth.signOut(); location.reload() }
 const aviso = (t, c) => { const m = $('#msg'); m.textContent = t; m.className = c || '' }
 
 // ---------------------------------------------------------------- carga
-async function abrirApp () {
-  $('#app').hidden = false
-  const [mats, discs, assu, aulas, prog] = await Promise.all([
-    sb.from('materias').select('*').order('ordem'),
-    sb.from('disciplinas').select('*').order('ordem'),
-    sb.from('assuntos').select('*').order('id'),
-    sb.from('aulas').select('*').order('curso_id').order('modulo').order('ordem').limit(2000),
-    sb.from('progresso').select('aula_id,status,assistida_em')
+// Por que este bloco existe assim (09/09/2026): naquela manha o dashboard mostrou
+// DIAS DIFERENTES em dois computadores — num deles so as redacoes a escrever, no
+// outro o dia inteiro. A causa: o plano depende de coisas que vinham do banco a
+// cada abertura (aulas, progresso e a frequencia dos assuntos, essa ultima em 3
+// idas ao servidor) e, quando UMA falhava ou voltava pela metade, o codigo seguia
+// em frente e montava o dia com o que tinha — sem avisar ninguem. Tres regras:
+//   1. a frequencia dos assuntos virou ARQUIVO ESTATICO (prioridades.json): 1 ida
+//      em vez de 3, e congelada — o plano nao muda quando o banco recebe questao nova;
+//   2. tudo o que o plano usa fica em CACHE no aparelho: a tela abre na hora e uma
+//      internet ruim mostra o dia certo da ultima sincronia, nao um dia inventado;
+//   3. carga incompleta NUNCA pinta o dia — aparece aviso com botao de tentar de novo.
+const CACHE_V = 1
+const chaveCache = () => `estudos:cache:${CACHE_V}:${USER.id}`
+let SYNC = { em: null, de: null, falhou: false }
+let PRI_BRUTO = null
+
+async function comRetentativa (fn, tentativas = 3) {
+  let ultimo
+  for (let i = 0; i < tentativas; i++) {
+    try {
+      const r = await fn()
+      if (r && r.error) throw r.error
+      return r
+    } catch (e) {
+      ultimo = e
+      if (i < tentativas - 1) await new Promise(s => setTimeout(s, 500 * (i + 1)))
+    }
+  }
+  throw ultimo
+}
+
+// O que caracteriza "dado inteiro". Os pisos sao folgados de proposito: existem
+// para pegar resposta truncada ou vazia, nao para conferir numero exato.
+const completo = d => !!d && Array.isArray(d.materias) && d.materias.length >= 5 &&
+  Array.isArray(d.assuntos) && d.assuntos.length >= 50 &&
+  Array.isArray(d.aulas) && d.aulas.length >= 300 &&
+  Array.isArray(d.progresso) && Array.isArray(d.redacoes) &&
+  !!d.prioridades && Array.isArray(d.prioridades.itens) && d.prioridades.itens.length >= 50
+
+async function baixarTudo () {
+  const [mats, discs, assu, aulas, prog, cfg, red, pri] = await Promise.all([
+    comRetentativa(() => sb.from('materias').select('*').order('ordem')),
+    comRetentativa(() => sb.from('disciplinas').select('*').order('ordem')),
+    comRetentativa(() => sb.from('assuntos').select('*').order('id')),
+    comRetentativa(() => sb.from('aulas').select('*').order('curso_id').order('modulo').order('ordem').limit(2000)),
+    comRetentativa(() => sb.from('progresso').select('aula_id,status,assistida_em')),
+    comRetentativa(() => sb.from('config').select('horas_meta').eq('user_id', USER.id)),
+    comRetentativa(() => sb.from('redacoes').select('*').order('escrita_em', { ascending: false })),
+    comRetentativa(() => fetch(`prioridades.json?v=${BUILD}`).then(r =>
+      r.ok ? r.json() : Promise.reject(new Error('prioridades.json ' + r.status))))
   ])
-  MATERIAS = mats.data || []; DISCIPLINAS = discs.data || []
-  ASSUNTOS = assu.data || []; AULAS = aulas.data || []
-  ;(prog.data || []).forEach(p => {
+  const d = {
+    materias: mats.data, disciplinas: discs.data, assuntos: assu.data, aulas: aulas.data,
+    progresso: prog.data, redacoes: red.data, prioridades: pri,
+    config: (cfg.data && cfg.data[0] && cfg.data[0].horas_meta) || null,
+    em: new Date().toISOString()
+  }
+  if (!completo(d)) throw new Error('o banco respondeu pela metade')
+  return d
+}
+
+function aplicar (d) {
+  MATERIAS = d.materias; DISCIPLINAS = d.disciplinas; ASSUNTOS = d.assuntos
+  AULAS = d.aulas; REDACOES = d.redacoes || []
+  PROG.clear(); PROG_EM.clear()
+  d.progresso.forEach(p => {
     PROG.set(p.aula_id, p.status)
     if (p.assistida_em) PROG_EM.set(p.aula_id, p.assistida_em.slice(0, 10))
   })
+  aplicarPrioridades(d.prioridades)
+  aplicarAgenda(d.config)
+  invalidarPlano()
+}
 
+function lerCache () {
+  try {
+    const d = JSON.parse(localStorage.getItem(chaveCache()) || 'null')
+    return completo(d) ? d : null
+  } catch { return null }
+}
+
+// Grava a partir do ESTADO, nao da resposta do banco: assim marcar uma aula ou
+// mexer na rotina ja entra no cache, sem esperar a proxima sincronia.
+function gravarCache () {
+  try {
+    localStorage.setItem(chaveCache(), JSON.stringify({
+      em: SYNC.em, materias: MATERIAS, disciplinas: DISCIPLINAS, assuntos: ASSUNTOS,
+      aulas: AULAS, redacoes: REDACOES, prioridades: PRI_BRUTO,
+      progresso: [...PROG].map(([aula_id, status]) =>
+        ({ aula_id, status, assistida_em: PROG_EM.get(aula_id) || null })),
+      config: { grades: AGENDA.grades, feitos: AGENDA.feitos }
+    }))
+  } catch (e) { console.warn('cache nao gravou', e) }
+}
+
+function pintarTudo () {
+  montarFiltros(); pintarHoje(); pintarCronograma(); pintarPlano(); pintarAulas()
+  pintarSelectPrioridades(); pintarRedacoes(); pintarPainel(); montarAcertos()
+}
+
+async function abrirApp () {
+  $('#app').hidden = false
   pintarContagem()
   $('#sub').textContent = `Vestibular ESPM São Paulo · domingo, 29 de novembro de 2026`
+  carregarListas()
 
-  // A rotina precisa estar carregada antes de qualquer conta: a capacidade de
-  // cada dia sai dela, entao o cronograma inteiro depende disso.
-  await carregarAgenda()
-  // A frequência precisa estar pronta antes de pintar as aulas, que mostram a faixa
-  await carregarPrioridades()
-  montarFiltros(); pintarHoje(); pintarCronograma(); pintarPlano(); pintarAulas(); carregarListas()
-  await carregarRedacoes()
-  pintarPainel(); montarAcertos(); carregarSimulados()
+  const cache = lerCache()
+  if (cache) { aplicar(cache); SYNC = { em: cache.em, de: 'cache', falhou: false }; pintarTudo() }
+
+  try {
+    const d = await baixarTudo()
+    aplicar(d); SYNC = { em: d.em, de: 'rede', falhou: false }
+    gravarCache(); pintarTudo(); carregarSimulados()
+  } catch (e) {
+    console.warn('sincronia falhou', e)
+    SYNC.falhou = true
+    if (cache) pintarHoje()
+    else semDados(e)
+  }
+}
+
+// Sem cache e sem rede: tela honesta em vez de um dia inventado.
+function semDados (e) {
+  $('#hojeTopo').innerHTML = `
+    <div class="card" style="padding:16px;border-color:var(--bad)">
+      <strong>Não consegui carregar seus dados agora.</strong>
+      <div class="small muted" style="margin:6px 0 12px">
+        Prefiro não mostrar nada a mostrar um dia errado. Verifique a internet e tente de novo.
+        <br><span class="tiny">Detalhe técnico: ${(e && e.message) || e}</span>
+      </div>
+      <button class="primary" id="bTentar">Tentar de novo</button>
+    </div>`
+  $('#hojeLinha').innerHTML = ''
+  $('#hojeAmanha').innerHTML = ''
+  $('#bTentar').onclick = () => abrirApp()
+}
+
+// Timestamp REAL da ultima sincronia — nunca a hora de abrir a pagina.
+function seloSincronia () {
+  if (!SYNC.em) return ''
+  const t = new Date(SYNC.em)
+  const hora = `${String(t.getHours()).padStart(2, '0')}:${String(t.getMinutes()).padStart(2, '0')}`
+  const quando = iso(t) === iso(new Date()) ? 'hoje' : `em ${t.getDate()}/${t.getMonth() + 1}`
+  if (SYNC.falhou) return `⚠️ sem conexão — este é o dia salvo ${quando} às ${hora}`
+  return `sincronizado ${quando} às ${hora}${SYNC.de === 'cache' ? ' · buscando novidades…' : ''}`
 }
 
 // A contagem regressiva e util para uns e ansiogena para outros — ela disse que
@@ -637,9 +758,7 @@ function pintarPainel () {
 // pensamento intrusivo (Masicampo & Baumeister, 2011 — um plano ESCRITO desliga
 // isso tao bem quanto terminar a tarefa). Ela pediu uma rotina para ansiedade;
 // a rotina escrita e o remedio, nao o enfeite.
-async function carregarAgenda () {
-  const { data } = await sb.from('config').select('horas_meta').eq('user_id', USER.id)
-  const g = data && data[0] && data[0].horas_meta
+function aplicarAgenda (g) {
   AGENDA.feitos = (g && g.feitos) || {}
   AGENDA.grades = (g && g.grades) || [
     { desde: '2026-08-19', legado: true },
@@ -652,6 +771,7 @@ const estruturado = o => JSON.parse(JSON.stringify(o))
 
 let salvando = null
 async function salvarAgenda () {
+  gravarCache()
   clearTimeout(salvando)
   salvando = setTimeout(async () => {
     const { error } = await sb.from('config').upsert(
@@ -761,7 +881,10 @@ function pintarHoje () {
         <button id="bEditar" class="small">${modoEditar ? 'Concluir edição' : 'Modelar rotina'}</button>
       </div>
       <div class="barra" style="margin:13px 0 5px"><i style="width:${pct}%"></i></div>
-      <div class="tiny">${blocosFeitos} de ${blocos.length} blocos do dia concluídos</div>
+      <div class="row" style="justify-content:space-between;gap:10px">
+        <div class="tiny">${blocosFeitos} de ${blocos.length} blocos do dia concluídos</div>
+        <div class="tiny" style="color:${SYNC.falhou ? 'var(--warn)' : 'var(--ink3)'}">${seloSincronia()}</div>
+      </div>
     </div>`
   $('#bEditar').onclick = () => { modoEditar = !modoEditar; pintarHoje() }
 
@@ -1612,6 +1735,7 @@ function pintarAulas () {
 async function marcar (aula_id, feita) {
   const status = feita ? 'assistida' : 'pendente'
   PROG.set(aula_id, status)
+  gravarCache()
   pintarPainel(); pintarHoje(); pintarCronograma(); pintarPlano()
   const { error } = await sb.from('progresso').upsert({
     user_id: USER.id, aula_id, status,
@@ -1625,29 +1749,19 @@ async function marcar (aula_id, feita) {
 // Frequencia real de cada assunto nas 15 provas, lida questao a questao.
 let PRI = []
 
-async function carregarPrioridades () {
-  // o PostgREST corta a resposta em 1000 linhas — pagina ate acabar
-  let todas = [], de = 0
-  while (true) {
-    const { data } = await sb.from('questoes_espm').select('materia_id,formato')
-      .order('id').range(de, de + 499)
-    if (!data?.length) break
-    todas = todas.concat(data)
-    if (data.length < 500) break
-    de += 500
-  }
-  const cont = new Map()
-  todas.forEach(q => {
-    if (!q.formato) return
-    const k = q.materia_id + '|' + q.formato
-    cont.set(k, (cont.get(k) || 0) + 1)
-  })
-  PRI = [...cont].map(([k, n]) => {
-    const [materia_id, assunto] = k.split('|')
-    return { materia_id, assunto, n, porProva: n / 15 }
-  }).sort((a, b) => b.n - a.n)
+// A frequencia NAO vem mais do banco a cada abertura (eram 3 requisicoes e, se
+// uma falhasse, todo assunto caia na faixa 3, sumia do plano e o dia aparecia
+// vazio — foi o bug de 09/09/2026). Agora vem de prioridades.json, gerado a
+// partir da mesma leitura questao a questao. Congelado de proposito: questao
+// nova no banco nao pode reordenar sozinha um cronograma que ela ja esta seguindo.
+function aplicarPrioridades (pri) {
+  PRI_BRUTO = pri
+  const provas = pri.provas || 15
+  PRI = (pri.itens || []).map(x => ({ ...x, porProva: x.n / provas }))
+    .sort((a, b) => b.n - a.n)
 
   // Faixa por frequência acumulada dentro da matéria: 50% no topo, 80% no meio.
+  FREQ.clear()
   MATERIAS.forEach(m => {
     const da = PRI.filter(p => p.materia_id === m.id)
     const tot = da.reduce((s, p) => s + p.n, 0)
@@ -1662,7 +1776,9 @@ async function carregarPrioridades () {
   // Redação não tem questão de múltipla escolha: vale 25% inteiro, tudo no topo.
   ASSUNTOS.filter(a => a.materia_id === 'redacao')
     .forEach(a => FREQ.set(a.id, { assunto: a.nome, n: null, faixa: 1 }))
+}
 
+function pintarSelectPrioridades () {
   $('#pMat').innerHTML = '<option value="">A prova inteira</option>' +
     MATERIAS.filter(m => PRI.some(p => p.materia_id === m.id))
       .map(m => `<option value="${m.id}">${m.nome} · ${m.peso_espm}% da nota</option>`).join('')
@@ -1760,7 +1876,13 @@ $('#fRed').onsubmit = async e => {
 async function carregarRedacoes () {
   const { data } = await sb.from('redacoes').select('*').order('escrita_em', { ascending: false })
   REDACOES = data || []
-  if (!data?.length) return $('#listaRed').innerHTML = '<div class="card vazio">Nenhuma redação registrada ainda.</div>'
+  gravarCache()
+  pintarRedacoes()
+}
+
+function pintarRedacoes () {
+  const data = REDACOES
+  if (!data.length) return $('#listaRed').innerHTML = '<div class="card vazio">Nenhuma redação registrada ainda.</div>'
   const comNota = data.filter(r => r.nota_total != null)
   const media = comNota.length
     ? Math.round(comNota.reduce((s, r) => s + r.nota_total / r.nota_maxima * 1000, 0) / comNota.length) : null
