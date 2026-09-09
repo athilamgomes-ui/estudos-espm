@@ -1302,7 +1302,8 @@ const ehRefino = a => a.curso_id === 'refino'
 // sem uma hora reservada no cronograma.
 const ehEntrevista = a => a.curso_id === 'entrevista'
 const ehDossie = a => a.curso_id === 'dossie'
-const temMinutoProprio = a => ehEntrevista(a) || ehDossie(a)
+const ehLeitura = a => a.curso_id === 'leitura'
+const temMinutoProprio = a => ehEntrevista(a) || ehDossie(a) || ehLeitura(a)
 const ehLista = a => a.curso_id === 'listas'
 // Ritmo REAL da prova, lido no caderno de 2026-2: "o tempo total de prova e de
 // 5 (cinco) horas" para 80 questoes + redacao. Tirando ~60min de redacao sobram
@@ -1332,8 +1333,18 @@ const temDataFixa = a => ehRefino(a) || ehRedacaoEscrita(a)
 const ASS_SO_QUESTAO = new Set([54, 52])
 const redacaoRepetida = a => a.materia_id === 'redacao' &&
   a.assunto_id === 63 && /COMPLETO/.test(a.titulo || '')
-const aulaSobDemanda = a => a.curso_id !== 'listas' &&
-  (a.materia_id === 'ingles' || ASS_SO_QUESTAO.has(a.assunto_id) || redacaoRepetida(a))
+// Historia sai da videoaula e vira LIVRO (10/09/2026). Ela tem a colecao "Uma
+// Breve Historia" e o "Historia do Brasil para quem tem pressa", e aprende por
+// linha de raciocinio com causa e consequencia — foi assim que fixou a ligacao
+// entre a queda de Constantinopla e as grandes navegacoes, sem anotar nada.
+// Os numeros fecham: Historia vale 137 questoes em 15 provas e as videoaulas
+// dessas tres filas somavam 113h FORA do plano. Nao era livro CONTRA aula: era
+// livro contra nada. As aulas continuam na aba Aulas, para as lacunas que a
+// lista de questoes apontar.
+const DISC_SO_LIVRO = new Set(['hist_geral', 'hist_brasil'])
+const aulaSobDemanda = a => a.curso_id !== 'listas' && a.curso_id !== 'leitura' &&
+  (a.materia_id === 'ingles' || ASS_SO_QUESTAO.has(a.assunto_id) ||
+   redacaoRepetida(a) || DISC_SO_LIVRO.has(a.disciplina_id))
 
 const planejavel = a => !temDataFixa(a) && a.tipo !== 'material' &&
   a.tipo !== 'exercicio' && !aulaSobDemanda(a)
@@ -1409,16 +1420,16 @@ const ordemDoCurso = (x, y) =>
 // aprende (07/08). Revezar, e não colocar toda a história primeiro, evita adiar
 // Geopolítica, que é o assunto que mais cai em Humanidades (83 questões).
 function filaHumanas (aulas) {
-  const hist = aulas.filter(a => a.disciplina_id === 'hist_geral' || a.disciplina_id === 'hist_brasil')
-    .sort(ordemDoCurso)
-  const resto = aulas.filter(a => !(a.disciplina_id === 'hist_geral' || a.disciplina_id === 'hist_brasil'))
-    .sort(ordemDaFila)
-  const fila = []
-  while (hist.length || resto.length) {
-    if (hist.length) fila.push(hist.shift())
-    if (resto.length) fila.push(resto.shift())
-  }
-  return fila
+  // Os livros entram na ORDEM EM QUE FORAM ESCRITOS no gerar_leituras.py, e nao
+  // por incidencia: primeiro a espinha (Mundo), depois Brasil, Seculo XX,
+  // Guerras, Riqueza, Ciencia. Ela aprende por linha de raciocinio — comecar
+  // por "Guerras" antes de ter a espinha do mundo quebraria justamente isso.
+  const livros = aulas.filter(ehLeitura).sort((x, y) => x.ordem - y.ordem)
+  const resto = aulas.filter(a => !ehLeitura(a)).sort(ordemDaFila)
+  // Os livros vao TODOS na frente, e nao intercalados: eles substituem o curso de
+  // Historia inteiro (137 questoes em 15 provas), entao precisam caber com folga.
+  // Sao 43 sessoes de 55min = 39h dentro de uma fila de Humanidades de ~150h.
+  return [...livros, ...resto]
 }
 
 // Encaixa cada bloco de lista logo depois da última aula do assunto que ele
@@ -1574,10 +1585,18 @@ function distribuir (dias, filas, de, ate, intensidade, fixosPorDia, hoje0) {
       if (!vivas.length) break
       vivas.forEach(([, f]) => f.credito += f.peso)
       const [idEsc, esc] = vivas.reduce((a, b) => b[1].credito > a[1].credito ? b : a)
-      const i = esc.fila.findIndex(a => (!a.libera_em || a.libera_em <= dia) &&
+      let i = esc.fila.findIndex(a => (!a.libera_em || a.libera_em <= dia) &&
         (!refino || ehLista(a)))
       if (i < 0) { travadas.add(idEsc); continue }   // nada dela serve nesse dia
-      const a = esc.fila[i]
+      let a = esc.fila[i]
+      if (minutosPlanejados(a) > restam && dia >= DESDE_ENCAIXE_FINO) {
+        // O item da vez nao cabe no que resta. Antes de desistir da materia,
+        // procura NA MESMA FILA o proximo que caiba — e o que faz as sessoes de
+        // leitura de 55min ocuparem a sobra que uma aula de 2h25 nunca ocuparia.
+        const j = esc.fila.findIndex(x => (!x.libera_em || x.libera_em <= dia) &&
+          (!refino || ehLista(x)) && minutosPlanejados(x) <= restam)
+        if (j >= 0) { i = j; a = esc.fila[j] }
+      }
       if (minutosPlanejados(a) > restam) {
         // Ate 09/09/2026 o dia PARAVA de encher aqui: se a materia da vez tinha
         // um item grande demais para o tempo que sobrava, o resto do dia ficava
