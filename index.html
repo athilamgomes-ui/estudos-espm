@@ -1320,7 +1320,20 @@ const temDataFixa = a => ehRefino(a) || ehRedacaoEscrita(a)
 // quando sentir necessidade, pela aba Aulas. No cronograma fica só a lista de
 // questões, que é o que treina compreensão de texto (64% do bloco, e foram 10
 // questões de gramática em 15 provas). Mais questão, menos vídeo.
-const aulaSobDemanda = a => a.materia_id === 'ingles' && a.curso_id !== 'listas'
+// Decisao dela em 10/09/2026, depois de ver a medida de profundidade:
+//  - Interpretacao e argumentacao (65 questoes) e Gramatica (42) saem como AULA e
+//    ficam so como LISTA. Eram 145h de videoaula com 6% da fila cabendo no plano;
+//    as listas cobrem os mesmos assuntos em ~25h. E sao justamente as materias em
+//    que resolver questao comentada rende mais do que assistir — continua estudo
+//    ATIVO, que e a regra dela: o corte e de formato, nao de profundidade.
+//  - Redacao: so a trilha INEDITO, mais TODAS as aulas de repertorio (inclusive
+//    as do COMPLETO, porque repertorio e a dificuldade declarada dela). Sai so a
+//    estrutura do COMPLETO, que repete o que o INEDITO ja da.
+const ASS_SO_QUESTAO = new Set([54, 52])
+const redacaoRepetida = a => a.materia_id === 'redacao' &&
+  a.assunto_id === 63 && /COMPLETO/.test(a.titulo || '')
+const aulaSobDemanda = a => a.curso_id !== 'listas' &&
+  (a.materia_id === 'ingles' || ASS_SO_QUESTAO.has(a.assunto_id) || redacaoRepetida(a))
 
 const planejavel = a => !temDataFixa(a) && a.tipo !== 'material' &&
   a.tipo !== 'exercicio' && !aulaSobDemanda(a)
