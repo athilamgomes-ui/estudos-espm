@@ -580,6 +580,9 @@ const FAIXA_PADRAO = 2
 // imprevisto em divida, e divida vira bola de neve — foi o que aconteceu nas
 // duas primeiras semanas. 15% do dia fica livre para respirar e recuperar.
 const INTENSIDADE_MAX = 0.85
+// A partir deste dia o encaixe do dia passa a aproveitar o tempo que sobra com
+// outra materia, em vez de encerrar o dia. Ver o comentario em distribuir().
+const DESDE_ENCAIXE_FINO = '2026-09-10'
 
 const $ = s => document.querySelector(s)
 // Data LOCAL, nunca UTC. toISOString() joga para UTC e, das 21h a meia-noite no
@@ -1227,7 +1230,9 @@ function pintarCronograma () {
     <div class="card kpi"><div class="v num">${Math.round(redacao + refino)}h</div>
       <div class="k">reservadas para redação e simulados</div></div>
     <div class="card kpi"><div class="v num" style="color:${plano.cobertura >= .7 ? 'var(--ok)' : 'var(--warn)'}">${Math.round(plano.cobertura * 80)} de 80</div>
-      <div class="k">questões da prova em assuntos que você vai estudar</div></div>
+      <div class="k">questões da prova em assuntos que você <em>encosta</em></div></div>
+    <div class="card kpi"><div class="v num" style="color:var(--warn)">${Math.round(plano.profundidade * 80)} de 80</div>
+      <div class="k">a mesma conta ponderada por <strong>quanto</strong> de cada assunto cabe</div></div>
     <div class="card kpi"><div class="v num">${(intensidade * 100).toFixed(0)}%</div>
       <div class="k">do seu dia ocupado</div></div>
     <div class="card kpi"><div class="v num">${Math.round(refino)}h</div>
@@ -1238,20 +1243,20 @@ function pintarCronograma () {
   if (falta > 0) {
     cls = 'bad'
     cls = plano.cobertura >= .7 ? 'ok' : 'warn'
-    txt = `<strong>Numa prova de 80 questões, o plano passa pelos assuntos de cerca de
-      ${Math.round(plano.cobertura * 80)}.</strong> A conta vem das últimas 15 provas da ESPM:
-      ${plano.questoesCobertas} das ${plano.questoesTotal} questões caíram em assuntos que você vai
-      estudar. O que fica de fora são <strong>${(80 - plano.cobertura * 80).toFixed(0)} questões</strong>,
-      espalhadas em assuntos que apareceram uma ou duas vezes em 15 provas — e mesmo essas você
-      pode acertar. Em alguns assuntos você vê as primeiras aulas e não o curso inteiro: o corte é
-      sempre no fim da fila, no aprofundamento, nunca no assunto todo.
+    txt = `<strong>Duas medidas, e as duas são verdade.</strong>
+      Nas últimas 15 provas da ESPM, <strong>${plano.questoesCobertas} das ${plano.questoesTotal}
+      questões</strong> caíram em assuntos que o plano <em>encosta</em> — em 80 questões, ${Math.round(plano.cobertura * 80)}.
+      Mas encostar não é estudar inteiro: pesando <strong>quanto</strong> de cada assunto
+      realmente cabe, o plano cobre o equivalente a <strong>${Math.round(plano.profundidade * 80)} das 80</strong>.
+      A diferença entre os dois números é o tamanho honesto do que fica de fora.
       <div class="tiny" style="margin-top:8px">Você tem ${Math.round(totalAteProva)}h até 29/11:
       ${Math.round(redacao)}h de redação, ${Math.round(refino)}h de simulado e revisão, e
       ${(100 - intensidade * 100).toFixed(0)}% de cada dia livre de propósito, para imprevisto não
-      virar dívida. Sobram ${Math.round(sobra)}h para aula e lista — e os dois cursos somam
+      virar dívida. Sobram ${Math.round(sobra)}h para aula e lista — e o material soma
       ${Math.round(aulas)}h. As ${Math.round(falta)}h que ficam de fora <strong>não são dívida
-      sua</strong>: é material que nunca caberia em 100 dias, e o plano deixa de fora sempre
-      o que menos cai.</div>`
+      sua</strong>: é material que nunca caberia no tempo que existe. O que dá para decidir não é
+      se sobra material — é <strong>qual</strong> material sobra. Essa conversa é comigo, não com
+      o cronograma: fale e eu mudo a ordem das filas.</div>`
   } else {
     txt = `<strong>Fecha.</strong> As ${Math.round(aulas)}h de aula e lista cabem nas
       ${Math.round(sobra)}h que sobram depois da redação e dos simulados, ocupando
@@ -1560,7 +1565,16 @@ function distribuir (dias, filas, de, ate, intensidade, fixosPorDia, hoje0) {
         (!refino || ehLista(a)))
       if (i < 0) { travadas.add(idEsc); continue }   // nada dela serve nesse dia
       const a = esc.fila[i]
-      if (minutosPlanejados(a) > restam && itens.length) break
+      if (minutosPlanejados(a) > restam) {
+        // Ate 09/09/2026 o dia PARAVA de encher aqui: se a materia da vez tinha
+        // um item grande demais para o tempo que sobrava, o resto do dia ficava
+        // vazio. Somando o cronograma inteiro eram 109h ociosas em 44 dias —
+        // mais do que ela ganharia estudando uma hora a mais por dia. Agora a
+        // materia que nao cabe fica travada SO NAQUELE DIA e outra aproveita o
+        // tempo. Datado para nao reescrever os dias que ela ja cumpriu.
+        if (dia < DESDE_ENCAIXE_FINO) { if (itens.length) break; }
+        else { travadas.add(idEsc); continue }
+      }
       esc.fila.splice(i, 1); esc.credito = 0
       itens.push(a); restam -= minutosPlanejados(a)
     }
@@ -1596,6 +1610,12 @@ function montarPlanoRaw (faixaMax = FAIXA_PADRAO) {
 
   const dias = []
   const filas = filasPorMateria(faixaMax)
+  // Guardado ANTES de distribuir, porque distribuir consome as filas. Serve para
+  // a medida de PROFUNDIDADE: nao basta saber se o assunto entrou no plano, e
+  // preciso saber QUANTO dele entrou. Ver dias.profundidade, abaixo.
+  const totalPorAssunto = new Map()
+  filas.forEach(f => f.fila.forEach(a => totalPorAssunto.set(a.assunto_id,
+    (totalPorAssunto.get(a.assunto_id) || 0) + minutosPlanejados(a))))
   const intensidade = intensidadeDoPlano(faixaMax)
   distribuir(dias, filas, INICIO_PLANO, PROVA, intensidade, fixosPorDia, hoje0)
 
@@ -1619,6 +1639,23 @@ function montarPlanoRaw (faixaMax = FAIXA_PADRAO) {
   dias.cobertura = totalQ ? cobertas / totalQ : 0
   dias.questoesCobertas = cobertas
   dias.questoesTotal = totalQ
+
+  // LARGURA x PROFUNDIDADE. A cobertura acima conta um assunto como coberto se
+  // UMA aula dele entrou no plano — o que superestima, e ela cobrou isso com
+  // razao em 09/09/2026 ("estou ficando preocupada com esse seu final da lista").
+  // Aqui a mesma conta e ponderada por QUANTO de cada assunto cabe no plano:
+  // um assunto com 6% da fila planejada vale 6% das suas questoes, nao 100%.
+  const feitoPorAssunto = new Map()
+  dias.forEach(d => d.itens.forEach(a => { if (!a.assunto_id) return
+    feitoPorAssunto.set(a.assunto_id,
+      (feitoPorAssunto.get(a.assunto_id) || 0) + minutosPlanejados(a)) }))
+  let prof = 0
+  FREQ.forEach((f, id) => {
+    if (!f.n) return
+    const t = totalPorAssunto.get(id) || 0
+    prof += f.n * (t ? Math.min((feitoPorAssunto.get(id) || 0) / t, 1) : 0)
+  })
+  dias.profundidade = totalQ ? prof / totalQ : 0
 
   dias.sobrouPorMateria = [...filas.entries()]
     .filter(([, f]) => f.fila.length)
