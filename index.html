@@ -986,7 +986,9 @@ function pintarHoje () {
       </div>
       <div class="barra" style="margin:13px 0 5px"><i style="width:${pct}%"></i></div>
       <div class="row" style="justify-content:space-between;gap:10px">
-        <div class="tiny">${blocosFeitos} de ${blocos.length} blocos do dia concluídos</div>
+        <div class="tiny">${blocosFeitos} de ${blocos.length} blocos do dia concluídos ·
+          <a href="dossies/manual-do-metodo.pdf" target="_blank" rel="noopener"
+             style="color:var(--accent)">📘 como fazer cada tarefa</a></div>
         <div class="tiny" style="color:${SYNC.falhou ? 'var(--warn)' : 'var(--ink3)'}">${seloSincronia()}</div>
       </div>
     </div>`
@@ -2028,7 +2030,8 @@ async function carregarDossies () {
 function pintarDossies () {
   if (!DOSSIES.length) return $('#listaDossies').innerHTML =
     '<div class="card vazio">Nenhum dossiê disponível ainda.</div>'
-  const grupos = [['atualidade', 'Atualidades'], ['repertorio', 'Repertório para redação e entrevista']]
+  const grupos = [['metodo', 'Como estudar'], ['atualidade', 'Atualidades'],
+    ['repertorio', 'Repertório para redação e entrevista']]
   $('#listaDossies').innerHTML = grupos.map(([tipo, nome]) => {
     const da = DOSSIES.filter(d => d.tipo === tipo)
     if (!da.length) return ''

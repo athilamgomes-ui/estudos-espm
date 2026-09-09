@@ -44,6 +44,17 @@
   "arquivo": "dossies/caderno-de-repertorios.pdf"
  },
  {
+  "slug": "manual-do-metodo",
+  "titulo": "Manual do método",
+  "subtitulo": "O passo a passo de cada tipo de tarefa, por escrito, para você nunca mais precisar lembrar",
+  "tipo": "metodo",
+  "selo": "Como estudar · Documento de consulta",
+  "serve": "todo dia",
+  "minutos": 40,
+  "fechado_em": "fechado em 9 de setembro de 2026",
+  "arquivo": "dossies/manual-do-metodo.pdf"
+ },
+ {
   "slug": "repertorio-han-sociedade-do-cansaco",
   "titulo": "Byung-Chul Han — Sociedade do cansaço",
   "subtitulo": "O repertório que serve à redação e à entrevista ao mesmo tempo",
