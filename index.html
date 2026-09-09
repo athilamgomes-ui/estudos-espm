@@ -318,10 +318,12 @@ const PROVA = new Date('2026-11-29T00:00:00-03:00')
 // soma dos blocos de tipo 'estudo' de cada dia e quanto aquele dia rende. Assim
 // ela molda a rotina e o cronograma se ajusta sozinho, sem eu mexer em codigo.
 // Horarios que ela definiu: seg/qua/sex 8h-11h e 15h-22h · ter/qui 8h-12h30 e
-// 15h-22h · sabado igual ao que ja era · domingo descanso.
+// 15h-22h · sabado 7h30-18h30 mais o fechamento da semana · domingo descanso.
 // Tipos: estudo | pausa | refeicao | pessoal | compromisso
 // so: '3' o bloco so vale na 3a ocorrencia do dia no mes; '!3' vale em todas
-// menos a 3a (e como o compromisso do 3o sabado, das 17h as 18h30, entra).
+// menos a 3a. Hoje nenhum bloco usa (08/09/2026: o compromisso do 3o sabado e o
+// das sextas acabaram; o unico de setembro e no ultimo sabado A NOITE, que ja
+// cai na "Noite livre"). O mecanismo fica pronto para quando voltar a existir.
 const TIPOS = {
   estudo:      ['Estudo',     'var(--accent)'],
   pausa:       ['Pausa',      'var(--ok)'],
@@ -391,8 +393,7 @@ const ROTINA_PADRAO = {
     b('14:00', '15:40', 'estudo', 'Estudo — bloco 4'),
     b('15:40', '15:55', 'pausa', 'Pausa de pé'),
     b('15:55', '17:00', 'estudo', 'Estudo — bloco 5'),
-    { ...b('17:00', '18:30', 'estudo', 'Estudo — bloco 6'), so: '!3' },
-    { ...b('17:00', '18:30', 'compromisso', 'Compromisso'), so: '3' },
+    b('17:00', '18:30', 'estudo', 'Estudo — bloco 6'),
     b('18:30', '19:15', 'refeicao', 'Jantar'),
     b('19:15', '20:00', 'estudo', 'Flashcards + fechar a semana', 'Flashcards do que viu na semana e olhar o que ficou para trás'),
     b('20:00', '23:00', 'pessoal', 'Noite livre'),
@@ -432,7 +433,11 @@ const INICIO_REFINO = new Date(PROVA - SEMANAS_REFINO * 6048e5)
 // O que nao for feito fica como ATRASADO no dia dele, e ela faz junto com o do
 // dia seguinte. Pedido dela em 07/08/2026: "o que pertence ao dia x e do dia x".
 // ⚠️ Mudar esta data reescreve o cronograma inteiro. So com o aval dela.
-const INICIO_PLANO = new Date('2026-08-19T00:00:00-03:00')
+// 2o RE-BASELINE, pedido por ela em 08/09/2026: duas semanas sem estudar (nada
+// marcado desde 25/08) e "o que nao esta marcado e porque nao fiz". O atrasado
+// volta a ser tarefa do dia a partir de 09/09, na mesma ordem. As redacoes
+// escritas nao feitas foram re-datadas junto (script no runbook).
+const INICIO_PLANO = new Date('2026-09-09T00:00:00-03:00')
 // Ate a faixa 2 cabe no tempo e cobre 80% das questoes da prova; a faixa 3
 // (cauda) e revisada na fase de refino.
 const FAIXA_PADRAO = 2
