@@ -164,6 +164,7 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
     <button role="tab" data-t="cronograma" aria-selected="false">Cronograma</button>
     <button role="tab" data-t="prioridades" aria-selected="false">Prioridades</button>
     <button role="tab" data-t="listas" aria-selected="false">Listas</button>
+    <button role="tab" data-t="atualidades" aria-selected="false">Atualidades</button>
     <button role="tab" data-t="aulas" aria-selected="false">Aulas</button>
     <button role="tab" data-t="redacoes" aria-selected="false">Redações</button>
     <button role="tab" data-t="simulados" aria-selected="false">Simulados</button>
@@ -323,6 +324,22 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
       para conferir no original.</div>
     </div>
     <div id="listaPdf"></div>
+  </section>
+
+  <!-- Pedido dela em 09/09/2026: "se você construísse PDFs pra mim completos me
+       explicando sobre essas atualidades, eu iria gostar muito". Geopolitica e
+       o assunto n1 de Humanidades (83 questoes em 15 provas) e e o que ela
+       menos acompanhou. Os dossies sao gerados por gerar_dossies.py. -->
+  <section id="atualidades" hidden>
+    <div class="aviso ok" style="border-color:var(--accent);background:var(--accent-soft)">
+      Um dossiê em PDF por assunto de atualidades, escrito para o seu tablet:
+      <strong>o que aconteceu, por que importa, o vocabulário que a prova cobra e como usar
+      na redação e na entrevista</strong>. Cada um traz a data em que foi fechado — o que
+      acontecer depois disso você confere no noticiário.
+      <div style="margin-top:8px" class="small">Geopolítica e conflitos internacionais é o
+      assunto que mais cai em Humanidades: 83 questões nas 15 provas.</div>
+    </div>
+    <div id="listaDossies"></div>
   </section>
 
   <section id="aulas" hidden>
@@ -721,7 +738,7 @@ async function abrirApp () {
   $('#app').hidden = false
   pintarContagem()
   $('#sub').textContent = `Vestibular ESPM São Paulo · domingo, 29 de novembro de 2026`
-  carregarListas()
+  carregarListas(); carregarDossies()
 
   const cache = lerCache()
   if (cache) { aplicar(cache); SYNC = { em: cache.em, de: 'cache', falhou: false }; pintarTudo() }
@@ -783,7 +800,8 @@ function pintarContagem () {
 }
 
 // ---------------------------------------------------------------- abas
-const ABAS = ['hoje', 'painel', 'cronograma', 'prioridades', 'listas', 'aulas', 'redacoes', 'simulados']
+const ABAS = ['hoje', 'painel', 'cronograma', 'prioridades', 'listas', 'atualidades',
+  'aulas', 'redacoes', 'simulados']
 document.querySelectorAll('nav.abas button').forEach(b => b.onclick = () => {
   document.querySelectorAll('nav.abas button').forEach(x => x.setAttribute('aria-selected', x === b))
   ABAS.forEach(t => $('#' + t).hidden = t !== b.dataset.t)
@@ -796,12 +814,6 @@ function pintarPainel () {
   $('#cards').innerHTML = MATERIAS.map(m => {
     const da = AULAS.filter(a => a.materia_id === m.id)
     if (!da.length && m.id !== 'entrevista') return ''
-    if (m.id === 'entrevista') return `
-      <div class="card mat">
-        <div class="top"><span class="nome">${m.nome}</span><span class="peso">${m.peso_espm}%</span></div>
-        <div class="barra"><i style="width:0%"></i></div>
-        <div class="det"><span>Tema no edital: inovação e criatividade</span><span>40 pontos</span></div>
-      </div>`
     // Redação não se mede por aula assistida, e sim pelas redações escritas e corrigidas.
     if (m.id === 'redacao') {
       const meta = Math.round((PROVA - new Date()) / 6048e5 * REDACOES_SEMANA)
@@ -1279,6 +1291,13 @@ const SEM_INTEIRO = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta'
 const MES = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez']
 
 const ehRefino = a => a.curso_id === 'refino'
+// Entrevista (40 dos 160 pontos) e dossies de atualidades entraram no plano em
+// 09/09/2026, quando o edital 2027.1 publicou o ANEXO I com tema, perguntas,
+// rubricas e bibliografia. Ate entao a entrevista era o unico item do painel
+// sem uma hora reservada no cronograma.
+const ehEntrevista = a => a.curso_id === 'entrevista'
+const ehDossie = a => a.curso_id === 'dossie'
+const temMinutoProprio = a => ehEntrevista(a) || ehDossie(a)
 const ehLista = a => a.curso_id === 'listas'
 // Ritmo REAL da prova, lido no caderno de 2026-2: "o tempo total de prova e de
 // 5 (cinco) horas" para 80 questoes + redacao. Tirando ~60min de redacao sobram
@@ -1304,7 +1323,7 @@ const planejavel = a => !temDataFixa(a) && a.tipo !== 'material' &&
 // Quanto tempo o dia perde com este item. Aula usa o tempo REAL da rotina dela,
 // nao a duracao do video; lista, redacao e refino usam o que foi gerado.
 function minutosPlanejados (a) {
-  if (ehLista(a) || temDataFixa(a)) return a.minutos_est || 0
+  if (ehLista(a) || temDataFixa(a) || temMinutoProprio(a)) return a.minutos_est || 0
   return a.materia_id === 'matematica' ? MIN_AULA_MAT : MIN_AULA
 }
 
@@ -1335,7 +1354,8 @@ function nomeMateria (a) {
 function rotuloAula (a) {
   const t = (a.titulo || '').trim()
   // Lista, redação a escrever e itens de refino já dizem no título do que são.
-  const nome = (ehRefino(a) || ehLista(a) || ehRedacaoEscrita(a)) ? '' : nomeMateria(a)
+  const nome = (ehRefino(a) || ehLista(a) || ehRedacaoEscrita(a) || temMinutoProprio(a))
+    ? '' : nomeMateria(a)
   return nome ? `${nome}: ${t}` : t
 }
 
@@ -1452,6 +1472,9 @@ const baseDeMatematica = a => a.materia_id === 'matematica' &&
   /^Apostila 1/.test(a.modulo || '')
 
 function naFaixa (a, faixaMax) {
+  // Entrevista nao tem questao de prova, logo nao tem frequencia: vale 25% da
+  // nota inteira e entra sempre, como a redacao.
+  if (a.materia_id === 'entrevista') return true
   return baseDeMatematica(a) || (FREQ.get(a.assunto_id)?.faixa || 3) <= faixaMax
 }
 
@@ -1688,7 +1711,7 @@ function pintarPlano () {
   const cabecaSobrou = dias.sobrou ? `
     <div class="aviso warn" style="margin-bottom:12px">
       <strong>${dias.sobrou} itens ficam de fora</strong> (${horas(dias.sobrouMin)}h).
-      Não é atraso nem dívida: é o que não cabe em ${Math.round((PROVA - new Date()) / 864e5)} dias. No seu ritmo real — 2h por aula, 2h45 em Matemática —
+      Não é atraso nem dívida: é o que não cabe em ${Math.round((PROVA - new Date()) / 864e5)} dias. No seu ritmo real — 2h25 por aula (1h10 de vídeo + 15 questões + correção) —
       o material dos dois cursos é maior do que os dias que faltam. O plano acima já
       pega o que mais cai primeiro; o que sobra é o fim de cada fila:
       <div class="tiny" style="margin-top:6px">${dias.sobrouPorMateria.map(([m, n, min]) =>
@@ -1926,6 +1949,35 @@ function pintarPrioridades () {
 
 // ---------------------------------------------------------------- listas em pdf
 let LISTAS = []
+
+let DOSSIES = []
+async function carregarDossies () {
+  try { DOSSIES = await (await fetch(`dossies.json?v=${BUILD}`)).json() } catch { DOSSIES = [] }
+  pintarDossies()
+}
+
+function pintarDossies () {
+  if (!DOSSIES.length) return $('#listaDossies').innerHTML =
+    '<div class="card vazio">Nenhum dossiê disponível ainda.</div>'
+  const grupos = [['atualidade', 'Atualidades'], ['repertorio', 'Repertório para redação e entrevista']]
+  $('#listaDossies').innerHTML = grupos.map(([tipo, nome]) => {
+    const da = DOSSIES.filter(d => d.tipo === tipo)
+    if (!da.length) return ''
+    return `<h2 style="margin:22px 0 10px">${nome}</h2>
+      <div class="grade">${da.map(d => `
+        <a class="card mat" href="${d.arquivo}" target="_blank" rel="noopener"
+           style="text-decoration:none;color:inherit;display:block">
+          <div class="top"><span class="nome">${d.titulo}</span>
+            <span class="peso" style="background:transparent;border:1px solid var(--accent);color:var(--accent)">${d.minutos} min</span></div>
+          <div class="small muted" style="margin-top:7px">${d.subtitulo}</div>
+          <div class="det" style="margin-top:10px">
+            <span>serve para ${d.serve}</span><span>PDF ↓</span></div>
+          <div class="tiny" style="margin-top:6px">${d.fechado_em}</div>
+        </a>`).join('')}</div>`
+  }).join('') + `<p class="tiny" style="margin-top:22px">
+    ${DOSSIES.length} ${DOSSIES.length === 1 ? 'dossiê' : 'dossiês'} · cada um já está no
+    cronograma como tarefa, com hora reservada.</p>`
+}
 
 async function carregarListas () {
   try { LISTAS = await (await fetch('listas.json')).json() } catch { LISTAS = [] }

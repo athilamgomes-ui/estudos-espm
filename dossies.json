@@ -1,0 +1,46 @@
+[
+ {
+  "slug": "atualidades-eua-brasil",
+  "titulo": "Os EUA de Trump, o tarifaço e o Brasil em 2026",
+  "subtitulo": "Comércio, soberania e a eleição que acontece dois meses antes da sua prova",
+  "tipo": "atualidade",
+  "selo": "Atualidades · Economia e Brasil",
+  "serve": "prova (Humanidades) · redação · entrevista",
+  "minutos": 75,
+  "fechado_em": "fechado em 9 de setembro de 2026",
+  "arquivo": "dossies/atualidades-eua-brasil.pdf"
+ },
+ {
+  "slug": "atualidades-oriente-medio",
+  "titulo": "Israel, Gaza e Irã",
+  "subtitulo": "O conflito que mais aparece nas provas da ESPM — explicado do começo",
+  "tipo": "atualidade",
+  "selo": "Atualidades · Geopolítica",
+  "serve": "prova (Humanidades) · redação · entrevista",
+  "minutos": 90,
+  "fechado_em": "fechado em 9 de setembro de 2026",
+  "arquivo": "dossies/atualidades-oriente-medio.pdf"
+ },
+ {
+  "slug": "atualidades-ucrania",
+  "titulo": "Guerra da Ucrânia",
+  "subtitulo": "Por que a Rússia invadiu, o que mudou no mundo e onde está a negociação",
+  "tipo": "atualidade",
+  "selo": "Atualidades · Geopolítica",
+  "serve": "prova (Humanidades) · redação · entrevista",
+  "minutos": 75,
+  "fechado_em": "fechado em 9 de setembro de 2026",
+  "arquivo": "dossies/atualidades-ucrania.pdf"
+ },
+ {
+  "slug": "repertorio-han-sociedade-do-cansaco",
+  "titulo": "Byung-Chul Han — Sociedade do cansaço",
+  "subtitulo": "O repertório que serve à redação e à entrevista ao mesmo tempo",
+  "tipo": "repertorio",
+  "selo": "Repertório · Filosofia contemporânea",
+  "serve": "redação · entrevista (bibliografia oficial do edital) · Humanidades",
+  "minutos": 60,
+  "fechado_em": "fechado em 9 de setembro de 2026",
+  "arquivo": "dossies/repertorio-han-sociedade-do-cansaco.pdf"
+ }
+]
