@@ -357,14 +357,14 @@ const TARDE_NOITE = [
   b('23:00', '23:05', 'pessoal', 'Dormir', 'Hora fixa. Sono é quando a memória do dia é gravada')
 ]
 const ABERTURA = [
-  b('06:45', '07:10', 'pessoal', 'Acordar e devocional'),
+  b('06:45', '07:10', 'pessoal', 'Acordar e devocional', 'Faça na varanda ou perto da janela: 10 min de luz natural logo ao acordar é o que mais firma o relógio do corpo — e relógio firme é menos ansiedade'),
   b('07:10', '07:45', 'pessoal', 'Banho e arrumar'),
   b('07:45', '08:00', 'refeicao', 'Café da manhã')
 ]
 const ROTINA_PADRAO = {
   0: [
     b('07:15', '07:30', 'pessoal', 'Acordar'),
-    b('07:30', '08:15', 'pessoal', 'Corrida', 'A de domingo pode ser a mais longa da semana — sem pressa'),
+    b('07:30', '08:15', 'pessoal', 'Corrida', 'A mais longa da semana, e a única de manhã: sol + movimento cedo é a melhor combinação que existe contra ansiedade'),
     b('08:15', '08:45', 'pessoal', 'Banho e café'),
     b('09:00', '10:30', 'pessoal', 'Devocional / igreja'),
     b('10:30', '19:00', 'pessoal', 'Domingo livre', 'Descanso de verdade — é isso que faz a semana render'),
@@ -372,26 +372,9 @@ const ROTINA_PADRAO = {
     b('19:20', '22:30', 'pessoal', 'Noite livre'),
     b('22:30', '22:35', 'pessoal', 'Dormir')
   ],
-  1: null, 3: null, 5: null,   // montados abaixo: academia com treino diferente em cada um
-  // Terca: corrida no lugar do jantar das 18h30 (pedido dela, "terca a noite").
-  // Correr as 22h e dormir as 23h atrapalha o sono; as 18h30 e noite e nao custa
-  // sono. O jantar anda 20 min e o bloco 6 encurta 25 min — so isso.
-  2: [...ABERTURA, ...MANHA_EXTRA,
-    b('12:30', '13:30', 'refeicao', 'Almoço'),
-    b('13:30', '15:00', 'pessoal', 'Descanso de verdade', 'Série, deitar, o que quiser'),
-    b('15:00', '16:50', 'estudo', 'Estudo — bloco 4'),
-    b('16:50', '17:05', 'pausa', 'Pausa de pé'),
-    b('17:05', '18:30', 'estudo', 'Estudo — bloco 5'),
-    b('18:30', '19:10', 'pessoal', 'Corrida', 'Leve. Exercício aeróbico é um dos melhores remédios para ansiedade que existem'),
-    b('19:10', '19:50', 'refeicao', 'Banho e jantar'),
-    b('19:50', '21:25', 'estudo', 'Estudo — bloco 6'),
-    b('21:25', '21:55', 'estudo', 'Flashcards do dia no Knowt', 'Só do que você estudou HOJE. É a hora que fixa memória'),
-    b('21:55', '22:05', 'pessoal', 'Fechar o dia', 'Olhar o de amanhã e escrever as dúvidas que ficaram'),
-    b('22:05', '23:00', 'pessoal', 'Leitura livre', 'Livro que NÃO é do vestibular'),
-    b('23:00', '23:05', 'pessoal', 'Dormir', 'Hora fixa. Sono é quando a memória do dia é gravada')],
-  4: null,
+  1: null, 3: null, 5: null, 2: null, 4: null,   // montados abaixo
   6: [
-    b('06:30', '07:00', 'pessoal', 'Acordar e devocional'),
+    b('06:30', '07:00', 'pessoal', 'Acordar e devocional', 'Na varanda ou perto da janela, pela luz natural'),
     b('07:00', '07:20', 'pessoal', 'Banho e arrumar'),
     b('07:20', '07:30', 'refeicao', 'Café da manhã'),
     b('07:30', '09:20', 'estudo', 'Estudo — bloco 1'),
@@ -419,10 +402,31 @@ const diaComAcademia = treino => [...ABERTURA, ...MANHA_LONGA,
 ROTINA_PADRAO[1] = diaComAcademia('perna')
 ROTINA_PADRAO[3] = diaComAcademia('braço')
 ROTINA_PADRAO[5] = diaComAcademia('perna e braço')
-ROTINA_PADRAO[4] = [...ABERTURA, ...MANHA_EXTRA,
+
+// Ter/qui: manha longa (ate 12h30). A corrida do meio da semana fica na QUINTA,
+// nao na terca: perna e segunda e sexta, e a dor muscular tardia (DOMS) tem pico
+// entre 24h e 48h depois — terca 18h30 cai bem no pico da segunda. Quinta esta a
+// 72h da perna de segunda e a 16h da de sexta (folga de sobra dos dois lados).
+// Horario: 18h30 termina 19h10, quase 4h antes de dormir — exercicio moderado
+// nessa distancia nao atrapalha o sono e a melhora de atencao cai justo no
+// bloco de estudo das 19h50.
+const diaLongoManha = comCorrida => [...ABERTURA, ...MANHA_EXTRA,
   b('12:30', '13:30', 'refeicao', 'Almoço'),
   b('13:30', '15:00', 'pessoal', 'Descanso de verdade', 'Série, deitar, o que quiser'),
-  ...TARDE_NOITE]
+  ...(comCorrida ? [
+    b('15:00', '16:50', 'estudo', 'Estudo — bloco 4'),
+    b('16:50', '17:05', 'pausa', 'Pausa de pé'),
+    b('17:05', '18:30', 'estudo', 'Estudo — bloco 5'),
+    b('18:30', '19:10', 'pessoal', 'Corrida', 'Leve, sem cronômetro. Pernas descansadas: a última de perna foi segunda'),
+    b('19:10', '19:50', 'refeicao', 'Banho e jantar'),
+    b('19:50', '21:25', 'estudo', 'Estudo — bloco 6'),
+    b('21:25', '21:55', 'estudo', 'Flashcards do dia no Knowt', 'Só do que você estudou HOJE. É a hora que fixa memória'),
+    b('21:55', '22:05', 'pessoal', 'Fechar o dia', 'Olhar o de amanhã e escrever as dúvidas que ficaram'),
+    b('22:05', '23:00', 'pessoal', 'Leitura livre', 'Livro que NÃO é do vestibular'),
+    b('23:00', '23:05', 'pessoal', 'Dormir', 'Hora fixa. Sono é quando a memória do dia é gravada')
+  ] : TARDE_NOITE)]
+ROTINA_PADRAO[2] = diaLongoManha(false)
+ROTINA_PADRAO[4] = diaLongoManha(true)
 
 const hm = t => (+t.slice(0, 2)) * 60 + (+t.slice(3, 5))
 const dur = x => hm(x.f) - hm(x.i)
