@@ -166,6 +166,7 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
         <div class="d num" id="dias">—</div>
         <div class="l" id="diasRot">dias para a prova</div>
       </div>
+      <button id="bTrocarSenha" class="small">Trocar senha</button>
       <button id="bSair" class="small">Sair</button>
     </div>
   </header>
@@ -653,6 +654,15 @@ $('#bEsqueci').onclick = async e => {
   aviso('Pronto. Abra o e-mail que acabou de chegar e toque no link — ele traz você de volta aqui para escolher a senha nova.', 'ok')
 }
 
+// Trocar a senha estando logada (10/09/2026). Ela esqueceu a senha, mas o
+// computador continua logado: com a sessao aberta o Supabase aceita a senha
+// nova sem pedir a antiga. Resolve o tablet sem e-mail e sem mexer no Supabase.
+$('#bTrocarSenha').onclick = () => {
+  $('#app').hidden = true
+  $('#novaSenha').hidden = false
+  $('#ns1').focus()
+}
+
 $('#bSalvarSenha').onclick = async () => {
   const a = $('#ns1').value, b = $('#ns2').value
   const m = $('#msgNs')
@@ -662,6 +672,9 @@ $('#bSalvarSenha').onclick = async () => {
   if (error) { m.textContent = 'Não consegui salvar: ' + error.message; m.className = 'erro'; return }
   history.replaceState(null, '', location.pathname)
   $('#novaSenha').hidden = true
+  $('#ns1').value = ''; $('#ns2').value = ''; m.textContent = ''
+  // Veio de dentro do painel: so volta para ele. Veio do link do e-mail: abre.
+  if (USER) { $('#app').hidden = false; return }
   USER = data.user
   abrirApp()
 }
@@ -1361,7 +1374,10 @@ const MIN_POR_QUESTAO = 3
 const qtdQuestoes = a => { const m = /(\d+)\s+quest/.exec(a.titulo || ''); return m ? +m[1] : 0 }
 const ehRedacaoEscrita = a => a.curso_id === 'redacao_escrita'
 // Itens com data propria (libera_em manda): refino e as redacoes a escrever.
-const temDataFixa = a => ehRefino(a) || ehRedacaoEscrita(a)
+// Lembretes com data propria (10/09/2026): coisas que nao sao estudo mas tem
+// dia certo — pagar a inscricao da ESPM, conferir o e-mail da entrevista.
+const ehLembrete = a => a.curso_id === 'lembrete'
+const temDataFixa = a => ehRefino(a) || ehRedacaoEscrita(a) || ehLembrete(a)
 // Entra no plano? Fora: os PDFs de apostila e os videos de CORRECAO de
 // exercicio do CEM — ela resolve sozinha e so ve a correcao quando erra
 // (regra de 05/08, reforcada em 07/08: "19 videoaulas de correcao nao precisa").
@@ -1431,7 +1447,7 @@ function nomeMateria (a) {
 function rotuloAula (a) {
   const t = (a.titulo || '').trim()
   // Lista, redação a escrever e itens de refino já dizem no título do que são.
-  const nome = (ehRefino(a) || ehLista(a) || ehRedacaoEscrita(a) || temMinutoProprio(a))
+  const nome = (ehRefino(a) || ehLista(a) || ehRedacaoEscrita(a) || temMinutoProprio(a) || ehLembrete(a))
     ? '' : nomeMateria(a)
   return nome ? `${nome}: ${t}` : t
 }
