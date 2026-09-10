@@ -127,6 +127,16 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
 .form label{display:block;font-size:12px;color:var(--ink2);margin-bottom:4px}
 .form .full{grid-column:1/-1}
 .vazio{padding:34px 20px;text-align:center;color:var(--ink3);font-size:14px}
+
+/* Leitor de PDF dentro do painel (11/09/2026) */
+#leitor{position:fixed;inset:0;z-index:50;background:var(--bg);display:flex;flex-direction:column}
+#leitor[hidden]{display:none!important}
+.leitor-barra{display:flex;align-items:center;gap:10px;padding:10px 12px;
+  padding-top:calc(10px + env(safe-area-inset-top));border-bottom:1px solid rgba(127,127,127,.25)}
+.leitor-barra #leitorTitulo{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#leitorPaginas{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;padding:12px 8px 40px;
+  display:flex;flex-direction:column;align-items:center;gap:10px}
+#leitorPaginas canvas{background:#fff;border-radius:4px;box-shadow:0 1px 6px rgba(0,0,0,.35);max-width:100%}
 </style>
 </head>
 <body>
@@ -153,6 +163,17 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
   <div class="f"><label for="ns2">Repita a senha</label><input id="ns2" type="password" autocomplete="new-password"></div>
   <div class="f" style="margin-top:16px"><button class="primary" id="bSalvarSenha" style="width:100%">Salvar senha nova</button></div>
   <div id="msgNs"></div>
+</div>
+
+<!-- Leitor de PDF: no tablet, como aplicativo da tela de inicio, o PDF abria na
+     mesma janela e nao havia seta para voltar (11/09/2026). -->
+<div id="leitor" hidden>
+  <div class="leitor-barra">
+    <button id="leitorVoltar" class="primary">← Voltar ao painel</button>
+    <span id="leitorTitulo" class="small muted"></span>
+    <a id="leitorBaixar" class="small" download style="color:var(--accent)">Baixar PDF</a>
+  </div>
+  <div id="leitorPaginas"></div>
 </div>
 
 <div class="wrap" id="app" hidden>
@@ -185,6 +206,7 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
 
   <section id="hoje">
     <div id="hojeTopo" style="margin-bottom:14px"></div>
+    <div id="hojeRecuperacao"></div>
     <div id="hojeLinha" class="card" style="overflow:hidden"></div>
     <div id="hojeAmanha" style="margin-top:14px"></div>
     <p class="tiny" style="margin-top:12px">
@@ -617,7 +639,11 @@ let REDACOES = [], USER = null
 // A rotina dela e os blocos marcados como feitos. Fica no Supabase (tabela
 // config, coluna horas_meta, que era jsonb e estava sem uso) para sincronizar
 // entre o tablet e o computador — localStorage nao serviria, ela estuda nos dois.
-let AGENDA = { rotina: null, grades: [], feitos: {} }
+let AGENDA = { rotina: null, grades: [], feitos: {}, recuperacao: [], congelados: {} }
+// O dia 10/09 como ela o viu de manha, antes das mudancas daquela noite. Nao ha
+// como congelar retroativamente pelo painel (ele so congela ao ser aberto), entao
+// a lista vem da versao publicada naquela manha, recalculada no harness.
+const SEMENTE_CONGELADOS = { '2026-09-10': [2539, 177, 2661, 2728, 2662] }
 // assunto_id -> {nome, n, porProva, faixa}. Preenchido por aplicarPrioridades().
 const FREQ = new Map()
 const FAIXA = {
@@ -786,7 +812,8 @@ function gravarCache () {
       aulas: AULAS, redacoes: REDACOES, prioridades: PRI_BRUTO,
       progresso: [...PROG].map(([aula_id, status]) =>
         ({ aula_id, status, assistida_em: PROG_EM.get(aula_id) || null })),
-      config: { grades: AGENDA.grades, feitos: AGENDA.feitos }
+      config: { grades: AGENDA.grades, feitos: AGENDA.feitos, recuperacao: AGENDA.recuperacao,
+        congelados: AGENDA.congelados }
     }))
   } catch (e) { console.warn('cache nao gravou', e) }
 }
@@ -923,6 +950,13 @@ function pintarPainel () {
 // a rotina escrita e o remedio, nao o enfeite.
 function aplicarAgenda (g) {
   AGENDA.feitos = (g && g.feitos) || {}
+  AGENDA.congelados = { ...SEMENTE_CONGELADOS, ...((g && g.congelados) || {}) }
+  // Semente (11/09/2026): os dois assuntos que ela disse ter terminado e
+  // continuar sem conseguir. Vale so ate ela salvar a primeira mudanca.
+  AGENDA.recuperacao = (g && g.recuperacao) || [
+    { id: 1, assunto: 4, criado: '2026-09-10', feitas: [] },
+    { id: 2, assunto: 25, criado: '2026-09-10', feitas: [] }
+  ]
   AGENDA.grades = (g && g.grades) || [
     { desde: '2026-08-19', legado: true },
     { desde: '2026-09-08', rotina: estruturado(ROTINA_PADRAO) }
@@ -938,7 +972,8 @@ async function salvarAgenda () {
   clearTimeout(salvando)
   salvando = setTimeout(async () => {
     const { error } = await sb.from('config').upsert(
-      { user_id: USER.id, horas_meta: { grades: AGENDA.grades, feitos: AGENDA.feitos } },
+      { user_id: USER.id, horas_meta: { grades: AGENDA.grades, feitos: AGENDA.feitos,
+        recuperacao: AGENDA.recuperacao, congelados: AGENDA.congelados } },
       { onConflict: 'user_id' })
     if (error) console.warn('nao salvou a rotina', error.message)
   }, 400)
@@ -1023,6 +1058,7 @@ function pintarHoje () {
   const minAgora = agora.getHours() * 60 + agora.getMinutes()
   const blocos = blocosDoDia(agora)
   const dia = montarPlano().find(d => iso(d.data) === hoje)
+  congelarDia(hoje, dia)
   const itens = (dia && dia.itens) || []
   const mapa = encaixar(blocos, itens)
   const feitos = AGENDA.feitos[hoje] || []
@@ -1136,7 +1172,180 @@ function pintarHoje () {
   })
   $('#hojeLinha').querySelectorAll('input[data-id]').forEach(c =>
     c.onchange = () => marcar(+c.dataset.id, c.checked))
+  pintarRecuperacao()
 }
+
+// Congela o dia na PRIMEIRA vez que ela abre a aba Hoje nele. Dali em diante o
+// dia nao muda, qualquer que seja a mudanca nas filas. Guarda 60 dias.
+function congelarDia (hoje, dia) {
+  if (!dia || (AGENDA.congelados || {})[hoje]) return
+  AGENDA.congelados = { ...(AGENDA.congelados || {}),
+    [hoje]: dia.itens.filter(a => !temDataFixa(a)).map(a => a.id) }
+  const lim = iso(new Date(Date.now() - 60 * 864e5))
+  Object.keys(AGENDA.congelados).forEach(k => { if (k < lim) delete AGENDA.congelados[k] })
+  salvarAgenda()
+}
+
+// ---------------------------------------------------------------- recuperacao
+// Ela terminou Fatoracao e Equacao do 1o grau e continua sem conseguir (11/09).
+// O cronograma e ESTATICO (regra dela) e nao devolve assunto sozinho. Entao a
+// recuperacao vive FORA do plano, na folga de 15% de cada dia: ela coloca o
+// assunto aqui e o painel devolve 4 sessoes curtas em intervalos crescentes —
+// 1, 3, 7 e 14 dias —, que e o espacamento que fixa (revisao espacada).
+const INTERVALOS_RECUP = [1, 3, 7, 14]
+const somaDias = (dia, n) => { const d = new Date(dia + 'T12:00:00'); d.setDate(d.getDate() + n); return iso(d) }
+const proximaRecup = r => {
+  const i = (r.feitas || []).length
+  return i < INTERVALOS_RECUP.length ? { n: i + 1, dia: somaDias(r.criado, INTERVALOS_RECUP[i]) } : null
+}
+const ddmm = dia => dia.split('-').reverse().slice(0, 2).join('/')
+
+function pintarRecuperacao () {
+  const box = $('#hojeRecuperacao')
+  if (!box || modoEditar) { if (box) box.innerHTML = ''; return }
+  const hoje = iso(new Date())
+  const ativas = (AGENDA.recuperacao || []).filter(r => proximaRecup(r))
+  const devidas = ativas.filter(r => proximaRecup(r).dia <= hoje)
+  const futuras = ativas.filter(r => proximaRecup(r).dia > hoje)
+  const nomeAss = id => (ASSUNTOS.find(a => a.id === id) || {}).nome || 'Assunto'
+  const opcoes = MATERIAS.map(m => {
+    const as = ASSUNTOS.filter(a => a.materia_id === m.id)
+    return as.length ? `<optgroup label="${m.nome}">${as.map(a =>
+      `<option value="${a.id}">${a.nome}</option>`).join('')}</optgroup>` : ''
+  }).join('')
+  const cartao = r => {
+    const p = proximaRecup(r)
+    const a = ASSUNTOS.find(x => x.id === r.assunto)
+    const lst = (LISTAS || []).find(l => a && l.materia === a.materia_id && l.assunto === a.nome)
+    const resolvidos = AULAS.filter(x => x.assunto_id === r.assunto && x.tipo === 'exercicio')
+    return `<div style="padding:9px 0;border-bottom:1px solid rgba(127,127,127,.18)">
+      <label style="display:flex;gap:9px;align-items:flex-start;cursor:pointer">
+        <input type="checkbox" data-recup="${r.id}" style="width:17px;height:17px;margin-top:2px;flex:none;accent-color:var(--accent)">
+        <span><strong>${nomeAss(r.assunto)}</strong> — sessão ${p.n} de 4 · ~30 min, no bloco de folga
+          <span class="tiny" style="display:block;margin-top:4px">1) refaça, sem olhar, os erros deste assunto no seu caderno de erros ·
+            2) veja a correção em vídeo <strong>só</strong> do que errar de novo ·
+            3) 5 questões novas, com cronômetro</span>
+          <span class="tiny" style="display:block;margin-top:4px">
+            ${lst ? `<a href="${lst.arquivo}" style="color:var(--accent)">lista da ESPM deste assunto</a>` : ''}
+            ${resolvidos.length ? ` · vídeos de correção na aba Aulas: ${resolvidos.map(x => x.titulo).join(' / ')}` : ''}
+          </span></span></label></div>`
+  }
+  box.innerHTML = `
+    <details class="card mod"${devidas.length ? ' open' : ''} style="margin-bottom:14px">
+      <summary><span>🔁 Recuperação${devidas.length ? ` — ${devidas.length} ${devidas.length === 1 ? 'sessão' : 'sessões'} para hoje` : ''}</span>
+        <span class="cont">${ativas.length} ${ativas.length === 1 ? 'assunto' : 'assuntos'}</span></summary>
+      <div style="padding:4px 15px 14px">
+        ${devidas.map(cartao).join('') || '<div class="tiny" style="padding:8px 0">Nenhuma sessão de recuperação para hoje.</div>'}
+        ${futuras.map(r => `<div class="tiny" style="padding:4px 0">${nomeAss(r.assunto)} · próxima sessão (${proximaRecup(r).n} de 4) em ${ddmm(proximaRecup(r).dia)}
+          · <a href="#" data-tirar="${r.id}" style="color:var(--ink3)">tirar</a></div>`).join('')}
+        <div class="row" style="gap:8px;margin-top:12px;flex-wrap:wrap">
+          <select id="recupAssunto" style="flex:1;min-width:190px">
+            <option value="">Terminei, mas ainda não consigo…</option>${opcoes}</select>
+          <button id="recupAdd" class="small">Colocar em recuperação</button>
+        </div>
+        <div class="tiny" style="margin-top:8px">4 sessões curtas em 1, 3, 7 e 14 dias, sempre na folga do dia —
+          o cronograma não muda. Passo a passo no manual, seção 14.</div>
+      </div>
+    </details>`
+  $('#recupAdd').onclick = () => {
+    const v = +$('#recupAssunto').value
+    if (!v) return
+    AGENDA.recuperacao = [...(AGENDA.recuperacao || []),
+      { id: Date.now(), assunto: v, criado: hoje, feitas: [] }]
+    salvarAgenda(); pintarRecuperacao()
+  }
+  box.querySelectorAll('input[data-recup]').forEach(c => c.onchange = () => {
+    const r = AGENDA.recuperacao.find(x => String(x.id) === c.dataset.recup)
+    if (r && c.checked) { r.feitas = [...(r.feitas || []), hoje]; salvarAgenda() }
+    setTimeout(pintarRecuperacao, 350)
+  })
+  box.querySelectorAll('a[data-tirar]').forEach(l => l.onclick = e => {
+    e.preventDefault()
+    AGENDA.recuperacao = AGENDA.recuperacao.filter(x => String(x.id) !== l.dataset.tirar)
+    salvarAgenda(); pintarRecuperacao()
+  })
+}
+
+// ---------------------------------------------------------------- leitor de PDF
+// No tablet, como aplicativo da tela de inicio, o PDF abria na mesma janela e
+// nao existia seta para voltar — ela tinha de fechar o app e abrir de novo
+// (11/09/2026). Agora todo PDF do proprio painel abre aqui dentro, desenhado
+// pelo pdf.js, com "Voltar ao painel" sempre visivel no topo.
+// Hospedado no proprio site (vendor/pdfjs, versao 3.11.174): o worker do pdf.js
+// precisa ser da MESMA origem da pagina. Vindo do cdnjs, o navegador recusa o
+// worker, o pdf.js cai num modo lento e, no teste, parou na primeira pagina.
+const PDFJS = 'vendor/pdfjs/pdf.min.js'
+let pdfjsPronto = null
+function carregarPdfjs () {
+  if (pdfjsPronto) return pdfjsPronto
+  pdfjsPronto = new Promise((ok, erro) => {
+    const t = document.createElement('script')
+    t.src = PDFJS
+    t.onload = () => {
+      window.pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS.replace('pdf.min.js', 'pdf.worker.min.js')
+      ok(window.pdfjsLib)
+    }
+    t.onerror = () => { pdfjsPronto = null; erro(new Error('leitor indisponível')) }
+    document.head.appendChild(t)
+  })
+  return pdfjsPronto
+}
+
+async function abrirLeitor (url, titulo) {
+  const box = $('#leitorPaginas')
+  $('#leitorTitulo').textContent = titulo || ''
+  $('#leitorBaixar').href = url
+  box.innerHTML = '<div class="vazio">Abrindo…</div>'
+  $('#leitor').hidden = false
+  document.body.style.overflow = 'hidden'
+  history.pushState({ leitor: true }, '')
+  try {
+    const lib = await carregarPdfjs()
+    const doc = await lib.getDocument(url).promise
+    box.innerHTML = ''
+    const larg = Math.min(box.clientWidth - 16, 900)
+    const dpr = window.devicePixelRatio || 1
+    for (let n = 1; n <= doc.numPages; n++) {
+      if ($('#leitor').hidden) return          // ela voltou antes de terminar
+      const pag = await doc.getPage(n)
+      const esc = larg / pag.getViewport({ scale: 1 }).width
+      const vp = pag.getViewport({ scale: esc * dpr })
+      const c = document.createElement('canvas')
+      c.width = vp.width; c.height = vp.height
+      c.style.width = (vp.width / dpr) + 'px'; c.style.height = (vp.height / dpr) + 'px'
+      box.appendChild(c)
+      // intent 'print': desenha de uma vez, sem esperar requestAnimationFrame. No modo
+      // de tela o pdf.js pausa quando a pagina fica oculta (app em segundo plano, tela
+      // apagando) — no teste, com o painel oculto, parava na primeira pagina.
+      await pag.render({ canvasContext: c.getContext('2d'), viewport: vp, intent: 'print' }).promise
+    }
+  } catch (e) {
+    box.innerHTML = `<div class="vazio">Não consegui abrir aqui dentro.
+      <a href="${url}" style="color:var(--accent)">Abrir o PDF direto</a></div>`
+  }
+}
+
+function fecharLeitor (voltarHistorico) {
+  if ($('#leitor').hidden) return
+  $('#leitor').hidden = true
+  $('#leitorPaginas').innerHTML = ''
+  document.body.style.overflow = ''
+  if (voltarHistorico) history.back()
+}
+$('#leitorVoltar').onclick = () => fecharLeitor(true)
+window.addEventListener('popstate', () => fecharLeitor(false))
+
+// Um ouvinte so, para o painel inteiro: qualquer link para um PDF do proprio
+// site (listas, dossies, manual) abre no leitor. PDF de fora (edital) segue normal.
+document.addEventListener('click', e => {
+  const a = e.target.closest && e.target.closest('a[href]')
+  if (!a || a.id === 'leitorBaixar') return
+  const href = a.getAttribute('href') || ''
+  if (!/\.pdf([?#]|$)/i.test(href) || /^https?:/i.test(href)) return
+  e.preventDefault()
+  const nome = a.querySelector('.nome')
+  abrirLeitor(href, (nome ? nome.textContent : a.textContent).trim().slice(0, 90))
+})
 
 const MESES = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho',
   'agosto', 'setembro', 'outubro', 'novembro', 'dezembro']
@@ -1377,7 +1586,10 @@ const ehRedacaoEscrita = a => a.curso_id === 'redacao_escrita'
 // Lembretes com data propria (10/09/2026): coisas que nao sao estudo mas tem
 // dia certo — pagar a inscricao da ESPM, conferir o e-mail da entrevista.
 const ehLembrete = a => a.curso_id === 'lembrete'
-const temDataFixa = a => ehRefino(a) || ehRedacaoEscrita(a) || ehLembrete(a)
+// Uma ficha do caderno de repertorios por dia (11/09/2026): o caderno nao e para
+// ler de uma vez — ela entendeu que era, porque o cronograma tinha 90 min dele.
+const ehFicha = a => a.curso_id === 'ficha'
+const temDataFixa = a => ehRefino(a) || ehRedacaoEscrita(a) || ehLembrete(a) || ehFicha(a)
 // Entra no plano? Fora: os PDFs de apostila e os videos de CORRECAO de
 // exercicio do CEM — ela resolve sozinha e so ve a correcao quando erra
 // (regra de 05/08, reforcada em 07/08: "19 videoaulas de correcao nao precisa").
@@ -1447,7 +1659,8 @@ function nomeMateria (a) {
 function rotuloAula (a) {
   const t = (a.titulo || '').trim()
   // Lista, redação a escrever e itens de refino já dizem no título do que são.
-  const nome = (ehRefino(a) || ehLista(a) || ehRedacaoEscrita(a) || temMinutoProprio(a) || ehLembrete(a))
+  const nome = (ehRefino(a) || ehLista(a) || ehRedacaoEscrita(a) || temMinutoProprio(a) ||
+    ehLembrete(a) || ehFicha(a))
     ? '' : nomeMateria(a)
   return nome ? `${nome}: ${t}` : t
 }
@@ -1619,6 +1832,27 @@ function distribuir (dias, filas, de, ate, intensidade, fixosPorDia, hoje0) {
     // redações a escrever (2 por semana) e, no fim, os simulados do refino.
     const itens = [...(fixosPorDia.get(dia) || [])]
     const refino = d >= INICIO_REFINO
+
+    // DIA CONGELADO (11/09/2026). O que ela ja viu na aba Hoje nao muda mais,
+    // mesmo que as filas mudem depois — item novo, aula que vira lista, livro
+    // no lugar de aula. Foi uma fila mexida que trocou o dia dela em 09/09, e o
+    // mesmo quase se repetiu tres vezes antes deste mecanismo. Os itens saem das
+    // filas exatamente como estavam; se um deles nem esta mais em fila nenhuma
+    // (virou "sob demanda"), vem direto do catalogo — o dia x continua do dia x.
+    const cong = (AGENDA.congelados || {})[dia]
+    if (cong) {
+      cong.forEach(id => {
+        for (const f of filas.values()) {
+          const i = f.fila.findIndex(a => a.id === id)
+          if (i >= 0) { itens.push(f.fila.splice(i, 1)[0]); return }
+        }
+        const a = AULAS.find(x => x.id === id)
+        if (a) itens.push(a)
+      })
+      itens.sort((x, y) => postoNoDia(x) - postoNoDia(y))
+      dias.push({ data: new Date(d), itens, refino, passado })
+      continue
+    }
     let restam = capacidade * intensidade -
       itens.reduce((t, a) => t + minutosPlanejados(a), 0)
 
@@ -2115,6 +2349,7 @@ function pintarDossies () {
 
 async function carregarListas () {
   try { LISTAS = await (await fetch('listas.json')).json() } catch { LISTAS = [] }
+  if (USER) pintarRecuperacao()
   if (!LISTAS.length) return $('#listaPdf').innerHTML = '<div class="card vazio">Nenhuma lista disponível.</div>'
   const total = LISTAS.reduce((s, l) => s + l.n, 0)
   $('#listaPdf').innerHTML = MATERIAS.filter(m => LISTAS.some(l => l.materia === m.id)).map(m => {
