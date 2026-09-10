@@ -129,12 +129,17 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
 .vazio{padding:34px 20px;text-align:center;color:var(--ink3);font-size:14px}
 
 /* Leitor de PDF dentro do painel (11/09/2026) */
-#leitor{position:fixed;inset:0;z-index:50;background:var(--bg);display:flex;flex-direction:column}
+/* Longhands em vez de 'inset': no teste o leitor ficou com largura 0 (so o
+   padding das paginas, 16px) e todo PDF saiu em branco; e o Safari do iPad so
+   entende 'inset' a partir do iOS 14.1. Largura e altura explicitas nao dependem
+   de nada. 100dvh acompanha a barra do Safari que aparece e some. */
+#leitor{position:fixed;top:0;right:0;bottom:0;left:0;width:100vw;height:100vh;height:100dvh;
+  z-index:50;background:var(--bg);display:flex;flex-direction:column}
 #leitor[hidden]{display:none!important}
 .leitor-barra{display:flex;align-items:center;gap:10px;padding:10px 12px;
   padding-top:calc(10px + env(safe-area-inset-top));border-bottom:1px solid rgba(127,127,127,.25)}
 .leitor-barra #leitorTitulo{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#leitorPaginas{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;padding:12px 8px 40px;
+#leitorPaginas{flex:1;width:100%;min-height:0;overflow:auto;-webkit-overflow-scrolling:touch;padding:12px 8px 40px;
   display:flex;flex-direction:column;align-items:center;gap:10px}
 #leitorPaginas canvas{background:#fff;border-radius:4px;box-shadow:0 1px 6px rgba(0,0,0,.35);max-width:100%}
 </style>
@@ -1303,7 +1308,12 @@ async function abrirLeitor (url, titulo) {
     const lib = await carregarPdfjs()
     const doc = await lib.getDocument(url).promise
     box.innerHTML = ''
-    const larg = Math.min(box.clientWidth - 16, 900)
+    // Largura util com salvaguarda: se a caixa ainda nao tem largura medida
+    // (app acabando de voltar do segundo plano, por exemplo), usa a da janela ou
+    // a da tela — nunca desenha pagina com largura zero.
+    const base = box.clientWidth > 200 ? box.clientWidth
+      : Math.max(window.innerWidth || 0, document.documentElement.clientWidth || 0, screen.width || 0, 360)
+    const larg = Math.min(base - 16, 900)
     const dpr = window.devicePixelRatio || 1
     for (let n = 1; n <= doc.numPages; n++) {
       if ($('#leitor').hidden) return          // ela voltou antes de terminar
@@ -1312,7 +1322,9 @@ async function abrirLeitor (url, titulo) {
       const vp = pag.getViewport({ scale: esc * dpr })
       const c = document.createElement('canvas')
       c.width = vp.width; c.height = vp.height
-      c.style.width = (vp.width / dpr) + 'px'; c.style.height = (vp.height / dpr) + 'px'
+      // So a largura e fixada; a altura acompanha a proporcao. Assim, se ela girar
+      // o tablet com o PDF aberto, a pagina encolhe sem deformar.
+      c.style.width = (vp.width / dpr) + 'px'; c.style.height = 'auto'
       box.appendChild(c)
       // intent 'print': desenha de uma vez, sem esperar requestAnimationFrame. No modo
       // de tela o pdf.js pausa quando a pagina fica oculta (app em segundo plano, tela
