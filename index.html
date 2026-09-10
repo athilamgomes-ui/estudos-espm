@@ -140,7 +140,19 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
     <button class="primary" id="bEntrar" style="flex:1">Entrar</button>
     <button id="bCriar">Criar conta</button>
   </div>
+  <div style="margin-top:12px"><a href="#" id="bEsqueci" class="small" style="color:var(--accent)">Esqueci minha senha</a></div>
   <div id="msg"></div>
+</div>
+
+<!-- Aparece so quando ela volta pelo link de recuperacao do e-mail. Quem digita
+     a senha nova e ela: o site so repassa para o Supabase. -->
+<div id="novaSenha" class="card" hidden>
+  <h1>Nova senha</h1>
+  <p class="small muted">Escolha a senha nova. Depois disso você entra normalmente no computador e no tablet.</p>
+  <div class="f"><label for="ns1">Senha nova</label><input id="ns1" type="password" autocomplete="new-password"></div>
+  <div class="f"><label for="ns2">Repita a senha</label><input id="ns2" type="password" autocomplete="new-password"></div>
+  <div class="f" style="margin-top:16px"><button class="primary" id="bSalvarSenha" style="width:100%">Salvar senha nova</button></div>
+  <div id="msgNs"></div>
 </div>
 
 <div class="wrap" id="app" hidden>
@@ -614,10 +626,44 @@ const FAIXA = {
 }
 
 // ---------------------------------------------------------------- login
+// Recuperacao de senha (10/09/2026): ela esqueceu a senha e o login nao tinha
+// "esqueci a senha". O link do e-mail volta para esta mesma pagina com
+// type=recovery no endereco; ai mostramos o formulario de senha nova em vez de
+// abrir o painel. O site nunca ve nem guarda a senha: so repassa ao Supabase.
+const voltouDaRecuperacao = () => /type=recovery/.test(location.hash + location.search)
+
 async function iniciar () {
+  if (voltouDaRecuperacao()) {
+    await sb.auth.getSession()          // o supabase-js le o token do endereco
+    $('#novaSenha').hidden = false
+    return
+  }
   const { data: { session } } = await sb.auth.getSession()
   if (session) { USER = session.user; return abrirApp() }
   $('#login').hidden = false
+}
+
+$('#bEsqueci').onclick = async e => {
+  e.preventDefault()
+  const email = $('#em').value.trim()
+  if (!email) return aviso('Escreva seu e-mail no campo acima e toque de novo em "Esqueci minha senha".', 'erro')
+  const { error } = await sb.auth.resetPasswordForEmail(email,
+    { redirectTo: location.origin + location.pathname })
+  if (error) return aviso('Não consegui enviar: ' + error.message, 'erro')
+  aviso('Pronto. Abra o e-mail que acabou de chegar e toque no link — ele traz você de volta aqui para escolher a senha nova.', 'ok')
+}
+
+$('#bSalvarSenha').onclick = async () => {
+  const a = $('#ns1').value, b = $('#ns2').value
+  const m = $('#msgNs')
+  if (a.length < 6) { m.textContent = 'A senha precisa de pelo menos 6 caracteres.'; m.className = 'erro'; return }
+  if (a !== b) { m.textContent = 'As duas senhas não são iguais.'; m.className = 'erro'; return }
+  const { data, error } = await sb.auth.updateUser({ password: a })
+  if (error) { m.textContent = 'Não consegui salvar: ' + error.message; m.className = 'erro'; return }
+  history.replaceState(null, '', location.pathname)
+  $('#novaSenha').hidden = true
+  USER = data.user
+  abrirApp()
 }
 
 $('#bEntrar').onclick = async () => {
