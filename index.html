@@ -236,6 +236,10 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
          a bibliografia. Esta secao e a copia fiel desse anexo. -->
     <h2 style="margin:26px 0 11px">Entrevista — 40 dos 160 pontos</h2>
     <div class="card" style="padding:16px">
+      <div class="small" style="margin-bottom:10px">
+        📄 O <strong>ANEXO I</strong> não é um arquivo separado: é uma parte do <strong>edital</strong>, das páginas 24 a 27.
+        <a href="dossies/edital-anexo-i-entrevista.pdf" style="color:var(--accent)">Abrir só o ANEXO I</a>.
+      </div>
       <div class="small">
         <strong>Etapa on-line, no Zoom, até 30 minutos, individual.</strong>
         Agendamento automático depois do pagamento da inscrição; acontece entre
@@ -314,7 +318,8 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
       </details>
 
       <div class="tiny" style="margin-top:12px">
-        Fonte: <a href="https://www.espm.br/wp-content/uploads/Edital-Vest-Enem-Internacionais-Sp-2027-v2.pdf" target="_blank" rel="noopener">Edital Vestibular ESPM-SP 2027.1</a>, ANEXO I ·
+        Fonte: <a href="https://www.espm.br/wp-content/uploads/Edital-Vest-Enem-Internacionais-Sp-2027-v2.pdf" target="_blank" rel="noopener">Edital Vestibular ESPM-SP 2027.1</a>, ANEXO I
+        (<a href="dossies/edital-anexo-i-entrevista.pdf" style="color:var(--accent)">abrir só o ANEXO I — págs. 24 a 27 do edital</a>) ·
         <a href="https://www.espm.br/wp-content/uploads/ETAPA-REDACAO.pdf" target="_blank" rel="noopener">manual da Redação</a>.
       </div>
     </div>
@@ -584,12 +589,14 @@ const ordinalNoMes = d => Math.floor((d.getDate() - 1) / 7) + 1
 const MIN_REDACAO = 90            // por redacao escrita
 const REDACOES_SEMANA = 2
 // Tempo por aula, definido por ela em 08/09/2026, agora em partes:
-//   1h10 de aula + 15 questoes (45 min, os mesmos 3 min por questao da prova)
+//   1h10 de aula + 10 questoes (30 min, os mesmos 3 min por questao da prova)
 //   + 30 min de correcao = 2h25.
 // Os flashcards sairam da conta porque viraram bloco proprio na rotina (21h15).
 // Matematica usava 2h45 (estimativa minha de 18/08, base fraca); ela nao pediu
 // distincao agora, entao vale a mesma conta para todas as materias.
-const MIN_AULA = 70 + 45 + 30
+// 11/09/2026, decisao dela: 10 questoes em vez de 15 (30 min) + 30 min de
+// correcao. Se errar muito, mais 5 questoes — opcional, fora da conta.
+const MIN_AULA = 70 + 30 + 30
 const MIN_AULA_MAT = MIN_AULA
 // Dia com pelo menos 5h ganha uma aula de matematica na marra (ver distribuir).
 const MIN_DIA_MATEMATICA = 5 * 60
@@ -644,7 +651,10 @@ let REDACOES = [], USER = null
 // A rotina dela e os blocos marcados como feitos. Fica no Supabase (tabela
 // config, coluna horas_meta, que era jsonb e estava sem uso) para sincronizar
 // entre o tablet e o computador — localStorage nao serviria, ela estuda nos dois.
-let AGENDA = { rotina: null, grades: [], feitos: {}, recuperacao: [], congelados: {} }
+let AGENDA = { rotina: null, grades: [], feitos: {}, recuperacao: [], congelados: {}, blocosCongelados: {} }
+// O encaixe de 11/09 como ela o viu (versao publicada naquela manha, antes da
+// troca de 2h25 para 2h10 por aula), recalculado no harness.
+const SEMENTE_BLOCOS = { '2026-09-11': {"08:00|Estudo — bloco 1": [{"id": 589, "continua": false, "atravessa": true, "restam": 145}], "10:05|Estudo — bloco 2": [{"id": 589, "continua": true, "atravessa": false, "restam": 35}], "15:00|Estudo — bloco 4": [{"id": 2065, "continua": false, "atravessa": true, "restam": 145}], "17:05|Estudo — bloco 5": [{"id": 2065, "continua": true, "atravessa": false, "restam": 35}, {"id": 2776, "continua": false, "atravessa": false, "restam": 20}], "19:15|Estudo — bloco 6": [{"id": 2679, "continua": false, "atravessa": false, "restam": 60}, {"id": 2729, "continua": false, "atravessa": false, "restam": 55}]} }
 // O dia 10/09 como ela o viu de manha, antes das mudancas daquela noite. Nao ha
 // como congelar retroativamente pelo painel (ele so congela ao ser aberto), entao
 // a lista vem da versao publicada naquela manha, recalculada no harness.
@@ -818,7 +828,7 @@ function gravarCache () {
       progresso: [...PROG].map(([aula_id, status]) =>
         ({ aula_id, status, assistida_em: PROG_EM.get(aula_id) || null })),
       config: { grades: AGENDA.grades, feitos: AGENDA.feitos, recuperacao: AGENDA.recuperacao,
-        congelados: AGENDA.congelados }
+        congelados: AGENDA.congelados, blocosCongelados: AGENDA.blocosCongelados }
     }))
   } catch (e) { console.warn('cache nao gravou', e) }
 }
@@ -956,6 +966,7 @@ function pintarPainel () {
 function aplicarAgenda (g) {
   AGENDA.feitos = (g && g.feitos) || {}
   AGENDA.congelados = { ...SEMENTE_CONGELADOS, ...((g && g.congelados) || {}) }
+  AGENDA.blocosCongelados = { ...SEMENTE_BLOCOS, ...((g && g.blocosCongelados) || {}) }
   // Semente (11/09/2026): os dois assuntos que ela disse ter terminado e
   // continuar sem conseguir. Vale so ate ela salvar a primeira mudanca.
   AGENDA.recuperacao = (g && g.recuperacao) || [
@@ -978,7 +989,8 @@ async function salvarAgenda () {
   salvando = setTimeout(async () => {
     const { error } = await sb.from('config').upsert(
       { user_id: USER.id, horas_meta: { grades: AGENDA.grades, feitos: AGENDA.feitos,
-        recuperacao: AGENDA.recuperacao, congelados: AGENDA.congelados } },
+        recuperacao: AGENDA.recuperacao, congelados: AGENDA.congelados,
+        blocosCongelados: AGENDA.blocosCongelados } },
       { onConflict: 'user_id' })
     if (error) console.warn('nao salvou a rotina', error.message)
   }, 400)
@@ -1065,7 +1077,7 @@ function pintarHoje () {
   const dia = montarPlano().find(d => iso(d.data) === hoje)
   congelarDia(hoje, dia)
   const itens = (dia && dia.itens) || []
-  const mapa = encaixar(blocos, itens)
+  const mapa = mapaDoDia(hoje, blocos, itens)
   const feitos = AGENDA.feitos[hoje] || []
 
   const totEstudo = blocos.filter(x => x.t === 'estudo').reduce((t, x) => t + dur(x), 0)
@@ -1189,6 +1201,34 @@ function congelarDia (hoje, dia) {
   const lim = iso(new Date(Date.now() - 60 * 864e5))
   Object.keys(AGENDA.congelados).forEach(k => { if (k < lim) delete AGENDA.congelados[k] })
   salvarAgenda()
+}
+
+// A POSICAO de cada tarefa nos blocos congela junto com a lista (11/09/2026).
+// Congelar so a lista nao bastou: em 10/09 a lista ficou igual, mas trocar o
+// caderno de 90 min pela ficha de 30 mudou o encaixe, e a leitura que ela tinha
+// visto de manha para a noite apareceu em outro bloco a tarde. So recalcula se o
+// dia mudou por decisao dela (rotina editada) ou se entrou item de data propria.
+function mapaDoDia (hoje, blocos, itens) {
+  const salvo = (AGENDA.blocosCongelados || {})[hoje]
+  const chaves = blocos.filter(x => x.t === 'estudo').map(chaveBloco)
+  if (salvo) {
+    const ids = itens.map(a => a.id).sort().join()
+    const idsSalvos = Object.values(salvo).flat().filter(e => !e.continua).map(e => e.id).sort().join()
+    if (ids === idsSalvos && Object.keys(salvo).every(k => chaves.includes(k))) {
+      const porId = new Map(itens.map(a => [a.id, a]))
+      const mapa = new Map(chaves.map(k => [k, []]))
+      Object.entries(salvo).forEach(([k, l]) => l.forEach(e => mapa.get(k).push({ ...e, a: porId.get(e.id) })))
+      return mapa
+    }
+  }
+  const mapa = encaixar(blocos, itens)
+  AGENDA.blocosCongelados = { ...(AGENDA.blocosCongelados || {}), [hoje]: Object.fromEntries(
+    [...mapa].filter(([, l]) => l.length).map(([k, l]) => [k, l.map(({ a, continua, atravessa, restam }) =>
+      ({ id: a.id, continua: !!continua, atravessa: !!atravessa, restam }))])) }
+  const lim = iso(new Date(Date.now() - 60 * 864e5))
+  Object.keys(AGENDA.blocosCongelados).forEach(k => { if (k < lim) delete AGENDA.blocosCongelados[k] })
+  salvarAgenda()
+  return mapa
 }
 
 // ---------------------------------------------------------------- recuperacao
@@ -2090,7 +2130,7 @@ function pintarPlano () {
   const cabecaSobrou = dias.sobrou ? `
     <div class="aviso warn" style="margin-bottom:12px">
       <strong>${dias.sobrou} itens ficam de fora</strong> (${horas(dias.sobrouMin)}h).
-      Não é atraso nem dívida: é o que não cabe em ${Math.round((PROVA - new Date()) / 864e5)} dias. No seu ritmo real — 2h25 por aula (1h10 de vídeo + 15 questões + correção) —
+      Não é atraso nem dívida: é o que não cabe em ${Math.round((PROVA - new Date()) / 864e5)} dias. No seu ritmo real — 2h10 por aula (1h10 de vídeo + 10 questões + correção) —
       o material dos dois cursos é maior do que os dias que faltam. O plano acima já
       pega o que mais cai primeiro; o que sobra é o fim de cada fila:
       <div class="tiny" style="margin-top:6px">${dias.sobrouPorMateria.map(([m, n, min]) =>
