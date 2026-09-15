@@ -55,6 +55,17 @@
   "arquivo": "dossies/manual-do-metodo.pdf"
  },
  {
+  "slug": "repertorio-competencias-futuro",
+  "titulo": "Competências para o trabalho com IA",
+  "subtitulo": "Soft skills (Lucedile Antunes, org.) e O profissional do futuro (Michelle Schneider) — o que são, por que valem agora e as críticas",
+  "tipo": "repertorio",
+  "selo": "Repertório · Bibliografia oficial da entrevista ESPM",
+  "serve": "entrevista (critério BNCC, perguntas 1, 2 e 5) · redação (ESPM 2023-1 cobrou soft skills)",
+  "minutos": 60,
+  "fechado_em": "fechado em 15 de setembro de 2026",
+  "arquivo": "dossies/repertorio-competencias-futuro.pdf"
+ },
+ {
   "slug": "repertorio-han-sociedade-do-cansaco",
   "titulo": "Byung-Chul Han — Sociedade do cansaço",
   "subtitulo": "O repertório que serve à redação e à entrevista ao mesmo tempo",
@@ -75,5 +86,49 @@
   "minutos": 120,
   "fechado_em": "fechado em 10 de setembro de 2026",
   "arquivo": "dossies/repertorio-harari-nexus.pdf"
+ },
+ {
+  "slug": "repertorio-isaacson-inovadores",
+  "titulo": "Walter Isaacson — Os inovadores",
+  "subtitulo": "Como a revolução digital foi feita por equipes, e não por gênios solitários — de Ada Lovelace ao Google",
+  "tipo": "repertorio",
+  "selo": "Repertório · Bibliografia oficial da entrevista ESPM",
+  "serve": "entrevista (pergunta 2: inovação e criatividade) · redação (criatividade, trabalho, IA)",
+  "minutos": 60,
+  "fechado_em": "fechado em 15 de setembro de 2026",
+  "arquivo": "dossies/repertorio-isaacson-inovadores.pdf"
+ },
+ {
+  "slug": "repertorio-oneil-algoritmos",
+  "titulo": "Cathy O'Neil — Algoritmos de destruição em massa",
+  "subtitulo": "Como a matemática vendida como neutra passou a decidir quem estuda, trabalha, recebe crédito e vai preso",
+  "tipo": "repertorio",
+  "selo": "Repertório · Bibliografia oficial da entrevista ESPM",
+  "serve": "entrevista (edital) · redação · Humanidades (tecnologia, desigualdade, democracia)",
+  "minutos": 60,
+  "fechado_em": "fechado em 15 de setembro de 2026",
+  "arquivo": "dossies/repertorio-oneil-algoritmos.pdf"
+ },
+ {
+  "slug": "repertorio-schwab-quarta-revolucao",
+  "titulo": "Klaus Schwab — A quarta revolução industrial",
+  "subtitulo": "A tese de Davos sobre a velocidade da mudança — o que ela acertou, o que errou e o que ela esconde",
+  "tipo": "repertorio",
+  "selo": "Repertório · Bibliografia oficial da entrevista ESPM",
+  "serve": "entrevista (edital) · redação (trabalho, IA, desigualdade) · Humanidades (globalização, economia)",
+  "minutos": 60,
+  "fechado_em": "fechado em 15 de setembro de 2026",
+  "arquivo": "dossies/repertorio-schwab-quarta-revolucao.pdf"
+ },
+ {
+  "slug": "repertorio-wolf-cerebro-digital",
+  "titulo": "Maryanne Wolf — O cérebro no mundo digital",
+  "subtitulo": "O que acontece com a leitura profunda quando passamos a ler em telas — e o que fazer com isso",
+  "tipo": "repertorio",
+  "selo": "Repertório · Bibliografia oficial da entrevista ESPM",
+  "serve": "entrevista (edital) · redação (educação, leitura, telas) · Português",
+  "minutos": 60,
+  "fechado_em": "fechado em 15 de setembro de 2026",
+  "arquivo": "dossies/repertorio-wolf-cerebro-digital.pdf"
  }
 ]

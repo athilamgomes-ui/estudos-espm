@@ -176,7 +176,7 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
   <div class="leitor-barra">
     <button id="leitorVoltar" class="primary">← Voltar ao painel</button>
     <span id="leitorTitulo" class="small muted"></span>
-    <a id="leitorBaixar" class="small" download style="color:var(--accent)">Baixar PDF</a>
+    <button id="leitorEnviar" class="small">📤 Enviar para Livros / GoodNotes</button>
   </div>
   <div id="leitorPaginas"></div>
 </div>
@@ -1012,60 +1012,54 @@ function marcarBloco (dia, x, feito) {
   podarFeitos(); salvarAgenda()
 }
 
-// Encaixa as aulas do dia dentro dos blocos de estudo, na ordem. Uma aula de
-// 2h45 nao cabe num bloco de 1h50 — em vez de mentir, ela aparece no bloco em
-// que COMECA e leva a marca de que atravessa para o proximo.
-// Encaixa as aulas do dia nos blocos de estudo. Uma aula de 2h25 nao cabe num
-// bloco de 1h50, entao ela atravessa — mas so DENTRO da mesma sessao, ou seja,
-// blocos de estudo separados apenas por pausa. Atravessar a academia e o almoco
-// para voltar a mesma aula 4h depois nao e estudo, e interrupcao: nesse caso a
-// aula comeca na sessao seguinte e o bloco que sobrou fica como folga.
-function sessoesDe (blocos) {
+// Encaixe do dia nos blocos (reescrito em 15/09/2026).
+// Uma tarefa atravessa blocos so DENTRO da mesma sessao (blocos de estudo
+// separados apenas por pausa): cruzar academia e almoco e interrupcao, nao estudo.
+// Antes, um cursor unico andava pelo dia: quando a aula de 2h10 nao cabia no resto
+// da manha, pulava para a tarde e a manha ficava vazia ("Folga do plano" as 11h50),
+// enquanto as tarefas curtas (leitura, artigo) iam para a noite e a lista
+// transbordava para o bloco dos flashcards. Agora cada tarefa vai, na ordem, para
+// a PRIMEIRA sessao do dia onde cabe inteira — as curtas preenchem o buraco.
+// So recebem tarefa os blocos "Estudo — bloco N": os de nome proprio (Flashcards,
+// Fechar o dia) ficam reservados para o que o nome diz.
+const recebeTarefa = x => x.t === 'estudo' && /^Estudo — bloco/.test(x.n)
+
+function encaixar (blocos, itens) {
+  const mapa = new Map(blocos.filter(x => x.t === 'estudo').map(x => [chaveBloco(x), []]))
   const ses = []
   let atual = null
   blocos.forEach(x => {
-    if (x.t === 'estudo') {
-      if (!atual) { atual = []; ses.push(atual) }
-      atual.push(x)
+    if (recebeTarefa(x)) {
+      if (!atual) { atual = { blocos: [], bi: 0, usado: 0 }; ses.push(atual) }
+      atual.blocos.push(x)
     } else if (x.t !== 'pausa') atual = null
   })
-  return ses
-}
-
-function encaixar (blocos, itens) {
-  const ses = sessoesDe(blocos)
-  const mapa = new Map(blocos.filter(x => x.t === 'estudo').map(x => [chaveBloco(x), []]))
   if (!ses.length) return mapa
-  let si = 0, bi = 0, usado = 0
-  itens.forEach(a => {
-    let restante = minutosPlanejados(a), primeiro = true
-    // cabe no que resta desta sessao? se nao, e nao e a ultima, comeca na proxima
-    const restaSessao = () => ses[si].slice(bi).reduce((t, b2) => t + dur(b2), 0) - usado
-    if (restante > restaSessao() && si < ses.length - 1 && !primeiroDaSessaoVazio(mapa, ses[si])) {
-      si++; bi = 0; usado = 0
-    }
-    while (restante > 0 && si < ses.length) {
-      const blocos_ = ses[si]
-      const ultimo = bi >= blocos_.length - 1 && si >= ses.length - 1
-      const blk = blocos_[Math.min(bi, blocos_.length - 1)]
-      const cabe = dur(blk) - usado
-      const fimDaSessao = bi >= blocos_.length - 1
+  const livre = q => q.blocos.slice(q.bi).reduce((t, b2) => t + dur(b2), 0) - q.usado
+  const colocar = (q, a, restante) => {
+    let primeiro = true
+    while (restante > 0) {
+      const ultimo = q.bi >= q.blocos.length - 1
+      const blk = q.blocos[Math.min(q.bi, q.blocos.length - 1)]
+      const cabe = dur(blk) - q.usado
       const atravessa = restante > cabe && !ultimo
       mapa.get(chaveBloco(blk)).push({ a, continua: !primeiro, atravessa, restam: restante })
       if (!atravessa) {
-        usado += restante; restante = 0
-        if (!fimDaSessao && usado >= dur(blk)) { usado -= dur(blk); bi++ }
-        else if (fimDaSessao && usado >= dur(blk) && si < ses.length - 1) { si++; bi = 0; usado = 0 }
-        break
+        q.usado += restante
+        if (!ultimo && q.usado >= dur(blk)) { q.usado -= dur(blk); q.bi++ }
+        return
       }
-      restante -= cabe; usado = 0; primeiro = false
-      if (fimDaSessao) { si++; bi = 0 } else bi++
+      restante -= cabe; q.usado = 0; q.bi++; primeiro = false
     }
+  }
+  itens.forEach(a => {
+    const m = minutosPlanejados(a)
+    // nao cabe inteira em lugar nenhum: vai para a sessao com mais espaco
+    const q = ses.find(x => livre(x) >= m) || ses.reduce((p, x) => livre(x) > livre(p) ? x : p)
+    colocar(q, a, m)
   })
   return mapa
 }
-const primeiroDaSessaoVazio = (mapa, sessao) =>
-  sessao.every(b2 => !(mapa.get(chaveBloco(b2)) || []).length)
 
 let modoEditar = false
 
@@ -1148,7 +1142,7 @@ function pintarHoje () {
                  style="width:17px;height:17px;margin-top:2px;flex:none;accent-color:var(--accent)">`}
           <span class="nm"${principal && PROG.get(principal.a.id) === 'assistida' ? ' style="color:var(--ink3);text-decoration:line-through"' : ''}>${titulo}</span>
           ${principal ? `<span class="meta" style="margin-left:auto;padding-left:8px">
-            ${ehLista(principal.a) ? `<a class="tag ex" href="${principal.a.url}" target="_blank" rel="noopener">abrir PDF</a>` : ''}
+            ${(ehLista(principal.a) || /\.pdf$/i.test(principal.a.url || '')) && principal.a.url ? `<a class="tag ex" href="${principal.a.url}">abrir PDF</a>` : ''}
             ${ehLista(principal.a) && qtdQuestoes(principal.a) ? `<span class="tag" style="border-color:var(--warn);color:var(--warn)">⏱ ${qtdQuestoes(principal.a) * MIN_POR_QUESTAO} min</span>` : ''}
             <span class="num tiny">${hhmm(minutosPlanejados(principal.a))}</span></span>` : ''}
         </label>
@@ -1339,7 +1333,12 @@ function carregarPdfjs () {
 async function abrirLeitor (url, titulo) {
   const box = $('#leitorPaginas')
   $('#leitorTitulo').textContent = titulo || ''
-  $('#leitorBaixar').href = url
+  // O arquivo e baixado JA na abertura: no iPad a folha de compartilhamento so
+  // abre se for chamada no proprio toque do botao, sem espera no meio.
+  leitorUrl = url; leitorArquivo = null
+  fetch(url).then(r => r.blob()).then(b => {
+    leitorArquivo = new File([b], url.split('/').pop(), { type: 'application/pdf' })
+  }).catch(() => {})
   box.innerHTML = '<div class="vazio">Abrindo…</div>'
   $('#leitor').hidden = false
   document.body.style.overflow = 'hidden'
@@ -1385,13 +1384,28 @@ function fecharLeitor (voltarHistorico) {
   if (voltarHistorico) history.back()
 }
 $('#leitorVoltar').onclick = () => fecharLeitor(true)
+
+// "Baixar PDF" abria o arquivo numa tela sem volta no app do tablet (15/09/2026).
+// Agora o botao chama a folha de compartilhamento do iPad, de onde ela escolhe
+// Livros, GoodNotes ou Notability. No computador, onde nao ha folha, baixa.
+let leitorUrl = null, leitorArquivo = null
+$('#leitorEnviar').onclick = async () => {
+  const f = leitorArquivo
+  if (f && navigator.canShare && navigator.canShare({ files: [f] })) {
+    try { await navigator.share({ files: [f], title: f.name }) } catch (e) { /* ela cancelou */ }
+    return
+  }
+  const a = document.createElement('a')
+  a.href = leitorUrl; a.download = leitorUrl.split('/').pop(); a.dataset.baixar = '1'
+  document.body.appendChild(a); a.click(); a.remove()
+}
 window.addEventListener('popstate', () => fecharLeitor(false))
 
 // Um ouvinte so, para o painel inteiro: qualquer link para um PDF do proprio
 // site (listas, dossies, manual) abre no leitor. PDF de fora (edital) segue normal.
 document.addEventListener('click', e => {
   const a = e.target.closest && e.target.closest('a[href]')
-  if (!a || a.id === 'leitorBaixar') return
+  if (!a || a.dataset.baixar) return
   const href = a.getAttribute('href') || ''
   if (!/\.pdf([?#]|$)/i.test(href) || /^https?:/i.test(href)) return
   e.preventDefault()
