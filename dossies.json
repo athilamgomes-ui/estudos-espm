@@ -55,6 +55,17 @@
   "arquivo": "dossies/manual-do-metodo.pdf"
  },
  {
+  "slug": "padroes-espm",
+  "titulo": "Os padrões da ESPM",
+  "subtitulo": "O que a prova cobra, de quando são as notícias e o que isso prevê para 29 de novembro de 2026",
+  "tipo": "metodo",
+  "selo": "Como estudar · Análise das provas de 2019 a 2026",
+  "serve": "Humanidades (30 questões) · redação · entrevista",
+  "minutos": 50,
+  "fechado_em": "fechado em 16 de setembro de 2026",
+  "arquivo": "dossies/padroes-espm.pdf"
+ },
+ {
   "slug": "repertorio-competencias-futuro",
   "titulo": "Competências para o trabalho com IA",
   "subtitulo": "Soft skills (Lucedile Antunes, org.) e O profissional do futuro (Michelle Schneider) — o que são, por que valem agora e as críticas",
