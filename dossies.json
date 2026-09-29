@@ -66,6 +66,17 @@
   "arquivo": "dossies/padroes-espm.pdf"
  },
  {
+  "slug": "radar-politica-brasileira",
+  "titulo": "Política brasileira — de 2022 às urnas de outubro de 2026",
+  "subtitulo": "Radar de atualidades 1 · a cadeia causal inteira, os lados de cada debate e o treino",
+  "tipo": "radar",
+  "selo": "Radar 24 meses · Política brasileira e instituições",
+  "serve": "redação · entrevista · Humanidades (política brasileira, atualidades)",
+  "minutos": 150,
+  "fechado_em": "fechado em 29 de setembro de 2026",
+  "arquivo": "dossies/radar-politica-brasileira.pdf"
+ },
+ {
   "slug": "repertorio-competencias-futuro",
   "titulo": "Competências para o trabalho com IA",
   "subtitulo": "Soft skills (Lucedile Antunes, org.) e O profissional do futuro (Michelle Schneider) — o que são, por que valem agora e as críticas",
