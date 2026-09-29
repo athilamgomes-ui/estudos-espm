@@ -1986,6 +1986,7 @@ function distribuir (dias, filas, de, ate, intensidade, fixosPorDia, hoje0) {
 // O plano e estatico e caro de montar (dia a dia ate 29/11). Como agora tres
 // telas o leem, fica em cache; so a rotina o invalida — progresso nao muda plano.
 let planoCache = null
+let REMARCADOS = new Set()
 const invalidarPlano = () => { planoCache = null }
 function montarPlano (faixaMax = FAIXA_PADRAO) {
   if (faixaMax === FAIXA_PADRAO && planoCache) return planoCache
@@ -2056,8 +2057,15 @@ function montarPlanoRaw (faixaMax = FAIXA_PADRAO) {
     .map(([id, f]) => [MATERIAS.find(m => m.id === id)?.nome || id, f.fila.length,
       f.fila.reduce((t, a) => t + minutosPlanejados(a), 0)])
     .sort((a, b) => b[2] - a[2])
+  // Mutirao (29/09/2026): item que ela nao fez no dia dele mas que foi REMARCADO
+  // para um dia congelado la na frente nao e mais atraso — senao o painel acusa
+  // 60 aulas em atraso enquanto o mutirao esta justamente fazendo aquelas 60.
+  REMARCADOS = new Set(dias.filter(d => !d.passado).flatMap(d => d.itens.map(a => a.id)))
   dias.atrasadas = dias.filter(d => d.passado).flatMap(d =>
-    d.itens.filter(a => PROG.get(a.id) !== 'assistida').map(a => ({ a, data: d.data })))
+    d.itens.filter(a => PROG.get(a.id) !== 'assistida' && !REMARCADOS.has(a.id))
+      .map(a => ({ a, data: d.data })))
+  dias.remarcadas = dias.filter(d => d.passado).flatMap(d =>
+    d.itens.filter(a => PROG.get(a.id) !== 'assistida' && REMARCADOS.has(a.id))).length
   return dias
 }
 
@@ -2086,7 +2094,7 @@ function pintarPlano () {
     const feitos = todos.filter(a => PROG.get(a.id) === 'assistida').length
     const refino = s.dias.some(d => d.refino)
     const atrasadas = s.dias.filter(d => d.passado)
-      .flatMap(d => d.itens).filter(a => PROG.get(a.id) !== 'assistida').length
+      .flatMap(d => d.itens).filter(a => PROG.get(a.id) !== 'assistida' && !REMARCADOS.has(a.id)).length
     const atual = s.k === kSemanaAtual
     const passada = s.k < kSemanaAtual
     return `<details class="card mod"${atual || atrasadas ? ' open' : ''}>
@@ -2121,6 +2129,17 @@ function pintarPlano () {
   // O que ficou para trás nos dias que já passaram, junto e com a data original.
   // É o primeiro bloco da aba: ela vê o que era de ontem e não fez, e marca aqui.
   const atr = dias.atrasadas || []
+  // Mutirao de 30/09 a 15/10 (pedido dela em 29/09): o atraso nao fica solto
+  // para ela "ir encaixando" — cada item ganhou dia e hora nos dias congelados,
+  // uma frente por dia. Enquanto durar, conteudo novo nao entra.
+  const cabecaMutirao = dias.remarcadas ? `
+    <div class="aviso" style="margin-bottom:12px">
+      <strong>Mutirão: ${dias.remarcadas} itens do atraso já têm dia marcado.</strong>
+      De 30/09 a 15/10 o cronograma é só recuperação, uma frente por dia — redação, listas,
+      matemática, entrevista — com uma sessão de leitura e uma ficha de repertório por dia.
+      Conteúdo novo volta em 16/10. Eles aparecem nos dias novos abaixo e saíram da lista de atraso;
+      no dia original ficam marcados como <span class="tag">remarcada</span>.
+    </div>` : ''
   const cabecaAtraso = atr.length ? `
     <div class="aviso bad" style="margin-bottom:12px">
       <strong>${atr.length} ${atr.length > 1 ? 'aulas ficaram' : 'aula ficou'} em atraso.</strong>
@@ -2152,7 +2171,7 @@ function pintarPlano () {
         ou cortar assunto. Fale comigo qual você prefere.</div>
     </div>` : ''
 
-  $('#plano').innerHTML = cabecaAtraso + cabecaSobrou + html
+  $('#plano').innerHTML = cabecaMutirao + cabecaAtraso + cabecaSobrou + html
   $('#plano').querySelectorAll('input[type=checkbox]').forEach(c =>
     c.onchange = () => marcar(+c.dataset.id, c.checked))
 }
@@ -2177,7 +2196,8 @@ function item (a, passado) {
     <input type="checkbox" data-id="${a.id}"${feita ? ' checked' : ''}>
     <span class="t">${rotuloAula(a)}
       ${f ? `<span class="tiny" style="display:block">${f.assunto}</span>` : ''}</span>
-    <span class="meta">${passado && !feita ? '<span class="tag atraso">não feita</span>' : ''}
+    <span class="meta">${passado && !feita ? (REMARCADOS.has(a.id)
+      ? '<span class="tag">remarcada</span>' : '<span class="tag atraso">não feita</span>') : ''}
       ${ehLista(a) ? `<a class="tag ex" href="${a.url}" target="_blank" rel="noopener">abrir PDF</a>` : ''}
       ${ehLista(a) && qtdQuestoes(a) ? `<span class="tag" style="border-color:var(--warn);color:var(--warn)">⏱ ${qtdQuestoes(a) * MIN_POR_QUESTAO} min</span>` : ''}
       ${imp}
