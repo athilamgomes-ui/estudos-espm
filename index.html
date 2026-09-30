@@ -1567,6 +1567,10 @@ function pintarCronograma () {
       <div class="k">questões da prova em assuntos que você <em>encosta</em></div></div>
     <div class="card kpi"><div class="v num" style="color:var(--warn)">${Math.round(plano.profundidade * 80)} de 80</div>
       <div class="k">a mesma conta ponderada por <strong>quanto</strong> de cada assunto cabe</div></div>
+    <div class="card kpi"><div class="v num" style="color:${plano.ritmoReal >= 300 ? 'var(--ok)' : 'var(--bad)'}">${hhmm(Math.round(plano.ritmoReal))}</div>
+      <div class="k">seu ritmo real por dia útil (21 dias), pelo que você marcou</div></div>
+    <div class="card kpi"><div class="v num" style="color:var(--bad)">${Math.round(plano.projecao * 80)} de 80</div>
+      <div class="k">o que o plano entrega <strong>nesse</strong> ritmo</div></div>
     <div class="card kpi"><div class="v num">${(intensidade * 100).toFixed(0)}%</div>
       <div class="k">do seu dia ocupado</div></div>
     <div class="card kpi"><div class="v num">${Math.round(refino)}h</div>
@@ -1590,7 +1594,16 @@ function pintarCronograma () {
       ${Math.round(aulas)}h. As ${Math.round(falta)}h que ficam de fora <strong>não são dívida
       sua</strong>: é material que nunca caberia no tempo que existe. O que dá para decidir não é
       se sobra material — é <strong>qual</strong> material sobra. Essa conversa é comigo, não com
-      o cronograma: fale e eu mudo a ordem das filas.</div>`
+      o cronograma: fale e eu mudo a ordem das filas.</div>
+      <div class="tiny" style="margin-top:8px;padding-top:8px;border-top:1px solid var(--line)">
+      <strong>E tem um número que vale mais que todos os outros.</strong> Pelas suas marcações
+      dos últimos 21 dias, o seu ritmo real é de <strong>${hhmm(Math.round(plano.ritmoReal))} por dia útil</strong> —
+      o cronograma supõe cerca de 8h30. Nesse ritmo, o plano entrega
+      <strong>${Math.round(plano.projecao * 80)} das 80</strong>; a 6h por dia entrega
+      <strong>${Math.round(plano.projecao6h * 80)}</strong>; completo, ${Math.round(plano.profundidade * 80)}.
+      Ou seja: <strong>a hora a mais por dia vale muito mais do que qualquer mudança de ordem
+      que eu faça nas filas</strong>. Se você estuda e esquece de marcar, este número está baixo
+      à toa — marcar é o que faz o painel enxergar.</div>`
   } else {
     txt = `<strong>Fecha.</strong> As ${Math.round(aulas)}h de aula e lista cabem nas
       ${Math.round(sobra)}h que sobram depois da redação e dos simulados, ocupando
@@ -1987,6 +2000,36 @@ function distribuir (dias, filas, de, ate, intensidade, fixosPorDia, hoje0) {
 // telas o leem, fica em cache; so a rotina o invalida — progresso nao muda plano.
 let planoCache = null
 let REMARCADOS = new Set()
+
+// Quanto da prova o plano entrega SE ela estudar X minutos por dia util. Vai
+// consumindo os itens na ordem em que estao no cronograma, guardando o que
+// sobra de um dia para o outro (uma aula de 2h10 pode comecar num dia e
+// terminar no outro). E a resposta para "quanto vale uma hora a mais?".
+function coberturaNoRitmo (dias, totalPorAssunto, minDia) {
+  if (!minDia) return 0
+  const feito = new Map()
+  let banco = 0
+  dias.forEach(d => {
+    if (d.passado) {
+      d.itens.forEach(a => { if (a.assunto_id && PROG.get(a.id) === 'assistida')
+        feito.set(a.assunto_id, (feito.get(a.assunto_id) || 0) + minutosPlanejados(a)) })
+      return
+    }
+    banco += minDia
+    for (const a of d.itens) {
+      const m = minutosPlanejados(a)
+      if (m > banco) break
+      banco -= m
+      if (a.assunto_id) feito.set(a.assunto_id, (feito.get(a.assunto_id) || 0) + m)
+    }
+  })
+  let s = 0, tq = 0
+  FREQ.forEach((f, id) => { if (!f.n) return
+    tq += f.n
+    const t = totalPorAssunto.get(id) || 0
+    s += f.n * (t ? Math.min((feito.get(id) || 0) / t, 1) : 0) })
+  return tq ? s / tq : 0
+}
 const invalidarPlano = () => { planoCache = null }
 function montarPlano (faixaMax = FAIXA_PADRAO) {
   if (faixaMax === FAIXA_PADRAO && planoCache) return planoCache
@@ -2023,8 +2066,13 @@ function montarPlanoRaw (faixaMax = FAIXA_PADRAO) {
   // assustam sem informar, porque o que fica de fora é sempre o fim da fila — os
   // assuntos que menos caem. Aqui soma-se quantas questões (em 15 provas) valem
   // os assuntos que ela vai efetivamente estudar.
+  // 29/09/2026: dia que ja passou so conta se foi FEITO. Antes, item marcado
+  // para ontem e nao feito entrava na conta como se tivesse sido estudado — o
+  // painel dizia 53 de 80 enquanto a conta honesta dava 42,7. Ela cobrou o numero
+  // ("me preocupa bastante"), e um numero que mente para cima e pior que nenhum.
+  const valeNaConta = (d, a) => !d.passado || PROG.get(a.id) === 'assistida'
   const noPlano = new Set()
-  dias.forEach(d => d.itens.forEach(a => a.assunto_id && noPlano.add(a.assunto_id)))
+  dias.forEach(d => d.itens.forEach(a => a.assunto_id && valeNaConta(d, a) && noPlano.add(a.assunto_id)))
   let cobertas = 0, totalQ = 0
   FREQ.forEach((f, id) => {
     if (!f.n) return
@@ -2041,7 +2089,7 @@ function montarPlanoRaw (faixaMax = FAIXA_PADRAO) {
   // Aqui a mesma conta e ponderada por QUANTO de cada assunto cabe no plano:
   // um assunto com 6% da fila planejada vale 6% das suas questoes, nao 100%.
   const feitoPorAssunto = new Map()
-  dias.forEach(d => d.itens.forEach(a => { if (!a.assunto_id) return
+  dias.forEach(d => d.itens.forEach(a => { if (!a.assunto_id || !valeNaConta(d, a)) return
     feitoPorAssunto.set(a.assunto_id,
       (feitoPorAssunto.get(a.assunto_id) || 0) + minutosPlanejados(a)) }))
   let prof = 0
@@ -2051,6 +2099,21 @@ function montarPlanoRaw (faixaMax = FAIXA_PADRAO) {
     prof += f.n * (t ? Math.min((feitoPorAssunto.get(id) || 0) / t, 1) : 0)
   })
   dias.profundidade = totalQ ? prof / totalQ : 0
+
+  // RITMO REAL x RITMO PLANEJADO (29/09/2026). O plano supoe ~8,5h por dia util.
+  // Medido pelas marcacoes dos ultimos 21 dias, o ritmo real dela era 1h40. A
+  // diferenca entre 49 e 52 de 80 e ruido perto da diferenca entre 1h40 e 6h por
+  // dia — e so este cartao mostra isso. Se ela estuda e nao marca, o numero
+  // subestima: esta escrito na tela.
+  const corte = new Date(hoje0); corte.setDate(corte.getDate() - 21)
+  let minFeitos = 0
+  AULAS.forEach(a => { const em = PROG_EM.get(a.id)
+    if (em && new Date(em) >= corte) minFeitos += minutosPlanejados(a) })
+  let uteis = 0
+  for (const d = new Date(corte); d < hoje0; d.setDate(d.getDate() + 1)) if (d.getDay() !== 0) uteis++
+  dias.ritmoReal = uteis ? minFeitos / uteis : 0
+  dias.projecao = coberturaNoRitmo(dias, totalPorAssunto, dias.ritmoReal)
+  dias.projecao6h = coberturaNoRitmo(dias, totalPorAssunto, 360)
 
   dias.sobrouPorMateria = [...filas.entries()]
     .filter(([, f]) => f.fila.length)
@@ -2135,9 +2198,10 @@ function pintarPlano () {
   const cabecaMutirao = dias.remarcadas ? `
     <div class="aviso" style="margin-bottom:12px">
       <strong>Mutirão: ${dias.remarcadas} itens do atraso já têm dia marcado.</strong>
-      De 30/09 a 15/10 o cronograma é só recuperação, uma frente por dia — redação, listas,
+      De 30/09 a 16/10 o cronograma é só recuperação, uma frente por dia — redação, listas,
       matemática, entrevista — com uma sessão de leitura e uma ficha de repertório por dia.
-      Conteúdo novo volta em 16/10. Eles aparecem nos dias novos abaixo e saíram da lista de atraso;
+      O sábado 10/10 está livre (acampamento) e já foi descontado da conta. Conteúdo novo
+      volta em 17/10, com a meia-prova. Eles aparecem nos dias novos abaixo e saíram da lista de atraso;
       no dia original ficam marcados como <span class="tag">remarcada</span>.
     </div>` : ''
   const cabecaAtraso = atr.length ? `
