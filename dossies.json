@@ -1,5 +1,27 @@
 [
  {
+  "slug": "atualidades-01-eleicoes-2026",
+  "titulo": "Eleições brasileiras de 2026",
+  "subtitulo": "Radar 01 · como funciona o sistema, o que aconteceu no 1º turno e o que explica isso",
+  "tipo": "radar",
+  "selo": "Atualidades 01 · janela dez/2025 – nov/2026",
+  "serve": "Humanidades (política brasileira, instituições) · redação · entrevista",
+  "minutos": 110,
+  "fechado_em": "fechado em 7 de outubro de 2026 · 2º turno em 25/10, ainda não realizado",
+  "arquivo": "dossies/atualidades-01-eleicoes-2026.pdf"
+ },
+ {
+  "slug": "atualidades-02-stf-instituicoes",
+  "titulo": "STF e as instituições brasileiras",
+  "subtitulo": "Radar 02 · quem decide o quê, por que o Supremo virou protagonista e o que está em disputa",
+  "tipo": "radar",
+  "selo": "Atualidades 02 · janela dez/2025 – nov/2026",
+  "serve": "Humanidades (instituições, política brasileira) · redação · entrevista",
+  "minutos": 110,
+  "fechado_em": "fechado em 7 de outubro de 2026",
+  "arquivo": "dossies/atualidades-02-stf-instituicoes.pdf"
+ },
+ {
   "slug": "atualidades-eua-brasil",
   "titulo": "Os EUA de Trump, o tarifaço e o Brasil em 2026",
   "subtitulo": "Comércio, soberania e a eleição que acontece dois meses antes da sua prova",
@@ -53,6 +75,17 @@
   "minutos": 40,
   "fechado_em": "fechado em 9 de setembro de 2026",
   "arquivo": "dossies/manual-do-metodo.pdf"
+ },
+ {
+  "slug": "manual-do-sistema",
+  "titulo": "O sistema — como estudar de 7 de outubro a 29 de novembro",
+  "subtitulo": "O manual de operação: prioridades, rotina, regras de parada e recuperação",
+  "tipo": "manual",
+  "selo": "Manual · leia uma vez inteiro, depois só consulte",
+  "serve": "todos os dias · é o documento que manda",
+  "minutos": 60,
+  "fechado_em": "escrito em 7 de outubro de 2026 · 53 dias para a prova",
+  "arquivo": "dossies/manual-do-sistema.pdf"
  },
  {
   "slug": "padroes-espm",
