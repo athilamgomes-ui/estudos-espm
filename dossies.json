@@ -66,6 +66,17 @@
   "arquivo": "dossies/caderno-de-repertorios.pdf"
  },
  {
+  "slug": "entrevista-01-inovacao-criatividade",
+  "titulo": "A entrevista da ESPM — inovação e criatividade",
+  "subtitulo": "Entrevista 01 · as 5 questões do ANEXO I, a cadeia de raciocínio e os exercícios",
+  "tipo": "entrevista",
+  "selo": "Entrevista · 40 dos 160 pontos · eliminatória se faltar",
+  "serve": "entrevista (edital) · redação · repertório",
+  "minutos": 150,
+  "fechado_em": "escrito em 7 de outubro de 2026",
+  "arquivo": "dossies/entrevista-01-inovacao-criatividade.pdf"
+ },
+ {
   "slug": "manual-do-metodo",
   "titulo": "Manual do método",
   "subtitulo": "O passo a passo de cada tipo de tarefa, por escrito, para você nunca mais precisar lembrar",

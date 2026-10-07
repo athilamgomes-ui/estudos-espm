@@ -176,7 +176,9 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
   <div class="leitor-barra">
     <button id="leitorVoltar" class="primary">← Voltar ao painel</button>
     <span id="leitorTitulo" class="small muted"></span>
-    <button id="leitorEnviar" class="small">📤 Enviar para Livros / GoodNotes</button>
+    <a id="leitorAbrir" class="small" target="_blank" rel="noopener"
+       style="padding:7px 11px;border:1px solid var(--line);border-radius:8px;text-decoration:none;color:var(--ink)">📖 Abrir para Livros</a>
+    <button id="leitorEnviar" class="small">📤 Enviar para GoodNotes</button>
   </div>
   <div id="leitorPaginas"></div>
 </div>
@@ -1515,9 +1517,23 @@ async function abrirLeitor (url, titulo) {
   // O arquivo e baixado JA na abertura: no iPad a folha de compartilhamento so
   // abre se for chamada no proprio toque do botao, sem espera no meio.
   leitorUrl = url; leitorArquivo = null
-  fetch(url).then(r => r.blob()).then(b => {
-    leitorArquivo = new File([b], url.split('/').pop(), { type: 'application/pdf' })
-  }).catch(() => {})
+  const bEnv = $('#leitorEnviar'); const aAbr = $('#leitorAbrir')
+  if (aAbr) aAbr.href = url
+  if (bEnv) { bEnv.disabled = true; bEnv.textContent = '⏳ preparando…' }
+  // 07/10/2026: o arquivo so e considerado pronto depois de conferido. Ela
+  // relatou PDF salvo que abria em branco no app Arquivos — o que acontece
+  // quando a folha de compartilhamento e chamada antes de o download terminar,
+  // ou quando a resposta nao e um PDF (erro de rede devolve HTML). Agora o
+  // botao fica desabilitado ate os primeiros bytes serem "%PDF".
+  fetch(url).then(r => r.ok ? r.blob() : Promise.reject(new Error(r.status)))
+    .then(async b => {
+      const cab = new Uint8Array(await b.slice(0, 5).arrayBuffer())
+      const ehPdf = cab[0] === 0x25 && cab[1] === 0x50 && cab[2] === 0x44 && cab[3] === 0x46
+      if (!ehPdf || b.size < 1000) throw new Error('resposta não é PDF')
+      leitorArquivo = new File([b], url.split('/').pop(), { type: 'application/pdf' })
+      if (bEnv) { bEnv.disabled = false; bEnv.textContent = '📤 Enviar para GoodNotes' }
+    })
+    .catch(() => { if (bEnv) { bEnv.disabled = false; bEnv.textContent = '📤 Enviar' } })
   box.innerHTML = '<div class="vazio">Abrindo…</div>'
   $('#leitor').hidden = false
   document.body.style.overflow = 'hidden'
@@ -1574,9 +1590,9 @@ $('#leitorEnviar').onclick = async () => {
     try { await navigator.share({ files: [f], title: f.name }) } catch (e) { /* ela cancelou */ }
     return
   }
-  const a = document.createElement('a')
-  a.href = leitorUrl; a.download = leitorUrl.split('/').pop(); a.dataset.baixar = '1'
-  document.body.appendChild(a); a.click(); a.remove()
+  // Sem arquivo conferido: abre o PDF direto, de onde o proprio iPad oferece
+  // "Copiar para Livros". Melhor isso do que salvar um arquivo quebrado.
+  window.open(leitorUrl, '_blank', 'noopener')
 }
 window.addEventListener('popstate', () => fecharLeitor(false))
 
