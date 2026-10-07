@@ -211,8 +211,13 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
 
   <section id="hoje">
     <div id="hojeTopo" style="margin-bottom:14px"></div>
+    <div id="hojeFoco" style="margin-bottom:14px"></div>
     <div id="hojeRecuperacao"></div>
-    <div id="hojeLinha" class="card" style="overflow:hidden"></div>
+    <details id="hojeDetalhe" style="margin-bottom:4px">
+      <summary class="tiny" style="cursor:pointer;padding:6px 2px;color:var(--ink3)">
+        ver o dia inteiro em blocos (horários, pausas, academia)</summary>
+      <div id="hojeLinha" class="card" style="overflow:hidden;margin-top:8px"></div>
+    </details>
     <div id="hojeAmanha" style="margin-top:14px"></div>
     <p class="tiny" style="margin-top:12px">
       A rotina é sua e pode mudar: em <strong>Modelar rotina</strong> você ajusta horário,
@@ -485,100 +490,166 @@ const TIPOS = {
   compromisso: ['Compromisso','var(--bad)']
 }
 const b = (i, f, t, n, d) => ({ i, f, t, n, d: d || '' })
-const MANHA_LONGA = [
-  b('08:00', '09:50', 'estudo', 'Estudo — bloco 1', 'A matéria mais difícil do dia entra aqui: cérebro descansado'),
-  b('09:50', '10:05', 'pausa', 'Pausa de pé', 'Levantar, água, alongar. Sem celular — tela não descansa atenção'),
-  b('10:05', '11:00', 'estudo', 'Estudo — bloco 2')
+// ROTINA v3 — 07/10/2026. A v2 supunha 8h30 de estudo por dia; em 7 dias de
+// mutirao ela marcou ZERO. Nao foi falta de disciplina: um dia de 8h30 so
+// funciona no dia perfeito, e dia perfeito e raro. A v3 e desenhada para o dia
+// REAL dela: 5 blocos de 50 min, pausa de verdade entre eles, academia, ingles,
+// terapia e igreja como pontos fixos, lazer com hora marcada (porque episodio
+// entre blocos nunca acaba em um episodio) e nada pesado depois das 21h.
+// Meta: ~5h de estudo efetivo, contando a aula de ingles nos dias que tem.
+const BLOCO = 50                   // tamanho do bloco de estudo
+const MANHA = (acorda, fim_) => [
+  b(acorda, somar(acorda, 30), 'pessoal', 'Acordar, café e Bíblia',
+    'Se acordar mais tarde, pule para o bloco seguinte. O dia não quebra por isso — está previsto'),
+  b(somar(acorda, 30), somar(acorda, 60), 'pessoal', 'Sol e arrumar o quarto',
+    '10 min de luz natural logo cedo é o que mais firma o relógio do corpo — e relógio firme é menos ansiedade'),
+  b(somar(acorda, 60), fim_, 'pessoal', 'Banho e arrumar')
 ]
-const MANHA_EXTRA = [
-  b('08:00', '09:50', 'estudo', 'Estudo — bloco 1', 'A matéria mais difícil do dia entra aqui: cérebro descansado'),
-  b('09:50', '10:05', 'pausa', 'Pausa de pé', 'Levantar, água, alongar. Sem celular'),
-  b('10:05', '11:40', 'estudo', 'Estudo — bloco 2'),
-  b('11:40', '11:50', 'pausa', 'Pausa curta'),
-  b('11:50', '12:30', 'estudo', 'Estudo — bloco 3')
+const PAUSA = (i, f) => b(i, f, 'pausa', 'Pausa de pé',
+  'Levantar, água, alongar, janela. Sem tela — e sem episódio, que você sabe que não para em um')
+const ATUAL = (i, f) => b(i, f, 'estudo', 'Atualidades do dia — 15 min',
+  'Uma notícia, quatro perguntas: o que aconteceu, quem são os atores, onde, e o que veio antes que explica isso')
+const FECHAR = (i, f) => b(i, f, 'pessoal', 'Fechar o dia',
+  'Marcar o que fez, olhar o HOJE de amanhã e escrever a dúvida que ficou. 10 minutos')
+const DORMIR = [
+  b('21:30', '22:00', 'pessoal', 'Começar a desacelerar', 'Luz baixa, sem estudo. O sono é quando a memória do dia é gravada'),
+  b('22:00', '22:05', 'pessoal', 'Deitar')
 ]
-const TARDE_NOITE = [
-  b('15:00', '16:50', 'estudo', 'Estudo — bloco 4'),
-  b('16:50', '17:05', 'pausa', 'Pausa de pé'),
-  b('17:05', '18:30', 'estudo', 'Estudo — bloco 5'),
-  b('18:30', '19:15', 'refeicao', 'Jantar'),
-  b('19:15', '21:15', 'estudo', 'Estudo — bloco 6'),
-  b('21:15', '21:50', 'estudo', 'Flashcards do dia no Knowt', 'Só do que você estudou HOJE. É a hora que fixa memória'),
-  b('21:50', '22:00', 'pessoal', 'Fechar o dia', 'Olhar o de amanhã e escrever as dúvidas que ficaram'),
-  b('22:00', '23:00', 'pessoal', 'Leitura livre', 'Livro que NÃO é do vestibular. Desliga a cabeça do estudo'),
-  b('23:00', '23:05', 'pessoal', 'Dormir', 'Hora fixa. Sono é quando a memória do dia é gravada')
+function somar (hhmm_, min) {
+  const t = (+hhmm_.slice(0, 2)) * 60 + (+hhmm_.slice(3, 5)) + min
+  return String(Math.floor(t / 60)).padStart(2, '0') + ':' + String(t % 60).padStart(2, '0')
+}
+
+// Segunda e sexta: academia 11h + inglês 14h-15h30. Manhã leve de propósito.
+const diaAcademiaIngles = treino => [
+  ...MANHA('08:00', '09:30'),
+  b('09:30', '10:20', 'estudo', 'Estudo — bloco 1'),
+  b('10:20', '11:00', 'pessoal', 'Preparar e ir para a academia'),
+  b('11:00', '12:15', 'compromisso', `Academia — ${treino}`,
+    'Exercício regular é dos melhores remédios para ansiedade, e o corpo em movimento recupera a atenção da tarde'),
+  b('12:15', '13:15', 'refeicao', 'Almoço'),
+  b('13:15', '14:00', 'pessoal', 'Descanso de verdade', 'Deitar, música, o que quiser. Não é hora de estudar nem de sentir culpa'),
+  b('14:00', '15:30', 'compromisso', 'Inglês — aula particular',
+    'Se a professora mudar o horário, é só me avisar que eu remonto a semana — não é quebra de plano'),
+  PAUSA('15:30', '15:45'),
+  b('15:45', '16:35', 'estudo', 'Estudo — bloco 2'),
+  PAUSA('16:35', '16:45'),
+  b('16:45', '17:35', 'estudo', 'Estudo — bloco 3'),
+  PAUSA('17:35', '17:50'),
+  b('17:50', '18:40', 'estudo', 'Estudo — bloco 4'),
+  b('18:40', '19:20', 'refeicao', 'Jantar'),
+  ATUAL('19:20', '19:35'),
+  b('19:35', '21:20', 'pessoal', 'Lazer planejado',
+    'Série, dorama, TikTok, música — com hora para começar porque assim tem hora para acabar'),
+  FECHAR('21:20', '21:30'),
+  ...DORMIR
 ]
-const ABERTURA = [
-  b('06:45', '07:10', 'pessoal', 'Acordar e devocional', 'Faça na varanda ou perto da janela: 10 min de luz natural logo ao acordar é o que mais firma o relógio do corpo — e relógio firme é menos ansiedade'),
-  b('07:10', '07:45', 'pessoal', 'Banho e arrumar'),
-  b('07:45', '08:00', 'refeicao', 'Café da manhã')
+
+// Quarta: academia 11h, sem inglês.
+const diaAcademia = treino => [
+  ...MANHA('08:00', '09:30'),
+  b('09:30', '10:20', 'estudo', 'Estudo — bloco 1'),
+  b('10:20', '11:00', 'pessoal', 'Preparar e ir para a academia'),
+  b('11:00', '12:15', 'compromisso', `Academia — ${treino}`),
+  b('12:15', '13:15', 'refeicao', 'Almoço'),
+  b('13:15', '14:00', 'pessoal', 'Descanso de verdade'),
+  b('14:00', '14:50', 'estudo', 'Estudo — bloco 2'),
+  PAUSA('14:50', '15:05'),
+  b('15:05', '15:55', 'estudo', 'Estudo — bloco 3'),
+  PAUSA('15:55', '16:10'),
+  b('16:10', '17:00', 'estudo', 'Estudo — bloco 4'),
+  PAUSA('17:00', '17:15'),
+  b('17:15', '18:05', 'estudo', 'Estudo — bloco 5'),
+  ATUAL('18:05', '18:20'),
+  b('18:30', '19:10', 'refeicao', 'Jantar'),
+  b('19:10', '21:20', 'pessoal', 'Lazer planejado', 'Hora marcada para começar e para acabar'),
+  FECHAR('21:20', '21:30'),
+  ...DORMIR
 ]
+
+// Terça: dia mais livre da semana, manhã inteira disponível.
+const diaLivre = [
+  ...MANHA('08:00', '09:30'),
+  b('09:30', '10:20', 'estudo', 'Estudo — bloco 1'),
+  PAUSA('10:20', '10:35'),
+  b('10:35', '11:25', 'estudo', 'Estudo — bloco 2'),
+  PAUSA('11:25', '11:40'),
+  b('11:40', '12:30', 'estudo', 'Estudo — bloco 3'),
+  b('12:30', '13:30', 'refeicao', 'Almoço'),
+  b('13:30', '14:15', 'pessoal', 'Descanso de verdade'),
+  b('14:15', '15:05', 'estudo', 'Estudo — bloco 4'),
+  PAUSA('15:05', '15:20'),
+  b('15:20', '16:10', 'estudo', 'Estudo — bloco 5'),
+  ATUAL('16:10', '16:25'),
+  b('16:25', '18:30', 'pessoal', 'Lazer planejado', 'A tarde é sua. Hora marcada para começar e para acabar'),
+  b('18:30', '19:10', 'refeicao', 'Jantar'),
+  b('19:10', '20:00', 'estudo', 'Estudo — bloco 6'),
+  b('20:00', '21:20', 'pessoal', 'Noite livre'),
+  FECHAR('21:20', '21:30'),
+  ...DORMIR
+]
+
+// Quinta: terapia 8h-9h. Nada obrigatório antes dela.
+const diaTerapia = [
+  b('07:15', '07:45', 'pessoal', 'Acordar, café e Bíblia'),
+  b('07:45', '08:00', 'pessoal', 'Arrumar'),
+  b('08:00', '09:00', 'compromisso', 'Terapia'),
+  b('09:00', '09:45', 'pessoal', 'Sol, banho e respirar'),
+  b('09:45', '10:35', 'estudo', 'Estudo — bloco 1'),
+  PAUSA('10:35', '10:50'),
+  b('10:50', '11:40', 'estudo', 'Estudo — bloco 2'),
+  PAUSA('11:40', '11:55'),
+  b('11:55', '12:45', 'estudo', 'Estudo — bloco 3'),
+  b('12:45', '13:45', 'refeicao', 'Almoço'),
+  b('13:45', '14:30', 'pessoal', 'Descanso de verdade'),
+  b('14:30', '15:20', 'estudo', 'Estudo — bloco 4'),
+  PAUSA('15:20', '15:35'),
+  b('15:35', '16:25', 'estudo', 'Estudo — bloco 5'),
+  ATUAL('16:25', '16:40'),
+  b('16:40', '18:00', 'pessoal', 'Lazer planejado'),
+  b('18:00', '18:45', 'pessoal', 'Corrida', 'Leve, sem cronômetro — as pernas estão a 72h da academia de segunda'),
+  b('18:45', '19:25', 'refeicao', 'Banho e jantar'),
+  b('19:25', '20:15', 'estudo', 'Estudo — bloco 6'),
+  b('20:15', '21:20', 'pessoal', 'Noite livre'),
+  FECHAR('21:20', '21:30'),
+  ...DORMIR
+]
+
 const ROTINA_PADRAO = {
   0: [
-    b('07:15', '07:30', 'pessoal', 'Acordar'),
-    b('07:30', '08:15', 'pessoal', 'Corrida', 'A mais longa da semana, e a única de manhã: sol + movimento cedo é a melhor combinação que existe contra ansiedade'),
-    b('08:15', '08:45', 'pessoal', 'Banho e café'),
-    b('09:00', '10:30', 'pessoal', 'Devocional / igreja'),
-    b('10:30', '19:00', 'pessoal', 'Domingo livre', 'Descanso de verdade — é isso que faz a semana render'),
-    b('19:00', '19:20', 'pessoal', 'Planejar a semana', 'Olhar o cronograma e escolher onde encaixar o que ficou para trás'),
-    b('19:20', '22:30', 'pessoal', 'Noite livre'),
-    b('22:30', '22:35', 'pessoal', 'Dormir')
+    b('08:30', '09:30', 'pessoal', 'Acordar, café e Bíblia', 'Domingo começa devagar de propósito'),
+    b('09:30', '12:00', 'pessoal', 'Manhã livre', 'Se — e só se — você quiser, um bloco leve de 50 min cabe aqui. Não é tarefa'),
+    b('12:00', '13:00', 'refeicao', 'Almoço'),
+    b('13:00', '17:00', 'pessoal', 'Domingo livre', 'Descanso de verdade — é isto que faz a semana render, e está no plano'),
+    b('17:00', '19:00', 'compromisso', 'Igreja'),
+    b('19:00', '19:20', 'pessoal', 'Planejar a semana', 'Só olhar o HOJE de amanhã. Dois minutos, não duas horas'),
+    b('19:20', '21:30', 'pessoal', 'Noite livre'),
+    ...DORMIR
   ],
-  1: null, 3: null, 5: null, 2: null, 4: null,   // montados abaixo
+  1: null, 2: null, 3: null, 4: null, 5: null,
   6: [
-    b('06:30', '07:00', 'pessoal', 'Acordar e devocional', 'Na varanda ou perto da janela, pela luz natural'),
-    b('07:00', '07:20', 'pessoal', 'Banho e arrumar'),
-    b('07:20', '07:30', 'refeicao', 'Café da manhã'),
-    b('07:30', '09:20', 'estudo', 'Estudo — bloco 1'),
-    b('09:20', '09:35', 'pausa', 'Pausa de pé'),
-    b('09:35', '11:15', 'estudo', 'Estudo — bloco 2'),
-    b('11:15', '11:30', 'pausa', 'Pausa de pé'),
-    b('11:30', '13:00', 'estudo', 'Estudo — bloco 3'),
-    b('13:00', '14:00', 'refeicao', 'Almoço'),
-    b('14:00', '15:40', 'estudo', 'Estudo — bloco 4'),
-    b('15:40', '15:55', 'pausa', 'Pausa de pé'),
-    b('15:55', '17:00', 'estudo', 'Estudo — bloco 5'),
-    b('17:00', '18:30', 'estudo', 'Estudo — bloco 6'),
-    b('18:30', '19:15', 'refeicao', 'Jantar'),
-    b('19:15', '20:00', 'estudo', 'Flashcards + fechar a semana', 'Flashcards do que viu na semana e olhar o que ficou para trás'),
-    b('20:00', '23:00', 'pessoal', 'Noite livre'),
-    b('23:00', '23:05', 'pessoal', 'Dormir')
+    b('08:30', '09:30', 'pessoal', 'Acordar, café e Bíblia'),
+    b('09:30', '10:20', 'estudo', 'Estudo — bloco 1'),
+    PAUSA('10:20', '10:35'),
+    b('10:35', '11:25', 'estudo', 'Estudo — bloco 2'),
+    PAUSA('11:25', '11:40'),
+    b('11:40', '12:30', 'estudo', 'Estudo — bloco 3'),
+    b('12:30', '13:45', 'refeicao', 'Almoço e descanso'),
+    b('13:45', '14:35', 'estudo', 'Estudo — bloco 4'),
+    PAUSA('14:35', '14:50'),
+    b('14:50', '15:40', 'estudo', 'Estudo — bloco 5'),
+    ATUAL('15:40', '15:55'),
+    b('15:55', '16:25', 'estudo', 'Fechar a semana',
+      'O checklist de 6 perguntas. É o único momento da semana em que você olha para trás'),
+    b('16:25', '22:00', 'pessoal', 'Sábado livre', 'A partir daqui o dia é seu. Sábado não é dia de punição'),
+    ...DORMIR
   ]
 }
-// Seg/qua/sex: academia das 11h as 12h, treino na ordem que ela faz.
-const diaComAcademia = treino => [...ABERTURA, ...MANHA_LONGA,
-  b('11:00', '12:00', 'pessoal', `Academia — ${treino}`, 'Exercício regular é dos melhores remédios para ansiedade; e o corpo em movimento recupera a atenção para a tarde'),
-  b('12:00', '13:00', 'refeicao', 'Almoço'),
-  b('13:00', '15:00', 'pessoal', 'Descanso de verdade', 'Série, deitar, o que quiser. Não é hora de estudar nem de sentir culpa'),
-  ...TARDE_NOITE]
-ROTINA_PADRAO[1] = diaComAcademia('perna')
-ROTINA_PADRAO[3] = diaComAcademia('braço')
-ROTINA_PADRAO[5] = diaComAcademia('perna e braço')
-
-// Ter/qui: manha longa (ate 12h30). A corrida do meio da semana fica na QUINTA,
-// nao na terca: perna e segunda e sexta, e a dor muscular tardia (DOMS) tem pico
-// entre 24h e 48h depois — terca 18h30 cai bem no pico da segunda. Quinta esta a
-// 72h da perna de segunda e a 16h da de sexta (folga de sobra dos dois lados).
-// Horario: 18h30 termina 19h10, quase 4h antes de dormir — exercicio moderado
-// nessa distancia nao atrapalha o sono e a melhora de atencao cai justo no
-// bloco de estudo das 19h50.
-const diaLongoManha = comCorrida => [...ABERTURA, ...MANHA_EXTRA,
-  b('12:30', '13:30', 'refeicao', 'Almoço'),
-  b('13:30', '15:00', 'pessoal', 'Descanso de verdade', 'Série, deitar, o que quiser'),
-  ...(comCorrida ? [
-    b('15:00', '16:50', 'estudo', 'Estudo — bloco 4'),
-    b('16:50', '17:05', 'pausa', 'Pausa de pé'),
-    b('17:05', '18:30', 'estudo', 'Estudo — bloco 5'),
-    b('18:30', '19:10', 'pessoal', 'Corrida', 'Leve, sem cronômetro. Pernas descansadas: a última de perna foi segunda'),
-    b('19:10', '19:50', 'refeicao', 'Banho e jantar'),
-    b('19:50', '21:25', 'estudo', 'Estudo — bloco 6'),
-    b('21:25', '21:55', 'estudo', 'Flashcards do dia no Knowt', 'Só do que você estudou HOJE. É a hora que fixa memória'),
-    b('21:55', '22:05', 'pessoal', 'Fechar o dia', 'Olhar o de amanhã e escrever as dúvidas que ficaram'),
-    b('22:05', '23:00', 'pessoal', 'Leitura livre', 'Livro que NÃO é do vestibular'),
-    b('23:00', '23:05', 'pessoal', 'Dormir', 'Hora fixa. Sono é quando a memória do dia é gravada')
-  ] : TARDE_NOITE)]
-ROTINA_PADRAO[2] = diaLongoManha(false)
-ROTINA_PADRAO[4] = diaLongoManha(true)
+ROTINA_PADRAO[1] = diaAcademiaIngles('perna')
+ROTINA_PADRAO[3] = diaAcademia('braço')
+ROTINA_PADRAO[5] = diaAcademiaIngles('perna e braço')
+ROTINA_PADRAO[2] = diaLivre
+ROTINA_PADRAO[4] = diaTerapia
 
 const hm = t => (+t.slice(0, 2)) * 60 + (+t.slice(3, 5))
 const dur = x => hm(x.f) - hm(x.i)
@@ -597,7 +668,10 @@ const REDACOES_SEMANA = 2
 const MIN_AULA = 70 + 30 + 30
 const MIN_AULA_MAT = MIN_AULA
 // Dia com pelo menos 5h ganha uma aula de matematica na marra (ver distribuir).
-const MIN_DIA_MATEMATICA = 5 * 60
+// 07/10/2026: com dias de ~4h30 o antigo piso de 5h nunca era atingido e a
+// matematica deixava de entrar todo dia. Ela gosta de matematica e usa como
+// porta de entrada nos dias de pouca motivacao — entao tem de caber sempre.
+const MIN_DIA_MATEMATICA = 3 * 60
 // As 4 ultimas semanas nao levam aula nova: sao de resolver questao, corrigir e
 // simular. Os itens dessa fase ficam no curso 'refino', com data propria.
 const SEMANAS_REFINO = 4
@@ -620,7 +694,10 @@ const INICIO_REFINO = new Date(PROVA - SEMANAS_REFINO * 6048e5)
 const INICIO_PLANO = new Date('2026-09-09T00:00:00-03:00')
 // Ate a faixa 2 cabe no tempo e cobre 80% das questoes da prova; a faixa 3
 // (cauda) e revisada na fase de refino.
-const FAIXA_PADRAO = 2
+// Faixa 3 (C) entra no plano desde 07/10/2026, mas em 45 min de revisao
+// objetiva, nao em 2h10 de aula: reconhecer e o suficiente para o que cai pouco.
+const FAIXA_PADRAO = 3
+const EPOCA_V3 = '2026-10-07'
 // O dia nunca nasce 100% cheio. Um plano sem folga transforma qualquer
 // imprevisto em divida, e divida vira bola de neve — foi o que aconteceu nas
 // duas primeiras semanas. 15% do dia fica livre para respirar e recuperar.
@@ -649,7 +726,7 @@ let REDACOES = [], USER = null
 // A rotina dela e os blocos marcados como feitos. Fica no Supabase (tabela
 // config, coluna horas_meta, que era jsonb e estava sem uso) para sincronizar
 // entre o tablet e o computador — localStorage nao serviria, ela estuda nos dois.
-let AGENDA = { rotina: null, grades: [], feitos: {}, recuperacao: [], congelados: {}, blocosCongelados: {} }
+let AGENDA = { rotina: null, grades: [], feitos: {}, dificil: {}, recuperacao: [], congelados: {}, blocosCongelados: {} }
 // O encaixe de 11/09 como ela o viu (versao publicada naquela manha, antes da
 // troca de 2h25 para 2h10 por aula), recalculado no harness.
 const SEMENTE_BLOCOS = { '2026-09-11': {"08:00|Estudo — bloco 1": [{"id": 589, "continua": false, "atravessa": true, "restam": 145}], "10:05|Estudo — bloco 2": [{"id": 589, "continua": true, "atravessa": false, "restam": 35}], "15:00|Estudo — bloco 4": [{"id": 2065, "continua": false, "atravessa": true, "restam": 145}], "17:05|Estudo — bloco 5": [{"id": 2065, "continua": true, "atravessa": false, "restam": 35}, {"id": 2776, "continua": false, "atravessa": false, "restam": 20}], "19:15|Estudo — bloco 6": [{"id": 2679, "continua": false, "atravessa": false, "restam": 60}, {"id": 2729, "continua": false, "atravessa": false, "restam": 55}]} }
@@ -825,7 +902,7 @@ function gravarCache () {
       aulas: AULAS, redacoes: REDACOES, prioridades: PRI_BRUTO,
       progresso: [...PROG].map(([aula_id, status]) =>
         ({ aula_id, status, assistida_em: PROG_EM.get(aula_id) || null })),
-      config: { grades: AGENDA.grades, feitos: AGENDA.feitos, recuperacao: AGENDA.recuperacao,
+      config: { grades: AGENDA.grades, feitos: AGENDA.feitos, dificil: AGENDA.dificil, recuperacao: AGENDA.recuperacao,
         congelados: AGENDA.congelados, blocosCongelados: AGENDA.blocosCongelados }
     }))
   } catch (e) { console.warn('cache nao gravou', e) }
@@ -963,6 +1040,7 @@ function pintarPainel () {
 // a rotina escrita e o remedio, nao o enfeite.
 function aplicarAgenda (g) {
   AGENDA.feitos = (g && g.feitos) || {}
+  AGENDA.dificil = (g && g.dificil) || {}
   AGENDA.congelados = { ...SEMENTE_CONGELADOS, ...((g && g.congelados) || {}) }
   AGENDA.blocosCongelados = { ...SEMENTE_BLOCOS, ...((g && g.blocosCongelados) || {}) }
   // Semente (11/09/2026): os dois assuntos que ela disse ter terminado e
@@ -975,6 +1053,13 @@ function aplicarAgenda (g) {
     { desde: '2026-08-19', legado: true },
     { desde: '2026-09-08', rotina: estruturado(ROTINA_PADRAO) }
   ]
+  // ROTINA v3 (07/10/2026): a grade salva no banco ainda e a v2, de 8h30 por dia,
+  // que em 7 dias de mutirao rendeu zero item marcado. A nova epoca entra sozinha
+  // na proxima vez que o painel abrir e passa a valer de 07/10 em diante; os dias
+  // anteriores continuam com a grade antiga, como manda o plano estatico.
+  if (!AGENDA.grades.some(x => x.desde === EPOCA_V3)) {
+    AGENDA.grades = [...AGENDA.grades, { desde: EPOCA_V3, rotina: estruturado(ROTINA_PADRAO) }]
+  }
   const ult = AGENDA.grades[AGENDA.grades.length - 1]
   AGENDA.rotina = ult.rotina || estruturado(ROTINA_PADRAO)
 }
@@ -988,7 +1073,7 @@ async function salvarAgenda () {
     const { error } = await sb.from('config').upsert(
       { user_id: USER.id, horas_meta: { grades: AGENDA.grades, feitos: AGENDA.feitos,
         recuperacao: AGENDA.recuperacao, congelados: AGENDA.congelados,
-        blocosCongelados: AGENDA.blocosCongelados } },
+        blocosCongelados: AGENDA.blocosCongelados, dificil: AGENDA.dificil } },
       { onConflict: 'user_id' })
     if (error) console.warn('nao salvou a rotina', error.message)
   }, 400)
@@ -1181,7 +1266,103 @@ function pintarHoje () {
   })
   $('#hojeLinha').querySelectorAll('input[data-id]').forEach(c =>
     c.onchange = () => marcar(+c.dataset.id, c.checked))
+  pintarFoco(hoje, itens, blocos)
   pintarRecuperacao()
+}
+
+// ------------------------------------------------------------------ O SEU HOJE
+// 07/10/2026, pedido dela: "nao quero abrir o painel e ver centenas de tarefas".
+// Esta camada mostra no maximo CINCO linhas — principal, matematica/questoes,
+// secundaria, atualidades e opcional — e o dia inteiro em blocos vira um
+// <details> fechado embaixo. O resto do painel continua completo nas outras abas.
+const DIFICIL = {}
+function diaDificil (hoje) { return !!(AGENDA.dificil || {})[hoje] }
+function pintarFoco (hoje, itens, blocos) {
+  const box = $('#hojeFoco')
+  if (!box) return
+  const dificil = diaDificil(hoje)
+  const feito = a => PROG.get(a.id) === 'assistida'
+  const mat = itens.filter(a => a.materia_id === 'matematica')
+  const outros = itens.filter(a => a.materia_id !== 'matematica' && !ehFicha(a) && !ehLembrete(a))
+  const fichas = itens.filter(a => ehFicha(a) || ehLembrete(a))
+
+  const linhas = []
+  if (outros[0]) linhas.push({ r: 'Principal', a: outros[0], c: 'var(--bad)' })
+  if (mat[0]) linhas.push({ r: 'Matemática / questões', a: mat[0], c: 'var(--accent)' })
+  if (!dificil && outros[1]) linhas.push({ r: 'Secundária', a: outros[1], c: 'var(--warn)' })
+  if (fichas[0]) linhas.push({ r: ehFicha(fichas[0]) ? 'Repertório' : 'Lembrete', a: fichas[0], c: 'var(--ok)' })
+  const blocoAtual = (blocos || []).find(x => x.t === 'estudo' && x.n.startsWith('Atualidades'))
+  const atualFeito = blocoAtual && (AGENDA.feitos[hoje] || []).includes(chaveBloco(blocoAtual))
+  const sobra = itens.filter(a => !linhas.some(l => l.a.id === a.id))
+  const nucleo = linhas
+  const prontos = nucleo.filter(l => feito(l.a)).length
+  const cumprido = nucleo.length && prontos >= (dificil ? Math.min(2, nucleo.length) : nucleo.length) &&
+    (!blocoAtual || atualFeito || dificil)
+
+  box.innerHTML = `
+    <div class="card" style="padding:16px;border:1px solid ${cumprido ? 'var(--ok)' : 'var(--line)'}">
+      <div class="row" style="justify-content:space-between;align-items:baseline;margin-bottom:4px">
+        <strong style="font-size:15px;letter-spacing:.3px">O SEU HOJE</strong>
+        <button id="bDificil" class="small">${dificil ? '↩︎ voltar ao dia normal' : 'hoje está difícil'}</button>
+      </div>
+      <div class="tiny muted" style="margin-bottom:11px">${dificil
+        ? 'Versão mínima: faça estas duas e o dia está cumprido. Sem dívida, sem culpa — é para isso que este botão existe.'
+        : `${nucleo.length + (blocoAtual ? 1 : 0)} tarefas, nada além disso. Fez estas, o dia está cumprido — o que vier depois é lucro.`}</div>
+      ${linhas.length ? linhas.map((l, i) => `
+        <label style="display:flex;gap:10px;align-items:flex-start;cursor:pointer;padding:9px 0;
+               border-top:${i ? '1px solid var(--line)' : 'none'}">
+          <input type="checkbox" data-foco="${l.a.id}"${feito(l.a) ? ' checked' : ''}
+            style="width:19px;height:19px;margin-top:2px;flex:none;accent-color:var(--accent)">
+          <span style="flex:1">
+            <span class="tiny" style="color:${l.c};letter-spacing:.5px;text-transform:uppercase">${l.r}</span>
+            <div class="${feito(l.a) ? 'muted' : ''}" style="${feito(l.a) ? 'text-decoration:line-through' : ''};margin-top:1px">${rotuloAula(l.a)}</div>
+            <div class="tiny muted" style="margin-top:2px">${dificil && l.r === 'Principal'
+              ? 'hoje, só os primeiros 30 a 40 min — parar aqui é cumprir'
+              : dificil && l.r.startsWith('Matemática')
+              ? 'hoje, 20 a 30 min de questões — sem terminar a aula'
+              : hhmm(minutosPlanejados(l.a))}${(ehLista(l.a) || /\.pdf$/i.test(l.a.url || '')) && l.a.url
+              ? ` · <a href="${l.a.url}" target="_blank" rel="noopener" style="color:var(--accent)">abrir PDF</a>` : ''}</div>
+          </span>
+        </label>`).join('') : '<div class="tiny muted">Nada planejado para hoje. Dia de descanso.</div>'}
+      ${blocoAtual ? `
+        <label style="display:flex;gap:10px;align-items:flex-start;cursor:pointer;padding:9px 0;border-top:1px solid var(--line)">
+          <input type="checkbox" data-bloco="${chaveBloco(blocoAtual)}"${atualFeito ? ' checked' : ''}
+            style="width:19px;height:19px;margin-top:2px;flex:none;accent-color:var(--accent)">
+          <span style="flex:1">
+            <span class="tiny" style="color:var(--ok);letter-spacing:.5px;text-transform:uppercase">Atualidades · 15 min</span>
+            <div class="${atualFeito ? 'muted' : ''}" style="${atualFeito ? 'text-decoration:line-through' : ''};margin-top:1px">Uma notícia, quatro perguntas</div>
+            <div class="tiny muted" style="margin-top:2px">O que aconteceu · quem são os atores · onde · o que veio antes que explica isso.
+              <a href="#" data-aba="atualidades" style="color:var(--accent)">abrir Atualidades</a></div>
+          </span>
+        </label>` : ''}
+      ${!dificil && sobra.length ? `
+        <details style="margin-top:10px;border-top:1px solid var(--line);padding-top:9px">
+          <summary class="tiny" style="cursor:pointer;color:var(--ink3)">Opcional — ${sobra.length} ${sobra.length === 1 ? 'tarefa' : 'tarefas'}, só se sobrar tempo</summary>
+          ${sobra.map(a => `<label style="display:flex;gap:9px;align-items:flex-start;cursor:pointer;padding:6px 0 0">
+            <input type="checkbox" data-foco="${a.id}"${feito(a) ? ' checked' : ''}
+              style="width:16px;height:16px;margin-top:2px;flex:none;accent-color:var(--accent)">
+            <span class="small${feito(a) ? ' muted' : ''}" style="${feito(a) ? 'text-decoration:line-through' : ''}">${rotuloAula(a)}
+              <span class="tiny"> · ${hhmm(minutosPlanejados(a))}</span></span></label>`).join('')}
+        </details>` : ''}
+      ${cumprido ? '<div class="tiny" style="margin-top:11px;color:var(--ok)"><strong>Dia cumprido.</strong> Pode fechar o painel.</div>' : ''}
+    </div>`
+  box.querySelectorAll('input[data-foco]').forEach(c =>
+    c.onchange = () => { marcar(+c.dataset.foco, c.checked); pintarHoje() })
+  box.querySelectorAll('input[data-bloco]').forEach(c => c.onchange = () => {
+    const x = (blocos || []).find(y => chaveBloco(y) === c.dataset.bloco)
+    if (x) { marcarBloco(hoje, x, c.checked); pintarHoje() }
+  })
+  box.querySelectorAll('a[data-aba]').forEach(a => a.onclick = e => {
+    e.preventDefault(); const t = document.querySelector(`nav [data-t="${a.dataset.aba}"]`); if (t) t.click()
+  })
+  const bd = $('#bDificil')
+  if (bd) bd.onclick = () => {
+    AGENDA.dificil = { ...(AGENDA.dificil || {}), [hoje]: !dificil }
+    if (!AGENDA.dificil[hoje]) delete AGENDA.dificil[hoje]
+    const lim = iso(new Date(Date.now() - 45 * 864e5))
+    Object.keys(AGENDA.dificil).forEach(k => { if (k < lim) delete AGENDA.dificil[k] })
+    salvarAgenda(); pintarHoje()
+  }
 }
 
 // Congela o dia na PRIMEIRA vez que ela abre a aba Hoje nele. Dali em diante o
@@ -1704,9 +1885,21 @@ const planejavel = a => !temDataFixa(a) && a.tipo !== 'material' &&
 
 // Quanto tempo o dia perde com este item. Aula usa o tempo REAL da rotina dela,
 // nao a duracao do video; lista, redacao e refino usam o que foi gerado.
+// 07/10/2026 — o protocolo passou a depender da PRIORIDADE do assunto, que e o
+// pedido dela ("nao distribua meu tempo igualmente"): A = compreensao + 10
+// questoes + correcao; B = compreensao + questoes selecionadas; C = revisao
+// objetiva, so para reconhecer. Antes toda aula custava 2h10, inclusive assunto
+// que caiu duas vezes em quinze provas — e era isso que fazia o material nao
+// caber em tempo nenhum.
+const MIN_POR_FAIXA = { 1: 70 + 30 + 30, 2: 70 + 20, 3: 45 }
+// Matematica nao desce tanto: sao 20 das 80 questoes, e e a materia em que ela
+// diz ter dificuldade de "reconhecer qual ferramenta a questao pede" — o que so
+// se resolve fazendo questao, nao assistindo aula mais rapido.
+const MIN_POR_FAIXA_MAT = { 1: 70 + 30 + 30, 2: 70 + 30, 3: 80 }
+const faixaDe = a => (FREQ.get(a.assunto_id) || {}).faixa || 2
 function minutosPlanejados (a) {
   if (ehLista(a) || temDataFixa(a) || temMinutoProprio(a)) return a.minutos_est || 0
-  return a.materia_id === 'matematica' ? MIN_AULA_MAT : MIN_AULA
+  return (a.materia_id === 'matematica' ? MIN_POR_FAIXA_MAT : MIN_POR_FAIXA)[faixaDe(a)]
 }
 
 // Ordem dentro do dia (pedido dela, 07/08): historia primeiro, depois
@@ -2124,9 +2317,18 @@ function montarPlanoRaw (faixaMax = FAIXA_PADRAO) {
   // para um dia congelado la na frente nao e mais atraso — senao o painel acusa
   // 60 aulas em atraso enquanto o mutirao esta justamente fazendo aquelas 60.
   REMARCADOS = new Set(dias.filter(d => !d.passado).flatMap(d => d.itens.map(a => a.id)))
-  dias.atrasadas = dias.filter(d => d.passado).flatMap(d =>
-    d.itens.filter(a => PROG.get(a.id) !== 'assistida' && !REMARCADOS.has(a.id))
-      .map(a => ({ a, data: d.data })))
+  // 07/10/2026 — A DIVIDA TEM PRAZO DE VALIDADE. Regra dela: "o atraso nao pode
+  // se transformar em divida infinita". Item nao feito aparece como atraso por
+  // SETE DIAS; depois disso sai da lista e o assunto dele entra na revisao (que
+  // e onde ele seria reencontrado de qualquer forma). O painel para de crescer,
+  // e perder uma manha deixa de contaminar o mes.
+  const limiteAtraso = iso(new Date(hoje0.getTime() - 7 * 864e5))
+  const naoFeito = d => d.itens.filter(a =>
+    PROG.get(a.id) !== 'assistida' && !REMARCADOS.has(a.id) && !temDataFixa(a))
+  dias.atrasadas = dias.filter(d => d.passado && iso(d.data) >= limiteAtraso)
+    .flatMap(d => naoFeito(d).map(a => ({ a, data: d.data })))
+  dias.arquivadas = dias.filter(d => d.passado && iso(d.data) < limiteAtraso)
+    .reduce((t, d) => t + naoFeito(d).length, 0)
   dias.remarcadas = dias.filter(d => d.passado).flatMap(d =>
     d.itens.filter(a => PROG.get(a.id) !== 'assistida' && REMARCADOS.has(a.id))).length
   return dias
