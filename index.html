@@ -176,9 +176,14 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
   <div class="leitor-barra">
     <button id="leitorVoltar" class="primary">← Voltar ao painel</button>
     <span id="leitorTitulo" class="small muted"></span>
-    <a id="leitorAbrir" class="small" target="_blank" rel="noopener"
-       style="padding:7px 11px;border:1px solid var(--line);border-radius:8px;text-decoration:none;color:var(--ink)">📖 Abrir para Livros</a>
-    <button id="leitorEnviar" class="small">📤 Enviar para GoodNotes</button>
+    <button id="leitorBaixar" class="small">⬇️ Baixar PDF</button>
+    <button id="leitorEnviar" class="small">📤 Enviar</button>
+  </div>
+  <div id="leitorDica" class="tiny" hidden
+       style="padding:9px 14px;background:var(--accent-soft);color:var(--ink);border-bottom:1px solid var(--line)">
+    Baixado para <strong>Arquivos</strong> (pasta Transferências). Para ler no <strong>Livros</strong>:
+    abra o app Arquivos, toque e segure o PDF → <strong>Compartilhar</strong> → <strong>Livros</strong>.
+    O Livros não aparece aqui porque o iPad não oferece esse app para arquivos vindos de uma página.
   </div>
   <div id="leitorPaginas"></div>
 </div>
@@ -470,7 +475,7 @@ const KEY_SB = 'sb_publishable_eX7i_P76hKCfb4ocJ7zTzg_UilLA6J_'
 const sb = createClient(URL_SB, KEY_SB)
 // Selo desta versao do site. Serve para pedir os arquivos estaticos sem cair no
 // cache velho do navegador (GitHub Pages segura 10 min).
-const BUILD = '2026-09-09c'
+const BUILD = '2026-10-08a'
 
 const PROVA = new Date('2026-11-29T00:00:00-03:00')
 // ROTINA — a fonte da verdade do dia (08/09/2026).
@@ -1517,9 +1522,9 @@ async function abrirLeitor (url, titulo) {
   // O arquivo e baixado JA na abertura: no iPad a folha de compartilhamento so
   // abre se for chamada no proprio toque do botao, sem espera no meio.
   leitorUrl = url; leitorArquivo = null
-  const bEnv = $('#leitorEnviar'); const aAbr = $('#leitorAbrir')
-  if (aAbr) aAbr.href = url
+  const bEnv = $('#leitorEnviar'); const bBai = $('#leitorBaixar')
   if (bEnv) { bEnv.disabled = true; bEnv.textContent = '⏳ preparando…' }
+  if (bBai) bBai.disabled = true
   // 07/10/2026: o arquivo so e considerado pronto depois de conferido. Ela
   // relatou PDF salvo que abria em branco no app Arquivos — o que acontece
   // quando a folha de compartilhamento e chamada antes de o download terminar,
@@ -1531,9 +1536,14 @@ async function abrirLeitor (url, titulo) {
       const ehPdf = cab[0] === 0x25 && cab[1] === 0x50 && cab[2] === 0x44 && cab[3] === 0x46
       if (!ehPdf || b.size < 1000) throw new Error('resposta não é PDF')
       leitorArquivo = new File([b], url.split('/').pop(), { type: 'application/pdf' })
-      if (bEnv) { bEnv.disabled = false; bEnv.textContent = '📤 Enviar para GoodNotes' }
+      if (bEnv) { bEnv.disabled = false; bEnv.textContent = '📤 Enviar' }
+      if (bBai) bBai.disabled = false
     })
-    .catch(() => { if (bEnv) { bEnv.disabled = false; bEnv.textContent = '📤 Enviar' } })
+    .catch(() => {
+      if (bEnv) { bEnv.disabled = false; bEnv.textContent = '📤 Enviar' }
+      if (bBai) bBai.disabled = false
+    })
+  const dica0 = $('#leitorDica'); if (dica0) dica0.hidden = true
   box.innerHTML = '<div class="vazio">Abrindo…</div>'
   $('#leitor').hidden = false
   document.body.style.overflow = 'hidden'
@@ -1584,6 +1594,29 @@ $('#leitorVoltar').onclick = () => fecharLeitor(true)
 // Agora o botao chama a folha de compartilhamento do iPad, de onde ela escolhe
 // Livros, GoodNotes ou Notability. No computador, onde nao ha folha, baixa.
 let leitorUrl = null, leitorArquivo = null
+// 08/10/2026 — O LIVROS NAO APARECE NA FOLHA DO WEB SHARE. Ela testou no iPad
+// (A16) e o app Livros nao e oferecido quando o compartilhamento parte de um
+// arquivo criado por JavaScript; o Livros aparece na folha do VISUALIZADOR do
+// iPad e na do app Arquivos. Entao o caminho honesto e o que ela mesma achou:
+// baixar e, em Arquivos, mandar para o Livros. O download usa o blob JA
+// CONFERIDO, e nao a URL — foi arquivo incompleto que abriu em branco antes.
+$('#leitorBaixar').onclick = () => {
+  const f = leitorArquivo
+  const a = document.createElement('a')
+  a.dataset.baixar = '1'
+  a.download = (f && f.name) || leitorUrl.split('/').pop()
+  if (f) {
+    const u = URL.createObjectURL(f)
+    a.href = u
+    document.body.appendChild(a); a.click(); a.remove()
+    setTimeout(() => URL.revokeObjectURL(u), 20000)
+  } else {
+    a.href = leitorUrl
+    document.body.appendChild(a); a.click(); a.remove()
+  }
+  const dica = $('#leitorDica')
+  if (dica) dica.hidden = false
+}
 $('#leitorEnviar').onclick = async () => {
   const f = leitorArquivo
   if (f && navigator.canShare && navigator.canShare({ files: [f] })) {
@@ -2709,10 +2742,19 @@ async function carregarDossies () {
 function pintarDossies () {
   if (!DOSSIES.length) return $('#listaDossies').innerHTML =
     '<div class="card vazio">Nenhum dossiê disponível ainda.</div>'
-  const grupos = [['metodo', 'Como estudar'], ['atualidade', 'Atualidades'],
-    ['repertorio', 'Repertório para redação e entrevista']]
+  // 08/10/2026: a lista filtrava por tres tipos fixos, entao todo dossie com tipo
+  // novo (radar, manual, entrevista) ficava invisivel — ela abriu a aba e nao
+  // achou os PDFs novos. Agora os grupos conhecidos vem na ordem de estudo e o
+  // que nao se encaixa cai em "Outros", em vez de sumir.
+  const grupos = [['manual', 'O sistema — leia primeiro'], ['metodo', 'Como estudar'],
+    ['entrevista', 'Entrevista'], ['radar', 'Radar de atualidades'],
+    ['atualidade', 'Atualidades'], ['repertorio', 'Repertório para redação e entrevista'],
+    ['__resto', 'Outros']]
+  const conhecidos = new Set(grupos.map(g => g[0]))
   $('#listaDossies').innerHTML = grupos.map(([tipo, nome]) => {
-    const da = DOSSIES.filter(d => d.tipo === tipo)
+    const da = tipo === '__resto'
+      ? DOSSIES.filter(d => !conhecidos.has(d.tipo))
+      : DOSSIES.filter(d => d.tipo === tipo)
     if (!da.length) return ''
     return `<h2 style="margin:22px 0 10px">${nome}</h2>
       <div class="grade">${da.map(d => `
