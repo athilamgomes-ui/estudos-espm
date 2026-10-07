@@ -1955,9 +1955,26 @@ const ordemDaFila = (x, y) =>
   (FREQ.get(y.assunto_id)?.n || 0) - (FREQ.get(x.assunto_id)?.n || 0) ||
   (x.modulo || '').localeCompare(y.modulo || '', 'pt') || x.ordem - y.ordem
 
-// Matemática vai na ORDEM DO CURSO, não por incidência (pedido dela em 07/08:
-// "minha base é muito fraca, estudar por ordem de incidência não está dando
-// certo"). A incidência continua visível na etiqueta de cada aula.
+// MATEMATICA, decisao dela em 07/10/2026 (meio-termo entre o pedido de 07/08,
+// "minha base e fraca, incidencia nao esta dando certo", e o de agora, "priorize
+// pela analise das provas"): primeiro uma semana fechando a BASE — equacoes,
+// proporcao, porcentagem, fatoracao, MMC —, e dali em diante so os assuntos de
+// faixa A, comecando por Geometria plana (34 das 300 questoes de 15 provas).
+// Em 53 dias cabem ~15 aulas: na ordem do curso ela nao chegaria em geometria.
+const BASE_MAT = ['equacao do 1o grau', 'equacao do 2o grau', 'porcentagem',
+  'multiplos, divisores e mmc/mdc', 'produtos notaveis, fatoracao e expressoes',
+  'proporcionalidade e regra de tres', 'aritmetica e operacoes', 'potenciacao e radiciacao']
+const semAcento = t => (t || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+  .toLowerCase().replace(/[º°]/g, 'o').trim()
+const ehBaseMat = a => {
+  const nome = (ASSUNTOS.find(x => x.id === a.assunto_id) || {}).nome
+  return BASE_MAT.includes(semAcento(nome))
+}
+const ordemMatematica = (x, y) =>
+  (ehBaseMat(x) ? 0 : 1) - (ehBaseMat(y) ? 0 : 1) ||
+  (FREQ.get(x.assunto_id)?.faixa || 3) - (FREQ.get(y.assunto_id)?.faixa || 3) ||
+  (FREQ.get(y.assunto_id)?.n || 0) - (FREQ.get(x.assunto_id)?.n || 0) ||
+  (x.modulo || '').localeCompare(y.modulo || '', 'pt') || x.ordem - y.ordem
 const ordemDoCurso = (x, y) =>
   (x.modulo || '').localeCompare(y.modulo || '', 'pt') || x.ordem - y.ordem
 
@@ -2068,7 +2085,7 @@ function filasPorMateria (faixaMax) {
     const da = AULAS.filter(a => a.materia_id === m.id && planejavel(a) &&
       naFaixa(a, faixaMax) && !feitaAntesDoPlano(a))
     const aulas = m.id === 'humanidades' ? filaHumanas(da.filter(a => !ehLista(a)))
-      : da.filter(a => !ehLista(a)).sort(m.id === 'matematica' ? ordemDoCurso : ordemDaFila)
+      : da.filter(a => !ehLista(a)).sort(m.id === 'matematica' ? ordemMatematica : ordemDaFila)
     const fila = intercalarListas(aulas, da.filter(ehLista))
     if (fila.length) filas.set(m.id, { fila, peso: m.peso_espm, credito: 0 })
   })
