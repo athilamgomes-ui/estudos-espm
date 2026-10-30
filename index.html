@@ -475,7 +475,7 @@ const KEY_SB = 'sb_publishable_eX7i_P76hKCfb4ocJ7zTzg_UilLA6J_'
 const sb = createClient(URL_SB, KEY_SB)
 // Selo desta versao do site. Serve para pedir os arquivos estaticos sem cair no
 // cache velho do navegador (GitHub Pages segura 10 min).
-const BUILD = '2026-10-08a'
+const BUILD = '2026-10-30a'
 
 const PROVA = new Date('2026-11-29T00:00:00-03:00')
 // ROTINA — a fonte da verdade do dia (08/09/2026).
@@ -1310,6 +1310,10 @@ function diaDificil (hoje) { return !!(AGENDA.dificil || {})[hoje] }
 // A escolha segue a fase: na reta final o que vale e o que e ATIVO — simulado,
 // depois redacao, depois lista de questoes, depois revisao ativa.
 function postoObjetivo (a) {
+  // Lembrete nunca e o objetivo do dia: e recado de 10 min, nao estudo. Fica
+  // por ultimo mesmo quando e da entrevista, senao enterra o dossie do dia.
+  if (ehLembrete(a)) return 7
+  if (ehFicha(a)) return 6
   // 30/10/2026: entrevista na frente de tudo por decisao dela — e eliminatoria,
   // a janela fecha em 24/11 e ela ainda nao tinha comecado.
   if (a.materia_id === 'entrevista') return 0
@@ -1317,6 +1321,9 @@ function postoObjetivo (a) {
   // A correcao do simulado vale tanto quanto o simulado: e nela que o erro vira
   // informacao. Sem isso ela cairia em "se sobrar tempo", que e onde morre.
   if (ehRefino(a) && /corrigir/i.test(a.titulo || '')) return 0
+  // Os dossies de conteudo (marcados com 📘) substituem aula e livro: ficam
+  // acima da lista de questoes, porque sem o conteudo a lista vira chute.
+  if (ehRefino(a) && /^📘/.test(a.titulo || '')) return 1.5
   if (ehRedacaoEscrita(a)) return 1
   if (ehLista(a)) return 2
   if (ehRefino(a)) return 3
@@ -2776,7 +2783,8 @@ function pintarDossies () {
   // achou os PDFs novos. Agora os grupos conhecidos vem na ordem de estudo e o
   // que nao se encaixa cai em "Outros", em vez de sumir.
   const grupos = [['manual', 'O sistema — leia primeiro'], ['metodo', 'Como estudar'],
-    ['entrevista', 'Entrevista'], ['radar', 'Radar de atualidades'],
+    ['entrevista', 'Entrevista'], ['conteudo', 'Conteúdo — no lugar da aula e do livro'],
+    ['radar', 'Radar de atualidades'],
     ['atualidade', 'Atualidades'], ['repertorio', 'Repertório para redação e entrevista'],
     ['__resto', 'Outros']]
   const conhecidos = new Set(grupos.map(g => g[0]))

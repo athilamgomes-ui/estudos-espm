@@ -66,6 +66,83 @@
   "arquivo": "dossies/caderno-de-repertorios.pdf"
  },
  {
+  "slug": "conteudo-01-literatura",
+  "titulo": "Literatura brasileira e portuguesa",
+  "subtitulo": "Conteúdo 01 · 119 questões em 15 provas — a linha do tempo inteira, em ordem de prioridade",
+  "tipo": "conteudo",
+  "selo": "Conteúdo · substitui as videoaulas de literatura",
+  "serve": "Português (119 questões) · redação (repertório) · Interpretação",
+  "minutos": 180,
+  "fechado_em": "escrito em 30 de outubro de 2026",
+  "arquivo": "dossies/conteudo-01-literatura.pdf"
+ },
+ {
+  "slug": "conteudo-02-geopolitica",
+  "titulo": "Geopolítica e conflitos internacionais",
+  "subtitulo": "Conteúdo 02 · 83 questões em 15 provas — a ordem mundial, conflito por conflito",
+  "tipo": "conteudo",
+  "selo": "Conteúdo · substitui as videoaulas de geopolítica",
+  "serve": "Humanidades (83 questões) · redação · entrevista",
+  "minutos": 180,
+  "fechado_em": "fechado em 30 de outubro de 2026",
+  "arquivo": "dossies/conteudo-02-geopolitica.pdf"
+ },
+ {
+  "slug": "conteudo-03-interpretacao",
+  "titulo": "Interpretação e argumentação",
+  "subtitulo": "Conteúdo 03 · 65 questões em 15 provas — como se lê um enunciado da ESPM",
+  "tipo": "conteudo",
+  "selo": "Conteúdo · é método, não matéria",
+  "serve": "Português (65 q) · Inglês (96 q de compreensão) · Matemática (enunciado) · redação",
+  "minutos": 120,
+  "fechado_em": "escrito em 30 de outubro de 2026",
+  "arquivo": "dossies/conteudo-03-interpretacao.pdf"
+ },
+ {
+  "slug": "conteudo-04-historia-brasil",
+  "titulo": "História do Brasil",
+  "subtitulo": "Conteúdo 04 · 56 questões em 15 provas — a cadeia inteira, de 1500 a hoje",
+  "tipo": "conteudo",
+  "selo": "Conteúdo · substitui as videoaulas e o livro de História do Brasil",
+  "serve": "Humanidades (56 q) · redação (repertório) · antecedente das atualidades",
+  "minutos": 180,
+  "fechado_em": "escrito em 30 de outubro de 2026",
+  "arquivo": "dossies/conteudo-04-historia-brasil.pdf"
+ },
+ {
+  "slug": "conteudo-05-historia-moderna",
+  "titulo": "História geral moderna e contemporânea",
+  "subtitulo": "Conteúdo 05 · 48 questões em 15 provas — do Renascimento ao século XXI, em cadeia",
+  "tipo": "conteudo",
+  "selo": "Conteúdo · substitui as videoaulas e o livro de história geral",
+  "serve": "Humanidades (48 q) · antecedente da geopolítica · redação",
+  "minutos": 180,
+  "fechado_em": "escrito em 30 de outubro de 2026",
+  "arquivo": "dossies/conteudo-05-historia-moderna.pdf"
+ },
+ {
+  "slug": "conteudo-06-cultura-midia",
+  "titulo": "Cultura, arte e mídia",
+  "subtitulo": "Conteúdo 06 · 37 questões em 15 provas — a matéria mais \"ESPM\" de todas",
+  "tipo": "conteudo",
+  "selo": "Conteúdo · a banca é de comunicação e publicidade",
+  "serve": "Humanidades (37 q) · redação (repertório) · entrevista",
+  "minutos": 150,
+  "fechado_em": "fechado em 30 de outubro de 2026",
+  "arquivo": "dossies/conteudo-06-cultura-midia.pdf"
+ },
+ {
+  "slug": "conteudo-07-meio-ambiente",
+  "titulo": "Meio ambiente, clima e energia",
+  "subtitulo": "Conteúdo 07 · 36 questões em 15 provas — do efeito estufa à COP30 em Belém",
+  "tipo": "conteudo",
+  "selo": "Conteúdo · substitui as videoaulas de meio ambiente",
+  "serve": "Humanidades (36 q) · redação (eixo sustentabilidade) · entrevista",
+  "minutos": 150,
+  "fechado_em": "fechado em 30 de outubro de 2026",
+  "arquivo": "dossies/conteudo-07-meio-ambiente.pdf"
+ },
+ {
   "slug": "entrevista-01-inovacao-criatividade",
   "titulo": "A entrevista da ESPM — inovação e criatividade",
   "subtitulo": "Entrevista 01 · as 5 questões do ANEXO I, a cadeia de raciocínio e os exercícios",
