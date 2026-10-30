@@ -1310,6 +1310,9 @@ function diaDificil (hoje) { return !!(AGENDA.dificil || {})[hoje] }
 // A escolha segue a fase: na reta final o que vale e o que e ATIVO — simulado,
 // depois redacao, depois lista de questoes, depois revisao ativa.
 function postoObjetivo (a) {
+  // 30/10/2026: entrevista na frente de tudo por decisao dela — e eliminatoria,
+  // a janela fecha em 24/11 e ela ainda nao tinha comecado.
+  if (a.materia_id === 'entrevista') return 0
   if (ehRefino(a) && (a.minutos_est || 0) >= 120) return 0   // simulado / meia-prova
   // A correcao do simulado vale tanto quanto o simulado: e nela que o erro vira
   // informacao. Sem isso ela cairia em "se sobrar tempo", que e onde morre.

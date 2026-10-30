@@ -77,6 +77,17 @@
   "arquivo": "dossies/entrevista-01-inovacao-criatividade.pdf"
  },
  {
+  "slug": "entrevista-02-respostas",
+  "titulo": "As cinco respostas — entrevista ESPM",
+  "subtitulo": "Entrevista 02 · respostas inteiras, os repertórios de cada uma e como refazê-las ao vivo",
+  "tipo": "entrevista",
+  "selo": "Entrevista · estude daqui · 3 minutos por resposta",
+  "serve": "entrevista (eliminatória) · redação · repertório",
+  "minutos": 180,
+  "fechado_em": "escrito em 30 de outubro de 2026",
+  "arquivo": "dossies/entrevista-02-respostas.pdf"
+ },
+ {
   "slug": "manual-do-metodo",
   "titulo": "Manual do método",
   "subtitulo": "O passo a passo de cada tipo de tarefa, por escrito, para você nunca mais precisar lembrar",
