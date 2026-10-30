@@ -516,6 +516,11 @@ const PAUSA = (i, f) => b(i, f, 'pausa', 'Pausa de pé',
   'Levantar, água, alongar, janela. Sem tela — e sem episódio, que você sabe que não para em um')
 const ATUAL = (i, f) => b(i, f, 'estudo', 'Atualidades do dia — 15 min',
   'Uma notícia, quatro perguntas: o que aconteceu, quem são os atores, onde, e o que veio antes que explica isso')
+// 30/10/2026: a v3 tinha tirado os flashcards e ela pediu de volta. Na reta
+// final eles sao o metodo, nao o enfeite: lembrar sem olhar fixa mais do que
+// reler, e e a unica coisa que cabe em 20 min num dia ruim.
+const FLASH = (i, f) => b(i, f, 'estudo', 'Flashcards — 20 min',
+  'Só do que você errou ou estudou nesta semana. Tente lembrar ANTES de virar o cartão: é a tentativa que fixa, não a resposta')
 const FECHAR = (i, f) => b(i, f, 'pessoal', 'Fechar o dia',
   'Marcar o que fez, olhar o HOJE de amanhã e escrever a dúvida que ficou. 10 minutos')
 const DORMIR = [
@@ -546,7 +551,8 @@ const diaAcademiaIngles = treino => [
   b('17:50', '18:40', 'estudo', 'Estudo — bloco 4'),
   b('18:40', '19:20', 'refeicao', 'Jantar'),
   ATUAL('19:20', '19:35'),
-  b('19:35', '21:20', 'pessoal', 'Lazer planejado',
+  FLASH('19:35', '19:55'),
+  b('19:55', '21:20', 'pessoal', 'Lazer planejado',
     'Série, dorama, TikTok, música — com hora para começar porque assim tem hora para acabar'),
   FECHAR('21:20', '21:30'),
   ...DORMIR
@@ -569,7 +575,8 @@ const diaAcademia = treino => [
   b('17:15', '18:05', 'estudo', 'Estudo — bloco 5'),
   ATUAL('18:05', '18:20'),
   b('18:30', '19:10', 'refeicao', 'Jantar'),
-  b('19:10', '21:20', 'pessoal', 'Lazer planejado', 'Hora marcada para começar e para acabar'),
+  FLASH('19:10', '19:30'),
+  b('19:30', '21:20', 'pessoal', 'Lazer planejado', 'Hora marcada para começar e para acabar'),
   FECHAR('21:20', '21:30'),
   ...DORMIR
 ]
@@ -588,7 +595,8 @@ const diaLivre = [
   PAUSA('15:05', '15:20'),
   b('15:20', '16:10', 'estudo', 'Estudo — bloco 5'),
   ATUAL('16:10', '16:25'),
-  b('16:25', '18:30', 'pessoal', 'Lazer planejado', 'A tarde é sua. Hora marcada para começar e para acabar'),
+  FLASH('16:25', '16:45'),
+  b('16:45', '18:30', 'pessoal', 'Lazer planejado', 'A tarde é sua. Hora marcada para começar e para acabar'),
   b('18:30', '19:10', 'refeicao', 'Jantar'),
   b('19:10', '20:00', 'estudo', 'Estudo — bloco 6'),
   b('20:00', '21:20', 'pessoal', 'Noite livre'),
@@ -613,7 +621,8 @@ const diaTerapia = [
   PAUSA('15:20', '15:35'),
   b('15:35', '16:25', 'estudo', 'Estudo — bloco 5'),
   ATUAL('16:25', '16:40'),
-  b('16:40', '18:00', 'pessoal', 'Lazer planejado'),
+  FLASH('16:40', '17:00'),
+  b('17:00', '18:00', 'pessoal', 'Lazer planejado'),
   b('18:00', '18:45', 'pessoal', 'Corrida', 'Leve, sem cronômetro — as pernas estão a 72h da academia de segunda'),
   b('18:45', '19:25', 'refeicao', 'Banho e jantar'),
   b('19:25', '20:15', 'estudo', 'Estudo — bloco 6'),
@@ -646,9 +655,10 @@ const ROTINA_PADRAO = {
     PAUSA('14:35', '14:50'),
     b('14:50', '15:40', 'estudo', 'Estudo — bloco 5'),
     ATUAL('15:40', '15:55'),
-    b('15:55', '16:25', 'estudo', 'Fechar a semana',
+    FLASH('15:55', '16:15'),
+    b('16:15', '16:45', 'estudo', 'Fechar a semana',
       'O checklist de 6 perguntas. É o único momento da semana em que você olha para trás'),
-    b('16:25', '22:00', 'pessoal', 'Sábado livre', 'A partir daqui o dia é seu. Sábado não é dia de punição'),
+    b('16:45', '22:00', 'pessoal', 'Sábado livre', 'A partir daqui o dia é seu. Sábado não é dia de punição'),
     ...DORMIR
   ]
 }
@@ -681,7 +691,11 @@ const MIN_AULA_MAT = MIN_AULA
 const MIN_DIA_MATEMATICA = 3 * 60
 // As 4 ultimas semanas nao levam aula nova: sao de resolver questao, corrigir e
 // simular. Os itens dessa fase ficam no curso 'refino', com data propria.
-const SEMANAS_REFINO = 4
+// 30/10/2026 — pedido dela: "agora até a prova o método tem que ser ativo:
+// flashcards, questões e simulados". Com 5 semanas, o refino passa a valer de
+// 25/10, ou seja, JA: a partir daqui o plano nao coloca mais AULA nova, so
+// lista de questoes, simulado, revisao ativa e redacao.
+const SEMANAS_REFINO = 5
 const INICIO_REFINO = new Date(PROVA - SEMANAS_REFINO * 6048e5)
 // Dia 1 do cronograma. Foi 06/08 e passou para 19/08 num RE-BASELINE unico,
 // combinado com ela: o plano acumulava atraso por construcao (tinha 30% mais
@@ -705,6 +719,7 @@ const INICIO_PLANO = new Date('2026-09-09T00:00:00-03:00')
 // objetiva, nao em 2h10 de aula: reconhecer e o suficiente para o que cai pouco.
 const FAIXA_PADRAO = 3
 const EPOCA_V3 = '2026-10-07'
+const EPOCA_V4 = '2026-10-30'
 // O dia nunca nasce 100% cheio. Um plano sem folga transforma qualquer
 // imprevisto em divida, e divida vira bola de neve — foi o que aconteceu nas
 // duas primeiras semanas. 15% do dia fica livre para respirar e recuperar.
@@ -1067,6 +1082,10 @@ function aplicarAgenda (g) {
   if (!AGENDA.grades.some(x => x.desde === EPOCA_V3)) {
     AGENDA.grades = [...AGENDA.grades, { desde: EPOCA_V3, rotina: estruturado(ROTINA_PADRAO) }]
   }
+  // v4 (30/10/2026): mesma rotina da v3 mais o bloco diario de flashcards.
+  if (!AGENDA.grades.some(x => x.desde === EPOCA_V4)) {
+    AGENDA.grades = [...AGENDA.grades, { desde: EPOCA_V4, rotina: estruturado(ROTINA_PADRAO) }]
+  }
   const ult = AGENDA.grades[AGENDA.grades.length - 1]
   AGENDA.rotina = ult.rotina || estruturado(ROTINA_PADRAO)
 }
@@ -1282,85 +1301,92 @@ function pintarHoje () {
 // Esta camada mostra no maximo CINCO linhas — principal, matematica/questoes,
 // secundaria, atualidades e opcional — e o dia inteiro em blocos vira um
 // <details> fechado embaixo. O resto do painel continua completo nas outras abas.
-const DIFICIL = {}
 function diaDificil (hoje) { return !!(AGENDA.dificil || {})[hoje] }
+
+// O OBJETIVO DO DIA (30/10/2026). Ela pediu: "quero definir um objetivo por dia,
+// porque muita coisa me deixa ansiosa e desconcentrada". Entao a tela abre com
+// UMA tarefa — a que mais vale hoje — e o resto fica fechado atras de "se sobrar
+// tempo". Marcar o objetivo ja fecha o dia; o que vier depois e lucro.
+// A escolha segue a fase: na reta final o que vale e o que e ATIVO — simulado,
+// depois redacao, depois lista de questoes, depois revisao ativa.
+function postoObjetivo (a) {
+  if (ehRefino(a) && (a.minutos_est || 0) >= 120) return 0   // simulado / meia-prova
+  // A correcao do simulado vale tanto quanto o simulado: e nela que o erro vira
+  // informacao. Sem isso ela cairia em "se sobrar tempo", que e onde morre.
+  if (ehRefino(a) && /corrigir/i.test(a.titulo || '')) return 0
+  if (ehRedacaoEscrita(a)) return 1
+  if (ehLista(a)) return 2
+  if (ehRefino(a)) return 3
+  if (a.materia_id === 'matematica') return 4
+  if (ehFicha(a)) return 6
+  if (ehLembrete(a)) return 7
+  return 5
+}
 function pintarFoco (hoje, itens, blocos) {
   const box = $('#hojeFoco')
   if (!box) return
   const dificil = diaDificil(hoje)
   const feito = a => PROG.get(a.id) === 'assistida'
-  const mat = itens.filter(a => a.materia_id === 'matematica')
-  const outros = itens.filter(a => a.materia_id !== 'matematica' && !ehFicha(a) && !ehLembrete(a))
-  const fichas = itens.filter(a => ehFicha(a) || ehLembrete(a))
+  const ordenados = [...itens].sort((x, y) => postoObjetivo(x) - postoObjetivo(y))
+  const obj = ordenados.find(a => !feito(a)) || ordenados[0] || null
+  const resto = ordenados.filter(a => !obj || a.id !== obj.id)
 
-  const linhas = []
-  if (outros[0]) linhas.push({ r: 'Principal', a: outros[0], c: 'var(--bad)' })
-  if (mat[0]) linhas.push({ r: 'Matemática / questões', a: mat[0], c: 'var(--accent)' })
-  if (!dificil && outros[1]) linhas.push({ r: 'Secundária', a: outros[1], c: 'var(--warn)' })
-  if (fichas[0]) linhas.push({ r: ehFicha(fichas[0]) ? 'Repertório' : 'Lembrete', a: fichas[0], c: 'var(--ok)' })
+  const blocoFlash = (blocos || []).find(x => x.t === 'estudo' && x.n.startsWith('Flashcards'))
   const blocoAtual = (blocos || []).find(x => x.t === 'estudo' && x.n.startsWith('Atualidades'))
-  const atualFeito = blocoAtual && (AGENDA.feitos[hoje] || []).includes(chaveBloco(blocoAtual))
-  const sobra = itens.filter(a => !linhas.some(l => l.a.id === a.id))
-  const nucleo = linhas
-  const prontos = nucleo.filter(l => feito(l.a)).length
-  const cumprido = nucleo.length && prontos >= (dificil ? Math.min(2, nucleo.length) : nucleo.length) &&
-    (!blocoAtual || atualFeito || dificil)
+  const marcado = x => x && (AGENDA.feitos[hoje] || []).includes(chaveBloco(x))
+  const objFeito = obj && feito(obj)
+
+  const linhaBloco = (x, rotulo, texto, sub) => x ? `
+    <label style="display:flex;gap:9px;align-items:flex-start;cursor:pointer;padding:7px 0">
+      <input type="checkbox" data-bloco="${chaveBloco(x)}"${marcado(x) ? ' checked' : ''}
+        style="width:17px;height:17px;margin-top:2px;flex:none;accent-color:var(--accent)">
+      <span class="small${marcado(x) ? ' muted' : ''}" style="${marcado(x) ? 'text-decoration:line-through' : ''}">
+        <strong>${rotulo}</strong> — ${texto}${sub ? `<div class="tiny muted" style="margin-top:1px">${sub}</div>` : ''}</span>
+    </label>` : ''
 
   box.innerHTML = `
-    <div class="card" style="padding:16px;border:1px solid ${cumprido ? 'var(--ok)' : 'var(--line)'}">
-      <div class="row" style="justify-content:space-between;align-items:baseline;margin-bottom:4px">
-        <strong style="font-size:15px;letter-spacing:.3px">O SEU HOJE</strong>
+    <div class="card" style="padding:17px;border:1px solid ${objFeito ? 'var(--ok)' : 'var(--line)'}">
+      <div class="row" style="justify-content:space-between;align-items:baseline;margin-bottom:10px">
+        <strong style="font-size:13px;letter-spacing:.8px;color:var(--ink3)">O OBJETIVO DE HOJE</strong>
         <button id="bDificil" class="small">${dificil ? '↩︎ voltar ao dia normal' : 'hoje está difícil'}</button>
       </div>
-      <div class="tiny muted" style="margin-bottom:11px">${dificil
-        ? 'Versão mínima: faça estas duas e o dia está cumprido. Sem dívida, sem culpa — é para isso que este botão existe.'
-        : `${nucleo.length + (blocoAtual ? 1 : 0)} tarefas, nada além disso. Fez estas, o dia está cumprido — o que vier depois é lucro.`}</div>
-      ${linhas.length ? linhas.map((l, i) => `
-        <label style="display:flex;gap:10px;align-items:flex-start;cursor:pointer;padding:9px 0;
-               border-top:${i ? '1px solid var(--line)' : 'none'}">
-          <input type="checkbox" data-foco="${l.a.id}"${feito(l.a) ? ' checked' : ''}
-            style="width:19px;height:19px;margin-top:2px;flex:none;accent-color:var(--accent)">
+      ${obj ? `
+        <label style="display:flex;gap:12px;align-items:flex-start;cursor:pointer">
+          <input type="checkbox" data-foco="${obj.id}"${objFeito ? ' checked' : ''}
+            style="width:23px;height:23px;margin-top:3px;flex:none;accent-color:var(--accent)">
           <span style="flex:1">
-            <span class="tiny" style="color:${l.c};letter-spacing:.5px;text-transform:uppercase">${l.r}</span>
-            <div class="${feito(l.a) ? 'muted' : ''}" style="${feito(l.a) ? 'text-decoration:line-through' : ''};margin-top:1px">${rotuloAula(l.a)}</div>
-            <div class="tiny muted" style="margin-top:2px">${dificil && l.r === 'Principal'
-              ? 'hoje, só os primeiros 30 a 40 min — parar aqui é cumprir'
-              : dificil && l.r.startsWith('Matemática')
-              ? 'hoje, 20 a 30 min de questões — sem terminar a aula'
-              : hhmm(minutosPlanejados(l.a))}${(ehLista(l.a) || /\.pdf$/i.test(l.a.url || '')) && l.a.url
-              ? ` · <a href="${l.a.url}" target="_blank" rel="noopener" style="color:var(--accent)">abrir PDF</a>` : ''}</div>
+            <div style="font-size:16px;line-height:1.35;${objFeito ? 'color:var(--ink3);text-decoration:line-through' : ''}">${rotuloAula(obj)}</div>
+            <div class="tiny muted" style="margin-top:5px">${dificil
+              ? '<strong style="color:var(--warn)">hoje, só os primeiros 30 minutos — começar já é cumprir</strong>'
+              : hhmm(minutosPlanejados(obj))}${(ehLista(obj) || /\.pdf$/i.test(obj.url || '')) && obj.url
+              ? ` · <a href="${obj.url}" target="_blank" rel="noopener" style="color:var(--accent)">abrir PDF</a>` : ''}</div>
           </span>
-        </label>`).join('') : '<div class="tiny muted">Nada planejado para hoje. Dia de descanso.</div>'}
-      ${blocoAtual ? `
-        <label style="display:flex;gap:10px;align-items:flex-start;cursor:pointer;padding:9px 0;border-top:1px solid var(--line)">
-          <input type="checkbox" data-bloco="${chaveBloco(blocoAtual)}"${atualFeito ? ' checked' : ''}
-            style="width:19px;height:19px;margin-top:2px;flex:none;accent-color:var(--accent)">
-          <span style="flex:1">
-            <span class="tiny" style="color:var(--ok);letter-spacing:.5px;text-transform:uppercase">Atualidades · 15 min</span>
-            <div class="${atualFeito ? 'muted' : ''}" style="${atualFeito ? 'text-decoration:line-through' : ''};margin-top:1px">Uma notícia, quatro perguntas</div>
-            <div class="tiny muted" style="margin-top:2px">O que aconteceu · quem são os atores · onde · o que veio antes que explica isso.
-              <a href="#" data-aba="atualidades" style="color:var(--accent)">abrir Atualidades</a></div>
-          </span>
-        </label>` : ''}
-      ${!dificil && sobra.length ? `
-        <details style="margin-top:10px;border-top:1px solid var(--line);padding-top:9px">
-          <summary class="tiny" style="cursor:pointer;color:var(--ink3)">Opcional — ${sobra.length} ${sobra.length === 1 ? 'tarefa' : 'tarefas'}, só se sobrar tempo</summary>
-          ${sobra.map(a => `<label style="display:flex;gap:9px;align-items:flex-start;cursor:pointer;padding:6px 0 0">
+        </label>
+        <div class="tiny" style="margin-top:12px;padding-top:10px;border-top:1px solid var(--line);color:${objFeito ? 'var(--ok)' : 'var(--ink3)'}">
+          ${objFeito ? '<strong>Objetivo cumprido. O dia está feito</strong> — o que vier agora é lucro.'
+            : 'Fez isto? <strong>O dia está cumprido.</strong> Nada aqui exige mais do que isso.'}
+        </div>` : '<div class="tiny muted">Hoje não tem objetivo marcado. Dia de descanso.</div>'}
+      ${(blocoFlash || blocoAtual) ? `
+        <div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--line)">
+          <div class="tiny" style="color:var(--ink3);margin-bottom:3px">Os dois curtos, que valem todo dia:</div>
+          ${linhaBloco(blocoFlash, 'Flashcards', '20 min', 'Tente lembrar antes de virar o cartão — é a tentativa que fixa')}
+          ${linhaBloco(blocoAtual, 'Atualidades', '15 min', 'Uma notícia, quatro perguntas')}
+        </div>` : ''}
+      ${!dificil && resto.length ? `
+        <details style="margin-top:11px;border-top:1px solid var(--line);padding-top:9px">
+          <summary class="tiny" style="cursor:pointer;color:var(--ink3)">Se sobrar tempo — ${resto.length} ${resto.length === 1 ? 'tarefa' : 'tarefas'}</summary>
+          ${resto.map(a => `<label style="display:flex;gap:9px;align-items:flex-start;cursor:pointer;padding:6px 0 0">
             <input type="checkbox" data-foco="${a.id}"${feito(a) ? ' checked' : ''}
               style="width:16px;height:16px;margin-top:2px;flex:none;accent-color:var(--accent)">
             <span class="small${feito(a) ? ' muted' : ''}" style="${feito(a) ? 'text-decoration:line-through' : ''}">${rotuloAula(a)}
               <span class="tiny"> · ${hhmm(minutosPlanejados(a))}</span></span></label>`).join('')}
         </details>` : ''}
-      ${cumprido ? '<div class="tiny" style="margin-top:11px;color:var(--ok)"><strong>Dia cumprido.</strong> Pode fechar o painel.</div>' : ''}
     </div>`
   box.querySelectorAll('input[data-foco]').forEach(c =>
     c.onchange = () => { marcar(+c.dataset.foco, c.checked); pintarHoje() })
   box.querySelectorAll('input[data-bloco]').forEach(c => c.onchange = () => {
     const x = (blocos || []).find(y => chaveBloco(y) === c.dataset.bloco)
     if (x) { marcarBloco(hoje, x, c.checked); pintarHoje() }
-  })
-  box.querySelectorAll('a[data-aba]').forEach(a => a.onclick = e => {
-    e.preventDefault(); const t = document.querySelector(`nav [data-t="${a.dataset.aba}"]`); if (t) t.click()
   })
   const bd = $('#bDificil')
   if (bd) bd.onclick = () => {
