@@ -143,6 +143,39 @@
   "arquivo": "dossies/conteudo-07-meio-ambiente.pdf"
  },
  {
+  "slug": "conteudo-08-portugues-gramatica",
+  "titulo": "Gramática, figuras de linguagem e coesão",
+  "subtitulo": "Conteúdo 08 · 92 questões em 15 provas — o que a ESPM realmente cobra de gramática",
+  "tipo": "conteudo",
+  "selo": "Conteúdo · substitui as videoaulas de gramática",
+  "serve": "Português (92 q) · redação (correção) · Interpretação",
+  "minutos": 150,
+  "fechado_em": "escrito em 31 de outubro de 2026",
+  "arquivo": "dossies/conteudo-08-portugues-gramatica.pdf"
+ },
+ {
+  "slug": "conteudo-09-historia-antiga-medieval",
+  "titulo": "História antiga e medieval",
+  "subtitulo": "Conteúdo 09 · 33 questões em 15 provas — da Mesopotâmia a 1453, só o que explica o resto",
+  "tipo": "conteudo",
+  "selo": "Conteúdo · o terceiro dossiê de história",
+  "serve": "Humanidades (33 q) · raiz do dossiê de história moderna · repertório",
+  "minutos": 120,
+  "fechado_em": "escrito em 31 de outubro de 2026",
+  "arquivo": "dossies/conteudo-09-historia-antiga-medieval.pdf"
+ },
+ {
+  "slug": "conteudo-10-geografia-populacao-economia",
+  "titulo": "População, globalização e economia",
+  "subtitulo": "Conteúdo 10 · 68 questões em 15 provas — demografia, economia mundial e a leitura de gráficos",
+  "tipo": "conteudo",
+  "selo": "Conteúdo · fecha a geografia humana",
+  "serve": "Humanidades (68 q) · leitura de gráfico e tabela · redação",
+  "minutos": 150,
+  "fechado_em": "fechado em 31 de outubro de 2026",
+  "arquivo": "dossies/conteudo-10-geografia-populacao-economia.pdf"
+ },
+ {
   "slug": "entrevista-01-inovacao-criatividade",
   "titulo": "A entrevista da ESPM — inovação e criatividade",
   "subtitulo": "Entrevista 01 · as 5 questões do ANEXO I, a cadeia de raciocínio e os exercícios",
