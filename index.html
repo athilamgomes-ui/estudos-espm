@@ -195,10 +195,6 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
       <div class="small muted" id="sub">—</div>
     </div>
     <div class="row" style="align-items:flex-start">
-      <div class="contagem" id="contagem" title="Toque para trocar" style="cursor:pointer">
-        <div class="d num" id="dias">—</div>
-        <div class="l" id="diasRot">dias para a prova</div>
-      </div>
       <button id="bTrocarSenha" class="small">Trocar senha</button>
       <button id="bSair" class="small">Sair</button>
     </div>
@@ -541,14 +537,16 @@ const diaAcademiaIngles = treino => [
     'Exercício regular é dos melhores remédios para ansiedade, e o corpo em movimento recupera a atenção da tarde'),
   b('12:15', '13:15', 'refeicao', 'Almoço'),
   b('13:15', '14:00', 'pessoal', 'Descanso de verdade', 'Deitar, música, o que quiser. Não é hora de estudar nem de sentir culpa'),
-  b('14:00', '15:30', 'compromisso', 'Inglês — aula particular',
-    'Se a professora mudar o horário, é só me avisar que eu remonto a semana — não é quebra de plano'),
-  PAUSA('15:30', '15:45'),
-  b('15:45', '16:35', 'estudo', 'Estudo — bloco 2'),
-  PAUSA('16:35', '16:45'),
-  b('16:45', '17:35', 'estudo', 'Estudo — bloco 3'),
-  PAUSA('17:35', '17:50'),
-  b('17:50', '18:40', 'estudo', 'Estudo — bloco 4'),
+  // 31/10/2026: ela suspendeu a aula particular em novembro e pediu à professora
+  // para focar em questões. O horário fixo vira estudo — são 3h a mais por semana.
+  b('14:00', '14:50', 'estudo', 'Estudo — bloco 2'),
+  PAUSA('14:50', '15:05'),
+  b('15:05', '15:55', 'estudo', 'Estudo — bloco 3'),
+  PAUSA('15:55', '16:05'),
+  b('16:05', '16:55', 'estudo', 'Estudo — bloco 4'),
+  PAUSA('16:55', '17:10'),
+  b('17:10', '18:00', 'estudo', 'Estudo — bloco 5'),
+  b('18:00', '18:40', 'pessoal', 'Descanso antes do jantar'),
   b('18:40', '19:20', 'refeicao', 'Jantar'),
   ATUAL('19:20', '19:35'),
   FLASH('19:35', '19:55'),
@@ -720,6 +718,7 @@ const INICIO_PLANO = new Date('2026-09-09T00:00:00-03:00')
 const FAIXA_PADRAO = 3
 const EPOCA_V3 = '2026-10-07'
 const EPOCA_V4 = '2026-10-30'
+const EPOCA_V5 = '2026-10-31'
 // O dia nunca nasce 100% cheio. Um plano sem folga transforma qualquer
 // imprevisto em divida, e divida vira bola de neve — foi o que aconteceu nas
 // duas primeiras semanas. 15% do dia fica livre para respirar e recuperar.
@@ -938,7 +937,7 @@ function pintarTudo () {
 async function abrirApp () {
   $('#app').hidden = false
   pintarContagem()
-  $('#sub').textContent = `Vestibular ESPM São Paulo · domingo, 29 de novembro de 2026`
+  $('#sub').textContent = 'Painel de estudos'
   carregarListas(); carregarDossies()
 
   const cache = lerCache()
@@ -985,20 +984,12 @@ function seloSincronia () {
 // A contagem regressiva e util para uns e ansiogena para outros — ela disse que
 // "faltam 81 dias" a deixa ansiosa. Em vez de escolher por ela, o numero e um
 // botao: dias -> semanas -> so a data. Preferencia de exibicao fica no aparelho.
-function pintarContagem () {
-  const modos = ['dias', 'semanas', 'data']
-  let m = localStorage.getItem('contagem') || 'dias'
-  if (!modos.includes(m)) m = 'dias'
-  const hoje0 = new Date(); hoje0.setHours(0, 0, 0, 0)
-  const dias = Math.round((PROVA - hoje0) / 864e5)
-  if (m === 'dias') { $('#dias').textContent = dias; $('#diasRot').textContent = 'dias para a prova' }
-  if (m === 'semanas') { $('#dias').textContent = Math.floor(dias / 7); $('#diasRot').textContent = 'semanas para a prova' }
-  if (m === 'data') { $('#dias').textContent = '29/11'; $('#diasRot').textContent = 'domingo, o dia da prova' }
-  $('#contagem').onclick = () => {
-    localStorage.setItem('contagem', modos[(modos.indexOf(m) + 1) % modos.length])
-    pintarContagem()
-  }
-}
+// 31/10/2026, pedido dela: a contagem regressiva e a data da prova saem do
+// painel. "Nao quero que tenha no painel a data da prova nem a quantidade de
+// dias ate la" — o numero so servia para medir o quanto falta, e medir o quanto
+// falta era o gatilho. O dia tem um objetivo; o resto nao precisa estar na tela.
+function pintarContagem () {}
+
 
 // ---------------------------------------------------------------- abas
 const ABAS = ['hoje', 'painel', 'cronograma', 'prioridades', 'listas', 'atualidades',
@@ -1085,6 +1076,10 @@ function aplicarAgenda (g) {
   // v4 (30/10/2026): mesma rotina da v3 mais o bloco diario de flashcards.
   if (!AGENDA.grades.some(x => x.desde === EPOCA_V4)) {
     AGENDA.grades = [...AGENDA.grades, { desde: EPOCA_V4, rotina: estruturado(ROTINA_PADRAO) }]
+  }
+  // v5 (31/10/2026): inglês suspenso em novembro — o horário vira estudo.
+  if (!AGENDA.grades.some(x => x.desde === EPOCA_V5)) {
+    AGENDA.grades = [...AGENDA.grades, { desde: EPOCA_V5, rotina: estruturado(ROTINA_PADRAO) }]
   }
   const ult = AGENDA.grades[AGENDA.grades.length - 1]
   AGENDA.rotina = ult.rotina || estruturado(ROTINA_PADRAO)
@@ -1822,60 +1817,26 @@ function pintarCronograma () {
   const sobra = aulas - falta                             // o que realmente cabe
   const intensidade = plano.intensidade
 
+  // 31/10/2026: saíram do painel os números "de 80" (cobertura, profundidade e
+  // projeção) e as horas totais até a prova. Pedido dela — eram a medida do
+  // quanto falta, que é exatamente o que dispara a ansiedade e a paralisia.
+  // Fica só o ritmo real, que é sobre ela e dá para mudar hoje.
   $('#kpis').innerHTML = `
-    <div class="card kpi"><div class="v num">${Math.round(totalAteProva)}h</div>
-      <div class="k">de estudo até a prova</div></div>
-    <div class="card kpi"><div class="v num">${Math.round(aulas)}h</div>
-      <div class="k">de aula e lista de questões</div></div>
+    <div class="card kpi"><div class="v num" style="color:${plano.ritmoReal >= 300 ? 'var(--ok)' : 'var(--ink)'}">${plano.ritmoReal ? hhmm(Math.round(plano.ritmoReal)) : '—'}</div>
+      <div class="k">${plano.ritmoReal
+        ? 'seu ritmo real por dia útil, pelo que você marcou nos últimos 21 dias'
+        : 'o ritmo aparece aqui assim que você marcar o primeiro objetivo'}</div></div>
     <div class="card kpi"><div class="v num">${Math.round(redacao + refino)}h</div>
-      <div class="k">reservadas para redação e simulados</div></div>
-    <div class="card kpi"><div class="v num" style="color:${plano.cobertura >= .7 ? 'var(--ok)' : 'var(--warn)'}">${Math.round(plano.cobertura * 80)} de 80</div>
-      <div class="k">questões da prova em assuntos que você <em>encosta</em></div></div>
-    <div class="card kpi"><div class="v num" style="color:var(--warn)">${Math.round(plano.profundidade * 80)} de 80</div>
-      <div class="k">a mesma conta ponderada por <strong>quanto</strong> de cada assunto cabe</div></div>
-    <div class="card kpi"><div class="v num" style="color:${plano.ritmoReal >= 300 ? 'var(--ok)' : 'var(--bad)'}">${hhmm(Math.round(plano.ritmoReal))}</div>
-      <div class="k">seu ritmo real por dia útil (21 dias), pelo que você marcou</div></div>
-    <div class="card kpi"><div class="v num" style="color:var(--bad)">${Math.round(plano.projecao * 80)} de 80</div>
-      <div class="k">o que o plano entrega <strong>nesse</strong> ritmo</div></div>
-    <div class="card kpi"><div class="v num">${(intensidade * 100).toFixed(0)}%</div>
-      <div class="k">do seu dia ocupado</div></div>
-    <div class="card kpi"><div class="v num">${Math.round(refino)}h</div>
-      <div class="k">de simulado e revisão em novembro</div></div>`
+      <div class="k">reservadas para redação e simulados</div></div>`
 
-  const rot = FAIXA_PADRAO === 1 ? 'a fundo' : 'a fundo + sólido'
-  let cls = 'ok', txt
-  if (falta > 0) {
-    cls = 'bad'
-    cls = plano.cobertura >= .7 ? 'ok' : 'warn'
-    txt = `<strong>Duas medidas, e as duas são verdade.</strong>
-      Nas últimas 15 provas da ESPM, <strong>${plano.questoesCobertas} das ${plano.questoesTotal}
-      questões</strong> caíram em assuntos que o plano <em>encosta</em> — em 80 questões, ${Math.round(plano.cobertura * 80)}.
-      Mas encostar não é estudar inteiro: pesando <strong>quanto</strong> de cada assunto
-      realmente cabe, o plano cobre o equivalente a <strong>${Math.round(plano.profundidade * 80)} das 80</strong>.
-      A diferença entre os dois números é o tamanho honesto do que fica de fora.
-      <div class="tiny" style="margin-top:8px">Você tem ${Math.round(totalAteProva)}h até 29/11:
-      ${Math.round(redacao)}h de redação, ${Math.round(refino)}h de simulado e revisão, e
-      ${(100 - intensidade * 100).toFixed(0)}% de cada dia livre de propósito, para imprevisto não
-      virar dívida. Sobram ${Math.round(sobra)}h para aula e lista — e o material soma
-      ${Math.round(aulas)}h. As ${Math.round(falta)}h que ficam de fora <strong>não são dívida
-      sua</strong>: é material que nunca caberia no tempo que existe. O que dá para decidir não é
-      se sobra material — é <strong>qual</strong> material sobra. Essa conversa é comigo, não com
-      o cronograma: fale e eu mudo a ordem das filas.</div>
-      <div class="tiny" style="margin-top:8px;padding-top:8px;border-top:1px solid var(--line)">
-      <strong>E tem um número que vale mais que todos os outros.</strong> Pelas suas marcações
-      dos últimos 21 dias, o seu ritmo real é de <strong>${hhmm(Math.round(plano.ritmoReal))} por dia útil</strong> —
-      o cronograma supõe cerca de 8h30. Nesse ritmo, o plano entrega
-      <strong>${Math.round(plano.projecao * 80)} das 80</strong>; a 6h por dia entrega
-      <strong>${Math.round(plano.projecao6h * 80)}</strong>; completo, ${Math.round(plano.profundidade * 80)}.
-      Ou seja: <strong>a hora a mais por dia vale muito mais do que qualquer mudança de ordem
-      que eu faça nas filas</strong>. Se você estuda e esquece de marcar, este número está baixo
-      à toa — marcar é o que faz o painel enxergar.</div>`
-  } else {
-    txt = `<strong>Fecha.</strong> As ${Math.round(aulas)}h de aula e lista cabem nas
-      ${Math.round(sobra)}h que sobram depois da redação e dos simulados, ocupando
-      ${(intensidade * 100).toFixed(0)}% do seu dia — com 15% livre todo dia para imprevisto.`
-  }
-  $('#diagnostico').innerHTML = `<div class="aviso ${cls}">${txt}</div>`
+  // 31/10/2026: o diagnóstico longo (quanto cabe, quanto sobra, quantas das 80)
+  // saiu junto com os cartões. Ficou só a regra que orienta a decisão.
+  $('#diagnostico').innerHTML = `<div class="aviso">
+    <strong>A ordem já está resolvida.</strong> O plano coloca na frente o que mais caiu nas
+    provas anteriores, e o painel mostra <strong>um objetivo por dia</strong> na aba Hoje.
+    Você não precisa decidir por onde começar — só abrir e fazer o que está lá.
+    ${plano.ritmoReal ? `Se você estuda e esquece de marcar, o ritmo acima aparece baixo à toa:
+    marcar é o que faz o painel enxergar.` : ''}</div>`
 
   // A tabela da grade tambem sai da rotina — nao ha mais numero escrito na mao.
   const nomes = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado']
@@ -2437,7 +2398,17 @@ function montarPlanoRaw (faixaMax = FAIXA_PADRAO) {
 }
 
 function pintarPlano () {
-  const dias = montarPlano()
+  const todos = montarPlano()
+  // 31/10/2026, pedido dela: "apague os dias anteriores; quero que apareça
+  // apenas o que será feito a partir de agora". O passado continua guardado
+  // (a aba Aulas tem tudo), mas sai da tela — olhar para trás só rendia culpa.
+  const dias = todos.filter(d => !d.passado)
+  dias.atrasadas = []
+  dias.remarcadas = 0
+  dias.sobrou = todos.sobrou
+  dias.sobrouMin = todos.sobrouMin
+  dias.sobrouPorMateria = todos.sobrouPorMateria
+  dias.intensidade = todos.intensidade
   // agrupa por semana começando na segunda
   const semanas = []
   dias.forEach(dia => {
@@ -2462,6 +2433,7 @@ function pintarPlano () {
     const refino = s.dias.some(d => d.refino)
     const atrasadas = s.dias.filter(d => d.passado)
       .flatMap(d => d.itens).filter(a => PROG.get(a.id) !== 'assistida' && !REMARCADOS.has(a.id)).length
+    if (s.dias.length && s.dias[0].data > s.inicio) s.inicio = new Date(s.dias[0].data)
     const atual = s.k === kSemanaAtual
     const passada = s.k < kSemanaAtual
     return `<details class="card mod"${atual || atrasadas ? ' open' : ''}>
