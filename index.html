@@ -151,11 +151,19 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
   <p class="small muted">Seu progresso fica salvo e sincroniza entre os aparelhos.</p>
   <div class="f"><label for="em">E-mail</label><input id="em" type="email" autocomplete="email"></div>
   <div class="f"><label for="se">Senha</label><input id="se" type="password" autocomplete="current-password"></div>
-  <div class="f row" style="margin-top:16px">
-    <button class="primary" id="bEntrar" style="flex:1">Entrar</button>
-    <button id="bCriar">Criar conta</button>
+  <div class="f" style="margin-top:16px">
+    <button class="primary" id="bLink" style="width:100%">Entrar sem senha — receber link por e-mail</button>
   </div>
-  <div style="margin-top:12px"><a href="#" id="bEsqueci" class="small" style="color:var(--accent)">Esqueci minha senha</a></div>
+  <p class="tiny muted" style="margin-top:7px">Chega um e-mail com um link. Você toca nele e entra —
+    não precisa lembrar de senha nenhuma. Depois de entrar uma vez neste aparelho, ele continua conectado.</p>
+  <details style="margin-top:12px">
+    <summary class="tiny" style="cursor:pointer;color:var(--ink3)">ou entrar com senha</summary>
+    <div class="f row" style="margin-top:10px">
+      <button class="primary" id="bEntrar" style="flex:1">Entrar</button>
+      <button id="bCriar">Criar conta</button>
+    </div>
+    <div style="margin-top:10px"><a href="#" id="bEsqueci" class="small" style="color:var(--accent)">Esqueci minha senha</a></div>
+  </details>
   <div id="msg"></div>
 </div>
 
@@ -471,7 +479,7 @@ const KEY_SB = 'sb_publishable_eX7i_P76hKCfb4ocJ7zTzg_UilLA6J_'
 const sb = createClient(URL_SB, KEY_SB)
 // Selo desta versao do site. Serve para pedir os arquivos estaticos sem cair no
 // cache velho do navegador (GitHub Pages segura 10 min).
-const BUILD = '2026-10-31b'
+const BUILD = '2026-10-31c'
 
 const PROVA = new Date('2026-11-29T00:00:00-03:00')
 // ROTINA — a fonte da verdade do dia (08/09/2026).
@@ -820,6 +828,20 @@ $('#bEntrar').onclick = async () => {
   const { data, error } = await sb.auth.signInWithPassword({ email: $('#em').value.trim(), password: $('#se').value })
   if (error) return aviso(error.message, 'erro')
   USER = data.user; $('#login').hidden = true; abrirApp()
+}
+
+// 31/10/2026 — ela nao lembra a senha e o reset por e-mail nao estava chegando.
+// O caminho principal passa a ser o link por e-mail (OTP): zero senha para
+// lembrar. Tirar o login inteiro nao da: a leitura ja e aberta pela chave
+// publicavel, mas a ESCRITA exige sessao (testado: INSERT sem sessao devolve
+// 401 por RLS) — sem login ela nao conseguiria marcar nada.
+$('#bLink').onclick = async () => {
+  const email = $('#em').value.trim()
+  if (!email) return aviso('Escreva o seu e-mail acima e toque de novo.', 'erro')
+  const { error } = await sb.auth.signInWithOtp({ email,
+    options: { emailRedirectTo: location.origin + location.pathname } })
+  if (error) return aviso('Não consegui enviar: ' + error.message, 'erro')
+  aviso('Enviado. Abra o e-mail e toque no link — ele abre o painel já conectado. Se não chegar em 2 minutos, olhe o spam.', 'ok')
 }
 
 $('#bCriar').onclick = async () => {

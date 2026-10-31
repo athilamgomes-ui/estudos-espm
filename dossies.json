@@ -198,6 +198,17 @@
   "arquivo": "dossies/conteudo-12-matematica-funcoes-dados.pdf"
  },
  {
+  "slug": "conteudo-13-o-que-falta",
+  "titulo": "O que falta — as últimas 12 questões",
+  "subtitulo": "Conteúdo 13 · geografia econômica, inglês, variação linguística e o resto da matemática",
+  "tipo": "conteudo",
+  "selo": "Conteúdo · fecha a cobertura da prova",
+  "serve": "Humanidades (82 q) · Inglês (53 q) · Português (24 q) · Matemática (24 q)",
+  "minutos": 90,
+  "fechado_em": "escrito em 31 de outubro de 2026",
+  "arquivo": "dossies/conteudo-13-o-que-falta.pdf"
+ },
+ {
   "slug": "entrevista-01-inovacao-criatividade",
   "titulo": "A entrevista da ESPM — inovação e criatividade",
   "subtitulo": "Entrevista 01 · as 5 questões do ANEXO I, a cadeia de raciocínio e os exercícios",
