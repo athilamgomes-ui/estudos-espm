@@ -444,7 +444,7 @@ const KEY_SB = 'sb_publishable_eX7i_P76hKCfb4ocJ7zTzg_UilLA6J_'
 const sb = createClient(URL_SB, KEY_SB)
 // Selo desta versao do site. Serve para pedir os arquivos estaticos sem cair no
 // cache velho do navegador (GitHub Pages segura 10 min).
-const BUILD = '2026-10-31d'
+const BUILD = '2026-10-31e'
 
 const PROVA = new Date('2026-11-29T00:00:00-03:00')
 // ROTINA — a fonte da verdade do dia (08/09/2026).
@@ -744,7 +744,10 @@ async function iniciar () {
   // e custou sete semanas. Agora: o conteudo (aulas, assuntos, prioridades e o
   // PLANO que eu monto) continua vindo do Supabase, que ja e de leitura aberta;
   // o que ELA marca fica no proprio aparelho. Nada de senha, nada de e-mail.
-  USER = { id: 'local', email: 'local' }
+  // O id continua sendo o dela no banco: as LEITURAS (config com o plano, o
+  // progresso-semente, redações) filtram por user_id, e "local" nao e um uuid
+  // valido — o Postgres recusava a consulta inteira e o painel nao abria.
+  USER = { id: DONO, email: 'local' }
   return abrirApp()
 }
 
@@ -789,7 +792,10 @@ $('#bExportar').onclick = () => {
 //   2. tudo o que o plano usa fica em CACHE no aparelho: a tela abre na hora e uma
 //      internet ruim mostra o dia certo da ultima sincronia, nao um dia inventado;
 //   3. carga incompleta NUNCA pinta o dia — aparece aviso com botao de tentar de novo.
-const CACHE_V = 1
+const CACHE_V = 2
+// Dona dos dados no Supabase. Fica aqui porque, sem login, nao ha sessao de onde
+// tirar o id — e as leituras continuam filtrando por ele.
+const DONO = '23dfcced-4201-49c9-a8e5-6be3f1d91f44'
 const chaveCache = () => `estudos:cache:${CACHE_V}:${USER.id}`
 let SYNC = { em: null, de: null, falhou: false }
 let PRI_BRUTO = null
