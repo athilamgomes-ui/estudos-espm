@@ -176,6 +176,28 @@
   "arquivo": "dossies/conteudo-10-geografia-populacao-economia.pdf"
  },
  {
+  "slug": "conteudo-11-matematica-geometria",
+  "titulo": "Geometria — plana, analítica e espacial",
+  "subtitulo": "Conteúdo 11 · 60 questões em 15 provas — a teoria no lugar de 18 horas de videoaula",
+  "tipo": "conteudo",
+  "selo": "Conteúdo · leia e vá direto para as questões",
+  "serve": "Matemática (60 q) · é o maior assunto isolado da prova de exatas",
+  "minutos": 110,
+  "fechado_em": "escrito em 31 de outubro de 2026",
+  "arquivo": "dossies/conteudo-11-matematica-geometria.pdf"
+ },
+ {
+  "slug": "conteudo-12-matematica-funcoes-dados",
+  "titulo": "Funções, contagem, probabilidade e dados",
+  "subtitulo": "Conteúdo 12 · 104 questões em 15 provas — a teoria no lugar das videoaulas que não cabem",
+  "tipo": "conteudo",
+  "selo": "Conteúdo · leia e vá direto para as questões",
+  "serve": "Matemática (104 q) · leitura de gráfico · raciocínio de negócio",
+  "minutos": 120,
+  "fechado_em": "escrito em 31 de outubro de 2026",
+  "arquivo": "dossies/conteudo-12-matematica-funcoes-dados.pdf"
+ },
+ {
   "slug": "entrevista-01-inovacao-criatividade",
   "titulo": "A entrevista da ESPM — inovação e criatividade",
   "subtitulo": "Entrevista 01 · as 5 questões do ANEXO I, a cadeia de raciocínio e os exercícios",
