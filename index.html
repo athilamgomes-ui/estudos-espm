@@ -146,40 +146,6 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
 </head>
 <body>
 
-<div id="login" class="card" hidden>
-  <h1>Estudos ESPM</h1>
-  <p class="small muted">Seu progresso fica salvo e sincroniza entre os aparelhos.</p>
-  <div class="f"><label for="em">E-mail</label><input id="em" type="email" autocomplete="email"></div>
-  <div class="f"><label for="se">Senha</label><input id="se" type="password" autocomplete="current-password"></div>
-  <div class="f" style="margin-top:16px">
-    <button class="primary" id="bLink" style="width:100%">Entrar sem senha — receber link por e-mail</button>
-  </div>
-  <p class="tiny muted" style="margin-top:7px">Chega um e-mail com um link. Você toca nele e entra —
-    não precisa lembrar de senha nenhuma. Depois de entrar uma vez neste aparelho, ele continua conectado.</p>
-  <details style="margin-top:12px">
-    <summary class="tiny" style="cursor:pointer;color:var(--ink3)">ou entrar com senha</summary>
-    <div class="f row" style="margin-top:10px">
-      <button class="primary" id="bEntrar" style="flex:1">Entrar</button>
-      <button id="bCriar">Criar conta</button>
-    </div>
-    <div style="margin-top:10px"><a href="#" id="bEsqueci" class="small" style="color:var(--accent)">Esqueci minha senha</a></div>
-  </details>
-  <div id="msg"></div>
-</div>
-
-<!-- Aparece so quando ela volta pelo link de recuperacao do e-mail. Quem digita
-     a senha nova e ela: o site so repassa para o Supabase. -->
-<div id="novaSenha" class="card" hidden>
-  <h1>Nova senha</h1>
-  <p class="small muted">Escolha a senha nova. Depois disso você entra normalmente no computador e no tablet.</p>
-  <div class="f"><label for="ns1">Senha nova</label><input id="ns1" type="password" autocomplete="new-password"></div>
-  <div class="f"><label for="ns2">Repita a senha</label><input id="ns2" type="password" autocomplete="new-password"></div>
-  <div class="f" style="margin-top:16px"><button class="primary" id="bSalvarSenha" style="width:100%">Salvar senha nova</button></div>
-  <div id="msgNs"></div>
-</div>
-
-<!-- Leitor de PDF: no tablet, como aplicativo da tela de inicio, o PDF abria na
-     mesma janela e nao havia seta para voltar (11/09/2026). -->
 <div id="leitor" hidden>
   <div class="leitor-barra">
     <button id="leitorVoltar" class="primary">← Voltar ao painel</button>
@@ -203,8 +169,7 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
       <div class="small muted" id="sub">—</div>
     </div>
     <div class="row" style="align-items:flex-start">
-      <button id="bTrocarSenha" class="small">Trocar senha</button>
-      <button id="bSair" class="small">Sair</button>
+      <button id="bExportar" class="small" title="Guardar uma cópia do seu progresso">Salvar cópia</button>
     </div>
   </header>
 
@@ -479,7 +444,7 @@ const KEY_SB = 'sb_publishable_eX7i_P76hKCfb4ocJ7zTzg_UilLA6J_'
 const sb = createClient(URL_SB, KEY_SB)
 // Selo desta versao do site. Serve para pedir os arquivos estaticos sem cair no
 // cache velho do navegador (GitHub Pages segura 10 min).
-const BUILD = '2026-10-31c'
+const BUILD = '2026-10-31d'
 
 const PROVA = new Date('2026-11-29T00:00:00-03:00')
 // ROTINA — a fonte da verdade do dia (08/09/2026).
@@ -771,88 +736,46 @@ const FAIXA = {
   3: ['Revisão', 'var(--ink3)']
 }
 
-// ---------------------------------------------------------------- login
-// Recuperacao de senha (10/09/2026): ela esqueceu a senha e o login nao tinha
-// "esqueci a senha". O link do e-mail volta para esta mesma pagina com
-// type=recovery no endereco; ai mostramos o formulario de senha nova em vez de
-// abrir o painel. O site nunca ve nem guarda a senha: so repassa ao Supabase.
-const voltouDaRecuperacao = () => /type=recovery/.test(location.hash + location.search)
-
+// ---------------------------------------------------------------- abertura
 async function iniciar () {
-  if (voltouDaRecuperacao()) {
-    await sb.auth.getSession()          // o supabase-js le o token do endereco
-    $('#novaSenha').hidden = false
-    return
+  // 31/10/2026 — SEM LOGIN. Ela ficou trancada fora do painel de 10/09 a 31/10
+  // (sete semanas) porque esqueceu a senha e o e-mail de recuperacao nao chegava.
+  // O login existia para sincronizar dois aparelhos; na pratica sincronizou zero
+  // e custou sete semanas. Agora: o conteudo (aulas, assuntos, prioridades e o
+  // PLANO que eu monto) continua vindo do Supabase, que ja e de leitura aberta;
+  // o que ELA marca fica no proprio aparelho. Nada de senha, nada de e-mail.
+  USER = { id: 'local', email: 'local' }
+  return abrirApp()
+}
+
+// Uma cópia de segurança do progresso: sem conta, o que vale é o aparelho, então
+// existe um botão para baixar um .json e outro para devolvê-lo (trocar de
+// aparelho, limpar o navegador, reinstalar o app).
+$('#bExportar').onclick = () => {
+  const dados = { prog: lerProgressoLocal(), agenda: lerAgendaLocal(), em: new Date().toISOString() }
+  const u = URL.createObjectURL(new Blob([JSON.stringify(dados)], { type: 'application/json' }))
+  const a = document.createElement('a')
+  a.href = u; a.download = 'estudos-progresso-' + iso(new Date()) + '.json'
+  a.dataset.baixar = '1'; document.body.appendChild(a); a.click(); a.remove()
+  setTimeout(() => URL.revokeObjectURL(u), 10000)
+  const i = document.createElement('input')
+  i.type = 'file'; i.accept = 'application/json'; i.style.display = 'none'
+  i.onchange = async () => {
+    const f = i.files[0]; if (!f) return
+    try {
+      const d = JSON.parse(await f.text())
+      if (d.prog) localStorage.setItem(CH_PROG, JSON.stringify(d.prog))
+      if (d.agenda) localStorage.setItem(CH_AGENDA, JSON.stringify(d.agenda))
+      location.reload()
+    } catch (e) { alert('Não consegui ler esse arquivo.') }
   }
-  const { data: { session } } = await sb.auth.getSession()
-  if (session) { USER = session.user; return abrirApp() }
-  $('#login').hidden = false
+  document.body.appendChild(i)
+  setTimeout(() => {
+    if (confirm('Cópia baixada.\n\nQuer RESTAURAR uma cópia de outro aparelho agora? (Cancelar = não)')) i.click()
+    else i.remove()
+  }, 600)
 }
 
-$('#bEsqueci').onclick = async e => {
-  e.preventDefault()
-  const email = $('#em').value.trim()
-  if (!email) return aviso('Escreva seu e-mail no campo acima e toque de novo em "Esqueci minha senha".', 'erro')
-  const { error } = await sb.auth.resetPasswordForEmail(email,
-    { redirectTo: location.origin + location.pathname })
-  if (error) return aviso('Não consegui enviar: ' + error.message, 'erro')
-  aviso('Pronto. Abra o e-mail que acabou de chegar e toque no link — ele traz você de volta aqui para escolher a senha nova.', 'ok')
-}
-
-// Trocar a senha estando logada (10/09/2026). Ela esqueceu a senha, mas o
-// computador continua logado: com a sessao aberta o Supabase aceita a senha
-// nova sem pedir a antiga. Resolve o tablet sem e-mail e sem mexer no Supabase.
-$('#bTrocarSenha').onclick = () => {
-  $('#app').hidden = true
-  $('#novaSenha').hidden = false
-  $('#ns1').focus()
-}
-
-$('#bSalvarSenha').onclick = async () => {
-  const a = $('#ns1').value, b = $('#ns2').value
-  const m = $('#msgNs')
-  if (a.length < 6) { m.textContent = 'A senha precisa de pelo menos 6 caracteres.'; m.className = 'erro'; return }
-  if (a !== b) { m.textContent = 'As duas senhas não são iguais.'; m.className = 'erro'; return }
-  const { data, error } = await sb.auth.updateUser({ password: a })
-  if (error) { m.textContent = 'Não consegui salvar: ' + error.message; m.className = 'erro'; return }
-  history.replaceState(null, '', location.pathname)
-  $('#novaSenha').hidden = true
-  $('#ns1').value = ''; $('#ns2').value = ''; m.textContent = ''
-  // Veio de dentro do painel: so volta para ele. Veio do link do e-mail: abre.
-  if (USER) { $('#app').hidden = false; return }
-  USER = data.user
-  abrirApp()
-}
-
-$('#bEntrar').onclick = async () => {
-  const { data, error } = await sb.auth.signInWithPassword({ email: $('#em').value.trim(), password: $('#se').value })
-  if (error) return aviso(error.message, 'erro')
-  USER = data.user; $('#login').hidden = true; abrirApp()
-}
-
-// 31/10/2026 — ela nao lembra a senha e o reset por e-mail nao estava chegando.
-// O caminho principal passa a ser o link por e-mail (OTP): zero senha para
-// lembrar. Tirar o login inteiro nao da: a leitura ja e aberta pela chave
-// publicavel, mas a ESCRITA exige sessao (testado: INSERT sem sessao devolve
-// 401 por RLS) — sem login ela nao conseguiria marcar nada.
-$('#bLink').onclick = async () => {
-  const email = $('#em').value.trim()
-  if (!email) return aviso('Escreva o seu e-mail acima e toque de novo.', 'erro')
-  const { error } = await sb.auth.signInWithOtp({ email,
-    options: { emailRedirectTo: location.origin + location.pathname } })
-  if (error) return aviso('Não consegui enviar: ' + error.message, 'erro')
-  aviso('Enviado. Abra o e-mail e toque no link — ele abre o painel já conectado. Se não chegar em 2 minutos, olhe o spam.', 'ok')
-}
-
-$('#bCriar').onclick = async () => {
-  const { data, error } = await sb.auth.signUp({ email: $('#em').value.trim(), password: $('#se').value })
-  if (error) return aviso(error.message, 'erro')
-  if (data.session) { USER = data.user; $('#login').hidden = true; return abrirApp() }
-  aviso('Conta criada. Confirme pelo link que chegou no seu e-mail e depois entre.', 'ok')
-}
-
-$('#bSair').onclick = async () => { await sb.auth.signOut(); location.reload() }
-const aviso = (t, c) => { const m = $('#msg'); m.textContent = t; m.className = c || '' }
 
 // ---------------------------------------------------------------- carga
 // Por que este bloco existe assim (09/09/2026): naquela manha o dashboard mostrou
@@ -920,10 +843,19 @@ function aplicar (d) {
   MATERIAS = d.materias; DISCIPLINAS = d.disciplinas; ASSUNTOS = d.assuntos
   AULAS = d.aulas; REDACOES = d.redacoes || []
   PROG.clear(); PROG_EM.clear()
+  // O que vem do servidor é a SEMENTE (o que ela marcou até 10/09, quando ainda
+  // conseguia entrar). Dali em diante manda o aparelho.
   d.progresso.forEach(p => {
     PROG.set(p.aula_id, p.status)
     if (p.assistida_em) PROG_EM.set(p.aula_id, p.assistida_em.slice(0, 10))
   })
+  const local = lerProgressoLocal()
+  if (local && local.prog) {
+    Object.entries(local.prog).forEach(([k, v]) => PROG.set(+k, v))
+    Object.entries(local.em || {}).forEach(([k, v]) => PROG_EM.set(+k, v))
+  } else {
+    gravarProgressoLocal()          // primeira abertura: guarda a semente
+  }
   aplicarPrioridades(d.prioridades)
   aplicarAgenda(d.config)
   invalidarPlano()
@@ -1074,13 +1006,14 @@ function pintarPainel () {
 // isso tao bem quanto terminar a tarefa). Ela pediu uma rotina para ansiedade;
 // a rotina escrita e o remedio, nao o enfeite.
 function aplicarAgenda (g) {
-  AGENDA.feitos = (g && g.feitos) || {}
-  AGENDA.dificil = (g && g.dificil) || {}
+  const loc = lerAgendaLocal() || {}
+  AGENDA.feitos = loc.feitos || (g && g.feitos) || {}
+  AGENDA.dificil = loc.dificil || (g && g.dificil) || {}
   AGENDA.congelados = { ...SEMENTE_CONGELADOS, ...((g && g.congelados) || {}) }
   AGENDA.blocosCongelados = { ...SEMENTE_BLOCOS, ...((g && g.blocosCongelados) || {}) }
   // Semente (11/09/2026): os dois assuntos que ela disse ter terminado e
   // continuar sem conseguir. Vale so ate ela salvar a primeira mudanca.
-  AGENDA.recuperacao = (g && g.recuperacao) || [
+  AGENDA.recuperacao = loc.recuperacao || (g && g.recuperacao) || [
     { id: 1, assunto: 4, criado: '2026-09-10', feitas: [] },
     { id: 2, assunto: 25, criado: '2026-09-10', feitas: [] }
   ]
@@ -1111,15 +1044,7 @@ const estruturado = o => JSON.parse(JSON.stringify(o))
 let salvando = null
 async function salvarAgenda () {
   gravarCache()
-  clearTimeout(salvando)
-  salvando = setTimeout(async () => {
-    const { error } = await sb.from('config').upsert(
-      { user_id: USER.id, horas_meta: { grades: AGENDA.grades, feitos: AGENDA.feitos,
-        recuperacao: AGENDA.recuperacao, congelados: AGENDA.congelados,
-        blocosCongelados: AGENDA.blocosCongelados, dificil: AGENDA.dificil } },
-      { onConflict: 'user_id' })
-    if (error) console.warn('nao salvou a rotina', error.message)
-  }, 400)
+  gravarAgendaLocal()
 }
 
 // So guarda os ultimos 45 dias de marcacao — o resto e peso morto no jsonb.
@@ -2702,12 +2627,35 @@ async function marcar (aula_id, feita) {
   PROG.set(aula_id, status)
   gravarCache()
   pintarPainel(); pintarHoje(); pintarCronograma(); pintarPlano()
-  const { error } = await sb.from('progresso').upsert({
-    user_id: USER.id, aula_id, status,
-    assistida_em: feita ? new Date().toISOString() : null,
-    atualizado_em: new Date().toISOString()
-  }, { onConflict: 'user_id,aula_id' })
-  if (error) alert('Não consegui salvar: ' + error.message)
+  gravarProgressoLocal()
+}
+
+// --------------------------------------------------- o que e DELA fica no aparelho
+// progresso, blocos marcados e o modo "dia dificil" vivem em localStorage. O que
+// e MEU (plano, dias congelados, grade de horarios) continua vindo do servidor,
+// para eu poder continuar remontando o cronograma sem ela precisar de conta.
+const CH_PROG = 'estudos:progresso:v1'
+const CH_AGENDA = 'estudos:agenda:v1'
+function gravarProgressoLocal () {
+  try {
+    const o = {}
+    PROG.forEach((v, k) => { o[k] = v })
+    const em = {}
+    PROG_EM.forEach((v, k) => { em[k] = v })
+    localStorage.setItem(CH_PROG, JSON.stringify({ prog: o, em }))
+  } catch (e) { /* aparelho sem espaco: o painel segue funcionando */ }
+}
+function lerProgressoLocal () {
+  try { return JSON.parse(localStorage.getItem(CH_PROG) || 'null') } catch (e) { return null }
+}
+function gravarAgendaLocal () {
+  try {
+    localStorage.setItem(CH_AGENDA, JSON.stringify({
+      feitos: AGENDA.feitos, dificil: AGENDA.dificil, recuperacao: AGENDA.recuperacao }))
+  } catch (e) {}
+}
+function lerAgendaLocal () {
+  try { return JSON.parse(localStorage.getItem(CH_AGENDA) || 'null') } catch (e) { return null }
 }
 
 // ---------------------------------------------------------------- prioridades
