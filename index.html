@@ -444,7 +444,7 @@ const KEY_SB = 'sb_publishable_eX7i_P76hKCfb4ocJ7zTzg_UilLA6J_'
 const sb = createClient(URL_SB, KEY_SB)
 // Selo desta versao do site. Serve para pedir os arquivos estaticos sem cair no
 // cache velho do navegador (GitHub Pages segura 10 min).
-const BUILD = '2026-10-31e'
+const BUILD = '2026-10-31f'
 
 const PROVA = new Date('2026-11-29T00:00:00-03:00')
 // ROTINA — a fonte da verdade do dia (08/09/2026).
@@ -1283,6 +1283,7 @@ function postoObjetivo (a) {
 function pintarFoco (hoje, itens, blocos) {
   const box = $('#hojeFoco')
   if (!box) return
+  const hoje0 = new Date(); hoje0.setHours(0, 0, 0, 0)
   const dificil = diaDificil(hoje)
   const feito = a => PROG.get(a.id) === 'assistida'
   // 31/10/2026 — ela recusou, com razao, a ideia de que o que nao foi feito
@@ -1290,9 +1291,20 @@ function pintarFoco (hoje, itens, blocos) {
   // dias anteriores reaparece AQUI, no topo, antes do objetivo de hoje. Nao
   // desaparece e nao vira uma lista infinita: mostra os 4 mais importantes e
   // diz quantos faltam atras deles.
-  const naoFeitos = montarPlano().filter(d => d.passado && iso(d.data) >= '2026-10-25')
-    .flatMap(d => d.itens).filter(a => !feito(a) && !ehLembrete(a) &&
-      !itens.some(x => x.id === a.id))
+  // 01/11/2026 — correcao: isto estava listando TUDO o que o planejador pos nos
+  // dias passados (18 itens de 26 a 30/10), e nada daquilo foi apresentado a ela
+  // — estava trancada fora do painel e eu so tinha falado da inscricao. Virava
+  // de novo a avalanche que o sistema existe para evitar.
+  // Regra certa: um dia so deixa para tras o SEU OBJETIVO, e so a partir do dia
+  // em que o objetivo do dia passou a existir.
+  const DESDE_OBJETIVO = '2026-10-30'
+  const limite = iso(new Date(hoje0.getTime() - 7 * 864e5))
+  const naoFeitos = montarPlano()
+    .filter(d => d.passado && iso(d.data) >= DESDE_OBJETIVO && iso(d.data) >= limite)
+    .map(d => [...d.itens]
+      .sort((a, b) => postoObjetivo(a) - postoObjetivo(b))
+      .find(a => !feito(a) && !ehLembrete(a) && !ehFicha(a)))
+    .filter(a => a && !itens.some(x => x.id === a.id))
   const vencidos = [...new Map(naoFeitos.map(a => [a.id, a])).values()]
     .sort((x, y) => postoObjetivo(x) - postoObjetivo(y))
   const ordenados = [...itens].sort((x, y) => postoObjetivo(x) - postoObjetivo(y))
@@ -1322,8 +1334,8 @@ function pintarFoco (hoje, itens, blocos) {
     ${vencidos.length ? `
     <div class="card" style="padding:14px 17px;margin-bottom:12px;border:1px solid var(--warn)">
       <strong style="font-size:13px;letter-spacing:.8px;color:var(--warn)">FICOU DE ONTEM</strong>
-      <div class="tiny muted" style="margin:3px 0 8px">Isto não sumiu e não vai sumir: é conteúdo que você ainda não viu.
-        Faça <strong>antes</strong> do objetivo de hoje — ou, se o dia for curto, troque: faça isto e deixe o de hoje para amanhã.</div>
+      <div class="tiny muted" style="margin:3px 0 8px">O objetivo que ficou em aberto nos últimos dias — <strong>um por dia</strong>, não a lista toda.
+        Faça <strong>antes</strong> do de hoje; se o dia for curto, troque: faça este e deixe o de hoje para amanhã.</div>
       ${vencidos.slice(0, 4).map(a => `
         <label style="display:flex;gap:9px;align-items:flex-start;cursor:pointer;padding:6px 0">
           <input type="checkbox" data-foco="${a.id}" style="width:17px;height:17px;margin-top:2px;flex:none;accent-color:var(--accent)">
