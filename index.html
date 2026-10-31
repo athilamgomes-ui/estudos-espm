@@ -1335,6 +1335,12 @@ function pintarFoco (hoje, itens, blocos) {
   const ordenados = [...itens].sort((x, y) => postoObjetivo(x) - postoObjetivo(y))
   const obj = ordenados.find(a => !feito(a)) || ordenados[0] || null
   const resto = ordenados.filter(a => !obj || a.id !== obj.id)
+  // 31/10/2026 — ela abriu o cronograma e viu tarefas que NAO apareciam no
+  // Hoje: a meia-prova de 2h30 estava dentro de "se sobrar tempo", fechado.
+  // Tarefa grande nunca mais fica escondida: so revisao curta vai para o
+  // sanfonado. "Nao entendi por que esta isso la" era um defeito meu, nao dela.
+  const grandes = resto.filter(a => minutosPlanejados(a) >= 45)
+  const curtos = resto.filter(a => minutosPlanejados(a) < 45)
 
   const blocoFlash = (blocos || []).find(x => x.t === 'estudo' && x.n.startsWith('Flashcards'))
   const blocoAtual = (blocos || []).find(x => x.t === 'estudo' && x.n.startsWith('Atualidades'))
@@ -1377,10 +1383,20 @@ function pintarFoco (hoje, itens, blocos) {
           ${linhaBloco(blocoFlash, 'Flashcards', '20 min', 'Tente lembrar antes de virar o cartão — é a tentativa que fixa')}
           ${linhaBloco(blocoAtual, 'Atualidades', '15 min', 'Uma notícia, quatro perguntas')}
         </div>` : ''}
-      ${!dificil && resto.length ? `
+      ${!dificil && grandes.length ? `
+        <div style="margin-top:11px;border-top:1px solid var(--line);padding-top:9px">
+          <div class="tiny" style="color:var(--ink3);margin-bottom:3px">Também estava marcado para hoje. <strong>Não é obrigação</strong> — o dia já está cumprido no objetivo acima. Fica à vista para você não ser surpreendida pelo cronograma:</div>
+          ${grandes.map(a => `<label style="display:flex;gap:9px;align-items:flex-start;cursor:pointer;padding:6px 0">
+            <input type="checkbox" data-foco="${a.id}"${feito(a) ? ' checked' : ''}
+              style="width:17px;height:17px;margin-top:2px;flex:none;accent-color:var(--accent)">
+            <span class="small${feito(a) ? ' muted' : ''}" style="${feito(a) ? 'text-decoration:line-through' : ''}">${rotuloAula(a)}
+              <span class="tiny"> · ${hhmm(minutosPlanejados(a))}${(ehLista(a) || /\.pdf$/i.test(a.url || '')) && a.url
+                ? ` · <a href="${a.url}" target="_blank" rel="noopener" style="color:var(--accent)">abrir PDF</a>` : ''}</span></span></label>`).join('')}
+        </div>` : ''}
+      ${!dificil && curtos.length ? `
         <details style="margin-top:11px;border-top:1px solid var(--line);padding-top:9px">
-          <summary class="tiny" style="cursor:pointer;color:var(--ink3)">Se sobrar tempo — ${resto.length} ${resto.length === 1 ? 'tarefa' : 'tarefas'}</summary>
-          ${resto.map(a => `<label style="display:flex;gap:9px;align-items:flex-start;cursor:pointer;padding:6px 0 0">
+          <summary class="tiny" style="cursor:pointer;color:var(--ink3)">Se sobrar tempo — ${curtos.length} ${curtos.length === 1 ? 'tarefa curta' : 'tarefas curtas'}</summary>
+          ${curtos.map(a => `<label style="display:flex;gap:9px;align-items:flex-start;cursor:pointer;padding:6px 0 0">
             <input type="checkbox" data-foco="${a.id}"${feito(a) ? ' checked' : ''}
               style="width:16px;height:16px;margin-top:2px;flex:none;accent-color:var(--accent)">
             <span class="small${feito(a) ? ' muted' : ''}" style="${feito(a) ? 'text-decoration:line-through' : ''}">${rotuloAula(a)}
