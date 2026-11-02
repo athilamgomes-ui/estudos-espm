@@ -444,7 +444,7 @@ const KEY_SB = 'sb_publishable_eX7i_P76hKCfb4ocJ7zTzg_UilLA6J_'
 const sb = createClient(URL_SB, KEY_SB)
 // Selo desta versao do site. Serve para pedir os arquivos estaticos sem cair no
 // cache velho do navegador (GitHub Pages segura 10 min).
-const BUILD = '2026-10-31f'
+const BUILD = '2026-11-02a'
 
 const PROVA = new Date('2026-11-29T00:00:00-03:00')
 // ROTINA — a fonte da verdade do dia (08/09/2026).
@@ -1127,7 +1127,7 @@ function pintarHoje () {
   const blocos = blocosDoDia(agora)
   const dia = montarPlano().find(d => iso(d.data) === hoje)
   congelarDia(hoje, dia)
-  const itens = (dia && dia.itens) || []
+  const itens = semCorrecaoOrfa((dia && dia.itens) || [])
   const mapa = mapaDoDia(hoje, blocos, itens)
   const feitos = AGENDA.feitos[hoje] || []
 
@@ -1301,7 +1301,7 @@ function pintarFoco (hoje, itens, blocos) {
   const limite = iso(new Date(hoje0.getTime() - 7 * 864e5))
   const naoFeitos = montarPlano()
     .filter(d => d.passado && iso(d.data) >= DESDE_OBJETIVO && iso(d.data) >= limite)
-    .map(d => [...d.itens]
+    .map(d => semCorrecaoOrfa(d.itens)
       .sort((a, b) => postoObjetivo(a) - postoObjetivo(b))
       .find(a => !feito(a) && !ehLembrete(a) && !ehFicha(a)))
     .filter(a => a && !itens.some(x => x.id === a.id))
@@ -1899,6 +1899,42 @@ const ehLembrete = a => a.curso_id === 'lembrete'
 // ler de uma vez — ela entendeu que era, porque o cronograma tinha 90 min dele.
 const ehFicha = a => a.curso_id === 'ficha'
 const temDataFixa = a => ehRefino(a) || ehRedacaoEscrita(a) || ehLembrete(a) || ehFicha(a)
+
+// A CORRECAO NAO EXISTE SOZINHA (02/11/2026). Ela abriu o painel e achou
+// "Corrigir a meia-prova" num dia em que nenhuma meia-prova havia acontecido: a
+// prova tinha data propria num dia anterior, nao foi feita (a entrevista ficou na
+// frente dela no mesmo dia) e a correcao, que tambem tem data propria, veio
+// sozinha no dia seguinte pedindo para corrigir o que nao existe.
+// Regra: toda correcao aponta para a prova que a gerou — a ultima prova longa do
+// refino com data igual ou anterior a dela. Se essa prova nao esta feita, a
+// correcao DA LUGAR A PROVA no dia: ela faz a prova, e a correcao volta sozinha
+// quando houver o que corrigir. Nada e apagado e nada e inventado.
+const ehCorrecaoRefino = a => ehRefino(a) && /corrigir/i.test(a.titulo || '')
+const ehProvaRefino = a => ehRefino(a) && !ehCorrecaoRefino(a) && (a.minutos_est || 0) >= 150
+function provaDaCorrecao (a) {
+  const dia = a.libera_em || ''
+  return AULAS.filter(x => ehProvaRefino(x) && (x.libera_em || '') <= dia)
+    .sort((x, y) => (x.libera_em || '').localeCompare(y.libera_em || '')).pop() || null
+}
+function semCorrecaoOrfa (itens) {
+  const ok = id => PROG.get(id) === 'assistida'
+  const hoje = iso(new Date())
+  const out = []
+  ;(itens || []).forEach(a => {
+    if (ehCorrecaoRefino(a) && !ok(a.id)) {
+      const p = provaDaCorrecao(a)
+      // So troca quando o dia da prova JA PASSOU sem ela ser feita. Se a prova
+      // ainda esta pela frente, a correcao planejada depois dela esta certa e
+      // fica onde esta — senao a prova apareceria duas vezes no cronograma.
+      if (p && !ok(p.id) && (p.libera_em || '') < hoje) {
+        if (!out.some(x => x.id === p.id) && !itens.some(x => x.id === p.id)) out.push(p)
+        return
+      }
+    }
+    out.push(a)
+  })
+  return out
+}
 // Entra no plano? Fora: os PDFs de apostila e os videos de CORRECAO de
 // exercicio do CEM — ela resolve sozinha e so ve a correcao quando erra
 // (regra de 05/08, reforcada em 07/08: "19 videoaulas de correcao nao precisa").
@@ -2407,7 +2443,10 @@ function pintarPlano () {
   // 31/10/2026, pedido dela: "apague os dias anteriores; quero que apareça
   // apenas o que será feito a partir de agora". O passado continua guardado
   // (a aba Aulas tem tudo), mas sai da tela — olhar para trás só rendia culpa.
+  // Mesma regra do Hoje: no cronograma a correcao tambem da lugar a prova
+  // enquanto a prova nao estiver feita (02/11/2026).
   const dias = todos.filter(d => !d.passado)
+    .map(d => ({ ...d, itens: semCorrecaoOrfa(d.itens) }))
   dias.atrasadas = []
   dias.remarcadas = 0
   dias.sobrou = todos.sobrou
