@@ -444,7 +444,7 @@ const KEY_SB = 'sb_publishable_eX7i_P76hKCfb4ocJ7zTzg_UilLA6J_'
 const sb = createClient(URL_SB, KEY_SB)
 // Selo desta versao do site. Serve para pedir os arquivos estaticos sem cair no
 // cache velho do navegador (GitHub Pages segura 10 min).
-const BUILD = '2026-11-02a'
+const BUILD = '2026-11-08a'
 
 const PROVA = new Date('2026-11-29T00:00:00-03:00')
 // ROTINA — a fonte da verdade do dia (08/09/2026).
@@ -1300,13 +1300,88 @@ function pintarFoco (hoje, itens, blocos) {
   const DESDE_OBJETIVO = '2026-10-30'
   const limite = iso(new Date(hoje0.getTime() - 7 * 864e5))
   const naoFeitos = montarPlano()
-    .filter(d => d.passado && iso(d.data) >= DESDE_OBJETIVO && iso(d.data) >= limite)
+    .filter(d => d.passado && iso(d.data) >= DESDE_OBJETIVO && iso(d.data) >= limite && !d.frente)
     .map(d => semCorrecaoOrfa(d.itens)
       .sort((a, b) => postoObjetivo(a) - postoObjetivo(b))
       .find(a => !feito(a) && !ehLembrete(a) && !ehFicha(a)))
     .filter(a => a && !itens.some(x => x.id === a.id))
   const vencidos = [...new Map(naoFeitos.map(a => [a.id, a])).values()]
     .sort((x, y) => postoObjetivo(x) - postoObjetivo(y))
+  // -------------------------------------------------- A FRENTE DE HOJE (08/11/2026)
+  const fr = frenteDoDia(itens)
+  const pdf = a => (ehLista(a) || /\.pdf$/i.test(a.url || '')) && a.url
+    ? ` · <a href="${a.url}" target="_blank" rel="noopener" style="color:var(--accent)">abrir PDF</a>` : ''
+  const linhaItem = (a, g) => `
+    <label style="display:flex;gap:11px;align-items:flex-start;cursor:pointer;padding:8px 0">
+      <input type="checkbox" data-foco="${a.id}"${feito(a) ? ' checked' : ''}
+        style="width:${g ? 21 : 17}px;height:${g ? 21 : 17}px;margin-top:2px;flex:none;accent-color:var(--accent)">
+      <span style="flex:1;font-size:${g ? 15 : 13}px;line-height:1.35;${feito(a) ? 'color:var(--ink3);text-decoration:line-through' : ''}">${rotuloAula(a)}
+        <span class="tiny" style="display:block;margin-top:2px;color:var(--ink3)">${hhmm(minutosPlanejados(a))}${pdf(a)}</span></span>
+    </label>`
+
+  // As frentes dos dias que JA PASSARAM e ficaram abertas. Nao vira avalanche:
+  // uma linha por dia, dizendo quanto falta, e os itens dentro de um sanfonado.
+  const DESDE_FRENTE = '2026-11-09'
+  const frentesAbertas = montarPlano()
+    .filter(d => d.passado && iso(d.data) >= DESDE_FRENTE && d.frente)
+    .map(d => {
+      const da = d.itens.filter(a => ehFrente(a) && a.modulo === d.frente)
+      return { dia: d.data, nome: d.frente, total: da.length, falta: da.filter(a => !feito(a)) }
+    })
+    .filter(x => x.falta.length)
+  const htmlFrentesAbertas = frentesAbertas.length ? `
+    <div class="card" style="padding:14px 17px;margin-bottom:12px;border:1px solid var(--warn)">
+      <strong style="font-size:13px;letter-spacing:.8px;color:var(--warn)">FRENTES AINDA ABERTAS</strong>
+      <div class="tiny muted" style="margin:3px 0 8px">Frente aberta não desaparece: ela volta aqui até você fechar.
+        Se for escolher, feche <strong>a mais antiga</strong> — ela já tem revisão marcada depois.</div>
+      ${frentesAbertas.map(x => `
+        <details style="padding:5px 0;border-top:1px solid var(--line)">
+          <summary class="small" style="cursor:pointer"><strong>${x.nome}</strong>
+            <span class="tiny muted"> — ${SEM_INTEIRO[x.dia.getDay()]} ${x.dia.getDate()}/${x.dia.getMonth() + 1} ·
+              faltam ${x.falta.length} de ${x.total}</span></summary>
+          ${x.falta.map(a => linhaItem(a, false)).join('')}
+        </details>`).join('')}
+    </div>` : ''
+
+  const cartaoFrente = () => {
+    const daFrente = itens.filter(a => ehFrente(a) && a.modulo === fr)
+    const fora = itens.filter(a => !(ehFrente(a) && a.modulo === fr))
+    const ok = daFrente.filter(feito).length
+    const pct = daFrente.length ? Math.round(ok / daFrente.length * 100) : 0
+    const fechada = daFrente.length && ok === daFrente.length
+    return `
+    <div class="card" style="padding:17px;border:1px solid ${fechada ? 'var(--ok)' : 'var(--line)'}">
+      <div class="row" style="justify-content:space-between;align-items:baseline">
+        <strong style="font-size:13px;letter-spacing:.8px;color:var(--ink3)">A FRENTE DE HOJE</strong>
+        <button id="bDificil" class="small">${dificil ? '↩︎ voltar ao dia normal' : 'hoje está difícil'}</button>
+      </div>
+      <div style="font-size:19px;line-height:1.25;margin:7px 0 4px;${fechada ? 'color:var(--ok)' : ''}">${fr}</div>
+      <div class="tiny muted">Hoje é só esta matéria. Fechar a frente é <strong>fechar o assunto</strong>:
+        daqui para frente ele só volta em revisão e em simulado.</div>
+      <div class="barra" style="margin:12px 0 4px"><i style="width:${pct}%"></i></div>
+      <div class="tiny" style="color:${fechada ? 'var(--ok)' : 'var(--ink3)'}">${ok} de ${daFrente.length} ·
+        ${hhmm(daFrente.filter(a => !feito(a)).reduce((t, a) => t + minutosPlanejados(a), 0))} restantes
+        ${fechada ? '· <strong>frente fechada</strong>' : ''}</div>
+      ${dificil ? `<div class="tiny" style="margin:10px 0 0;color:var(--warn)">
+        <strong>Dia difícil:</strong> faça só o primeiro item da lista, e só os primeiros 30 minutos dele.
+        Começar já é cumprir — o resto da frente vai para o dia de revisão desta área.</div>` : ''}
+      <div style="margin-top:8px;border-top:1px solid var(--line)">
+        ${daFrente.map((a, i) => linhaItem(a, i === 0 && !dificil)).join('')}
+      </div>
+      ${fora.length ? `
+        <div style="margin-top:10px;border-top:1px solid var(--line);padding-top:8px">
+          <div class="tiny" style="color:var(--ink3)">Fora da frente, e também é de hoje:</div>
+          ${fora.map(a => linhaItem(a, false)).join('')}
+        </div>` : ''}
+      ${(blocoFlash || blocoAtual) ? `
+        <div style="margin-top:10px;padding-top:8px;border-top:1px solid var(--line)">
+          <div class="tiny" style="color:var(--ink3);margin-bottom:3px">Os dois curtos, que valem todo dia:</div>
+          ${linhaBloco(blocoFlash, 'Flashcards', '20 min', 'Tente lembrar antes de virar o cartão — é a tentativa que fixa')}
+          ${linhaBloco(blocoAtual, 'Atualidades', '15 min', 'Uma notícia, quatro perguntas')}
+        </div>` : ''}
+    </div>`
+  }
+
   const ordenados = [...itens].sort((x, y) => postoObjetivo(x) - postoObjetivo(y))
   const obj = ordenados.find(a => !feito(a)) || ordenados[0] || null
   const resto = ordenados.filter(a => !obj || a.id !== obj.id)
@@ -1330,8 +1405,7 @@ function pintarFoco (hoje, itens, blocos) {
         <strong>${rotulo}</strong> — ${texto}${sub ? `<div class="tiny muted" style="margin-top:1px">${sub}</div>` : ''}</span>
     </label>` : ''
 
-  box.innerHTML = `
-    ${vencidos.length ? `
+  const htmlVencidos = `${vencidos.length ? `
     <div class="card" style="padding:14px 17px;margin-bottom:12px;border:1px solid var(--warn)">
       <strong style="font-size:13px;letter-spacing:.8px;color:var(--warn)">FICOU DE ONTEM</strong>
       <div class="tiny muted" style="margin:3px 0 8px">O objetivo que ficou em aberto nos últimos dias — <strong>um por dia</strong>, não a lista toda.
@@ -1344,7 +1418,9 @@ function pintarFoco (hoje, itens, blocos) {
               ? ` · <a href="${a.url}" target="_blank" rel="noopener" style="color:var(--accent)">abrir PDF</a>` : ''}</span></span>
         </label>`).join('')}
       ${vencidos.length > 4 ? `<div class="tiny muted" style="margin-top:5px">e mais ${vencidos.length - 4} atrás destes — eles aparecem conforme você for marcando</div>` : ''}
-    </div>` : ''}
+    </div>` : ''}`
+
+  const cartaoObjetivo = `
     <div class="card" style="padding:17px;border:1px solid ${objFeito ? 'var(--ok)' : 'var(--line)'}">
       <div class="row" style="justify-content:space-between;align-items:baseline;margin-bottom:10px">
         <strong style="font-size:13px;letter-spacing:.8px;color:var(--ink3)">O OBJETIVO DE HOJE</strong>
@@ -1392,6 +1468,8 @@ function pintarFoco (hoje, itens, blocos) {
               <span class="tiny"> · ${hhmm(minutosPlanejados(a))}</span></span></label>`).join('')}
         </details>` : ''}
     </div>`
+
+  box.innerHTML = htmlVencidos + htmlFrentesAbertas + (fr ? cartaoFrente() : cartaoObjetivo)
   box.querySelectorAll('input[data-foco]').forEach(c =>
     c.onchange = () => { marcar(+c.dataset.foco, c.checked); pintarHoje() })
   box.querySelectorAll('input[data-bloco]').forEach(c => c.onchange = () => {
@@ -1898,7 +1976,21 @@ const ehLembrete = a => a.curso_id === 'lembrete'
 // Uma ficha do caderno de repertorios por dia (11/09/2026): o caderno nao e para
 // ler de uma vez — ela entendeu que era, porque o cronograma tinha 90 min dele.
 const ehFicha = a => a.curso_id === 'ficha'
-const temDataFixa = a => ehRefino(a) || ehRedacaoEscrita(a) || ehLembrete(a) || ehFicha(a)
+// A FRENTE DO DIA (08/11/2026). Uma semana inteira ela estudou bem e NAO usou o
+// cronograma: "quando eu falei que queria um objetivo por dia, era no sentido de:
+// hoje eu vou estudar TUDO relacionado a entrevista". Objetivo nunca foi um ITEM
+// por dia — e uma AREA por dia, fechada naquele dia, e dali em diante so revisao.
+// Os itens vem do banco (curso_id='frente', gerados por gerar_frentes.py) com o
+// nome da frente em `modulo`. Num dia de frente o planejador nao acrescenta nada:
+// o dia e de uma materia so, que e exatamente o que ela pediu.
+const ehFrente = a => a.curso_id === 'frente'
+const FRENTE_DIARIA = 'Redação todo dia'
+const frenteDoDia = itens => {
+  const m = (itens || []).filter(ehFrente).map(a => a.modulo)
+    .filter(x => x && x !== FRENTE_DIARIA)
+  return m[0] || null
+}
+const temDataFixa = a => ehRefino(a) || ehRedacaoEscrita(a) || ehLembrete(a) || ehFicha(a) || ehFrente(a)
 
 // A CORRECAO NAO EXISTE SOZINHA (02/11/2026). Ela abriu o painel e achou
 // "Corrigir a meia-prova" num dia em que nenhuma meia-prova havia acontecido: a
@@ -2227,6 +2319,13 @@ function distribuir (dias, filas, de, ate, intensidade, fixosPorDia, hoje0) {
       dias.push({ data: new Date(d), itens, refino, passado })
       continue
     }
+    // Dia de FRENTE: o dia e daquela materia e de mais nada. O planejador nao
+    // encaixa aula nem lista de outra area aqui (08/11/2026).
+    if (itens.some(ehFrente)) {
+      itens.sort((x, y) => postoNoDia(x) - postoNoDia(y))
+      dias.push({ data: new Date(d), itens, refino, passado, frente: frenteDoDia(itens) })
+      continue
+    }
     let restam = capacidade * intensidade -
       itens.reduce((t, a) => t + minutosPlanejados(a), 0)
 
@@ -2445,7 +2544,12 @@ function pintarPlano () {
   // (a aba Aulas tem tudo), mas sai da tela — olhar para trás só rendia culpa.
   // Mesma regra do Hoje: no cronograma a correcao tambem da lugar a prova
   // enquanto a prova nao estiver feita (02/11/2026).
-  const dias = todos.filter(d => !d.passado)
+  // 08/11/2026 — ela: "os dias que ja passaram estao sumindo, e nao foi isso que
+  // eu pedi. Era so daqueles dias para tras; de novembro em diante nao e para
+  // sumir". Entao o corte passa a ser uma DATA, nao "tudo que passou": os 22 dias
+  // perdidos de outubro continuam fora, novembro inteiro fica.
+  const DESDE_VISIVEL = '2026-11-05'
+  const dias = todos.filter(d => !d.passado || iso(d.data) >= DESDE_VISIVEL)
     .map(d => ({ ...d, itens: semCorrecaoOrfa(d.itens) }))
   dias.atrasadas = []
   dias.remarcadas = 0
@@ -2488,7 +2592,7 @@ function pintarPlano () {
       </summary>
       <div style="padding:4px 15px 12px">
         ${refino ? `<div class="tiny" style="padding:8px 0 0;color:var(--accent)">
-          🎯 Semana de refinamento — sem aula nova, só resolver questão, corrigir e simular</div>` : ''}
+          🎯 Reta final — uma frente por dia: ler o dossiê daquela área, resolver as listas dela e fechar</div>` : ''}
         <div class="tiny" style="padding:8px 0 4px">
           ✍️ As ${REDACOES_SEMANA} redações da semana já estão no dia delas, com o tema —
           depois de escrever, registre a nota na aba Redações
@@ -2504,6 +2608,7 @@ function pintarPlano () {
              background:${ehHoje ? 'var(--accent-soft)' : 'transparent'}">
             <strong class="small">${SEM[dt.getDay()]} ${dt.getDate()}/${dt.getMonth() + 1}${ehHoje ? ' · hoje' : ''}</strong>
             <span class="tiny"> · ${hhmm(hDia)}${naoFeitas ? ` · <span style="color:var(--bad)">${naoFeitas} não ${naoFeitas > 1 ? 'feitas' : 'feita'}</span>` : ''}</span>
+            ${dia.frente ? `<div class="tiny" style="color:var(--accent);margin-top:1px">▸ frente do dia: <strong>${dia.frente}</strong></div>` : ''}
           </div>` + dia.itens.map(a => item(a, dia.passado)).join('')
       }).join('')}
     </details>`
@@ -2542,17 +2647,28 @@ function pintarPlano () {
 
   // Honestidade: o que nao cabe nao e "cauda", e escopo que sobrou. Mostra
   // quanto e, por materia, para a decisao de cortar ser dela e com numero.
-  const cabecaSobrou = dias.sobrou ? `
-    <div class="aviso warn" style="margin-bottom:12px">
-      <strong>${dias.sobrou} itens ficam de fora</strong> (${horas(dias.sobrouMin)}h).
-      Não é atraso nem dívida: é o que não cabe em ${Math.round((PROVA - new Date()) / 864e5)} dias. No seu ritmo real — 2h10 por aula (1h10 de vídeo + 10 questões + correção) —
-      o material dos dois cursos é maior do que os dias que faltam. O plano acima já
-      pega o que mais cai primeiro; o que sobra é o fim de cada fila:
-      <div class="tiny" style="margin-top:6px">${dias.sobrouPorMateria.map(([m, n, min]) =>
-        `${m}: ${n} itens (${horas(min)}h)`).join(' · ')}</div>
-      <div class="tiny" style="margin-top:6px">Dá para mudar isso de três jeitos:
-        estudar mais horas, tratar as aulas de faixa “Sólido” com menos profundidade,
-        ou cortar assunto. Fale comigo qual você prefere.</div>
+  // 08/11/2026 — este aviso falava de "itens dos dois cursos que ficam de fora",
+  // e isso deixou de descrever a realidade: da grade de frentes em diante nao
+  // existe mais fila de videoaula, existem dossie + lista de questoes por area.
+  // O numero honesto agora e OUTRO: quantas das 1.199 questoes catalogadas cabem
+  // ate a prova. Esse numero e calculado aqui, do proprio plano.
+  const QUESTOES_CATALOGO = 1199
+  const qNoPlano = dias.flatMap(d => d.itens).reduce((t, a) => {
+    const m = /TODAS as (\d+)|ÚLTIMAS (\d+)|questões (\d+) a (\d+)/.exec(a.titulo || '')
+    if (!m) return t
+    return t + (m[1] ? +m[1] : m[2] ? +m[2] : (+m[4] - +m[3] + 1))
+  }, 0)
+  const cabecaSobrou = qNoPlano ? `
+    <div class="aviso" style="margin-bottom:12px">
+      <strong>${qNoPlano} questões da ESPM estão marcadas nos dias que faltam</strong>, das
+      ${QUESTOES_CATALOGO} que eu catalaguei das 15 provas — mais as 160 dos simulados.
+      <div class="tiny" style="margin-top:6px">As que entraram são as <strong>mais recentes de cada
+        assunto</strong>, porque é nelas que o padrão da banca está mais parecido com o da sua prova.
+        O resto não é dívida: é o que não cabe em ${Math.round((PROVA - new Date()) / 864e5)} dias, e
+        sai de propósito.</div>
+      <div class="tiny" style="margin-top:6px">Cada dia é <strong>uma frente só</strong>: o dossiê
+        daquela área, as listas dela e o fechamento. Fechar a frente é fechar o assunto — ele só
+        volta em revisão e em simulado.</div>
     </div>` : ''
 
   $('#plano').innerHTML = cabecaMutirao + cabecaAtraso + cabecaSobrou + html
@@ -2682,6 +2798,11 @@ function pintarAulas () {
 async function marcar (aula_id, feita) {
   const status = feita ? 'assistida' : 'pendente'
   PROG.set(aula_id, status)
+  // 08/11/2026: a data de quando ela marcou NUNCA era gravada no aparelho — so
+  // vinha do servidor, que nao recebe escrita. Sem ela o painel nao conseguia
+  // dizer "isto voce fez ontem", e dava a impressao de que marcar nao mudava nada.
+  if (feita) PROG_EM.set(aula_id, iso(new Date()))
+  else PROG_EM.delete(aula_id)
   gravarCache()
   pintarPainel(); pintarHoje(); pintarCronograma(); pintarPlano()
   gravarProgressoLocal()

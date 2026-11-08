@@ -209,6 +209,17 @@
   "arquivo": "dossies/conteudo-13-o-que-falta.pdf"
  },
  {
+  "slug": "conteudo-14-matematica-1",
+  "titulo": "Matemática 1 — aritmética aplicada e álgebra",
+  "subtitulo": "Frente de 09/11 · 82 questões em 15 provas · a metade da prova que é só raciocínio proporcional",
+  "tipo": "conteudo",
+  "selo": "Frente do dia · leia, feche e vá para as listas",
+  "serve": "Matemática (82 q) · é a base de que as outras três frentes dependem",
+  "minutos": 75,
+  "fechado_em": "escrito em 8 de novembro de 2026",
+  "arquivo": "dossies/conteudo-14-matematica-1.pdf"
+ },
+ {
   "slug": "entrevista-01-inovacao-criatividade",
   "titulo": "A entrevista da ESPM — inovação e criatividade",
   "subtitulo": "Entrevista 01 · as 5 questões do ANEXO I, a cadeia de raciocínio e os exercícios",
