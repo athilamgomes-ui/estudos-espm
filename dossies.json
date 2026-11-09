@@ -242,6 +242,17 @@
   "arquivo": "dossies/entrevista-02-respostas.pdf"
  },
  {
+  "slug": "entrevista-03-videos-e-relatorios",
+  "titulo": "Entrevista — os 3 vídeos e os 4 relatórios",
+  "subtitulo": "O material do Anexo I que faltava, lido por inteiro · para a entrevista de 12/11 às 14h",
+  "tipo": "entrevista",
+  "selo": "Entrevista · leia hoje, enquanto escreve suas respostas",
+  "serve": "Entrevista (40 dos 160 pontos) · e repertório de redação sobre trabalho, educação e IA",
+  "minutos": 90,
+  "fechado_em": "escrito em 9 de novembro de 2026, com as fontes abertas",
+  "arquivo": "dossies/entrevista-03-videos-e-relatorios.pdf"
+ },
+ {
   "slug": "manual-do-metodo",
   "titulo": "Manual do método",
   "subtitulo": "O passo a passo de cada tipo de tarefa, por escrito, para você nunca mais precisar lembrar",
