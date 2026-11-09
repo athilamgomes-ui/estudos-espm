@@ -1,0 +1,720 @@
+[
+ {
+  "id": "figuras-de-linguagem",
+  "nome": "Figuras de linguagem",
+  "materia": "portugues",
+  "nota": "Os seus dois erros de português na 2026-2 (Q17 e Q19) eram disso",
+  "cartas": [
+   {
+    "id": "figuras-de-linguagem-01",
+    "frente": "Aliteração",
+    "verso": "Repetição do mesmo som **consonantal** em palavras próximas.\n\n*“O **r**ato **r**oeu a **r**oupa do **r**ei de **R**oma.”*\n\nFoi a resposta da Q17 da prova 2026-2, que você marcou como metáfora.",
+    "dica": "som de consoante"
+   },
+   {
+    "id": "figuras-de-linguagem-02",
+    "frente": "Assonância",
+    "verso": "Repetição do mesmo som **vocálico**.\n\n*“Sou **u**m m**u**lato n**u**”* — a vogal que volta.\n\nPar da aliteração: consoante = aliteração, vogal = assonância.",
+    "dica": "som de vogal"
+   },
+   {
+    "id": "figuras-de-linguagem-03",
+    "frente": "Metáfora",
+    "verso": "Identificação direta entre dois termos, **sem** palavra comparativa.\n\n*“Meu pensamento é um rio subterrâneo.”* — o pensamento **é** o rio.",
+    "dica": "sem 'como'"
+   },
+   {
+    "id": "figuras-de-linguagem-04",
+    "frente": "Comparação (símile)",
+    "verso": "Aproximação entre dois termos **com** conectivo comparativo: como, tal qual, assim como.\n\n*“Cada cicatriz brilha **como** um brasão.”*\n\nSe tem “como” explícito, é comparação, não metáfora.",
+    "dica": "tem 'como'"
+   },
+   {
+    "id": "figuras-de-linguagem-05",
+    "frente": "Metonímia",
+    "verso": "Troca de uma palavra por outra com a qual tem **relação de proximidade** (parte pelo todo, autor pela obra, marca pelo produto, continente pelo conteúdo).\n\n*“Li **Machado** inteiro.”* · *“Bebeu o **copo** todo.”*",
+    "dica": "troca por contiguidade"
+   },
+   {
+    "id": "figuras-de-linguagem-06",
+    "frente": "Catacrese",
+    "verso": "Metáfora já gasta pelo uso, que virou o único nome disponível.\n\n*“**braço** da cadeira”, “**dente** de alho”, “**pé** da mesa”.*",
+    "dica": null
+   },
+   {
+    "id": "figuras-de-linguagem-07",
+    "frente": "Hipérbole",
+    "verso": "Exagero intencional.\n\n*“Chorei um rio.”*",
+    "dica": null
+   },
+   {
+    "id": "figuras-de-linguagem-08",
+    "frente": "Eufemismo",
+    "verso": "Suaviza uma ideia dura.\n\n*“Ele **partiu**”* no lugar de morreu.",
+    "dica": null
+   },
+   {
+    "id": "figuras-de-linguagem-09",
+    "frente": "Ironia",
+    "verso": "Diz o contrário do que se quer dizer, para criticar.\n\nNo *Memórias Póstumas*, Machado usa ironia quase em cada capítulo.",
+    "dica": null
+   },
+   {
+    "id": "figuras-de-linguagem-10",
+    "frente": "Antítese",
+    "verso": "Aproximação de duas ideias **opostas**.\n\n*“É ferida que dói e não se sente.”*",
+    "dica": "opostos juntos"
+   },
+   {
+    "id": "figuras-de-linguagem-11",
+    "frente": "Paradoxo (oximoro)",
+    "verso": "Vai além da antítese: as ideias opostas se fundem numa só, criando contradição lógica.\n\n*“Amor é fogo que arde sem se ver.”*\n\nAntítese **contrasta**; paradoxo **contradiz**.",
+    "dica": null
+   },
+   {
+    "id": "figuras-de-linguagem-12",
+    "frente": "Prosopopeia (personificação)",
+    "verso": "Dá traço humano a ser inanimado ou animal.\n\n*“O vento **sussurrava** segredos.”*",
+    "dica": null
+   },
+   {
+    "id": "figuras-de-linguagem-13",
+    "frente": "Sinestesia",
+    "verso": "Mistura sensações de sentidos diferentes.\n\n*“Um grito **azedo**”, “cor **quente**”, “voz **macia**”.*",
+    "dica": "cruza os sentidos"
+   },
+   {
+    "id": "figuras-de-linguagem-14",
+    "frente": "Pleonasmo",
+    "verso": "Redundância. Pode ser vício (*subir para cima*) ou recurso de ênfase (*“Morrerás morte vil”*).",
+    "dica": null
+   },
+   {
+    "id": "figuras-de-linguagem-15",
+    "frente": "Anáfora",
+    "verso": "Repetição da mesma palavra **no início** de versos ou frases seguidas.",
+    "dica": "repete no começo"
+   },
+   {
+    "id": "figuras-de-linguagem-16",
+    "frente": "Polissíndeto",
+    "verso": "Repetição insistente de conectivo, normalmente “e”, acelerando o ritmo.\n\n*“E ri, e canta, e dança, e grita.”*",
+    "dica": null
+   },
+   {
+    "id": "figuras-de-linguagem-17",
+    "frente": "Elipse",
+    "verso": "Omissão de um termo que o leitor supre pelo contexto.\n\n*“Na sala, apenas quatro cadeiras.”* (omitiu “havia”)",
+    "dica": null
+   },
+   {
+    "id": "figuras-de-linguagem-18",
+    "frente": "Zeugma",
+    "verso": "Elipse de um termo **já citado antes**.\n\n*“Ele gosta de praia; eu, de montanha.”* (omitiu “gosto”)",
+    "dica": null
+   },
+   {
+    "id": "figuras-de-linguagem-19",
+    "frente": "Hipérbato (inversão)",
+    "verso": "Troca a ordem natural da frase.\n\n*“Ouviram do Ipiranga as margens plácidas…”*",
+    "dica": null
+   },
+   {
+    "id": "figuras-de-linguagem-20",
+    "frente": "Gradação (clímax)",
+    "verso": "Sequência de ideias em intensidade crescente ou decrescente.",
+    "dica": null
+   },
+   {
+    "id": "figuras-de-linguagem-21",
+    "frente": "Apóstrofe",
+    "verso": "Chamamento, invocação direta a alguém ou algo.\n\n*“Ó mar salgado, quanto do teu sal…”*",
+    "dica": null
+   },
+   {
+    "id": "figuras-de-linguagem-22",
+    "frente": "Onomatopeia",
+    "verso": "Palavra que imita um som.\n\n*“tic-tac”, “zum-zum”.*",
+    "dica": null
+   }
+  ]
+ },
+ {
+  "id": "escolas-literarias",
+  "nome": "Escolas literárias",
+  "materia": "portugues",
+  "nota": "119 questões em 15 provas — o maior assunto de português",
+  "cartas": [
+   {
+    "id": "escolas-literarias-01",
+    "frente": "Barroco — traço central e autor",
+    "verso": "**Conflito** entre o terreno e o divino, carne e espírito. Linguagem rebuscada, antítese e paradoxo em toda parte, cultismo (jogo de palavras) e conceptismo (jogo de ideias).\n\nAutor: **Gregório de Matos**, o “Boca do Inferno”.",
+    "dica": "séc. XVII · dualidade"
+   },
+   {
+    "id": "escolas-literarias-02",
+    "frente": "Arcadismo — traço central e autores",
+    "verso": "**Reação ao Barroco**: simplicidade, equilíbrio, razão. Volta ao campo idealizado (*bucolismo*), pastora com nome grego (Marília), e os lemas **fugere urbem** (fugir da cidade), **locus amoenus** (lugar ameno), **carpe diem** e **inutilia truncat** (cortar o inútil).\n\nAutores: **Tomás Antônio Gonzaga** (*Marília de Dirceu*) e **Cláudio Manuel da Costa** — os dois inconfidentes de 1789.",
+    "dica": "séc. XVIII · campo e razão"
+   },
+   {
+    "id": "escolas-literarias-03",
+    "frente": "Romantismo — 1ª geração (nacionalista/indianista)",
+    "verso": "**Indianismo** e construção do herói nacional; exaltação da natureza brasileira; projeto de dar ao país recém-independente um passado épico.\n\nAutores: **Gonçalves Dias** (*I-Juca-Pirama*, *Canção do Exílio*) e **José de Alencar** (*O Guarani*, *Iracema*).",
+    "dica": "o índio como herói"
+   },
+   {
+    "id": "escolas-literarias-04",
+    "frente": "Romantismo — 2ª geração (ultrarromântica / “mal do século”)",
+    "verso": "**Pessimismo**, morte, tédio, amor impossível, escapismo, egocentrismo. É o byronismo brasileiro.\n\nAutor: **Álvares de Azevedo** (*Lira dos Vinte Anos*, *Noite na Taverna*), morto aos 20 anos.",
+    "dica": "morte e tédio"
+   },
+   {
+    "id": "escolas-literarias-05",
+    "frente": "Romantismo — 3ª geração (condoreira / social)",
+    "verso": "Poesia **social e abolicionista**, oratória, imagens grandiosas (o condor, que voa alto).\n\nAutor: **Castro Alves** (*O Navio Negreiro*, *Vozes d'África*).",
+    "dica": "abolicionista"
+   },
+   {
+    "id": "escolas-literarias-06",
+    "frente": "Realismo — traço central e autor",
+    "verso": "**Crítica à burguesia** e ao casamento por interesse; análise psicológica; narrador irônico; objetividade contra a idealização romântica.\n\nAutor: **Machado de Assis** — *Memórias Póstumas de Brás Cubas* (1881) inaugura, *Dom Casmurro* (1899), *Quincas Borba*.",
+    "dica": "1881 · ironia e psicologia"
+   },
+   {
+    "id": "escolas-literarias-07",
+    "frente": "Naturalismo — e como se distingue do Realismo",
+    "verso": "Mesma crítica, mas com **determinismo**: o ser humano é produto de raça, meio e momento. Patologia, instinto, sexualidade, personagem coletivo, linguagem crua e “cientificismo”.\n\nAutor: **Aluísio Azevedo** — *O Cortiço* (1890), em que o cortiço é quase um organismo vivo.\n\nRealismo analisa a **consciência**; Naturalismo explica pelo **determinismo biológico e social**.",
+    "dica": "determinismo"
+   },
+   {
+    "id": "escolas-literarias-08",
+    "frente": "Parnasianismo — traço central e autores",
+    "verso": "**Culto à forma**: soneto, metrificação rigorosa, rima rica, vocabulário raro, temas clássicos, “arte pela arte”. Avesso ao sentimentalismo romântico e à função social.\n\nAutores: **Olavo Bilac** (*Via Láctea*, “Ora, direis, ouvir estrelas!”), Raimundo Correia, Alberto de Oliveira.",
+    "dica": "poesia · forma perfeita"
+   },
+   {
+    "id": "escolas-literarias-09",
+    "frente": "Simbolismo — traço central e autor",
+    "verso": "**Musicalidade**, sinestesia, sugestão em vez de descrição, misticismo, subjetividade; o branco, a névoa, o vago.\n\nAutor: **Cruz e Sousa**, o “Dante Negro” (*Broquéis*).",
+    "dica": "música e sugestão"
+   },
+   {
+    "id": "escolas-literarias-10",
+    "frente": "Pré-Modernismo — o que é e autores",
+    "verso": "Não é escola, é **período de transição** (1902–1922) com obras que denunciam o Brasil real esquecido pela República.\n\n**Euclides da Cunha** (*Os Sertões*, 1902 — Canudos), **Lima Barreto** (*Triste Fim de Policarpo Quaresma* — o subúrbio e o nacionalismo ingênuo), **Monteiro Lobato** (o Jeca Tatu), **Augusto dos Anjos** (*Eu*, vocabulário científico e pessimismo).",
+    "dica": "1902–1922 · o Brasil real"
+   },
+   {
+    "id": "escolas-literarias-11",
+    "frente": "Modernismo — 1ª fase (1922–1930)",
+    "verso": "**Ruptura e destruição**: verso livre, humor, paródia, linguagem coloquial, nacionalismo crítico. Semana de Arte Moderna (1922), *Manifesto Pau-Brasil* (1924) e *Manifesto Antropófago* (1928).\n\nAutores: **Mário de Andrade** (*Macunaíma*, *Paulicéia Desvairada*), **Oswald de Andrade**, **Manuel Bandeira**.",
+    "dica": "1922 · destruir"
+   },
+   {
+    "id": "escolas-literarias-12",
+    "frente": "Modernismo — 2ª fase (1930–1945)",
+    "verso": "**Construção**: o romance regionalista do Nordeste, com seca, latifúndio, migração e denúncia social.\n\nAutores: **Graciliano Ramos** (*Vidas Secas*, *São Bernardo*), **Rachel de Queiroz** (*O Quinze*), **Jorge Amado**, **José Lins do Rego**.\n\nNa poesia: **Drummond** e **Cecília Meireles**.",
+    "dica": "1930 · romance de 30"
+   },
+   {
+    "id": "escolas-literarias-13",
+    "frente": "Modernismo — 3ª fase (1945–1960) / Geração de 45",
+    "verso": "Retorno ao **rigor formal** e experimentação com a linguagem.\n\nAutores: **João Cabral de Melo Neto** (*Morte e Vida Severina*, poesia “de engenharia”), **Clarice Lispector** (fluxo de consciência, epifania), **Guimarães Rosa** (*Grande Sertão: Veredas*, invenção da língua).",
+    "dica": "1945 · rigor e invenção"
+   },
+   {
+    "id": "escolas-literarias-14",
+    "frente": "Concretismo e o pós-1960",
+    "verso": "**Concretismo** (1956): o poema como objeto visual, abandono do verso — irmãos Campos e Décio Pignatari. Depois: poesia marginal dos anos 70 (Ana Cristina Cesar, Paulo Leminski) e a prosa urbana de **Rubem Fonseca** e **Lygia Fagundes Telles** (a autora do texto que caiu em 2026-2).",
+    "dica": null
+   },
+   {
+    "id": "escolas-literarias-15",
+    "frente": "O par que a ESPM adora: Romantismo × Realismo",
+    "verso": "**Romantismo** idealiza (amor eterno, herói, natureza sublime); **Realismo** desmonta (casamento por interesse, personagem ambíguo, narrador irônico).\n\nSe a questão contrasta duas visões do mesmo tema — amor, mulher, país — o eixo é quase sempre esse.",
+    "dica": null
+   },
+   {
+    "id": "escolas-literarias-16",
+    "frente": "Como a ESPM cobra literatura (119 questões)",
+    "verso": "Quase nunca “de que escola é este autor?”. Quase sempre: **um poema ou trecho + que característica de escola ele revela**, ou **comparação entre dois textos**.\n\nEntão o que decide é reconhecer o **traço no texto**: antítese e conflito = Barroco; pastora e campo = Arcadismo; índio herói = 1ª romântica; morte e tédio = 2ª; escravidão = 3ª; ironia e análise = Realismo; determinismo e instinto = Naturalismo; forma perfeita = Parnasianismo; musicalidade = Simbolismo.",
+    "dica": null
+   }
+  ]
+ },
+ {
+  "id": "matematica-formulas-e-condicoes",
+  "nome": "Matemática — fórmulas e condições",
+  "materia": "matematica",
+  "nota": "As ferramentas que você deixou em branco no simulado",
+  "cartas": [
+   {
+    "id": "matematica-formulas-e-condicoes-01",
+    "frente": "Média aritmética **ponderada**",
+    "verso": "Soma de (valor × peso) dividida pela **soma dos pesos**.\n\nNum gráfico de frequência: Σ(valor × frequência) ÷ Σfrequência.\n\nFoi a Q24 da 2026-2, que você deixou em branco.",
+    "dica": "pesos no divisor"
+   },
+   {
+    "id": "matematica-formulas-e-condicoes-02",
+    "frente": "Quando usar média e quando usar mediana",
+    "verso": "Com **valores extremos** (salários, por exemplo) a média é puxada e **engana**; a **mediana** descreve melhor o típico.\n\nÉ a pergunta conceitual favorita das bancas.",
+    "dica": null
+   },
+   {
+    "id": "matematica-formulas-e-condicoes-03",
+    "frente": "Sistema linear: condição de **infinitas soluções**",
+    "verso": "As duas equações são **a mesma reta**: os três coeficientes são proporcionais.\n\na₁/a₂ = b₁/b₂ = **c₁/c₂**\n\nQuem esquece de testar o **termo constante** cai na alternativa errada — foi a Q22 da 2026-2 (m=3, e o m=4 era a armadilha).",
+    "dica": "proporcional nos TRÊS"
+   },
+   {
+    "id": "matematica-formulas-e-condicoes-04",
+    "frente": "Sistema linear: as três possibilidades",
+    "verso": "**SPD** (uma solução): retas concorrentes, a₁/a₂ ≠ b₁/b₂.\n**SPI** (infinitas): mesma reta, a₁/a₂ = b₁/b₂ = c₁/c₂.\n**SI** (nenhuma): paralelas, a₁/a₂ = b₁/b₂ ≠ c₁/c₂.",
+    "dica": null
+   },
+   {
+    "id": "matematica-formulas-e-condicoes-05",
+    "frente": "Polígono regular: ângulo **interno** × ângulo **central**",
+    "verso": "**Interno** (no vértice, entre dois lados) = (n−2)·180°/n\n**Central** (visto do centro) = 360°/n\n\nNo hexágono: interno **120°**, central **60°**. Confundir os dois foi o seu erro na Q28.",
+    "dica": "interno ≠ central"
+   },
+   {
+    "id": "matematica-formulas-e-condicoes-06",
+    "frente": "Soma dos ângulos **externos** de um polígono convexo",
+    "verso": "**360°, sempre** — não importa o número de lados.\n\nÉ o fato que resolve a Q28 em duas linhas: (n−2)·180 − 360 = 540 → n = **7**.",
+    "dica": "sempre 360"
+   },
+   {
+    "id": "matematica-formulas-e-condicoes-07",
+    "frente": "Soma dos ângulos internos e número de diagonais",
+    "verso": "Soma dos internos = **(n−2)·180°**\nDiagonais = **n(n−3)/2**",
+    "dica": null
+   },
+   {
+    "id": "matematica-formulas-e-condicoes-08",
+    "frente": "Razão de semelhança: lados, áreas e volumes",
+    "verso": "Se a razão entre lados é **k**, a razão entre **áreas é k²** e entre **volumes é k³**.\n\nAumentar o raio em 20% aumenta a área em **44%** (1,2² = 1,44), não 20%.",
+    "dica": "k → k² → k³"
+   },
+   {
+    "id": "matematica-formulas-e-condicoes-09",
+    "frente": "Soma e produto das raízes (2º grau)",
+    "verso": "x₁ + x₂ = **−b/a** · x₁ · x₂ = **c/a**\n\nQuando a questão quer algo *sobre* as raízes (soma, produto, soma dos inversos), usar Bhaskara é trabalhar três vezes mais.",
+    "dica": null
+   },
+   {
+    "id": "matematica-formulas-e-condicoes-10",
+    "frente": "O que o discriminante Δ = b² − 4ac responde",
+    "verso": "**Δ > 0:** duas soluções possíveis.\n**Δ = 0:** exatamente uma (é o caso de fronteira — “para que valor de m há raiz única?”).\n**Δ < 0:** nenhuma real — no contexto, significa “isso nunca acontece”.",
+    "dica": null
+   },
+   {
+    "id": "matematica-formulas-e-condicoes-11",
+    "frente": "Vértice da parábola, e para que serve",
+    "verso": "x_v = **−b/2a** · y_v = **−Δ/4a**\n\nÉ o **máximo** (se a<0) ou o **mínimo** (se a>0). Toda questão de “preço que maximiza a receita” ou “custo mínimo” é vértice.",
+    "dica": null
+   },
+   {
+    "id": "matematica-formulas-e-condicoes-12",
+    "frente": "Regra de três **composta**: o método",
+    "verso": "1. Tabela com uma coluna por grandeza.\n2. Pergunta, **uma grandeza por vez**: se esta aumentar e o resto ficar parado, a incógnita aumenta (direta) ou diminui (inversa)?\n3. Multiplica as razões, **invertendo as das inversas**.\n\nDiretamente proporcional a DUAS grandezas = multiplica as DUAS razões. Foi a Q38: 12.000 × 1,5 × 1,5 = **27.000** (o 18.000 é a armadilha de quem aplica só uma).",
+    "dica": "multiplica as duas"
+   },
+   {
+    "id": "matematica-formulas-e-condicoes-13",
+    "frente": "Porcentagens sucessivas",
+    "verso": "**Multiplicam, nunca somam.**\n+10% depois +10% = 1,1 × 1,1 = **+21%**\n−20% depois +20% = 0,8 × 1,2 = 0,96 = **−4%**, não volta ao original.\n\nPorque o segundo percentual incide sobre o valor **já alterado**.",
+    "dica": null
+   },
+   {
+    "id": "matematica-formulas-e-condicoes-14",
+    "frente": "Pontos percentuais × porcentagem",
+    "verso": "A inflação cai de 8% para 6%: caiu **2 pontos percentuais** e **25% do valor** (2/8).\n\nO enunciado nunca avisa qual dos dois ele quer.",
+    "dica": null
+   },
+   {
+    "id": "matematica-formulas-e-condicoes-15",
+    "frente": "Lucro sobre o custo × margem sobre a venda",
+    "verso": "Custa 80, vende por 100.\nLucro sobre o **custo** = 20/80 = **25%**\nMargem sobre a **venda** = 20/100 = **20%**\n\nLeia sempre “lucro de X% sobre o quê”.",
+    "dica": null
+   },
+   {
+    "id": "matematica-formulas-e-condicoes-16",
+    "frente": "Para manter o preço depois de dar 10% de desconto",
+    "verso": "**Divide** por 0,9 (não multiplica por 1,1).\n\nÉ o raciocínio “por dentro”, o mesmo de imposto embutido no preço.",
+    "dica": "divide"
+   },
+   {
+    "id": "matematica-formulas-e-condicoes-17",
+    "frente": "MMC ou MDC? a pergunta que decide",
+    "verso": "“Quando **coincidem** de novo?” / “menor número que serve para os dois” → **MMC**.\n“Maior pedaço igual em que posso dividir?” → **MDC**.\n\nE: **MMC(a,b) × MDC(a,b) = a × b**",
+    "dica": null
+   },
+   {
+    "id": "matematica-formulas-e-condicoes-18",
+    "frente": "Arranjo × combinação",
+    "verso": "**A ordem importa?** Sim → **arranjo**, A(n,p) = n!/(n−p)! (pódio). Não → **combinação**, C(n,p) = n!/(p!(n−p)!) (comissão).",
+    "dica": "a ordem importa?"
+   },
+   {
+    "id": "matematica-formulas-e-condicoes-19",
+    "frente": "Princípio multiplicativo e o “pelo menos um”",
+    "verso": "Escolhas em sequência: multiplica as opções (3 entradas × 4 pratos × 2 sobremesas = 24).\n\n**“Pelo menos um”** → calcule **o total menos o caso em que não há nenhum**: 1 − P(nenhum).",
+    "dica": null
+   },
+   {
+    "id": "matematica-formulas-e-condicoes-20",
+    "frente": "Contagem de algarismo numa sequência",
+    "verso": "O algarismo da **unidade** cicla a cada 10 números. De 1 a 1000 há **1000 ÷ 10 = 100** ciclos → o “2” aparece **100 vezes** na unidade.\n\nFoi a Q39: você contou 9 centenas quando são **10**.",
+    "dica": null
+   },
+   {
+    "id": "matematica-formulas-e-condicoes-21",
+    "frente": "Probabilidade: união, independentes e complementar",
+    "verso": "P(A ou B) = P(A) + P(B) − **P(A e B)**\nIndependentes: P(A e B) = P(A) × P(B)\nComplementar: P(não A) = 1 − P(A)\n\nE cuidado com **sem reposição**: o denominador muda na segunda retirada.",
+    "dica": null
+   },
+   {
+    "id": "matematica-formulas-e-condicoes-22",
+    "frente": "Propriedades do logaritmo",
+    "verso": "log(a·b) = log a + **log b**\nlog(a/b) = log a − log b\nlog(aⁿ) = **n·log a**\n\nFoi o caminho da Q34: log₂(x−1) + log₂(x+3) = 5 → (x−1)(x+3) = 32 → x = **5**.",
+    "dica": null
+   },
+   {
+    "id": "matematica-formulas-e-condicoes-23",
+    "frente": "Determinante 2×2 e 3×3",
+    "verso": "2×2: **ad − bc**\n3×3: regra de Sarrus.\n\nSe o determinante dos três pontos (com coluna de 1s) dá **zero**, eles são **colineares**.",
+    "dica": null
+   },
+   {
+    "id": "matematica-formulas-e-condicoes-24",
+    "frente": "Retas paralelas e perpendiculares",
+    "verso": "Paralelas: **mesmo m**.\nPerpendiculares: **m₁ × m₂ = −1**.\n\nE m = (y₂−y₁)/(x₂−x₁): a subida dividida pelo avanço.",
+    "dica": null
+   },
+   {
+    "id": "matematica-formulas-e-condicoes-25",
+    "frente": "Os três produtos notáveis, e para que servem",
+    "verso": "(a+b)² = a² + 2ab + b² · (a−b)² = a² − 2ab + b² · (a+b)(a−b) = **a² − b²**\n\nNa prova eles quase nunca são o tema: são o atalho. 98 × 102 = (100−2)(100+2) = **9.996**.",
+    "dica": null
+   },
+   {
+    "id": "matematica-formulas-e-condicoes-26",
+    "frente": "Teorema do resto",
+    "verso": "O resto da divisão de P(x) por (x − a) é **P(a)**.\n\nSe P(a) = 0, então a é raiz e (x − a) divide o polinômio.",
+    "dica": null
+   },
+   {
+    "id": "matematica-formulas-e-condicoes-27",
+    "frente": "1 litro em cm³, e 1 m² em cm²",
+    "verso": "1 litro = 1 dm³ = **1.000 cm³**\n1 m² = **10.000 cm²**\n\nA conversão escondida no enunciado é uma das três armadilhas de geometria.",
+    "dica": null
+   },
+   {
+    "id": "matematica-formulas-e-condicoes-28",
+    "frente": "Juros simples × compostos",
+    "verso": "Simples: M = C(1 + i·n) — reta.\nCompostos: M = C(1 + **i)ⁿ** — exponencial.\n\n2% ao mês não dá 24% ao ano: 1,02¹² ≈ 1,268 = **26,8%**.",
+    "dica": null
+   }
+  ]
+ },
+ {
+  "id": "historia-do-brasil-nomes-datas-e-d",
+  "nome": "História do Brasil — nomes, datas e documentos",
+  "materia": "humanidades",
+  "nota": "Os detalhes que a ESPM usa como âncora da questão",
+  "cartas": [
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-01",
+    "frente": "1516 — o que D. Manuel ordenou, e por que importa",
+    "verso": "Mandou **distribuir machados, enxadas e ferramentas** a quem fosse produzir açúcar no Brasil.\n\nImporta porque prova que o açúcar foi **projeto de Estado**, planejado e financiado pela Coroa — não acidente.",
+    "dica": null
+   },
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-02",
+    "frente": "**Uti possidetis** × Tratado de Tordesilhas",
+    "verso": "Tordesilhas (1494) = a linha no papel. **Uti possidetis** = possuidor é quem **ocupa de fato**.\n\nEra o princípio dos **franceses** contra a partilha ibérica — e depois foi usado por Portugal a seu favor no **Tratado de Madri (1750)**, para ficar com o que havia ocupado.",
+    "dica": null
+   },
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-03",
+    "frente": "As duas zonas africanas de origem do tráfico",
+    "verso": "A **“Grande Guiné”** (África Ocidental) e **Angola**, pelos portos de **Luanda** e **Benguela**.",
+    "dica": null
+   },
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-04",
+    "frente": "Quem foi **Poti**, e por que a ESPM o escolheu",
+    "verso": "**Antônio Filipe Camarão**, o Poti: potiguar nascido no Rio Grande do Norte em **1601**, educado pelos jesuítas, lutou **com os portugueses** em Guararapes. Um parente, **Pedro Poti**, lutou do **lado holandês**.\n\nDois líderes do mesmo povo em lados opostos: os indígenas foram **agentes políticos**, não massa passiva.",
+    "dica": null
+   },
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-05",
+    "frente": "O argumento de **Padre Antônio Vieira** sobre os africanos",
+    "verso": "Que seriam “tirados da barbárie e do paganismo” e teriam “a graça de serem salvos pelo catolicismo no Brasil”.\n\nFunção: **legitimação religiosa da escravidão** — converte cativeiro em salvação. O mesmo Vieira defendia os indígenas: a Igreja condenava um cativeiro e tolerava o outro.",
+    "dica": null
+   },
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-06",
+    "frente": "1729 — Arraial do Tijuco, comarca do Serro Frio",
+    "verso": "Oficializou-se a existência de **diamantes**, e a Coroa criou o **Distrito Diamantino**: área sob regime de exceção, administração própria e circulação controlada — rigor ainda maior que o do ouro.",
+    "dica": null
+   },
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-07",
+    "frente": "O que foi a **derrama**, e o que ela causou",
+    "verso": "Cobrança **forçada** de uma cota fixa de ouro da capitania quando a arrecadação do quinto não batia a meta.\n\nFoi o **gatilho imediato da Inconfidência Mineira (1789)**.",
+    "dica": null
+   },
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-08",
+    "frente": "Inconfidência Mineira (1789) × Conjuração Baiana (1798)",
+    "verso": "**1789:** elite (padres, advogados, poetas árcades, devedores da Coroa), independência de Minas, **não** abolicionista, repressão branda para os ricos (degredo).\n\n**1798 (Revolta dos Alfaiates):** artesãos, soldados de baixa patente, negros livres e escravizados; pedia república, igualdade **e fim da escravidão**; quatro pobres **enforcados**.\n\nQuanto mais popular e mais abolicionista, mais violenta a repressão.",
+    "dica": null
+   },
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-09",
+    "frente": "1808 — a medida que desmontou o pacto colonial",
+    "verso": "A **abertura dos portos às nações amigas**, logo após a chegada da Corte ao Rio. Acabou, na prática, com o **exclusivo metropolitano**.\n\nEm **1815** o Brasil é elevado a **Reino Unido** a Portugal e Algarves.",
+    "dica": null
+   },
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-10",
+    "frente": "Os “partidos” de 1821–22",
+    "verso": "**Português:** comerciantes e militares ligados a Lisboa, queriam **recolonização**.\n**Brasileiro:** proprietários rurais e comerciantes, queriam autonomia **sem mexer na ordem social** (escravidão e latifúndio).\n**Radicais:** jornal **Revérbero Constitucional Fluminense**, de **Gonçalves Ledo** — independência com participação ampliada e soberania da Assembleia.",
+    "dica": null
+   },
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-11",
+    "frente": "Constituição de **1824** — quatro traços",
+    "verso": "**Outorgada** (imposta, após dissolver a Constituinte) · **Poder Moderador**, um quarto poder exclusivo do imperador · voto **censitário e aberto** · catolicismo oficial com **padroado** — **não** separou Igreja e Estado.",
+    "dica": null
+   },
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-12",
+    "frente": "*Independência ou Morte*, de **Pedro Américo** (1888)",
+    "verso": "Pintada **66 anos depois** do fato, no fim do Império, quando a monarquia precisava de legitimidade. Mostra cavalos garbosos e uniformes impecáveis; o registro histórico aponta **mulas** e D. Pedro passando mal do estômago.\n\nA tela **constrói a versão oficial**, não documenta o evento. Diante de qualquer imagem histórica: quem encomendou, quando, e de que versão do passado precisa?",
+    "dica": null
+   },
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-13",
+    "frente": "**Guarda Nacional** (18/8/1831) — ela democratizou?",
+    "verso": "**Não.** O oficialato era formado pelos **grandes proprietários**, porque a patente exigia renda mínima. Armou e legalizou o poder privado do latifúndio.\n\nÉ a **origem institucional do “coronel”** — o título vem dessa patente.",
+    "dica": null
+   },
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-14",
+    "frente": "A medida mais significativa da regência de **Araújo Lima**",
+    "verso": "A **Lei Interpretativa do Ato Adicional, de 12 de maio de 1840**: **centralização** — reduziu drasticamente a autonomia provincial criada em 1834.\n\nO pêndulo do período: descentraliza em 1834, recentraliza em 1840, Golpe da Maioridade no mesmo ano.",
+    "dica": null
+   },
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-15",
+    "frente": "**Revolta dos Malês** (Salvador, 25/1/1835) — três singularidades",
+    "verso": "Foi **urbana**; foi organizada por africanos **muçulmanos** (“malê” vem de *imale*, muçulmano em iorubá); vários participantes eram **letrados em árabe** e planejaram o levante por escrito.\n\nDestrói a ideia de escravizado sem cultura, sem escrita e sem projeto.",
+    "dica": null
+   },
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-16",
+    "frente": "**Tarifa Alves Branco** (1844)",
+    "verso": "Do ministro da Fazenda **Manuel Alves Branco**: elevou as alíquotas de importação (média ~30%, até 60%) para **arrecadar** e **proteger** a produção interna.\n\nSó foi possível porque os tratados preferenciais com a Inglaterra, de 1810, **expiraram em 1844**.",
+    "dica": null
+   },
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-17",
+    "frente": "As **duas leis de 1850**, e por que nessa ordem",
+    "verso": "**Lei Eusébio de Queirós** (setembro): extinguiu o **tráfico negreiro** → liberou capital antes imobilizado na compra de pessoas, que foi para bancos, ferrovias e indústria. Daí o dinamismo “a partir de 1850”.\n\n**Lei de Terras** (duas semanas depois): terra devoluta só por **compra à vista** → **fechou o acesso à terra** a libertos e pobres.\n\nAcabando o tráfico, era preciso garantir que os futuros libertos não se tornassem proprietários.",
+    "dica": null
+   },
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-18",
+    "frente": "Três consequências internas da **Guerra do Paraguai**",
+    "verso": "**Exército** profissionalizado, consciente de si e ressentido com a monarquia — será o agente de 1889.\n**Dívida** externa junto a bancos ingleses.\n**Primeira brecha na escravidão**: alforria para servir tornou insustentável o retorno ao cativeiro → **Lei do Ventre Livre, 1871**, no ano seguinte ao fim da guerra.",
+    "dica": null
+   },
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-19",
+    "frente": "O movimento republicano de **1870** era popular?",
+    "verso": "**Não.** Partido Republicano, jornal *A República* e **Manifesto Republicano** no mesmo ano — mas elitista, concentrado em São Paulo, ligado aos **cafeicultores do Oeste Paulista** (dinheiro sem poder político), sem base popular e em geral **não abolicionista**.",
+    "dica": null
+   },
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-20",
+    "frente": "A escada da abolição, e o que cada degrau concedia",
+    "verso": "**1871 Ventre Livre:** livre, mas sob tutela do senhor até os 21 anos.\n**1885 Sexagenários:** liberta quem já não podia trabalhar, exigindo 3 anos de serviço.\n**13/5/1888 Lei Áurea:** dois artigos, **sem terra, sem escola, sem reparação** — sobre a estrutura já fechada pela Lei de Terras de 1850.",
+    "dica": null
+   },
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-21",
+    "frente": "O abolicionismo foi concedido de cima?",
+    "verso": "**Não.** Foi **heterogêneo** e arrancado: parlamentares (**Joaquim Nabuco**), intelectuais negros (**André Rebouças**, **Luís Gama**), jornais, associações — e, decisivamente, a **ação dos próprios escravizados**: fugas em massa, quilombos (Jabaquara, em Santos) e ações judiciais de liberdade.",
+    "dica": null
+   },
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-22",
+    "frente": "**Kasato Maru** — os detalhes que a ESPM pediu",
+    "verso": "Chegou em **junho de 1908**, partiu de **Kobe**, **52 dias** de viagem, atracou em **Santos** com **165 famílias (781 pessoas)** — o primeiro grupo oficial de imigrantes japoneses.\n\nAtrás da preferência pelo imigrante europeu havia motivo econômico **e** ideológico: as teorias de **branqueamento**.",
+    "dica": null
+   },
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-23",
+    "frente": "As três engrenagens do poder na República Velha",
+    "verso": "**Coronelismo** (voto de cabresto, viável porque o voto era aberto; fraude na ata, o “**voto no bico de pena**”) → **política dos governadores** (Campos Sales; Comissão de Verificação de Poderes “degolava” eleitos) → **política do café com leite** (São Paulo e Minas se alternando).",
+    "dica": null
+   },
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-24",
+    "frente": "**Convênio de Taubaté** (1906)",
+    "verso": "Criou a **valorização do café**: o governo comprava o excedente com empréstimos externos para sustentar o preço e desvalorizava a moeda para compensar o exportador.\n\nOu seja: **socializava o prejuízo de um setor privado**.",
+    "dica": null
+   },
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-25",
+    "frente": "Por que **Canudos** foi destruída",
+    "verso": "Não por monarquismo — por ser **autônoma**: terra de trabalho comum, fora do coronel, fora do mercado de trabalho e fora da Igreja oficial. “Uma alternativa para o tradicional regime de exploração das populações sertanejas, **portanto uma ameaça**.”\n\nQuatro expedições; a última com ~10 mil soldados. *Os Sertões*, de **Euclides da Cunha** (1902), nasce da cobertura.",
+    "dica": null
+   },
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-26",
+    "frente": "Efeito da **Primeira Guerra** na indústria brasileira",
+    "verso": "**Reduziu a importação de manufaturados e estimulou a produção interna** — a **substituição de importações**. “O primeiro impulso industrial brasileiro veio com a Primeira Guerra Mundial.”\n\nCuidado com a alternativa que diz o contrário (aumento de importados): é o oposto.",
+    "dica": null
+   },
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-27",
+    "frente": "O programa do **tenentismo** era socialista?",
+    "verso": "**Não**: era **reformista e moralizador** — voto secreto, ensino público, fim da fraude. “Somos contra os impostos exorbitantes, a incompetência administrativa, a mentira do voto, o amordaçamento da imprensa…”\n\n18 do Forte (1922), Revolução Paulista (1924), **Coluna Prestes** (1925–27, ~25 mil km sem derrota).",
+    "dica": null
+   },
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-28",
+    "frente": "O que foi o **DIP**, quem o dirigia, e sua dupla função",
+    "verso": "**Departamento de Imprensa e Propaganda** (1939), subordinado diretamente à presidência, com órgãos nos estados, dirigido pelo jornalista **Lourival Fontes**.\n\nFunção dupla: **censurava** jornal, rádio, cinema e teatro **e produzia** a imagem de Vargas — a *Hora do Brasil*, o “pai dos pobres”, o futebol e o samba como cimento nacional.",
+    "dica": null
+   },
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-29",
+    "frente": "**Integralismo** — as ênfases que a prova citou",
+    "verso": "Doutrina nacionalista de conteúdo **mais cultural do que econômico**, com ênfase no **valor espiritual da nação**.\n\n**Plínio Salgado**, “Deus, Pátria e Família”, camisas verdes, sigma, “Anauê”. Tentou golpe contra Vargas em **1938** e foi reprimido: ele usou os dois extremos e eliminou os dois.",
+    "dica": null
+   },
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-30",
+    "frente": "As empresas criadas nos governos Vargas",
+    "verso": "**CSN** (Volta Redonda, 1941), **Companhia Vale do Rio Doce** (1942), Fábrica Nacional de Motores, Hidrelétrica do São Francisco — e, no segundo governo, **BNDE** (1952) e **Petrobras** (1953).\n\nNa educação, o **SENAI** (1942) e a lei orgânica do ensino industrial: era preciso formar operário qualificado.",
+    "dica": null
+   },
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-31",
+    "frente": "**FEB no Monte Castelo** — data e por que importa",
+    "verso": "**21 de fevereiro de 1945**, na Itália, após combates intensos e tentativas anteriores fracassadas.\n\nImporta pela contradição que derrubou Vargas em outubro: **um país sob ditadura mandando soldados morrer contra o autoritarismo na Europa**.",
+    "dica": null
+   },
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-32",
+    "frente": "Por que o Congresso criou o **parlamentarismo em 1961**",
+    "verso": "Para permitir a posse de **João Goulart**, malvisto pelos militares, após a renúncia de **Jânio Quadros em 25/8/1961** — reduzindo os poderes do presidente para contornar a resistência.\n\nO presidencialismo voltou por plebiscito em 1963.",
+    "dica": null
+   },
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-33",
+    "frente": "Por que se diz golpe **civil-militar** em 1964",
+    "verso": "Porque teve apoio de **empresários, da grande imprensa, de parte da Igreja e da classe média** organizada nas Marchas da Família. As **Reformas de Base** de Jango (agrária, urbana, bancária, educacional) precipitaram a reação.",
+    "dica": null
+   },
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-34",
+    "frente": "**Lei da Anistia** (1979) — por que “recíproca”",
+    "verso": "Porque perdoou **os dois lados**, incluindo os **agentes do Estado** — o que definiu uma transição **sem responsabilização**.\n\nE o gesto final: em **15/3/1985**, **Figueiredo** recusou-se a entregar a faixa e saiu pelos fundos — transição negociada, não triunfal.",
+    "dica": null
+   },
+   {
+    "id": "historia-do-brasil-nomes-datas-e-d-35",
+    "frente": "A proporção da História do Brasil na ESPM",
+    "verso": "Das 56 questões em 15 provas: **~15 Colônia, ~14 Império, ~13 República Velha, 6 Era Vargas e só 5 de tudo depois de 1946**.\n\nE **4 partem de uma imagem**. Estude nessa ordem de peso.",
+    "dica": null
+   }
+  ]
+ },
+ {
+  "id": "entrevista-repertorio-do-anexo-i",
+  "nome": "Entrevista — repertório do Anexo I",
+  "materia": "entrevista",
+  "nota": "A tese de cada livro em uma frase, e onde usar",
+  "cartas": [
+   {
+    "id": "entrevista-repertorio-do-anexo-i-01",
+    "frente": "**Nexus**, de Yuval Harari — a tese em uma frase",
+    "verso": "Informação não é verdade: redes de informação se sustentam por **mitos e burocracia**, e a tecnologia que as amplifica amplifica também o erro.\n\n**Onde usar:** desinformação, algoritmo, IA e democracia. O caso de **Mianmar** (amplificação algorítmica da violência contra os rohingyas) é o exemplo mais forte do livro.",
+    "dica": null
+   },
+   {
+    "id": "entrevista-repertorio-do-anexo-i-02",
+    "frente": "**Sociedade do Cansaço**, de Byung-Chul Han",
+    "verso": "Saímos da sociedade **disciplinar** (que proibia) para a do **desempenho** (que incita). O sujeito deixa de ser explorado por outro e passa a **se explorar sozinho**, achando que é livre — daí depressão e burnout como doenças da positividade, não da repressão.\n\n**Onde usar:** saúde mental, produtividade, trabalho criativo, autoexploração.",
+    "dica": null
+   },
+   {
+    "id": "entrevista-repertorio-do-anexo-i-03",
+    "frente": "**Algoritmos de Destruição em Massa**, de Cathy O'Neil",
+    "verso": "Modelos matemáticos opacos, em escala e sem recurso de contestação **reproduzem e ampliam desigualdade** enquanto parecem neutros. Os três traços: **opacidade, escala, dano**.\n\n**Onde usar:** viés algorítmico, crédito, seleção de emprego, ética da IA.",
+    "dica": null
+   },
+   {
+    "id": "entrevista-repertorio-do-anexo-i-04",
+    "frente": "**O Cérebro no Mundo Digital**, de Maryanne Wolf",
+    "verso": "A **leitura profunda** não é natural: é um circuito construído, e a leitura em tela, por saltos, o atrofia. Em risco: inferência, empatia e pensamento crítico.\n\n**Onde usar:** educação, atenção, formação de repertório, por que ler livro ainda importa.",
+    "dica": null
+   },
+   {
+    "id": "entrevista-repertorio-do-anexo-i-05",
+    "frente": "**A Quarta Revolução Industrial**, de Klaus Schwab",
+    "verso": "A fusão do físico, digital e biológico muda a economia em **velocidade, amplitude e impacto sistêmico** — e pode concentrar ganhos em quem detém capital e tecnologia.\n\n**Onde usar:** futuro do trabalho, desigualdade tecnológica, inovação.",
+    "dica": null
+   },
+   {
+    "id": "entrevista-repertorio-do-anexo-i-06",
+    "frente": "**Os Inovadores**, de Walter Isaacson",
+    "verso": "Inovação não é obra de gênio solitário: é **colaboração** entre visão e execução, entre arte e engenharia, e quase sempre em rede.\n\n**Onde usar:** resposta 2 da entrevista (inovação é individual ou coletiva?) — é o repertório que derruba o mito do gênio.",
+    "dica": null
+   },
+   {
+    "id": "entrevista-repertorio-do-anexo-i-07",
+    "frente": "**Soft skills** (Antunes) e **O Profissional do Futuro** (Schneider)",
+    "verso": "O que a automação não copia é o **humano**: pensamento crítico, criatividade, colaboração, adaptabilidade e comunicação — e isso se **desenvolve**, não se nasce com.\n\n**Onde usar:** respostas 1 e 5 da entrevista, e a ponte com o seu curso.",
+    "dica": null
+   },
+   {
+    "id": "entrevista-repertorio-do-anexo-i-08",
+    "frente": "Gardiner, **Como a criatividade se tornou o valor dominante** (MIT TR)",
+    "verso": "A criatividade virou **imperativo econômico**: deixou de ser atributo de artista e passou a ser exigência de mercado — o que a transforma em mais uma forma de pressão por desempenho.\n\n**Onde usar:** é o contraponto crítico ao discurso fácil de “seja criativo”. Combina com Han.",
+    "dica": null
+   },
+   {
+    "id": "entrevista-repertorio-do-anexo-i-09",
+    "frente": "As 4 rubricas da entrevista da ESPM",
+    "verso": "**Planejamento** (dedicação ao estudo e organização das ideias) · **Solução** (domínio conceitual e raciocínio analítico) · **Comunicação** (expressão verbal) · **Foco e gestão do tempo**.\n\nUm quarto cada: eloquência é **25%**, não o todo.",
+    "dica": null
+   },
+   {
+    "id": "entrevista-repertorio-do-anexo-i-10",
+    "frente": "O que o edital permite levar para a entrevista",
+    "verso": "**Um mapa conceitual ou mental**, que “possa ser consultado durante a Entrevista”. E diz explicitamente que o entrevistador **não avalia memorização**.\n\nLogo: o entregável é **uma página**, não um texto decorado.",
+    "dica": null
+   },
+   {
+    "id": "entrevista-repertorio-do-anexo-i-11",
+    "frente": "O tema da entrevista, em uma frase",
+    "verso": "**Inovação e criatividade em tempos de transformações sociais e tecnológicas** — e o edital define: inovar não é criar algo novo, é **propor solução relevante para problema real**, considerando impacto social, ético e econômico.",
+    "dica": null
+   },
+   {
+    "id": "entrevista-repertorio-do-anexo-i-12",
+    "frente": "A sua vantagem na pergunta 3",
+    "verso": "A pergunta pede uma **solução inovadora para um desafio no campo do seu curso**. Você tem o que quase nenhum candidato tem: **a loja da família** — problema real, dado real, negócio que você conhece por dentro.\n\nUse, e feche com impacto social, ético e econômico, que é o que o edital pede.",
+    "dica": null
+   }
+  ]
+ }
+]
