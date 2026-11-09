@@ -101,12 +101,12 @@
  {
   "slug": "conteudo-04-historia-brasil",
   "titulo": "História do Brasil",
-  "subtitulo": "Conteúdo 04 · 56 questões em 15 provas — a cadeia inteira, de 1500 a hoje",
+  "subtitulo": "56 questões em 15 provas · a cadeia causal de 1500 a hoje, com o detalhe que a ESPM cobra",
   "tipo": "conteudo",
-  "selo": "Conteúdo · substitui as videoaulas e o livro de História do Brasil",
-  "serve": "Humanidades (56 q) · redação (repertório) · antecedente das atualidades",
-  "minutos": 180,
-  "fechado_em": "escrito em 30 de outubro de 2026",
+  "selo": "Conteúdo · nível 1 esgotado, nível 2 para reconhecer",
+  "serve": "Humanidades (56 q) · repertório de redação · raiz dos outros dois dossiês de história",
+  "minutos": 120,
+  "fechado_em": "reescrito em 8 de novembro de 2026",
   "arquivo": "dossies/conteudo-04-historia-brasil.pdf"
  },
  {
