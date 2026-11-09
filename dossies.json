@@ -253,17 +253,6 @@
   "arquivo": "dossies/manual-do-metodo.pdf"
  },
  {
-  "slug": "manual-do-sistema",
-  "titulo": "O sistema — como estudar de 7 de outubro a 29 de novembro",
-  "subtitulo": "O manual de operação: prioridades, rotina, regras de parada e recuperação",
-  "tipo": "manual",
-  "selo": "Manual · leia uma vez inteiro, depois só consulte",
-  "serve": "todos os dias · é o documento que manda",
-  "minutos": 60,
-  "fechado_em": "escrito em 7 de outubro de 2026 · 53 dias para a prova",
-  "arquivo": "dossies/manual-do-sistema.pdf"
- },
- {
   "slug": "padroes-espm",
   "titulo": "Os padrões da ESPM",
   "subtitulo": "O que a prova cobra, de quando são as notícias e o que isso prevê para 29 de novembro de 2026",
