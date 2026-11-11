@@ -264,6 +264,17 @@
   "arquivo": "dossies/entrevista-04-correcao-das-respostas.pdf"
  },
  {
+  "slug": "entrevista-05-respostas-finais",
+  "titulo": "As 5 respostas — versão final",
+  "subtitulo": "Entrevista 05 · o que você escreveu, com as correções aplicadas. Para consultar, não para decorar",
+  "tipo": "entrevista",
+  "selo": "Entrevista · 12/11 às 14h · versão final",
+  "serve": "entrevista (eliminatória)",
+  "minutos": 45,
+  "fechado_em": "fechado em 10 de novembro de 2026",
+  "arquivo": "dossies/entrevista-05-respostas-finais.pdf"
+ },
+ {
   "slug": "manual-do-metodo",
   "titulo": "Manual do método",
   "subtitulo": "O passo a passo de cada tipo de tarefa, por escrito, para você nunca mais precisar lembrar",
