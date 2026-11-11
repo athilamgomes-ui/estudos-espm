@@ -716,5 +716,451 @@
     "dica": null
    }
   ]
+ },
+ {
+  "id": "entrevista-as-minhas-5-respostas",
+  "nome": "Entrevista — as minhas 5 respostas",
+  "materia": "entrevista",
+  "nota": "As caixas de cada resposta, os números e os nomes certos",
+  "cartas": [
+   {
+    "id": "entrevista-as-minhas-5-respostas-01",
+    "frente": "Resposta 1 — as 5 caixas",
+    "verso": "1 As duas: **automação cognitiva** + **informação que chega pronta e não é contestada**.\n2 A automação desloca o valor: de executar para **julgar**.\n3 **WEF de janeiro de 2025**: analítico em **7 de 10** empresas, desde 2016.\n4 **Não é oráculo, é sistema feito por pessoas** → erro humano com alcance de máquina · **Wolf**: ler fundo é notar o que falta.\n5 O critério de quem entra agora: **centro das decisões, não recepção passiva**.",
+    "dica": null
+   },
+   {
+    "id": "entrevista-as-minhas-5-respostas-02",
+    "frente": "Resposta 1 — a armadilha que você evitou",
+    "verso": "**Não** dizer que a IA 'produz informação falsa'. Se perguntarem: *ela erra, mas o erro quase sempre vem da pergunta mal feita ou da base de dados — e as duas foram decididas por pessoas. O risco está em usar sem conferir.*",
+    "dica": null
+   },
+   {
+    "id": "entrevista-as-minhas-5-respostas-03",
+    "frente": "Resposta 2 — as 5 caixas",
+    "verso": "1 **Criar** × **entrar em uso e mudar uma prática** (vapor, papel, bússola, internet).\n2 São **as três**: contexto → competência → traço, nessa ordem.\n3 A palavra existe desde **1875**; o **teste do tijolo** (Berkeley) **nunca teve valor preditivo**.\n4 **Isaacson**: ninguém sozinho · **Baran e Davies** · **ARPANET 1969**.\n5 **Pix 2020**: a inovação foi a **adoção**.",
+    "dica": null
+   },
+   {
+    "id": "entrevista-as-minhas-5-respostas-04",
+    "frente": "Resposta 2 — a contradição do Fórum",
+    "verso": "Se ele disser que o Fórum lista pensamento criativo entre as competências que mais crescem: *é a contradição que eu achei mais interessante nos materiais — o mercado está comprando uma competência que ainda não sabe definir nem medir.*",
+    "dica": "a sua melhor virada"
+   },
+   {
+    "id": "entrevista-as-minhas-5-respostas-05",
+    "frente": "Resposta 3 — as 5 caixas",
+    "verso": "1 Mesmo problema da 1, na escala da loja: **quem decide não julga o que recebe**.\n2 Compra por indicação e tendência → dinheiro parado · **4 lojas no Pará**.\n3 Por que persiste: o dado existe, chega **separado** e em linguagem que não é a do comércio.\n4 **Eu já fiz, está rodando** · os **72%** invisíveis · **32 de 40** falso alarme · transferência contada como venda.\n5 Impactos: menos capital parado · atenção: **giro lento nem sempre é ruim** · falha: 3 meses sem caixa, ou **custo médio corrompido**.",
+    "dica": null
+   },
+   {
+    "id": "entrevista-as-minhas-5-respostas-06",
+    "frente": "Resposta 4 — as 5 caixas",
+    "verso": "1 O dilema não é inovar ou não: é **velocidade e salvaguardas**.\n2 **O'Neil**: opaco, escala, dano · **Sarah Wysocki / IMPACT** · sem ver a fórmula e sem recurso · **Harari**: autocorreção.\n3 **+78 milhões** de postos **e 92 milhões** perdidos dentro desse saldo · 59 em 100 precisam requalificação, **11** não vão receber.\n4 **Kate Crawford**: lítio, água, energia, trabalho de rotulagem — **a nuvem é material**.\n5 O meu caso + **errar pequeno, perceber rápido, poder voltar atrás**.",
+    "dica": null
+   },
+   {
+    "id": "entrevista-as-minhas-5-respostas-07",
+    "frente": "Resposta 5 — as 5 caixas",
+    "verso": "1 Exposição a contexto + **repetição de crítica** · **Robinson**: quem não se dispõe a errar não produz nada original.\n2 Descobri fazendo: painéis para o administrativo e para as vendedoras.\n3 A comparação: adm e publicidade não pedem 4 anos; **a parte técnica sim**, e a pós ao contrário é mais difícil.\n4 ESPM: onde a técnica encosta em negócio · **meu papel: levar o caso real** e julgar o que a ferramenta devolve.\n5 **OCDE: bússola, não mapa** — a ESPM dá a bússola, quem navega sou eu.",
+    "dica": null
+   },
+   {
+    "id": "entrevista-as-minhas-5-respostas-08",
+    "frente": "Os nomes certos (os 5 erros corrigidos)",
+    "verso": "**Maryanne** Wolf (não Mary Ann) · **Cathy O'Neil** (não Catherine O'Neill) · *Future of Jobs* de **2025**, 5ª edição, a 1ª foi em 2016 · **Linx** Microvix (não Lynx) · a professora é **Sarah Wysocki**, sistema **IMPACT**, Washington.",
+    "dica": "dito errado = repertório perdido"
+   },
+   {
+    "id": "entrevista-as-minhas-5-respostas-09",
+    "frente": "As 4 rubricas da entrevista",
+    "verso": "**Planejamento** · **Solução** · **Comunicação** · **Foco e gestão do tempo** — **um quarto cada**. Eloquência é 25%, não o todo. E o edital diz que **memorização não é avaliada**.",
+    "dica": null
+   },
+   {
+    "id": "entrevista-as-minhas-5-respostas-10",
+    "frente": "O que o edital permite levar",
+    "verso": "**Um mapa conceitual ou mental**, que pode ser consultado durante a entrevista. Logo: o entregável é **uma página**, não um texto decorado.",
+    "dica": null
+   },
+   {
+    "id": "entrevista-as-minhas-5-respostas-11",
+    "frente": "Execução no dia",
+    "verso": "Documento oficial **com foto** em mãos · entrar no Zoom **10 minutos antes** · **falar devagar**: três minutos é muito mais tempo do que parece, e resposta rápida sem pausa é o som de resposta decorada.",
+    "dica": null
+   }
+  ]
+ },
+ {
+  "id": "geopolitica-conflitos-e-conceitos",
+  "nome": "Geopolítica — conflitos e conceitos",
+  "materia": "humanidades",
+  "nota": "Do dossiê 02 · 83 questões em 15 provas, a maior frente de humanidades",
+  "cartas": [
+   {
+    "id": "geopolitica-conflitos-e-conceitos-01",
+    "frente": "Os 4 eixos para ler qualquer conflito",
+    "verso": "**Território** (quem controla, qual fronteira é contestada) · **Recurso** (o que vale ali) · **Identidade** (que grupo se reivindica dono) · **Potência externa** (quem patrocina cada lado).\n\nServe para conflito que você nunca viu.",
+    "dica": "T-R-I-P"
+   },
+   {
+    "id": "geopolitica-conflitos-e-conceitos-02",
+    "frente": "Interdependência armada",
+    "verso": "A globalização criou **nós** por onde tudo passa — dólar, sistema de pagamento, chip, gás, rota — e **quem controla o nó pode fechá-lo**.\n\nExemplo brasileiro: a **tarifa de 50%** dos EUA em julho de 2025, com justificativa política, não comercial.",
+    "dica": "Farrell e Newman, 2019"
+   },
+   {
+    "id": "geopolitica-conflitos-e-conceitos-03",
+    "frente": "Memorando de Budapeste (1994)",
+    "verso": "A Ucrânia entregou o **terceiro maior arsenal nuclear do mundo** em troca de garantias de integridade territorial de Rússia, EUA e Reino Unido.\n\nViolado em 2014 e 2022 — é o argumento mais forte do lado ucraniano.",
+    "dica": null
+   },
+   {
+    "id": "geopolitica-conflitos-e-conceitos-04",
+    "frente": "Por que a invasão de 2022 saiu pela culatra (OTAN)",
+    "verso": "**Finlândia entrou em 2023 e Suécia em 2024.** Duas neutralidades históricas abandonadas numa única guerra, e a fronteira direta Rússia–OTAN mais que dobrou — o oposto do objetivo declarado.",
+    "dica": null
+   },
+   {
+    "id": "geopolitica-conflitos-e-conceitos-05",
+    "frente": "Crimeia: os 4 eixos aplicados",
+    "verso": "Território: transferida da Rússia para a Ucrânia em **1954**, anexada em **2014** por referendo não reconhecido. Recurso: **Sebastopol**, única saída russa para águas quentes. Identidade: maioria russófona. Potência externa: OTAN/UE × Rússia.",
+    "dica": null
+   },
+   {
+    "id": "geopolitica-conflitos-e-conceitos-06",
+    "frente": "A guerra na Ucrânia e o seu bolso",
+    "verso": "Rússia e Ucrânia exportavam cerca de **um quarto do trigo mundial**, e a Rússia é a maior exportadora de **fertilizante**. O Brasil importa **mais de 80%** do que usa → custo da safra e preço do alimento.",
+    "dica": "a ponte que a ESPM cobra"
+   },
+   {
+    "id": "geopolitica-conflitos-e-conceitos-07",
+    "frente": "1948 × 1967 (Israel)",
+    "verso": "**1948**: criação do Estado e a primeira guerra; para os palestinos, a **Nakba**, cerca de 700 mil expulsos ou fugidos. **1967**, Guerra dos Seis Dias: Israel ocupa **Cisjordânia, Gaza, Golã e Sinai** — é dessa ocupação que vem a expressão *territórios ocupados*.",
+    "dica": null
+   },
+   {
+    "id": "geopolitica-conflitos-e-conceitos-08",
+    "frente": "Por que 1973 é geopolítica e não só economia",
+    "verso": "A **Guerra do Yom Kippur** levou a OPEP a decretar embargo de petróleo → **crise do petróleo**. Provou que um recurso concentrado numa região pode ser usado como **arma política** contra economias inteiras.",
+    "dica": null
+   },
+   {
+    "id": "geopolitica-conflitos-e-conceitos-09",
+    "frente": "O eixo regional do Oriente Médio",
+    "verso": "**Irã** (xiita, desde a Revolução de 1979) patrocina **Hamas** (Gaza), **Hezbollah** (Líbano) e **houthis** (Iêmen). Do outro lado, **Israel** com apoio dos EUA e a **Arábia Saudita** sunita como rival regional do Irã.\n\nA Síria de Assad caiu em **dezembro de 2024**.",
+    "dica": null
+   },
+   {
+    "id": "geopolitica-conflitos-e-conceitos-10",
+    "frente": "Mar Vermelho → preço no Brasil",
+    "verso": "Ataques houthis fizeram os navios desviarem do **Canal de Suez** para o **Cabo da Boa Esperança** — semanas a mais de viagem, **frete mundial mais caro**, importado mais caro aqui.",
+    "dica": null
+   },
+   {
+    "id": "geopolitica-conflitos-e-conceitos-11",
+    "frente": "Por que Taiwan interessa ao mundo inteiro",
+    "verso": "A **TSMC** fabrica na ilha a maior parte dos **chips mais avançados** do mundo. Bloqueio em Taiwan para fábrica de carro e de celular no planeta.\n\nChina: política de **'Uma só China'**. EUA: **ambiguidade estratégica**.",
+    "dica": null
+   },
+   {
+    "id": "geopolitica-conflitos-e-conceitos-12",
+    "frente": "Os 4 campos da disputa EUA × China",
+    "verso": "**Comércio** (tarifas desde 2018) · **Tecnologia** (chip e máquina de litografia barrados; China restringe **terras raras**) · **Taiwan** · **Influência** (Nova Rota da Seda, 2013, em mais de 140 países).",
+    "dica": null
+   },
+   {
+    "id": "geopolitica-conflitos-e-conceitos-13",
+    "frente": "Zona de livre comércio × união aduaneira",
+    "verso": "Livre comércio: sem tarifa entre membros, **cada um mantém a sua** tarifa externa. União aduaneira: **tarifa externa comum** → negocia-se **em bloco**.\n\nO **Mercosul** é união aduaneira: por isso ninguém assina acordo sozinho com a UE.",
+    "dica": "o erro que a banca mais planta"
+   },
+   {
+    "id": "geopolitica-conflitos-e-conceitos-14",
+    "frente": "Por que o Conselho de Segurança trava",
+    "verso": "**5 permanentes com poder de veto** — EUA, Rússia, China, Reino Unido e França, os vencedores de 1945 — e há padrinho dos dois lados em cada conflito. A ONU não trava por incompetência: foi desenhada assim.",
+    "dica": null
+   },
+   {
+    "id": "geopolitica-conflitos-e-conceitos-15",
+    "frente": "Conferência de Berlim (1884-85)",
+    "verso": "Dividiu a África entre potências europeias **com régua**, sem considerar povos. É por isso que tantas fronteiras africanas são retas e tantos conflitos são étnicos: o Estado foi desenhado por fora.",
+    "dica": null
+   },
+   {
+    "id": "geopolitica-conflitos-e-conceitos-16",
+    "frente": "O dilema brasileiro entre EUA e China",
+    "verso": "A **China** é a maior compradora do agronegócio; os **EUA** são o maior destino de manufaturado e a maior fonte de investimento. Escolher lado custa caro dos dois jeitos — daí o **não-alinhamento ativo**.",
+    "dica": null
+   },
+   {
+    "id": "geopolitica-conflitos-e-conceitos-17",
+    "frente": "Ordem unipolar → multipolar",
+    "verso": "**1991–2008**: EUA como única superpotência. Depois da crise de 2008 e da ascensão chinesa, o poder se distribui (China, Rússia, Índia, UE, potências médias). Não ficou mais pacífico: ficou **sem árbitro**.",
+    "dica": null
+   },
+   {
+    "id": "geopolitica-conflitos-e-conceitos-18",
+    "frente": "Nação sem Estado",
+    "verso": "Comunidade que se reconhece como povo e não tem Estado próprio. Os dois casos que caem: **curdos** (~30 milhões, divididos entre Turquia, Irã, Iraque e Síria) e **palestinos**.",
+    "dica": null
+   }
+  ]
+ },
+ {
+  "id": "populacao-globalizacao-e-economia",
+  "nome": "População, globalização e economia",
+  "materia": "humanidades",
+  "nota": "Do dossiê 10 · 68 questões, mais as pegadinhas de gráfico",
+  "cartas": [
+   {
+    "id": "populacao-globalizacao-e-economia-01",
+    "frente": "Por que a mortalidade cai antes da natalidade",
+    "verso": "Mortalidade depende de **saneamento, água tratada, vacina e antibiótico** — barato, coletivo, rápido. Natalidade depende de **mudança de comportamento**, que leva gerações.\n\nA explosão populacional não foi excesso de nascimento, foi **falta de morte**.",
+    "dica": null
+   },
+   {
+    "id": "populacao-globalizacao-e-economia-02",
+    "frente": "Nível de reposição",
+    "verso": "**2,1 filhos por mulher.** Abaixo disso cada geração é menor que a anterior e a população passa a encolher (com atraso, por inércia demográfica).\n\nO Brasil está **abaixo de 2**.",
+    "dica": null
+   },
+   {
+    "id": "populacao-globalizacao-e-economia-03",
+    "frente": "As 4 causas da queda da natalidade",
+    "verso": "**Urbanização** (filho deixa de ser mão de obra e passa a ser custo) · **escolaridade e trabalho da mulher** (a mais forte) · **contracepção** · **queda da mortalidade infantil** (sem filho 'de reserva').",
+    "dica": null
+   },
+   {
+    "id": "populacao-globalizacao-e-economia-04",
+    "frente": "\"O Brasil envelhece antes de enriquecer\"",
+    "verso": "Chegamos à fecundidade baixa com **renda média, informalidade alta e produtividade baixa**. Japão, Itália e Alemanha envelheceram já ricos.\n\nCenso 2022: **203 milhões**; pico projetado **~220 milhões em 2041**.",
+    "dica": null
+   },
+   {
+    "id": "populacao-globalizacao-e-economia-05",
+    "frente": "Bônus demográfico",
+    "verso": "Janela em que a população **em idade ativa** supera a dependente. Todo país que ficou rico depois de 1950 fez isso no seu bônus; o Brasil está **no fim** do dele.\n\nÉ daí que sai a discussão de **previdência**: repartição só fecha com muitos ativos por inativo.",
+    "dica": null
+   },
+   {
+    "id": "populacao-globalizacao-e-economia-06",
+    "frente": "Pirâmide etária em 10 segundos",
+    "verso": "Base larga + topo estreito → **jovem** (fase 2). Base estreitando + corpo largo → **transição/bônus** (Brasil). Base estreita + topo largo → **envelhecida** (Japão). **Entalhe** de um lado → guerra ou emigração daquela geração.",
+    "dica": null
+   },
+   {
+    "id": "populacao-globalizacao-e-economia-07",
+    "frente": "IDH e Gini",
+    "verso": "**IDH**: renda + educação + longevidade, de 0 a 1 — é **média**, esconde desigualdade. **Gini**: concentração de renda, 0 = igualdade perfeita, 1 = concentração total; o Brasil está entre os mais desiguais.",
+    "dica": "média esconde"
+   },
+   {
+    "id": "populacao-globalizacao-e-economia-08",
+    "frente": "Refugiado × migrante econômico",
+    "verso": "**Refugiado**: sai por perseguição ou guerra, tem proteção internacional e direito a **não ser devolvido** (*non-refoulement*). **Migrante econômico**: sai por trabalho, sem essa proteção.\n\nReconhecer como refugiado cria **obrigação legal** — por isso a classificação é disputada.",
+    "dica": null
+   },
+   {
+    "id": "populacao-globalizacao-e-economia-09",
+    "frente": "Refugiado climático",
+    "verso": "O fenômeno existe, a **categoria jurídica não**. Lacuna normativa pronta para tese de redação.",
+    "dica": null
+   },
+   {
+    "id": "populacao-globalizacao-e-economia-10",
+    "frente": "Cadeias globais de valor",
+    "verso": "O produto é projetado num país, com peças de dez, montado em outro. O lucro fica nas pontas — **projeto e marca** — e a montagem, que emprega mais, paga menos.\n\nA pergunta de prova: **quem captura valor na cadeia?**",
+    "dica": null
+   },
+   {
+    "id": "populacao-globalizacao-e-economia-11",
+    "frente": "A escada dos blocos econômicos",
+    "verso": "**Zona de livre comércio** → **união aduaneira** (+ tarifa externa comum: Mercosul) → **mercado comum** (+ livre circulação de pessoas e capital) → **união monetária** (+ moeda única: zona do euro, 20 dos 27).",
+    "dica": null
+   },
+   {
+    "id": "populacao-globalizacao-e-economia-12",
+    "frente": "Reprimarização e termos de troca",
+    "verso": "**Reprimarização**: aumento do peso de produtos básicos na pauta de exportação. Riscos: depender de **preço internacional** que não se controla (termos de troca) e gerar menos emprego qualificado.",
+    "dica": null
+   },
+   {
+    "id": "populacao-globalizacao-e-economia-13",
+    "frente": "Doença holandesa",
+    "verso": "A exportação de commodity muito lucrativa **valoriza a moeda**, e a moeda valorizada torna a **indústria nacional** menos competitiva. Liga câmbio, exportação e desindustrialização numa frase.",
+    "dica": null
+   },
+   {
+    "id": "populacao-globalizacao-e-economia-14",
+    "frente": "Desindustrialização precoce",
+    "verso": "A indústria perdeu peso no PIB **antes** de o país ficar rico. Nos países desenvolvidos isso aconteceu **depois** da renda alta e da absorção de tecnologia — e a diferença entre as duas trajetórias é a pergunta de prova.",
+    "dica": null
+   },
+   {
+    "id": "populacao-globalizacao-e-economia-15",
+    "frente": "A matriz rodoviária e a conta",
+    "verso": "Decisão do **Plano de Metas de JK** (indústria automobilística + rodovias). Rodovia é a modalidade **mais cara por tonelada em longa distância** → **custo logístico alto** → preço maior e menos competitividade.\n\nVocê conhece isso em nota fiscal, com loja no interior do Pará.",
+    "dica": null
+   },
+   {
+    "id": "populacao-globalizacao-e-economia-16",
+    "frente": "Milton Santos — os dois conceitos",
+    "verso": "**Meio técnico-científico-informacional**: técnica, ciência e informação incorporadas ao próprio território — e por isso chegam antes aos lugares já ricos. **Globalização perversa**: a mesma rede que integra **concentra**.",
+    "dica": "autoria brasileira"
+   },
+   {
+    "id": "populacao-globalizacao-e-economia-17",
+    "frente": "Uberização: o conceito-chave",
+    "verso": "**Transferência de risco.** O veículo, a manutenção, o acidente e o tempo ocioso são do trabalhador; a plataforma fica com a coordenação. A novidade é a **gestão algorítmica**: quem dá a ordem é um sistema e não há a quem recorrer.",
+    "dica": "liga com Cathy O'Neil"
+   },
+   {
+    "id": "populacao-globalizacao-e-economia-18",
+    "frente": "Malthus e a crítica",
+    "verso": "Malthus previu que a população cresceria mais que o alimento e a fome seria freio natural. **Falhou** porque não previu o salto de produtividade agrícola. Depois: **neomalthusianismo** (controlar natalidade nos países pobres) × **reformismo** (a pobreza causa a alta natalidade; a solução é renda e educação).",
+    "dica": null
+   },
+   {
+    "id": "populacao-globalizacao-e-economia-19",
+    "frente": "As 3 pegadinhas de gráfico",
+    "verso": "**Absoluto × taxa** (a China emite mais no total, os EUA mais por pessoa — as duas são verdadeiras). **Nível × variação**. **Eixo que não começa no zero**.\n\nE sempre: **quem ficou fora da conta?**",
+    "dica": null
+   }
+  ]
+ },
+ {
+  "id": "clima-energia-e-acordos",
+  "nome": "Clima, energia e acordos",
+  "materia": "humanidades",
+  "nota": "Do dossiê 07 · o mecanismo, a cadeia das COPs e a economia do clima",
+  "cartas": [
+   {
+    "id": "clima-energia-e-acordos-01",
+    "frente": "O efeito estufa é bom — qual é o problema?",
+    "verso": "Sem ele a Terra teria **−18 °C**. O problema é a **intensificação**: queima de fóssil e desmatamento devolvem rápido à atmosfera um carbono que a natureza levou milhões de anos para enterrar.\n\n280 ppm → **mais de 420 ppm**; **+1,1 a 1,3 °C**.",
+    "dica": null
+   },
+   {
+    "id": "clima-energia-e-acordos-02",
+    "frente": "Estufa × camada de ozônio",
+    "verso": "**Fenômenos diferentes.** Ozônio protege da radiação **ultravioleta** e foi danificado pelos **CFCs** → **Protocolo de Montreal (1987)**, o acordo ambiental mais bem-sucedido da história.\n\nEstufa é retenção de **calor** por CO₂ e metano → Quioto e Paris.",
+    "dica": "a banca testa sempre"
+   },
+   {
+    "id": "clima-energia-e-acordos-03",
+    "frente": "Tempo × clima, e El Niño",
+    "verso": "**Tempo** é hoje; **clima** é o padrão de décadas. **El Niño/La Niña** são variações naturais do Pacífico que se **somam** à tendência: El Niño traz seca ao Norte/Nordeste e chuva ao Sul; La Niña inverte.",
+    "dica": null
+   },
+   {
+    "id": "clima-energia-e-acordos-04",
+    "frente": "Metano",
+    "verso": "Aquece **dezenas de vezes mais** que o CO₂ por molécula, mas dura pouco na atmosfera — por isso reduzi-lo tem o **efeito mais rápido**. Vem de pecuária, aterro, arrozal e vazamento de gás.",
+    "dica": null
+   },
+   {
+    "id": "clima-energia-e-acordos-05",
+    "frente": "Por que Montreal deu certo e Quioto não",
+    "verso": "Montreal: substituto técnico **barato**, poucas empresas, dano visível. Quioto: exigia mudar a **base energética** da economia, obrigou só os desenvolvidos, os EUA não ratificaram e China e Índia não tinham meta.",
+    "dica": null
+   },
+   {
+    "id": "clima-energia-e-acordos-06",
+    "frente": "Quioto × Paris",
+    "verso": "**Quioto (1997)**: metas **obrigatórias** para poucos países. **Paris (2015)**: metas **voluntárias (NDCs)** para todos, com objetivo de ficar **bem abaixo de 2 °C**, perseguindo **1,5 °C**.\n\nObrigatório não passava — e o preço é que a soma das NDCs não chega a 1,5 °C.",
+    "dica": null
+   },
+   {
+    "id": "clima-energia-e-acordos-07",
+    "frente": "Responsabilidades comuns porém diferenciadas",
+    "verso": "Todos são afetados, mas os desenvolvidos **emitiram historicamente mais** e enriqueceram fazendo isso — então devem mais. É a chave de leitura de qualquer COP: **quem está sendo cobrado e quem se recusa a pagar**.",
+    "dica": null
+   },
+   {
+    "id": "clima-energia-e-acordos-08",
+    "frente": "COP30 — o que aprovou",
+    "verso": "**Pacote de Belém**, 195 países, **29 decisões por consenso**; texto do **'mutirão'**. Triplicar o financiamento de **adaptação** até 2035 e mobilizar **US$ 1,3 trilhão por ano** até 2035 para países em desenvolvimento.",
+    "dica": "Belém, novembro de 2025"
+   },
+   {
+    "id": "clima-energia-e-acordos-09",
+    "frente": "COP30 — o que ficou de FORA",
+    "verso": "O **'Mapa do Caminho'** para a substituição progressiva dos **combustíveis fósseis** — não houve consenso.\n\nAlternativa que disser que a COP30 definiu cronograma de fim dos fósseis está **errada**.",
+    "dica": "a isca provável"
+   },
+   {
+    "id": "clima-energia-e-acordos-10",
+    "frente": "Mitigação, adaptação, perdas e danos",
+    "verso": "**Mitigação**: reduzir emissão, atacar a causa. **Adaptação**: preparar-se para o dano já inevitável. **Perdas e danos**: fundo para compensar quem já foi atingido. E **transição justa**: quem trabalha em carvão e petróleo não ser simplesmente abandonado.",
+    "dica": null
+   },
+   {
+    "id": "clima-energia-e-acordos-11",
+    "frente": "Rios voadores",
+    "verso": "A floresta devolve umidade ao ar por **evapotranspiração** e as massas de ar levam essa água ao Centro-Sul.\n\n**Desmatar a Amazônia tira chuva de São Paulo** — e com a chuva, hidrelétrica, safra e água de torneira. Deixa de ser causa ambiental e vira conta econômica.",
+    "dica": null
+   },
+   {
+    "id": "clima-energia-e-acordos-12",
+    "frente": "As causas econômicas do desmatamento",
+    "verso": "**Pecuária extensiva** (a maior parte da área) e **grilagem** de terra pública — derrubar para marcar posse. Depois soja e garimpo. E **estrada em floresta é o começo do desmatamento, não a consequência**.",
+    "dica": null
+   },
+   {
+    "id": "clima-energia-e-acordos-13",
+    "frente": "Ponto de não retorno da Amazônia",
+    "verso": "Hipótese de que, passado certo nível de desmatamento e aquecimento, a floresta não sustenta o próprio regime de chuva e vira savana. Estimativas entre **20% e 25%** de perda — **hipótese em discussão, não consenso**. Apresente assim.",
+    "dica": null
+   },
+   {
+    "id": "clima-energia-e-acordos-14",
+    "frente": "Matriz energética × matriz elétrica",
+    "verso": "**Elétrica** = só eletricidade: brasileira é limpa, hidrelétrica + eólica + solar, **mais de 80% renovável**. **Energética** = toda a energia, inclui **transporte** a diesel e gasolina → bem mais suja.\n\nA banca troca os dois de propósito.",
+    "dica": null
+   },
+   {
+    "id": "clima-energia-e-acordos-15",
+    "frente": "Prodes × Deter",
+    "verso": "**Prodes**: taxa **anual** consolidada de desmatamento. **Deter**: **alertas mensais** rápidos. Os dois são do **INPE** — e é por isso que os números divulgados parecem não bater.",
+    "dica": null
+   },
+   {
+    "id": "clima-energia-e-acordos-16",
+    "frente": "Terra indígena e desmatamento",
+    "verso": "Terras indígenas demarcadas são as áreas com **menor desmatamento** da Amazônia — menos que unidade de conservação de uso sustentável e muito menos que área privada. **A floresta em pé é mais bem protegida por quem mora nela.**",
+    "dica": null
+   },
+   {
+    "id": "clima-energia-e-acordos-17",
+    "frente": "Repertório indígena (quase ninguém usa)",
+    "verso": "**Davi Kopenawa**, *A Queda do Céu* (o 'povo da mercadoria') · **Ailton Krenak**, *Ideias para adiar o fim do mundo* (a humanidade se separou da natureza e passou a tratá-la como recurso) · **Nêgo Bispo**, contracolonização.",
+    "dica": "indicados pela Fernanda"
+   },
+   {
+    "id": "clima-energia-e-acordos-18",
+    "frente": "Externalidade e preço do carbono",
+    "verso": "**Externalidade**: o poluidor joga o custo na conta de terceiros. Precificar carbono **internaliza** esse custo — por **imposto** (o Estado fixa o preço) ou por **mercado com teto** (*cap and trade*: o Estado fixa a quantidade e as permissões são negociadas).",
+    "dica": null
+   },
+   {
+    "id": "clima-energia-e-acordos-19",
+    "frente": "Adicionalidade",
+    "verso": "Um crédito de carbono florestal só vale se a floresta **realmente seria desmatada** sem ele. Sem adicionalidade, vende-se preservação que ia acontecer de qualquer jeito.",
+    "dica": null
+   },
+   {
+    "id": "clima-energia-e-acordos-20",
+    "frente": "EUDR e CBAM",
+    "verso": "**EUDR**: lei europeia antidesmatamento — exige provar que soja, carne, café, cacau e madeira não vieram de área desmatada. **CBAM**: cobra na importação o carbono embutido em aço, cimento, alumínio e fertilizante.\n\nLeitura da ESPM: **a agenda ambiental virou política comercial**.",
+    "dica": null
+   },
+   {
+    "id": "clima-energia-e-acordos-21",
+    "frente": "ESG e greenwashing",
+    "verso": "**ESG**: critérios ambientais, sociais e de governança usados por investidores. **Greenwashing**: comunicar sustentabilidade sem mudar prática.\n\nA pergunta que desmonta: **qual é o indicador, quem o audita e o que acontece se ele estiver errado?**",
+    "dica": null
+   }
+  ]
  }
 ]

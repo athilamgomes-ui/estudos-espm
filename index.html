@@ -451,7 +451,7 @@ const KEY_SB = 'sb_publishable_eX7i_P76hKCfb4ocJ7zTzg_UilLA6J_'
 const sb = createClient(URL_SB, KEY_SB)
 // Selo desta versao do site. Serve para pedir os arquivos estaticos sem cair no
 // cache velho do navegador (GitHub Pages segura 10 min).
-const BUILD = '2026-11-11a'
+const BUILD = '2026-11-11c'
 
 const PROVA = new Date('2026-11-29T00:00:00-03:00')
 // ROTINA — a fonte da verdade do dia (08/09/2026).
@@ -758,32 +758,140 @@ async function iniciar () {
   return abrirApp()
 }
 
-// Uma cópia de segurança do progresso: sem conta, o que vale é o aparelho, então
-// existe um botão para baixar um .json e outro para devolvê-lo (trocar de
-// aparelho, limpar o navegador, reinstalar o app).
-$('#bExportar').onclick = () => {
-  const dados = { prog: lerProgressoLocal(), agenda: lerAgendaLocal(), em: new Date().toISOString() }
-  const u = URL.createObjectURL(new Blob([JSON.stringify(dados)], { type: 'application/json' }))
-  const a = document.createElement('a')
-  a.href = u; a.download = 'estudos-progresso-' + iso(new Date()) + '.json'
-  a.dataset.baixar = '1'; document.body.appendChild(a); a.click(); a.remove()
-  setTimeout(() => URL.revokeObjectURL(u), 10000)
-  const i = document.createElement('input')
-  i.type = 'file'; i.accept = 'application/json'; i.style.display = 'none'
-  i.onchange = async () => {
-    const f = i.files[0]; if (!f) return
-    try {
-      const d = JSON.parse(await f.text())
-      if (d.prog) localStorage.setItem(CH_PROG, JSON.stringify(d.prog))
-      if (d.agenda) localStorage.setItem(CH_AGENDA, JSON.stringify(d.agenda))
-      location.reload()
-    } catch (e) { alert('Não consegui ler esse arquivo.') }
+// Cópia de segurança do progresso (reescrito em 11/11/2026).
+// Por que mudou: o botão antigo criava um <a download> e clicava nele. Isso NAO
+// funciona no iPhone/iPad quando o painel esta aberto como app na tela de inicio
+// (modo standalone): o Safari ignora o download e nada acontece — e ela ficou com
+// "salvar copia nao da certo" sem saber por que. Agora a tela oferece as tres
+// rotas, e sempre sobra uma que funciona no aparelho dela:
+//   1. compartilhar o arquivo (folha do iOS → "Salvar em Arquivos")
+//   2. copiar o texto (area de transferencia: funciona em qualquer lugar)
+//   3. baixar o arquivo (desktop)
+// Restaurar virou acao separada, por arquivo OU por texto colado — antes era um
+// confirm() depois do download, que o navegador podia bloquear.
+// A copia agora inclui tambem o progresso dos FLASHCARDS (caixas de Leitner).
+function dadosCopia () {
+  return {
+    v: 1,
+    prog: lerProgressoLocal(),
+    agenda: lerAgendaLocal(),
+    flash: JSON.parse(localStorage.getItem(CH_FLASH) || 'null'),
+    em: new Date().toISOString()
   }
-  document.body.appendChild(i)
-  setTimeout(() => {
-    if (confirm('Cópia baixada.\n\nQuer RESTAURAR uma cópia de outro aparelho agora? (Cancelar = não)')) i.click()
-    else i.remove()
-  }, 600)
+}
+
+function aplicarCopia (txt) {
+  const d = JSON.parse(txt)
+  if (!d || (!d.prog && !d.agenda && !d.flash)) throw new Error('vazio')
+  if (d.prog) localStorage.setItem(CH_PROG, JSON.stringify(d.prog))
+  if (d.agenda) localStorage.setItem(CH_AGENDA, JSON.stringify(d.agenda))
+  if (d.flash) localStorage.setItem(CH_FLASH, JSON.stringify(d.flash))
+  return true
+}
+
+$('#bExportar').onclick = () => {
+  const d = dadosCopia()
+  const txt = JSON.stringify(d)
+  const nome = 'estudos-progresso-' + iso(new Date()) + '.json'
+  const qtd = Array.isArray(d.prog) ? d.prog.length : Object.keys(d.prog || {}).length
+
+  const fundo = document.createElement('div')
+  fundo.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;' +
+    'display:flex;align-items:center;justify-content:center;padding:14px'
+  const cx = document.createElement('div')
+  cx.style.cssText = 'background:var(--card,#fff);border-radius:14px;padding:16px;' +
+    'max-width:560px;width:100%;max-height:92vh;overflow:auto;box-shadow:0 10px 40px rgba(0,0,0,.4)'
+  cx.innerHTML =
+    '<h3 style="margin:0 0 4px">Cópia do seu progresso</h3>' +
+    '<p class="small muted" style="margin:0 0 12px">' + qtd + ' itens marcados · gerada agora. ' +
+    'Guarde por qualquer um dos caminhos abaixo — basta um funcionar.</p>' +
+    '<div class="row" style="flex-wrap:wrap;gap:8px;margin-bottom:10px">' +
+      '<button id="cpCompart" class="small">Compartilhar / Salvar arquivo</button>' +
+      '<button id="cpCopiar" class="small">Copiar texto</button>' +
+      '<button id="cpBaixar" class="small">Baixar arquivo</button>' +
+    '</div>' +
+    '<div id="cpAviso" class="small" style="margin-bottom:10px"></div>' +
+    '<textarea id="cpTexto" readonly style="width:100%;height:76px;font-size:11px;' +
+      'font-family:ui-monospace,Menlo,monospace"></textarea>' +
+    '<hr style="margin:16px 0;opacity:.3">' +
+    '<h3 style="margin:0 0 4px;font-size:15px">Restaurar uma cópia</h3>' +
+    '<p class="small muted" style="margin:0 0 8px">Trocou de aparelho, limpou o navegador ou ' +
+    'reinstalou o app? Cole o texto da cópia aqui (ou escolha o arquivo) e restaure.</p>' +
+    '<textarea id="cpColar" placeholder="cole aqui o texto da cópia" style="width:100%;height:60px;' +
+      'font-size:11px;font-family:ui-monospace,Menlo,monospace"></textarea>' +
+    '<div class="row" style="flex-wrap:wrap;gap:8px;margin-top:8px">' +
+      '<button id="cpRestaurar" class="small">Restaurar do texto</button>' +
+      '<button id="cpArquivo" class="small">Escolher arquivo…</button>' +
+      '<button id="cpFechar" class="small" style="margin-left:auto">Fechar</button>' +
+    '</div>'
+  fundo.appendChild(cx); document.body.appendChild(fundo)
+  cx.querySelector('#cpTexto').value = txt
+  const aviso = cx.querySelector('#cpAviso')
+  const diz = (m, ok) => {
+    aviso.textContent = m
+    aviso.style.color = ok ? 'var(--ok,#1a7f37)' : 'var(--bad,#b42318)'
+  }
+  const fechar = () => fundo.remove()
+  fundo.onclick = e => { if (e.target === fundo) fechar() }
+  cx.querySelector('#cpFechar').onclick = fechar
+
+  cx.querySelector('#cpCompart').onclick = async () => {
+    try {
+      const f = new File([txt], nome, { type: 'application/json' })
+      if (navigator.canShare && navigator.canShare({ files: [f] })) {
+        await navigator.share({ files: [f], title: 'Cópia do progresso' })
+        diz('Arquivo compartilhado. Em "Salvar em Arquivos" ele fica no aparelho.', true)
+      } else if (navigator.share) {
+        await navigator.share({ title: nome, text: txt })
+        diz('Cópia compartilhada como texto.', true)
+      } else {
+        diz('Este aparelho não tem compartilhamento. Use "Copiar texto" ou "Baixar arquivo".')
+      }
+    } catch (e) {
+      if (e && e.name !== 'AbortError') diz('Não deu para compartilhar aqui. Use "Copiar texto".')
+    }
+  }
+  cx.querySelector('#cpCopiar').onclick = async () => {
+    const ta = cx.querySelector('#cpTexto')
+    try {
+      await navigator.clipboard.writeText(txt)
+      diz('Copiado. Cole num e-mail ou numa nota para guardar.', true)
+    } catch (e) {
+      ta.focus(); ta.select()
+      diz('Selecionei o texto: toque e segure e escolha Copiar.')
+    }
+  }
+  cx.querySelector('#cpBaixar').onclick = () => {
+    try {
+      const u = URL.createObjectURL(new Blob([txt], { type: 'application/json' }))
+      const a = document.createElement('a')
+      a.href = u; a.download = nome; a.dataset.baixar = '1'
+      document.body.appendChild(a); a.click(); a.remove()
+      setTimeout(() => URL.revokeObjectURL(u), 10000)
+      diz('Se nada apareceu, o aparelho bloqueou o download — use "Compartilhar" ou "Copiar texto".', true)
+    } catch (e) { diz('Download bloqueado aqui. Use "Compartilhar" ou "Copiar texto".') }
+  }
+  cx.querySelector('#cpRestaurar').onclick = () => {
+    const v = cx.querySelector('#cpColar').value.trim()
+    if (!v) return diz('Cole o texto da cópia primeiro.')
+    try {
+      aplicarCopia(v); diz('Restaurado. Recarregando…', true)
+      setTimeout(() => location.reload(), 700)
+    } catch (e) { diz('Esse texto não é uma cópia válida.') }
+  }
+  cx.querySelector('#cpArquivo').onclick = () => {
+    const i = document.createElement('input')
+    i.type = 'file'; i.accept = 'application/json,.json,text/plain'; i.style.display = 'none'
+    i.onchange = async () => {
+      const f = i.files[0]; if (!f) { i.remove(); return }
+      try {
+        aplicarCopia(await f.text()); i.remove()
+        diz('Restaurado. Recarregando…', true)
+        setTimeout(() => location.reload(), 700)
+      } catch (e) { i.remove(); diz('Não consegui ler esse arquivo.') }
+    }
+    document.body.appendChild(i); i.click()
+  }
 }
 
 
