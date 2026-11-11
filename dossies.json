@@ -253,6 +253,17 @@
   "arquivo": "dossies/entrevista-03-videos-e-relatorios.pdf"
  },
  {
+  "slug": "entrevista-04-correcao-das-respostas",
+  "titulo": "A correção das suas 5 respostas",
+  "subtitulo": "Entrevista 04 · o que já está pronto, os 5 erros de fato que precisam sair, e o esqueleto novo de cada resposta",
+  "tipo": "entrevista",
+  "selo": "Entrevista · 12/11 às 14h · leia inteiro antes de reescrever",
+  "serve": "entrevista (eliminatória) · redação · repertório",
+  "minutos": 50,
+  "fechado_em": "escrito em 10 de novembro de 2026, à noite",
+  "arquivo": "dossies/entrevista-04-correcao-das-respostas.pdf"
+ },
+ {
   "slug": "manual-do-metodo",
   "titulo": "Manual do método",
   "subtitulo": "O passo a passo de cada tipo de tarefa, por escrito, para você nunca mais precisar lembrar",
