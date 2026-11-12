@@ -112,12 +112,12 @@
  {
   "slug": "conteudo-05-historia-moderna",
   "titulo": "História geral moderna e contemporânea",
-  "subtitulo": "Conteúdo 05 · 48 questões em 15 provas — do Renascimento ao século XXI, em cadeia",
+  "subtitulo": "48 questões em 15 provas · do Renascimento a 1993, na cadeia de causa e consequência",
   "tipo": "conteudo",
-  "selo": "Conteúdo · substitui as videoaulas e o livro de história geral",
-  "serve": "Humanidades (48 q) · antecedente da geopolítica · redação",
+  "selo": "Conteúdo · reescrito no padrão do dossiê de História do Brasil",
+  "serve": "Humanidades (48 q) · raiz do dossiê de geopolítica · repertório de redação",
   "minutos": 180,
-  "fechado_em": "escrito em 30 de outubro de 2026",
+  "fechado_em": "reescrito em 12 de novembro de 2026",
   "arquivo": "dossies/conteudo-05-historia-moderna.pdf"
  },
  {
@@ -156,12 +156,12 @@
  {
   "slug": "conteudo-09-historia-antiga-medieval",
   "titulo": "História antiga e medieval",
-  "subtitulo": "Conteúdo 09 · 33 questões em 15 provas — da Mesopotâmia a 1453, só o que explica o resto",
+  "subtitulo": "33 questões em 15 provas · de Gilgamesh a 1453 — e Roma é o assunto que mais cai",
   "tipo": "conteudo",
-  "selo": "Conteúdo · o terceiro dossiê de história",
-  "serve": "Humanidades (33 q) · raiz do dossiê de história moderna · repertório",
-  "minutos": 120,
-  "fechado_em": "escrito em 31 de outubro de 2026",
+  "selo": "Conteúdo · reescrito no padrão do dossiê de História do Brasil",
+  "serve": "Humanidades (33 q) · raiz do dossiê 05 · repertório de redação sobre cidadania e lei",
+  "minutos": 150,
+  "fechado_em": "reescrito em 12 de novembro de 2026",
   "arquivo": "dossies/conteudo-09-historia-antiga-medieval.pdf"
  },
  {

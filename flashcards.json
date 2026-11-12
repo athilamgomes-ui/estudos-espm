@@ -1162,5 +1162,543 @@
     "dica": null
    }
   ]
+ },
+ {
+  "id": "historia-moderna-da-reforma-a-1993",
+  "nome": "História moderna — da Reforma a 1993",
+  "materia": "humanidades",
+  "nota": "Do dossiê 05 · 48 questões; o entreguerras e as Américas são o pico",
+  "cartas": [
+   {
+    "id": "historia-moderna-da-reforma-a-1993-01",
+    "frente": "O que caracteriza o Estado moderno frente ao feudalismo?",
+    "verso": "Ele **supera os particularismos feudais e regionais**: centraliza território, fisco, moeda, exército permanente, burocracia e justiça.\n\nNão é o universalismo da Igreja nem o fracionamento do feudo — é **centralização**.",
+    "dica": "a palavra que a ESPM usou"
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-02",
+    "frente": "Humanismo — a definição pelo método",
+    "verso": "**Exame crítico das autoridades escolásticas**, retorno aos clássicos no original, e **observação da natureza e experimentação** como caminhos do conhecimento.\n\nNão é teologia (isso é a escolástica, que ele critica).",
+    "dica": "citada via Umberto Eco"
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-03",
+    "frente": "Henrique VIII criou qual igreja, e com que ato?",
+    "verso": "A **Anglicana**, pelo **Ato de Supremacia de 1534** — rompeu porque o papa não anulou seu casamento, e confiscou os bens dos mosteiros.\n\n⚠️ A pegadinha é **puritana**: essa é calvinista e aparece um século depois.",
+    "dica": null
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-04",
+    "frente": "Encomienda × mita × repartimiento",
+    "verso": "**Encomienda**: concessão de **pessoas** (tributo + trabalho) a um colono. **Mita**: trabalho forçado **rotativo por sorteio**, sobretudo nas minas de **Potosí**, adaptada do império inca. **Repartimiento**: distribuição compulsória de trabalhadores.",
+    "dica": null
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-05",
+    "frente": "Sepúlveda × Las Casas",
+    "verso": "**Juan Ginés de Sepúlveda** declarou os indígenas naturalmente inferiores e defendeu a **guerra justa**; **Las Casas** defendeu a humanidade deles. Enfrentaram-se na **Controvérsia de Valladolid (1550–51)**.\n\nA hierarquia racial foi construída **juridicamente** — com advogado, tese e audiência.",
+    "dica": "cobrada 2x em 2026"
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-06",
+    "frente": "Ato de Navegação de 1651",
+    "verso": "Mercadorias só entravam na Inglaterra em **navios ingleses** ou do país de origem. Fortaleceu a marinha inglesa e **atingiu em cheio a Holanda**, transportadora do mundo.\n\nNão liberou nada: foi protecionismo naval.",
+    "dica": null
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-07",
+    "frente": "Revolução Gloriosa e o Bill of Rights",
+    "verso": "**1688**: Guilherme de Orange desembarca, Jaime II foge sem resistência. O **Bill of Rights (1689)** instaura a **monarquia parlamentar** — o rei sob a lei, o Parlamento com a palavra final sobre imposto e exército.",
+    "dica": null
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-08",
+    "frente": "Quem eram os coeditores da Enciclopédia?",
+    "verso": "**d'Alembert** (1717–1783) e **Diderot** — a Enciclopédia (1751–72) é o Iluminismo em forma de produto: todo o conhecimento reunido, em verbetes técnicos e críticos.",
+    "dica": null
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-09",
+    "frente": "Os três Estados da França antes de 1789",
+    "verso": "**1º clero** e **2º nobreza**: isentos da maioria dos tributos, com privilégios. **3º Estado**: burguesia, trabalhadores urbanos e **camponeses (a maioria)** — paga tudo, decide nada.",
+    "dica": "enunciado literal de 2026"
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-10",
+    "frente": "Talleyrand, a carta de Barras e os panfletos do 'salvador'",
+    "verso": "É o **18 de Brumário — 9 de novembro de 1799**, o golpe que encerra o Diretório e instala o Consulado.\n\nO detalhe que entrega a data é a **propaganda**: panfletos vendidos pela cidade antes do ato.",
+    "dica": null
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-11",
+    "frente": "Por que a Revolução Industrial começou na Inglaterra?",
+    "verso": "Capital do comércio colonial · **cercamentos** criando mão de obra livre · carvão e ferro · **segurança jurídica e crédito** desde 1688–94 · mercado colonial garantido.\n\nE **manufatura → maquinofatura**: o trabalhador deixa de dominar o processo.",
+    "dica": null
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-12",
+    "frente": "Ludismo × cartismo × sindicato",
+    "verso": "**Ludismo**: quebrar as máquinas. **Cartismo**: a Carta ao Parlamento — sufrágio universal masculino e voto secreto, luta **política**. **Sindicatos** (*trade unions*): negociação organizada.",
+    "dica": null
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-13",
+    "frente": "David Ricardo, 1817",
+    "verso": "*Princípios de Economia Política e Tributação*. A renda se reparte em **salário, lucro e renda da terra**, e essa repartição é **conflituosa**. Também: valor-trabalho e **vantagens comparativas** (base do livre-comércio).",
+    "dica": null
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-14",
+    "frente": "Congresso de Viena — quem conduziu e com que princípios",
+    "verso": "**Metternich**, da Áustria. Três princípios: **legitimidade** (devolver os tronos), **restauração** (voltar ao Antigo Regime) e **equilíbrio europeu**.\n\nMais a **Santa Aliança**, comprometida a intervir contra revoluções liberais.",
+    "dica": null
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-15",
+    "frente": "Por que a Alsácia-Lorena aparece duas vezes",
+    "verso": "**1871**: a Alemanha a toma da França na Guerra Franco-Prussiana → nasce o **revanchismo** francês, uma das causas de 1914.\n\n**1918**: Wilson põe a devolução nos catorze pontos, e Versalhes executa.",
+    "dica": null
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-16",
+    "frente": "Guerra de Secessão e a Reconstrução",
+    "verso": "**1861–65**, mais de **600 mil mortos**. Norte industrial e protecionista × Sul algodoeiro e escravista. Reconstrução: **13ª, 14ª e 15ª Emendas**.\n\nMas foi **interrompida em 1877** → **Jim Crow**, restrição ao voto e Ku Klux Klan. Mudar a lei não desfez a hierarquia.",
+    "dica": "par perfeito com a Lei Áurea"
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-17",
+    "frente": "De onde vem Guantánamo?",
+    "verso": "Da **Guerra Hispano-Americana de 1898** (intervenção na independência de Cuba) e da **Emenda Platt (1901/1903)**, que deu aos EUA o direito de intervir e o **arrendamento da base naval**.",
+    "dica": null
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-18",
+    "frente": "'Tomei a zona do canal e deixei o Congresso debater depois'",
+    "verso": "**Theodore Roosevelt**, 1911, Universidade da Califórnia. É a política do **Big Stick**: em **1903** os EUA apoiaram a separação do **Panamá** da Colômbia e obtiveram a **Zona do Canal**.\n\nDepois vêm a **diplomacia do dólar** (Taft) e a **Boa Vizinhança** (F. Roosevelt, 1933).",
+    "dica": null
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-19",
+    "frente": "Caudilhismo em quatro elementos",
+    "verso": "**Autoritarismo personalista** · **líder carismático** · base **regional** · sustentação **militar e latifundiária**. Governa por lealdade pessoal, não por instituição.",
+    "dica": null
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-20",
+    "frente": "'Patriciado liberal do porto'",
+    "verso": "A elite liberal de **Buenos Aires** que comandou a Argentina depois de **Bartolomé Mitre** (1870–1930): Estado liberal de fachada com **eleições fraudulentas**.\n\nÉ a nossa **República Velha** com outro nome — e os dois ciclos acabam em **golpe em 1930**.",
+    "dica": null
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-21",
+    "frente": "Conferência de Berlim",
+    "verso": "**1884–85**: partilha da África entre europeus **sem nenhum povo africano presente**, pelo critério da **ocupação efetiva**.\n\nExplica as **fronteiras retas**, os conflitos étnicos e a economia extrativa até hoje.",
+    "dica": null
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-22",
+    "frente": "As quatro causas da Primeira Guerra",
+    "verso": "**Disputa imperialista + sistema de alianças + corrida armamentista (paz armada) + nacionalismos** (pan-eslavismo, pan-germanismo, revanchismo francês).\n\nEstopim: **Sarajevo, 28/06/1914**, arquiduque Francisco Ferdinando.",
+    "dica": null
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-23",
+    "frente": "Catorze pontos de Wilson — o que estava e o que NÃO estava",
+    "verso": "**08/01/1918.** Estava: liberdade de navegação, **remoção de barreiras econômicas**, devolução da **Alsácia-Lorena**, autodeterminação, associação geral das nações.\n\n❌ **NÃO** estava o **BIRD** — isso é **1944, Bretton Woods**.",
+    "dica": "a isca é o anacronismo"
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-24",
+    "frente": "Liga das Nações — data, tamanho e fraquezas",
+    "verso": "Instituída em **10 de janeiro de 1920**, com **32 países**, sede em Genebra.\n\nDuas fraquezas fatais: **sem os EUA** (Wilson propôs, o Senado não ratificou) e **sem força militar própria** — só sanção econômica por consenso.",
+    "dica": null
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-25",
+    "frente": "Versalhes — as imposições",
+    "verso": "**28/06/1919**: cláusula de **culpa exclusiva**, **reparações impagáveis**, perda de território e colônias, exército de **100 mil homens**, Renânia desmilitarizada.\n\nVersalhes não encerrou a guerra: **transferiu a conta**.",
+    "dica": null
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-26",
+    "frente": "Berlim, janeiro de 1919",
+    "verso": "A **revolta espartaquista**: comunistas tentam a revolução russa na Alemanha e são esmagados pelo governo **social-democrata** com apoio dos **Freikorps**. **Rosa Luxemburgo** e **Liebknecht** assassinados.\n\nWeimar nasce devendo favor à extrema direita armada.",
+    "dica": null
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-27",
+    "frente": "A cadeia da hiperinflação de 1923",
+    "verso": "A Alemanha não paga as reparações → **França e Bélgica ocupam o Ruhr** → o governo convoca greve e **imprime dinheiro** para pagar os grevistas → **hiperinflação**, 5 milhões de desempregados, poupança da classe média destruída.\n\nEm novembro, o **Putsch da Cervejaria**.",
+    "dica": null
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-28",
+    "frente": "Lenin era bolchevique ou menchevique?",
+    "verso": "**Bolchevique** ('maioria'). Bolcheviques: partido de quadros, disciplinado, revolução **já**. Mencheviques: partido amplo e **etapa burguesa primeiro**.\n\nMarcos: Teses de Abril, 'paz, pão e terra', **Brest-Litovski (1918)**, **NEP (1921)**.",
+    "dica": "a pegadinha de 2025"
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-29",
+    "frente": "Como Mussolini chegou ao poder?",
+    "verso": "Pela **Marcha sobre Roma, outubro de 1922** — uma **marcha de pressão** dos camisas negras que levou o **rei Vítor Emanuel III a nomeá-lo** primeiro-ministro, **sem combate**.\n\nO fascismo chegou **por convite do poder constituído**. Igual a Hitler em janeiro de 1933.",
+    "dica": null
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-30",
+    "frente": "O New Deal em cinco medidas",
+    "verso": "Seguro-desemprego subsidiado, **aumento de salários**, **salário mínimo**, **jornada máxima**, **fim do trabalho infantil** e **legalização dos sindicatos**. Mais obras públicas e previdência (1935).\n\nRompe com o **liberalismo clássico**, na linha de **Keynes**.",
+    "dica": "cobrado 2x"
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-31",
+    "frente": "Totalitarismo × autoritarismo",
+    "verso": "**Totalitarismo** quer controlar **tudo**, inclusive a vida privada e o pensamento, e **mobiliza** as massas num projeto. **Autoritarismo** quer o **poder político** e prefere a **desmobilização**.",
+    "dica": null
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-32",
+    "frente": "O que a invasão da Etiópia (1935) provou?",
+    "verso": "Que a **Liga das Nações não funcionava**: **50 Estados** se reuniram, as sanções foram **parciais** (sem petróleo, sem fechar Suez) e a anexação se consumou.\n\nHitler leu o recado: Renânia 1936, Anschluss e Munique 1938.",
+    "dica": null
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-33",
+    "frente": "Guerra Civil Espanhola — quem apoiou quem",
+    "verso": "**Franco**: Exército reacionário, Igreja, latifundiários + **Alemanha (Legião Condor)** e Itália. **República**: socialistas, comunistas, anarquistas, **Brigadas Internacionais** e URSS.\n\nFrança e Reino Unido: **não intervenção** — o que favoreceu Franco. A **Legião Condor** bombardeou **Guernica (1937)**.",
+    "dica": null
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-34",
+    "frente": "Projeto Manhattan — quem liderou",
+    "verso": "**Robert Oppenheimer** na direção científica, general **Leslie Groves** no comando militar; teste Trinity em julho de **1945**.\n\n⚠️ A alternativa falsa usa **Fritz Haber** e a síntese da **amônia** — outra história.",
+    "dica": null
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-35",
+    "frente": "Operação Meetinghouse",
+    "verso": "O bombardeio **incendiário de Tóquio**, **9–10 de março de 1945**, pelo **major-general Curtis LeMay**, do XXI Comando de Bombardeio — 67 cidades japonesas queimadas; matou mais que Nagasaki.\n\nMostra que a destruição em massa de civis **já era política antes da bomba atômica**.",
+    "dica": null
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-36",
+    "frente": "Nuremberg — as três acusações e os dois princípios",
+    "verso": "**Crimes contra a paz**, **crimes de guerra** e **crimes contra a humanidade** (categoria quase nova).\n\nPrincípios que ficaram: **obedecer a ordens não exime** e há **responsabilidade individual** por atos de Estado. Críticas: tribunal dos vencedores e lei posterior ao fato.",
+    "dica": null
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-37",
+    "frente": "Guerra por procuração",
+    "verso": "Conflito local em que as superpotências sustentam **lados opostos sem se enfrentar diretamente** — porque o confronto direto seria nuclear (**destruição mútua assegurada**).\n\nCoreia (1950–53), Vietnã, Afeganistão (1979–89).",
+    "dica": null
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-38",
+    "frente": "Nixon em Pequim, 1972",
+    "verso": "Negociações retomadas desde **1970**; visita em 1972, articulada por **Henry Kissinger**, com recepção de **Mao Tsé-tung e Chou En-lai**.\n\nO objetivo real não era amizade: era **separar a China da URSS** e isolar Moscou.",
+    "dica": null
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-39",
+    "frente": "Conferência de Bandung",
+    "verso": "**1955**: países africanos e asiáticos criam a ideia de **Terceiro Mundo** e o **Movimento dos Não Alinhados** — a recusa de escolher entre os dois blocos.\n\nÉ o avô do **Sul Global**.",
+    "dica": null
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-40",
+    "frente": "'Grândola, vila morena'",
+    "verso": "A senha da **Revolução dos Cravos**, tocada na rádio Renascença aos trinta minutos de **25 de abril de 1974**. Derrubou o Estado Novo salazarista (então com Marcelo Caetano), quase sem sangue.\n\nConsequência: independência das **colônias portuguesas em 1974–75**.",
+    "dica": null
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-41",
+    "frente": "Acordos de Oslo",
+    "verso": "**13/09/1993**, Casa Branca, **Clinton** como mestre de cerimônias, **Rabin** e **Arafat**. Reconhecimento mútuo e autonomia palestina em Gaza e Jericó, com **cinco anos** para negociar o status final.\n\nFracassou: o status final **nunca** foi negociado, Rabin foi assassinado em **1995** por extremista israelense, os assentamentos cresceram.",
+    "dica": null
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-42",
+    "frente": "29 de outubro de 1923",
+    "verso": "**Mustafa Kemal Atatürk** é declarado presidente da **República Turca** — fim do Império Otomano, que nascera com **1453**. Tratado de **Lausanne**.\n\nReformas: **laicidade** (fim do califado em 1924), alfabeto latino, código civil europeu, voto feminino. Modernização **autoritária pelo alto**.",
+    "dica": null
+   },
+   {
+    "id": "historia-moderna-da-reforma-a-1993-43",
+    "frente": "Fonte histórica",
+    "verso": "Tudo que foi **produzido por seres humanos ou traz vestígios de suas ações**: escrita, oral, material, iconográfica, audiovisual, estatística, digital. Quem ampliou isso foi a **Escola dos Annales**.\n\nCrítica da fonte: quem produziu · quando · para quem · com que interesse · **o que silencia**.",
+    "dica": "questão de 2026"
+   }
+  ]
+ },
+ {
+  "id": "antiga-e-medieval-lei-cidadania-e-",
+  "nome": "Antiga e medieval — lei, cidadania e feudo",
+  "materia": "humanidades",
+  "nota": "Do dossiê 09 · 33 questões, e Roma é 9 delas",
+  "cartas": [
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--01",
+    "frente": "A cadeia do neolítico, em ordem",
+    "verso": "**Agricultura → sedentarização → excedente → necessidade de guardar, contar e defender → propriedade → desigualdade e especialização → Estado → escrita.**\n\nE a virada: **a escrita nasce como contabilidade**, não como literatura.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--02",
+    "frente": "Por que Harari chama a revolução agrícola de 'a maior fraude da história'?",
+    "verso": "Porque funcionou **para a espécie e não para o indivíduo**: mais calorias e mais gente, mas dieta pior, mais horas de trabalho, mais doença e, sobretudo, **hierarquia**.\n\n*Sapiens* abriu a prova de 2026.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--03",
+    "frente": "Gilgamesh",
+    "verso": "**Uma das primeiras obras literárias conhecidas**, dos **sumérios**: o rei de Uruk em busca da imortalidade, a amizade com Enkidu e um relato de **dilúvio anterior ao bíblico**.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--04",
+    "frente": "Por que a ESCRITA do Código de Hamurábi importa mais que o talião",
+    "verso": "Lei **escrita e pública** é **previsível**, **limita o juiz** e pode ser conhecida por quem está sob ela. O talião é **proporcionalidade**, um limite à vingança.\n\n⚠️ Mas **a pena variava conforme a posição social** — legalidade **não** é igualdade.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--05",
+    "frente": "'O Egito é uma dádiva do Nilo' — em quatro passos",
+    "verso": "O Saara seca → a população se concentra no Nilo → a **cheia previsível** deposita limo fértil (*kemet*) → medir o tempo (calendário), medir a terra (geometria) e organizar trabalho coletivo exige centralização → **teocracia**.\n\nA frase é de **Heródoto**.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--06",
+    "frente": "Por que há templos gregos em Paestum?",
+    "verso": "Pela **colonização grega** (segunda diáspora), séculos **VIII–VI a.C.**, causada por **falta de terra** (estenocoria) e conflitos internos → **Magna Grécia**.\n\n❌ Falsas: invasão dórica, Alexandre, Guerras Púnicas.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--07",
+    "frente": "Sólon, Clístenes, Péricles",
+    "verso": "**Sólon** (~594): aboliu a **escravidão por dívida**, classes por renda. **Clístenes** (~508): dez tribos, **Bulé dos 500**, **ostracismo**. **Péricles** (461–429): auge e **mistoforia**.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--08",
+    "frente": "Ostracismo — a definição exata",
+    "verso": "Exílio **por votação** em fragmentos de cerâmica (*óstrakon*), por **dez anos**, **sem perder bens nem cidadania**. Finalidade **preventiva**: afastar quem acumulava influência e poderia virar tirano.\n\nA democracia criou uma ferramenta para se defender de si mesma.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--09",
+    "frente": "Mistoforia",
+    "verso": "O **pagamento ao cidadão pobre** que exercia cargo público, criado por Péricles.\n\nResolve a objeção de que participar exige **tempo livre**, que é privilégio de quem tem renda.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--10",
+    "frente": "Quem era cidadão em Atenas — e quem ficava fora",
+    "verso": "**Homem, adulto, livre, filho de pais atenienses.** Fora: **mulheres**, **escravizados** e **metecos** — ou seja, a maioria esmagadora da população.\n\nA participação intensa era sustentada por quem não participava.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--11",
+    "frente": "Meteco",
+    "verso": "**Estrangeiro residente livre**: mora em Atenas, trabalha (comércio e artesanato), paga o imposto **metoikion** e pode ser convocado à guerra — mas **não vota, não ocupa cargo e não pode possuir terra**.\n\nContribui com tudo e decide nada.",
+    "dica": "o melhor repertório sobre imigração"
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--12",
+    "frente": "A escravidão ateniense × a espartana",
+    "verso": "**Atenas**: sobretudo **estrangeiros comprados**, dispersos em casas e oficinas. **Esparta**: os **hilotas** eram uma **população local conquistada** (messênios), numerosa e com identidade comum.\n\nPor isso **Esparta era militarizada porque precisava ser** — a estrutura social explica a instituição.",
+    "dica": "questão de 2026"
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--13",
+    "frente": "A educação ateniense era estatal? Visava soldados?",
+    "verso": "**Não e não.** Era **privada e familiar** (a estatal e obrigatória era a espartana, a **agogé**), e visava o **cidadão que fala e decide**.\n\n**Paideia** = formação integral: ginástica, música, letras e **retórica**. Argumentar era **treino escolar**, não talento.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--14",
+    "frente": "Heródoto × Tucídides",
+    "verso": "**Heródoto**: **Guerras Médicas** (499–449 a.C.), o 'pai da História', narra com mitos e oráculos. **Tucídides**: **Guerra do Peloponeso** (431–404 a.C.), o primeiro a buscar **causas humanas e políticas**.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--15",
+    "frente": "Guerra do Peloponeso",
+    "verso": "**27 anos** (431–404 a.C.), Atenas e a Liga de Delos × Esparta. A causa de fundo é o **imperialismo ateniense** — a liga de defesa virou império, com o tesouro transferido para Atenas.\n\nA expedição à **Sicília (415–413)** é o desastre que a quebra.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--16",
+    "frente": "Os três fatores da decadência grega (séc. IV a.C.)",
+    "verso": "**Desgaste das guerras internas** + **estrutura escravista** (braço barato desestimula inovação técnica) + **incapacidade de união política**.\n\n❌ A causa falsa oferecida é a **Guerra de Troia**. O fim vem em **Queroneia, 338 a.C.**, com Filipe II.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--17",
+    "frente": "Por que os cônsules eram 'colegas'?",
+    "verso": "Porque o cargo era exercido por **mais de uma pessoa ao mesmo tempo** — dois cônsules com poder igual, **associados para se vigiarem**, cada um podendo bloquear o outro.\n\nOs três princípios: **colegialidade, anualidade e responsabilidade**. República a partir de **509 a.C.**",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--18",
+    "frente": "Tribunato da plebe",
+    "verso": "**494 a.C.**, conquistado por uma **secessão**: a plebe retirou-se para o **Monte Sacro** e recusou-se a lutar e trabalhar, com Roma em guerra.\n\nO tribuno era **exclusivamente plebeu**, **sacrossanto (inviolável)** e tinha a ***intercessio*** — o poder de **vetar**.",
+    "dica": "greve geral, 2.500 anos atrás"
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--19",
+    "frente": "Lei das Doze Tábuas",
+    "verso": "**451–450 a.C.**, na **República**, por dez magistrados (decênviros): a lei deixa de ser **oral e guardada pelos sacerdotes patrícios** e passa a ser **escrita e pública**, exposta no Fórum.\n\n❌ Pegadinhas: concedida por **Rômulo** ou surgida na **Monarquia** etrusca.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--20",
+    "frente": "Lex Poetelia Papiria",
+    "verso": "**326 a.C.**: aboliu o ***nexum***, a escravização por dívida. Antes dela o credor podia acorrentar, vender ou matar o devedor — **o corpo era a garantia**. Depois, **responde o patrimônio, não a pessoa**.\n\nFaz par com **Sólon** (594 a.C.): nenhuma república se sustenta transformando cidadão em escravo.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--21",
+    "frente": "Os direitos da cidadania romana",
+    "verso": "***ius suffragii*** (votar) · ***ius honorum*** (exercer cargo) · ***ius conubii*** (casamento legítimo) · ***ius commercii*** · ***provocatio ad populum*** (**apelar ao povo** contra pena capital).\n\nRoma inventou a cidadania **graduada**: direitos que podem existir separadamente.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--22",
+    "frente": "O plebeu era cidadão?",
+    "verso": "**Sim, desde o começo** — servia no exército e pagava imposto. O que lhe faltava era o ***ius honorum*** (acesso às magistraturas) e o ***ius conubii*** com patrícios.\n\n⚠️ Dizer que a cidadania era 'privilégio **exclusivo** dos patrícios' confunde **ser cidadão** com **poder ser cônsul**.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--23",
+    "frente": "Edito de Caracala",
+    "verso": "**212 d.C.**: cidadania romana para praticamente **todos os habitantes livres** do Império.\n\nNão foi generosidade — cidadão paga tributo, serve na legião e tem interesse na sobrevivência do Império. **Roma comprou lealdade com direito**; Atenas **fechou** a cidadania.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--24",
+    "frente": "A cadeia das Guerras Púnicas até o 'pão e circo'",
+    "verso": "Campanhas longas afastam o pequeno proprietário da terra → ele se endivida e vende → formam-se **latifúndios** com **escravizados** das conquistas → o camponês vai para Roma sem terra nem trabalho → **plebe urbana** contida com **'pão e circo'** e comprada politicamente.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--25",
+    "frente": "Tibério Graco e o ager publicus",
+    "verso": "**Tribuno em 133 a.C.** O ***ager publicus*** é a **terra pública** conquistada em guerra, ocupada de fato pela aristocracia. A **Lei Semprônia Agrária** queria **limitar** essa ocupação e redistribuir.\n\nO argumento dele não era justiça social: era que a concentração **reduzia os cidadãos aptos a servir no exército**. Foi assassinado; Caio também.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--26",
+    "frente": "Spartacus",
+    "verso": "**73–71 a.C.**, mais de **70 mil** cativos; derrotado por **Crasso**. Os **6 mil** sobreviventes foram **crucificados ao longo da Via Ápia**.\n\nA punição foi **espetáculo deliberado** — a escravidão romana se sustentava em terror visível.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--27",
+    "frente": "Augusto aboliu a República?",
+    "verso": "**Não.** Manteve Senado, cônsules, magistraturas e o vocabulário republicano, chamando-se apenas *princeps* e *imperator*. **27 a.C.**\n\nIsso é o **Principado**: **manter a instituição e esvaziá-la** — a técnica política mais imitada da história.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--28",
+    "frente": "O que *architetus* revela sobre os romanos",
+    "verso": "Que **arquitetura e engenharia eram uma coisa só**: conceber a forma e resolver a estrutura. A referência é **Vitrúvio** (*De architectura*): **firmeza, utilidade e beleza**.\n\nA Grécia construiu o **templo**; Roma construiu a **infraestrutura** — arco, abóbada, cúpula, concreto que cura sob a água, aqueduto, estrada.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--29",
+    "frente": "313 × 380",
+    "verso": "**313, Edito de Milão** (Constantino): cristianismo **tolerado**. **380, Edito de Tessalônica** (**Teodósio**): **religião oficial**.\n\nAo virar oficial, a Igreja herda a estrutura administrativa romana — e é a única instituição romana que fica de pé depois de 476.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--30",
+    "frente": "O que cai em 476 — e o que NÃO cai",
+    "verso": "Cai **só o Império Romano do Ocidente**. O **Oriente** segue **mil anos** como **Bizâncio**, capital em **Constantinopla**.\n\nNo séc. VI, **Justiniano**: Santa Sofia e o ***Corpus Iuris Civilis***. Constantinopla cai em **1453**.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--31",
+    "frente": "A cultura da Alta Idade Média",
+    "verso": "O **clero monopolizou o saber ler e escrever**: produção em **latim**, de temática **religiosa**, feita em **mosteiros** por copistas. Até o nobre, em regra, não lia.\n\n❌ Falsas: individualismo e literatura de temática camponesa.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--32",
+    "frente": "Contrato feudo-vassálico",
+    "verso": "**Bilateral**, com obrigações mútuas. **Suserano**: concede o **feudo**, **protege** e faz justiça. **Vassalo**: **fidelidade**, ***auxilium*** (ajuda militar) e ***consilium*** (conselho).\n\nRitos: **homenagem** e **investidura**; quebra = **felonia**. É contrato **entre nobres** — o servo não é parte dele.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--33",
+    "frente": "Reserva senhorial, e as banalidades",
+    "verso": "**Manso senhorial (reserva/domínio)**: as melhores terras + castelo, capela, **forno, moinho, forja, lagar**. **Manso servil**: lotes dos servos. **Manso comunal**: bosque e pasto.\n\n**Corveia** = trabalho gratuito; **talha** = parte da produção; **banalidades** = taxas pelo uso das instalações — ninguém come sem passar pelo forno do senhor.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--34",
+    "frente": "Servo × escravizado; estamental × classes",
+    "verso": "O **servo não é propriedade** e não pode ser vendido, tem família, casa e lote — mas está **preso à terra**.\n\n**Estamental**: oram, guerreiam, trabalham; posição de **nascimento**, mobilidade quase nula. **Classes**: posição definida pela relação econômica, com mobilidade possível.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--35",
+    "frente": "A sucessão de Maomé, e o cisma",
+    "verso": "Morreu em **632 sem herdeiro nem sucessor indicado**; as elites mercantis de Medina conduziram a expansão usando o proselitismo conforme o **interesse econômico**.\n\nDaí: **sunitas** (sucessão por escolha da comunidade) × **xiitas** (pela família do profeta, por **Ali**). **Hégira: 622.**",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--36",
+    "frente": "Os cinco pilares — e as três falsidades sobre o Alcorão",
+    "verso": "**Shahada · salat · zakat (esmola obrigatória) · sawm (Ramadã) · hajj.**\n\n❌ Falsas: que o islã é **politeísta** (é rigorosamente monoteísta, *tawhid*), que **não admite paraíso** (admite, *Jannah*) e que **proíbe a esmola** (ela é **obrigatória**).",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--37",
+    "frente": "O que a Europa deve ao mundo islâmico",
+    "verso": "**Álgebra** e **algoritmo** (al-Khwarizmi), os **algarismos indo-arábicos**, medicina (Avicena) e óptica (Alhazen) — e o mais decisivo: a **preservação e tradução de Aristóteles**, via **Averróis** e a Escola de Toledo.\n\nSem isso não há escolástica nem Renascimento. **Córdova** e a **Alhambra de Granada** são a prova material.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--38",
+    "frente": "As quatro motivações das Cruzadas — e a falsidade clássica",
+    "verso": "Religiosa · **demográfica** (o **morgadio** deixava nobres segundos filhos sem terra) · **comercial** (Veneza e Gênova financiam) · **papal**. **1095, Clermont, Urbano II.**\n\n❌ É falso dizer que mostraram 'autoridade indiscutível' da Igreja: houve **cruzadas populares** fora de controle, a **Quarta Cruzada saqueou Constantinopla (1204)** e o **Cisma de 1054** já dividia a cristandade.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--39",
+    "frente": "Qual era o objetivo das corporações de ofício?",
+    "verso": "**Regular e restringir** o ofício na cidade: fixar **preço** e **qualidade**, limitar o número de **aprendizes** e a jornada, controlar **quem pode exercer**, manter a hierarquia **mestre → oficial → aprendiz** e dar assistência mútua.\n\n❌ A resposta errada mais comum: 'garantir a liberdade de concorrência'. Era **monopólio corporativo**.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--40",
+    "frente": "O que nasceu nas feiras de Champagne",
+    "verso": "Os **instrumentos financeiros**: o **câmbio** (da mesa, *banco*, vem o nome), a **letra de câmbio** — pagar em outra cidade **sem transportar moeda**, antepassado do cheque e da transferência —, as partidas dobradas e as sociedades comerciais.\n\nE como a Igreja proibia a **usura**, o lucro era embutido na **taxa de câmbio**.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--41",
+    "frente": "Românico × gótico",
+    "verso": "**Românico** (séc. XI–XII): arco **pleno**, abóbada de **berço**, paredes grossas, poucas janelas, **horizontal** e escuro. **Gótico** (XII–XV): arco **ogival**, abóbada de **nervuras**, **arcobotantes**, **vitrais**, **vertical** e luminoso.\n\nA passagem é do **mosteiro rural** para a **catedral urbana**: ela só é possível com cidade, dinheiro de burguês e corporações especializadas.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--42",
+    "frente": "Por que o direito romano é redescoberto no séc. XI?",
+    "verso": "Porque o **reagrupamento do poder em grandes Estados** e o comércio de longa distância exigem direito **escrito, técnico e unificado** — o costume local serve a uma aldeia, não a um reino.\n\nO ***Corpus Iuris Civilis*** de Justiniano é estudado em **Bolonha** pelos **glosadores**. Mesma lógica de **Hamurábi** e das **Doze Tábuas**.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--43",
+    "frente": "A crise do século XIV, e por que ela FORTALECE o servo",
+    "verso": "**Fome** (desde 1315) + **peste negra (1347–51, um terço da Europa)** + **Guerra dos Cem Anos**.\n\n→ **escassez brutal de mão de obra** → o servo sobrevivente ganha **poder de barganha**: exige salário, foge para a cidade, negocia obrigações → a servidão colapsa → o senhor empobrece → **rei + burguesia** → **Estado moderno**.",
+    "dica": null
+   },
+   {
+    "id": "antiga-e-medieval-lei-cidadania-e--44",
+    "frente": "O que 1453 encerra e o que abre",
+    "verso": "Encerra a **Guerra dos Cem Anos** e o **Império Bizantino** — **Constantinopla cai** para Mehmed II.\n\nAbre: a rota terrestre das especiarias encarece → busca de **outro caminho para as Índias** → **grandes navegações** → **1500**. E o Império Otomano que nasce aí morre em **1923** com Atatürk.",
+    "dica": null
+   }
+  ]
  }
 ]
