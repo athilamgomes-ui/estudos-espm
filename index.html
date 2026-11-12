@@ -452,7 +452,7 @@ const KEY_SB = 'sb_publishable_eX7i_P76hKCfb4ocJ7zTzg_UilLA6J_'
 const sb = createClient(URL_SB, KEY_SB)
 // Selo desta versao do site. Serve para pedir os arquivos estaticos sem cair no
 // cache velho do navegador (GitHub Pages segura 10 min).
-const BUILD = '2026-11-11d'
+const BUILD = '2026-11-11e'
 
 const PROVA = new Date('2026-11-29T00:00:00-03:00')
 // ROTINA — a fonte da verdade do dia (08/09/2026).
@@ -1041,7 +1041,7 @@ async function abrirApp () {
     const d = await baixarTudo()
     aplicar(d); SYNC = { em: d.em, de: 'rede', falhou: false }
     gravarCache(); pintarTudo(); carregarSimulados()
-    enviarFila()
+    enviarFila(); baixarEstado()
   } catch (e) {
     console.warn('sincronia falhou', e)
     SYNC.falhou = true
@@ -1187,6 +1187,7 @@ let salvando = null
 async function salvarAgenda () {
   gravarCache()
   gravarAgendaLocal()
+  marcarEstadoMudou()
 }
 
 // So guarda os ultimos 45 dias de marcacao — o resto e peso morto no jsonb.
@@ -3005,8 +3006,8 @@ function pintarSync () {
   if (SYNC_ESTADO === 'enviando') {
     el.textContent = '⟳ salvando…'
     el.title = 'enviando as suas marcações para o servidor'
-  } else if (n) {
-    el.textContent = '⚠ ' + n + ' por enviar'
+  } else if (n || ESTADO_PEND) {
+    el.textContent = n ? ('⚠ ' + n + ' por enviar') : '⚠ 1 por enviar'
     el.title = 'sem conexão com o servidor agora; sobe sozinho quando voltar'
   } else {
     el.textContent = '✓ salvo'
@@ -3052,6 +3053,71 @@ async function migrarParaServidor () {
 
 addEventListener('online', () => enviarFila())
 document.addEventListener('visibilitychange', () => { if (!document.hidden) enviarFila() })
+
+// --------------------------- o resto do que e dela: agenda e flashcards
+// 11/11/2026, segunda parte: faltavam os blocos da rotina (AGENDA.feitos /
+// dificil / recuperacao) e as caixinhas de Leitner dos flashcards. Os dois
+// moravam so no aparelho, entao trocar de aparelho perdia os dois.
+// Por que uma tabela NOVA e nao a `config`: a config guarda o que e MEU (o
+// plano, os dias congelados, a grade de horarios). Se a pagina gravasse a
+// config inteira, uma marcacao dela podia passar por cima do plano que eu
+// acabei de montar. `estado_aparelho` so tem o que e dela — a pagina nunca
+// escreve onde eu escrevo.
+// Regra de quem manda: o lado com o carimbo de tempo MAIS NOVO. Nao e merge
+// fino, e ultima-escrita-vence; para um estudo de uma pessoa so em dois
+// aparelhos, isso basta e e previsivel.
+const CH_EST_EM = 'estudos:estado-em:v1'
+let ESTADO_PEND = false
+
+function marcarEstadoMudou () {
+  try { localStorage.setItem(CH_EST_EM, new Date().toISOString()) } catch (e) {}
+  subirEstado()
+}
+
+async function subirEstado () {
+  const em = localStorage.getItem(CH_EST_EM) || new Date().toISOString()
+  try {
+    const r = await sb.from('estado_aparelho').upsert([{
+      user_id: DONO,
+      agenda: { feitos: AGENDA.feitos, dificil: AGENDA.dificil, recuperacao: AGENDA.recuperacao },
+      flash: flashEstado && Object.keys(flashEstado).length ? flashEstado : lerFlash(),
+      atualizado_em: em
+    }], { onConflict: 'user_id' })
+    if (r.error) throw r.error
+    ESTADO_PEND = false
+  } catch (e) {
+    // Enquanto a tabela nao existir no Supabase, isto falha em silencio e o
+    // painel segue igual — o botao de cópia continua cobrindo esses dois.
+    ESTADO_PEND = true
+    console.warn('estado nao subiu', e && e.message)
+  }
+  pintarSync()
+}
+
+async function baixarEstado () {
+  try {
+    const r = await sb.from('estado_aparelho')
+      .select('agenda,flash,atualizado_em').eq('user_id', DONO).maybeSingle()
+    if (r.error || !r.data) return
+    const meu = localStorage.getItem(CH_EST_EM)
+    const tServidor = new Date(r.data.atualizado_em).getTime()
+    const tMeu = meu ? new Date(meu).getTime() : 0
+    if (tMeu > tServidor) { subirEstado(); return }   // este aparelho esta na frente
+    const d = r.data
+    if (d.agenda) {
+      if (d.agenda.feitos) AGENDA.feitos = d.agenda.feitos
+      if (d.agenda.dificil) AGENDA.dificil = d.agenda.dificil
+      if (d.agenda.recuperacao) AGENDA.recuperacao = d.agenda.recuperacao
+      gravarAgendaLocal()
+    }
+    if (d.flash) {
+      localStorage.setItem(CH_FLASH, JSON.stringify(d.flash))
+      flashEstado = d.flash
+    }
+    localStorage.setItem(CH_EST_EM, r.data.atualizado_em)
+    gravarCache(); pintarHoje(); pintarFlashcards()
+  } catch (e) { console.warn('estado nao desceu', e && e.message) }
+}
 
 // ---------------------------------------------------------------- prioridades
 // Frequencia real de cada assunto nas 15 provas, lida questao a questao.
@@ -3271,6 +3337,7 @@ function lerFlash () {
 }
 function gravarFlash () {
   try { localStorage.setItem(CH_FLASH, JSON.stringify(flashEstado)) } catch (e) {}
+  marcarEstadoMudou()
 }
 
 // Markdown minimo: **negrito**, *italico* e paragrafo. O conteudo e meu, entao
