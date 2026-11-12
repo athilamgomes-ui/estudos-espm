@@ -452,7 +452,7 @@ const KEY_SB = 'sb_publishable_eX7i_P76hKCfb4ocJ7zTzg_UilLA6J_'
 const sb = createClient(URL_SB, KEY_SB)
 // Selo desta versao do site. Serve para pedir os arquivos estaticos sem cair no
 // cache velho do navegador (GitHub Pages segura 10 min).
-const BUILD = '2026-11-11e'
+const BUILD = '2026-11-11f'
 
 const PROVA = new Date('2026-11-29T00:00:00-03:00')
 // ROTINA — a fonte da verdade do dia (08/09/2026).
@@ -3069,6 +3069,12 @@ document.addEventListener('visibilitychange', () => { if (!document.hidden) envi
 const CH_EST_EM = 'estudos:estado-em:v1'
 let ESTADO_PEND = false
 
+// "A tabela ainda nao existe" nao e pendencia: e funcionalidade desligada.
+const semTabela = e => {
+  const m = ((e && (e.message || e.code)) || '') + ' ' + ((e && e.code) || '')
+  return /PGRST205|42P01|does not exist|Could not find the table|404/i.test(m)
+}
+
 function marcarEstadoMudou () {
   try { localStorage.setItem(CH_EST_EM, new Date().toISOString()) } catch (e) {}
   subirEstado()
@@ -3088,7 +3094,9 @@ async function subirEstado () {
   } catch (e) {
     // Enquanto a tabela nao existir no Supabase, isto falha em silencio e o
     // painel segue igual — o botao de cópia continua cobrindo esses dois.
-    ESTADO_PEND = true
+    // E o selo NAO acusa pendencia nesse caso: dizer "1 por enviar" quando nao
+    // ha para onde enviar seria o painel mentindo na direcao contraria.
+    ESTADO_PEND = !semTabela(e)
     console.warn('estado nao subiu', e && e.message)
   }
   pintarSync()
