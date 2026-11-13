@@ -330,6 +330,17 @@
   "arquivo": "dossies/redacao-01-manual-espm.pdf"
  },
  {
+  "slug": "redacao-02-repertorios-por-eixo",
+  "titulo": "Repertórios por função e por eixo",
+  "subtitulo": "A dupla entrada que você pediu · 40 repertórios indexados, 16 deles novos, nos eixos que a ESPM realmente usa",
+  "tipo": "redacao",
+  "selo": "Redação · 3ª versão do caderno — a que organiza",
+  "serve": "Redação (40 pts) · entrevista · Humanidades",
+  "minutos": 180,
+  "fechado_em": "escrito em 13 de novembro de 2026",
+  "arquivo": "dossies/redacao-02-repertorios-por-eixo.pdf"
+ },
+ {
   "slug": "repertorio-competencias-futuro",
   "titulo": "Competências para o trabalho com IA",
   "subtitulo": "Soft skills (Lucedile Antunes, org.) e O profissional do futuro (Michelle Schneider) — o que são, por que valem agora e as críticas",

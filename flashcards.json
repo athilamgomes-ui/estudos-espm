@@ -1956,5 +1956,145 @@
     "dica": null
    }
   ]
+ },
+ {
+  "id": "repertorios-funcao-eixo-e-os-16-no",
+  "nome": "Repertórios — função, eixo e os 16 novos",
+  "materia": "redacao",
+  "nota": "Da 3ª versão · as 3 qualidades, a tríade, o teste da vitrine e os eixos que estavam vazios",
+  "cartas": [
+   {
+    "id": "repertorios-funcao-eixo-e-os-16-no-01",
+    "frente": "As 3 qualidades de um repertório",
+    "verso": "**Legitimado** — a fonte é reconhecível? (reprova 'li na internet'). **Pertinente** — é deste tema ou de um parecido? (reprova o encaixe forçado). **Produtivo** — faz o argumento **andar**? (reprova o que só repete a frase anterior).\n\nModelo da professora Fernanda Pessoa.",
+    "dica": null
+   },
+   {
+    "id": "repertorios-funcao-eixo-e-os-16-no-02",
+    "frente": "O teste do repertório de vitrine",
+    "verso": "*Se o repertório pudesse ser trocado por qualquer outro e o texto não mudaria, ele não tem função.*\n\nComo aplicar: **cubra o nome com o dedo e releia o parágrafo**. Se continua funcionando igual, era decoração — tire e ponha um que **prove** o que você afirmou.",
+    "dica": null
+   },
+   {
+    "id": "repertorios-funcao-eixo-e-os-16-no-03",
+    "frente": "Repertório é prova, não validação",
+    "verso": "Você usa repertório como **permissão para dizer** — tem a ideia e procura um nome que concorde. Daí a ansiedade de achar o autor antes de começar.\n\nA ordem certa: **tese → dois argumentos → só então** pergunte *quem mediu isso? quem descreveu esse mecanismo? onde já aconteceu?*",
+    "dica": null
+   },
+   {
+    "id": "repertorios-funcao-eixo-e-os-16-no-04",
+    "frente": "As 4 funções do repertório",
+    "verso": "**1.** Definir o problema (introdução). **2.** Explicar o mecanismo (o coração de D1/D2). **3.** Sustentar o recorte com evidência. **4.** Iluminar o desdobramento (conclusão).\n\nNa prática: **D1 pede mecanismo + evidência; D2 pede evidência + desdobramento.** Pergunte 'que peça falta aqui', não 'que repertório eu sei'.",
+    "dica": null
+   },
+   {
+    "id": "repertorios-funcao-eixo-e-os-16-no-05",
+    "frente": "A tríade Arte + Teoria + Dado",
+    "verso": "🎨 **Arte** dá **imagem e nome** ao problema (abre bem). 🧠 **Teoria** **explica o mecanismo** (vira argumento). 📊 **Dado** **prova** e ancora no real.\n\nEm 300–400 palavras cabem três: **Dado em D1, Teoria em D2, Arte na introdução ou conclusão.**",
+    "dica": null
+   },
+   {
+    "id": "repertorios-funcao-eixo-e-os-16-no-06",
+    "frente": "Os dois eixos que estavam vazios",
+    "verso": "**Meio ambiente/clima/cidade** tinha 1 repertório e **desigualdade/equidade** tinha **zero** — juntos, **8 dos 26 temas da ESPM, 31% do território**.\n\nPor isso os 16 repertórios novos: 6 de clima e cidade, 6 de equidade e cuidado, 2 de longevidade, 2 de IA e trabalho.",
+    "dica": null
+   },
+   {
+    "id": "repertorios-funcao-eixo-e-os-16-no-07",
+    "frente": "Acemoglu e Johnson — a direção da tecnologia",
+    "verso": "*Poder e progresso* (2023); Acemoglu, **Nobel de Economia 2024**. O progresso técnico **não** eleva o bem-estar automaticamente: só o fez quando houve **disputa política** (sindicato, lei, imposto, escola) que redirecionou o ganho.\n\nE a tecnologia tem **direção**: **substituir** o trabalhador ou **ampliar** a capacidade dele é escolha de quem financia e regula. Não é tecnofobia — é disputar o rumo.",
+    "dica": null
+   },
+   {
+    "id": "repertorios-funcao-eixo-e-os-16-no-08",
+    "frente": "O número de dentro do Future of Jobs",
+    "verso": "O saldo de **+78 milhões** de postos **embute 92 milhões destruídos**. E: **59 de cada 100** trabalhadores precisarão de requalificação; **11 não vão recebê-la**.\n\nNão é desemprego em massa — é **substituição** em massa. A desigualdade nasce **no intervalo**, não no saldo.",
+    "dica": null
+   },
+   {
+    "id": "repertorios-funcao-eixo-e-os-16-no-09",
+    "frente": "Ostrom contra Hardin",
+    "verso": "**Hardin (1968)**: o recurso de uso comum tende ao colapso → privatizar ou estatizar. **Ostrom** (Nobel 2009, 1ª mulher) documentou pesqueiros e pastos **geridos coletivamente por séculos sem colapsar**.\n\nAs condições: fronteira clara de quem tem direito · regras feitas por **quem usa** · **monitoramento mútuo** · sanção graduada · resolução própria de conflito.\n\nA tragédia não vem do uso comum: vem da **ausência de instituição**.",
+    "dica": null
+   },
+   {
+    "id": "repertorios-funcao-eixo-e-os-16-no-10",
+    "frente": "Externalidade (Pigou)",
+    "verso": "Efeito de uma transação sobre **quem não participou dela**: a fábrica polui, o vizinho adoece.\n\nSe o custo não entra no preço, **o preço mente** — e estimula produzir demais do que faz mal. Não é ganância, é **falha de informação no preço**. Soluções: **tributo sobre o dano · preço de carbono · regulação**.\n\nÉ um argumento que não exige nenhuma premissa anticapitalista: é economia convencional.",
+    "dica": null
+   },
+   {
+    "id": "repertorios-funcao-eixo-e-os-16-no-11",
+    "frente": "Maricato — a cidade informal",
+    "verso": "A periferia **não é o que sobrou** da cidade: é **produzida** por ela. Quando a lei urbanística e o preço da terra tornam a cidade legal inacessível, a população vai para onde a lei não chega — encosta, beira de córrego, área de proteção.\n\nLogo, quando a chuva mata, o que se vê é **quem estava na encosta — e estava lá porque a cidade legal tinha preço**. Política habitacional e política de risco climático são a mesma política.",
+    "dica": null
+   },
+   {
+    "id": "repertorios-funcao-eixo-e-os-16-no-12",
+    "frente": "Jane Jacobs — os olhos da rua",
+    "verso": "*Morte e vida de grandes cidades* (1961). A segurança da calçada não vem de polícia nem de muro: vem de **gente com motivo para estar nela em horários diferentes**, o que exige **usos misturados** (morar, trabalhar, comprar), quarteirão curto e densidade.\n\nZonear em usos únicos cria **horários de abandono**. Serve para cidades e para design de experiência — território da ESPM.",
+    "dica": null
+   },
+   {
+    "id": "repertorios-funcao-eixo-e-os-16-no-13",
+    "frente": "Kopenawa — o 'povo da mercadoria'",
+    "verso": "*A Queda do Céu*, com Bruce Albert. Ele chama os brancos de **povo da mercadoria** como **diagnóstico**: quem transforma tudo em coisa vendável só consegue ver a floresta como **estoque**.\n\nA crítica não é 'preservar a natureza' — é que a **categoria** de natureza (algo separado, lá fora, disponível) é o problema. Quem só vê estoque **não erra na conta, erra na categoria**.\n\nPar: **Krenak**, *Ideias para adiar o fim do mundo*.",
+    "dica": null
+   },
+   {
+    "id": "repertorios-funcao-eixo-e-os-16-no-14",
+    "frente": "Enchentes do RS (2024) — o que o caso prova",
+    "verso": "Abril-maio de 2024: **mais de 180 mortes** e **~2,3 milhões de afetados** (⚠️ confirme os números). Três argumentos de uma vez:\n\n**1.** evento extremo deixou de ser excepcional; **2.** o dano foi ampliado por **infraestrutura que existia e falhou** — adaptação é obra, não discurso; **3.** o atingido não foi sorteado (par com Maricato).",
+    "dica": null
+   },
+   {
+    "id": "repertorios-funcao-eixo-e-os-16-no-15",
+    "frente": "COP30 × COP31 — o padrão",
+    "verso": "**Belém, nov/2025**: Pacote de Belém, 195 países, 29 decisões, **triplicar o financiamento de adaptação** e mobilizar **US$ 1,3 tri/ano**. **Ficou de fora:** o roteiro de saída dos **combustíveis fósseis**.\n\n**Antália, Turquia, 9–20/11/2026**: a fricção é **outra vez os fósseis**.\n\nO padrão é a tese: **as COPs avançam no dinheiro e travam na fonte** — externalidade em escala diplomática.",
+    "dica": null
+   },
+   {
+    "id": "repertorios-funcao-eixo-e-os-16-no-16",
+    "frente": "Federici — trabalho reprodutivo",
+    "verso": "A economia só funciona porque existe um trabalho que **não é pago e não é contado**: cozinhar, limpar, cuidar. Ele **reproduz a força de trabalho** todo dia, está fora do PIB e foi historicamente atribuído à mulher.\n\nConsequência: o salário do trabalho 'produtivo' **embute de graça o trabalho de outra pessoa**. Medir produtividade sem contá-lo superestima quem não cuida.",
+    "dica": null
+   },
+   {
+    "id": "repertorios-funcao-eixo-e-os-16-no-17",
+    "frente": "Nancy Fraser — a crise do cuidado",
+    "verso": "O sistema **precisa** que alguém cuide e, ao mesmo tempo, empurra **as duas pessoas** da casa para o mercado — **sem repor o cuidado que tirou**.\n\nResultado: **dupla jornada** para quem continuou responsável, e terceirização para quem pode pagar — em regra para outra mulher, mais pobre. É contradição porque **destrói a condição de que depende**.",
+    "dica": null
+   },
+   {
+    "id": "repertorios-funcao-eixo-e-os-16-no-18",
+    "frente": "Licença-paternidade — a sua tese",
+    "verso": "**5 dias** na CLT; **20** no programa Empresa Cidadã. Maternidade: **120 dias**, até 180 no mesmo programa. 🕐 Confirme o estágio da lei de ampliação antes de afirmar.\n\n**A sua tese, da prova de junho:** *'as empresas preferem contratar homens porque não há licença estendida para eles'*. Equiparar não é benefício para o pai: é **retirar da contratação de uma mulher um custo que hoje só ela carrega**.",
+    "dica": "a sua frase era melhor que a da IA"
+   },
+   {
+    "id": "repertorios-funcao-eixo-e-os-16-no-19",
+    "frente": "Feminicídio — o paradoxo de 2026",
+    "verso": "**2025: 1.571** vítimas, maior da série, 4º recorde seguido (o *Retratos do Feminicídio* traz 1.568 — série **não consolidada**). **2026 até setembro: 1.082**, queda de **4,5%** — **mas tentativas +10,4%** (3.035 → 3.350). 1º trimestre foi o **mais letal da série**.\n\nTrês leis em dois anos: **14.994/2024** (crime autônomo, 20–40 anos), **15.409/2026** (cadastro nacional), **15.384/2026** (vicaricídio).\n\n**A tese: déficit de execução, não de lei.** Legislar é a parte barata.",
+    "dica": null
+   },
+   {
+    "id": "repertorios-funcao-eixo-e-os-16-no-20",
+    "frente": "Carolina Maria de Jesus — e por que é obrigatória",
+    "verso": "*Quarto de Despejo* (1960), diário escrito em cadernos achados no lixo. A imagem do título: **a cidade é a sala de visita e a favela é o quarto de despejo** — não descreve carência, descreve **função**.\n\n**E a ESPM usou um trecho dela — a entrada '11 de Maio, Dia das Mães' — na sua prova de junho de 2026.**",
+    "dica": null
+   },
+   {
+    "id": "repertorios-funcao-eixo-e-os-16-no-21",
+    "frente": "Conceição Evaristo — escrevivência",
+    "verso": "Escrever a partir da própria vivência **não** como autobiografia, e sim como **recusa do lugar de objeto**: a escrita da mulher negra não serve para 'ninar os da casa-grande'.\n\nDesloca a pergunta: não é se a história do outro foi contada, é **quem a contou**. Representatividade não é inclusão no retrato — é **autoria dele**.\n\n**Nasceu em 29/11/1946: faz 80 anos no dia da sua prova.** E é citada 4 vezes no banco de questões.",
+    "dica": null
+   },
+   {
+    "id": "repertorios-funcao-eixo-e-os-16-no-22",
+    "frente": "Envelhecer antes de enriquecer",
+    "verso": "**Censo 2022: 203 milhões**; pico de ~**220 milhões em 2041**. E a frase: **'a explosão populacional não foi excesso de nascimento, foi falta de morte'**.\n\nA **janela demográfica** está se fechando **antes** de o país ter alcançado produtividade e renda altas — os ricos envelheceram **depois** de enriquecer. Então envelhecimento é pauta de **previdência, produtividade e cuidado**, não de saúde.\n\nA ESPM já usou esse eixo em 2019-2, com artigo da **própria Revista da ESPM** sobre consumo sênior.",
+    "dica": null
+   }
+  ]
  }
 ]
