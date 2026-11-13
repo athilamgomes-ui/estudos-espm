@@ -22,17 +22,6 @@
   "arquivo": "dossies/atualidades-02-stf-instituicoes.pdf"
  },
  {
-  "slug": "atualidades-03-radar-redacao",
-  "titulo": "Radar da redação — o padrão de 26 temas e as pautas de 2026",
-  "subtitulo": "Redação vale 40 pontos (25% da nota) · o que a ESPM escolhe, de onde ela tira e a janela de tempo",
-  "tipo": "atualidade",
-  "selo": "Atualidades · escrito a 16 dias da prova",
-  "serve": "Redação (40 pts) · Cultura, arte e mídia (37 q) · Atualidades diversas (8 q) · entrevista",
-  "minutos": 120,
-  "fechado_em": "escrito em 13 de novembro de 2026, com as notícias conferidas por busca no mesmo dia",
-  "arquivo": "dossies/atualidades-03-radar-redacao.pdf"
- },
- {
   "slug": "atualidades-eua-brasil",
   "titulo": "Os EUA de Trump, o tarifaço e o Brasil em 2026",
   "subtitulo": "Comércio, soberania e a eleição que acontece dois meses antes da sua prova",
@@ -64,17 +53,6 @@
   "minutos": 75,
   "fechado_em": "fechado em 9 de setembro de 2026",
   "arquivo": "dossies/atualidades-ucrania.pdf"
- },
- {
-  "slug": "caderno-de-repertorios",
-  "titulo": "Caderno de repertórios",
-  "subtitulo": "24 repertórios explicados até o porquê — para você entender antes de usar",
-  "tipo": "repertorio",
-  "selo": "Redação · Ferramenta de trabalho · 2ª versão",
-  "serve": "redação (25% da nota) · entrevista · Humanidades",
-  "minutos": 180,
-  "fechado_em": "fechado em 10 de setembro de 2026",
-  "arquivo": "dossies/caderno-de-repertorios.pdf"
  },
  {
   "slug": "conteudo-01-literatura",
@@ -319,26 +297,15 @@
   "arquivo": "dossies/radar-politica-brasileira.pdf"
  },
  {
-  "slug": "redacao-01-manual-espm",
-  "titulo": "Manual da redação da ESPM",
-  "subtitulo": "40 pontos · os 4 critérios oficiais de correção, as 30 linhas por dentro e os seus erros com o conserto",
+  "slug": "redacao-01-tudo",
+  "titulo": "Redação — o dossiê único",
+  "subtitulo": "40 pontos · como ela corrige, os 30 temas que já caíram com fonte e data, e os 40 repertórios por função e por eixo",
   "tipo": "redacao",
-  "selo": "Redação · o maior item que falta até 29/11",
-  "serve": "Redação (40 pts) · entrevista · Interpretação (65 q) · Gramática (42 q)",
-  "minutos": 150,
+  "selo": "Redação · tudo num arquivo só",
+  "serve": "Redação (40 pts) · entrevista · Interpretação (65 q) · Cultura e mídia (37 q) · Gramática (42 q)",
+  "minutos": 420,
   "fechado_em": "escrito em 13 de novembro de 2026",
-  "arquivo": "dossies/redacao-01-manual-espm.pdf"
- },
- {
-  "slug": "redacao-02-repertorios-por-eixo",
-  "titulo": "Repertórios por função e por eixo",
-  "subtitulo": "A dupla entrada que você pediu · 40 repertórios indexados, 16 deles novos, nos eixos que a ESPM realmente usa",
-  "tipo": "redacao",
-  "selo": "Redação · 3ª versão do caderno — a que organiza",
-  "serve": "Redação (40 pts) · entrevista · Humanidades",
-  "minutos": 180,
-  "fechado_em": "escrito em 13 de novembro de 2026",
-  "arquivo": "dossies/redacao-02-repertorios-por-eixo.pdf"
+  "arquivo": "dossies/redacao-01-tudo.pdf"
  },
  {
   "slug": "repertorio-competencias-futuro",
