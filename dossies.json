@@ -319,6 +319,17 @@
   "arquivo": "dossies/radar-politica-brasileira.pdf"
  },
  {
+  "slug": "redacao-01-manual-espm",
+  "titulo": "Manual da redação da ESPM",
+  "subtitulo": "40 pontos · os 4 critérios oficiais de correção, as 30 linhas por dentro e os seus erros com o conserto",
+  "tipo": "redacao",
+  "selo": "Redação · o maior item que falta até 29/11",
+  "serve": "Redação (40 pts) · entrevista · Interpretação (65 q) · Gramática (42 q)",
+  "minutos": 150,
+  "fechado_em": "escrito em 13 de novembro de 2026",
+  "arquivo": "dossies/redacao-01-manual-espm.pdf"
+ },
+ {
   "slug": "repertorio-competencias-futuro",
   "titulo": "Competências para o trabalho com IA",
   "subtitulo": "Soft skills (Lucedile Antunes, org.) e O profissional do futuro (Michelle Schneider) — o que são, por que valem agora e as críticas",

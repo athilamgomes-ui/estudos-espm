@@ -1816,5 +1816,145 @@
     "dica": null
    }
   ]
+ },
+ {
+  "id": "redacao-o-manual-da-espm",
+  "nome": "Redação — o manual da ESPM",
+  "materia": "redacao",
+  "nota": "Do manual · os 4 critérios oficiais, a fórmula da tese e os seus erros com o conserto",
+  "cartas": [
+   {
+    "id": "redacao-o-manual-da-espm-01",
+    "frente": "Os quatro critérios oficiais da redação da ESPM",
+    "verso": "**1.** Compreensão do texto motivador e identificação da **problemática**. **2.** Domínio do dissertativo-argumentativo: **sustentar uma tese** com **razões baseadas em informações e dados**, na macroestrutura introdução (problemática **E tese**) / desenvolvimento / conclusão (retomada). **3.** Coesão e coerência, com **conclusões válidas**. **4.** Norma-padrão — e *'valorizam-se o registro formal, **amplitude e precisão léxica**'*.",
+    "dica": "do documento oficial"
+   },
+   {
+    "id": "redacao-o-manual-da-espm-02",
+    "frente": "Onde a tese tem que estar, e por quê",
+    "verso": "**Na introdução.** O critério 2 exige, com essas palavras: *'introdução (apresentação da problemática **e da tese**)'*.\n\nNão no fim, não 'a conclusão revelará'.",
+    "dica": null
+   },
+   {
+    "id": "redacao-o-manual-da-espm-03",
+    "frente": "Formato: palavras, linhas, eliminação",
+    "verso": "**300 a 400 palavras** (documento oficial) = **20 a 30 linhas** (caderno). **Dois temas**, escolhe um e assinala o quadradinho. **Título obrigatório e criativo.**\n\n**Nota abaixo de 2,0 elimina**, independentemente do resto. Há **sistema antiplágio**.",
+    "dica": null
+   },
+   {
+    "id": "redacao-o-manual-da-espm-04",
+    "frente": "As cinco diferenças ESPM × ENEM",
+    "verso": "**1.** Não existe **proposta de intervenção** (a C5 do ENEM) — não é avaliada. **2.** Extensão menor: 300–400 palavras. **3.** Título **obrigatório** (no ENEM é opcional). **4.** **Dois** temas para escolher. **5.** Cabem **2 ou 3** repertórios, não mais.\n\nNas suas duas redações da FP você perdeu ponto justamente na C5 — aqui você recupera **sem estudar nada**.",
+    "dica": null
+   },
+   {
+    "id": "redacao-o-manual-da-espm-05",
+    "frente": "Por que anotar palavra nova é estudar redação",
+    "verso": "Porque o critério 4 diz, literalmente, que **'valorizam-se o registro formal, amplitude e precisão léxica'**.\n\nCada termo que você anota na página de dúvidas — *interdependência armada, externalidade, reprimarização, banalidades* — **vale ponto duas vezes**: na objetiva e na redação.",
+    "dica": null
+   },
+   {
+    "id": "redacao-o-manual-da-espm-06",
+    "frente": "O que três avaliações diferentes disseram de você",
+    "verso": "**'Problematize!!'** — a tese. Dois corretores do portal da FP em 2025 (C2 = 160) e eu em agosto de 2026, com um ano de distância, apontando o mesmo lugar.\n\nSuas notas: **920** e **960**. O problema não é redação: são **dois vazamentos** — a tese e a norma.",
+    "dica": null
+   },
+   {
+    "id": "redacao-o-manual-da-espm-07",
+    "frente": "Constatação × tese — o teste de uma frase",
+    "verso": "Pergunte: **'é verdade, e daí?'** Se couber, é **constatação**.\n\n*'A tecnologia traz benefícios e malefícios'* → e daí? *'Por um lado…, por outro…'* → e daí? **Jogue fora e procure o mecanismo.**\n\nFoi o que voltou quando você pediu a tese para a IA do Google — e o seu próprio D2 já era melhor.",
+    "dica": null
+   },
+   {
+    "id": "redacao-o-manual-da-espm-08",
+    "frente": "A fórmula da tese",
+    "verso": "***Porque* [mecanismo que causa o problema], *então* [o que decorre disso].**\n\nEx.: *porque a plataforma é desenhada para maximizar tempo de tela, **então** proibir o aparelho desloca o problema em vez de resolvê-lo.*\n\nSe a sua frase não tem um **porque** e um **então**, não é tese.",
+    "dica": null
+   },
+   {
+    "id": "redacao-o-manual-da-espm-09",
+    "frente": "Duas teses concorrentes: a técnica",
+    "verso": "**Não escolha uma das duas — desloque o critério.**\n\nNo deepfake: saia de *'quem arbitra a verdade?'* (pergunta sem resposta, é o que te travou) e vá para *'quem foi lesado? houve consentimento? há autoria declarada?'*.\n\nA resposta aparece: **regula-se o dano e a falsificação de identidade, não o conteúdo da opinião**. Aproveita 100% do seu material e é defensável dos dois lados.",
+    "dica": null
+   },
+   {
+    "id": "redacao-o-manual-da-espm-10",
+    "frente": "Os cinco passos do planejamento (10 min)",
+    "verso": "**1.** Tema → **pergunta fechada** (sim/não). **2.** Responder em **uma frase** = a tese, com porque e então. **3.** Só **duas** razões (D1 e D2), descartar o resto. **4.** **Um repertório por parágrafo**, no máximo. **5.** Conclusão retoma a tese com o critério, **sem proposta de intervenção**.\n\nMétodo da professora Fernanda Pessoa, ajustado ao formato da ESPM.",
+    "dica": null
+   },
+   {
+    "id": "redacao-o-manual-da-espm-11",
+    "frente": "A arquitetura das 30 linhas",
+    "verso": "**Título** 1 linha · **Introdução** 4–5 (contexto em 1 frase + problema como **tensão** + tese) · **D1** 8–9 · **D2** 8–9 · **Conclusão** 4–5.\n\nD1 e D2 têm de ser **razões diferentes** — tipicamente 'por que acontece' × 'o que isso produz'.",
+    "dica": null
+   },
+   {
+    "id": "redacao-o-manual-da-espm-12",
+    "frente": "Repertório que trabalha × repertório enfeite",
+    "verso": "❌ *'Segundo Harari, a informação não é verdade.'* (e segue)\n\n✔ *'Harari mostra que redes de informação ordenam sem verificar — **e é por isso que** uma imagem falsa não precisa convencer ninguém: basta tornar plausível a dúvida sobre todas as outras.'*\n\nTodo repertório precisa da frase do **'o que ele prova'**.",
+    "dica": null
+   },
+   {
+    "id": "redacao-o-manual-da-espm-13",
+    "frente": "Os três formatos de título que funcionam",
+    "verso": "**1. A tese condensada:** *'Proibir não é educar'*. **2. Dois termos em tensão com dois-pontos:** *'Tela e tutela: o celular depois da lei'*. **3. Expressão conhecida torcida:** *'Performar é preciso'* — que a própria ESPM usou, torcendo o 'navegar é preciso'.\n\n❌ Qualquer título que sirva para três temas diferentes.",
+    "dica": null
+   },
+   {
+    "id": "redacao-o-manual-da-espm-14",
+    "frente": "Crase — o teste",
+    "verso": "Troque por uma palavra **masculina**: **se der 'ao', é 'à'**.\n\n*Assisti **à** aula* (→ ao filme) ✔ · *Refiro-me **à** questão* (→ ao problema) ✔ · *Começou **a** estudar* (verbo, nunca) ✘ · *de segunda **a** sexta* ✘ · **às 14h** ✔.",
+    "dica": null
+   },
+   {
+    "id": "redacao-o-manual-da-espm-15",
+    "frente": "Próclise — 'se efetivando', 'se agravam'",
+    "verso": "**Não comece frase ou parágrafo com pronome oblíquo** e evite gerúndio com pronome antes.\n\n*se efetivando* → *efetivando-se*, melhor: **que se efetiva**. *Se agravam os problemas* → ***Os problemas se agravam***. *Para se entender* → *Para entender*.\n\nE: palavra negativa, pronome relativo, advérbio ou conjunção subordinativa **atraem** o pronome — *não **se** sabe*, *que **se** efetiva*.",
+    "dica": null
+   },
+   {
+    "id": "redacao-o-manual-da-espm-16",
+    "frente": "As três vírgulas que mais caem",
+    "verso": "**Entre sujeito e verbo: NUNCA.** *O avanço da tecnologia ~~,~~ transformou* ✘\n**Adjunto adverbial no início: sim.** *Nas últimas décadas**,** o Brasil…* ✔\n**Oração explicativa entre vírgulas.** *A lei**, que entrou em vigor em março**, exige* ✔ — sem vírgula ela fica restritiva e o **sentido muda**.",
+    "dica": null
+   },
+   {
+    "id": "redacao-o-manual-da-espm-17",
+    "frente": "Maiúscula indevida",
+    "verso": "**Minúscula**: nome de disciplina, cargo, estação, ponto cardeal como direção, e substantivo comum por ênfase.\n\n*~~Inteligência Artificial~~* → **inteligência artificial** (a sigla **IA** é maiúscula) · *~~o Governo~~* → o governo · *~~a Sociedade~~* → a sociedade.\n\n**Maiúscula** só em nome próprio, instituição específica (*Supremo Tribunal Federal*) e lei nomeada (*Lei 14.994/2024*).",
+    "dica": null
+   },
+   {
+    "id": "redacao-o-manual-da-espm-18",
+    "frente": "Este × esse",
+    "verso": "**Este** aponta para o que vem **depois** ou está perto de quem fala. **Esse** retoma o que **já foi dito**.\n\nNuma dissertação: ao retomar o parágrafo anterior, **esse/essa**; ao anunciar o que você vai dizer, **este/esta**.",
+    "dica": null
+   },
+   {
+    "id": "redacao-o-manual-da-espm-19",
+    "frente": "Os quatro erros factuais a nunca repetir",
+    "verso": "**1.** *'George Owen'* → **George Orwell**. **2.** *'o criador do Instagram gravou um vídeo'* → **Mark Zuckerberg (Meta), 07/01/2025**, encerrando a checagem de fatos nos EUA. **3.** A afirmação sobre vacina e **ivermectina** → **cortar**: contraria o consenso científico e entra como erro factual. **4.** **Moraes/STF = censura** afirmado como fato → tese política contestada; use a tensão institucional em abstrato ou o julgamento do art. 19.\n\nNome errado **anula o repertório**.",
+    "dica": null
+   },
+   {
+    "id": "redacao-o-manual-da-espm-20",
+    "frente": "Os repertórios com o número certo",
+    "verso": "**MIT** (Vosoughi, Roy & Aral, *Science*, 2018): o falso tem **70% mais chance** de ser retuitado e chega a 1.500 pessoas **~6x mais rápido** — e **a causa são humanos, não bots**.\n**Reuters Institute** (2026, Brasil): confiança nas notícias **36%**, **−6 pp** em um ano, menor em 12 anos; **47% evitam** notícia.\n**STF, 26/06/2025**: inconstitucionalidade parcial do **art. 19 do Marco Civil**.\n**Deepfake sexual sem consentimento já é crime**: Lei 13.718/2018 + agravantes na 14.811/2024.",
+    "dica": null
+   },
+   {
+    "id": "redacao-o-manual-da-espm-21",
+    "frente": "Como escolher entre os dois temas, em 10 minutos",
+    "verso": "Escreva a **pergunta fechada** dos dois. Escolha aquele cuja pergunta você consegue responder **com um porque e um então** — **não** o assunto que você 'sabe mais'.\n\nTema conhecido sem tese rende menos que tema novo com tese.",
+    "dica": null
+   },
+   {
+    "id": "redacao-o-manual-da-espm-22",
+    "frente": "O checklist dos 90 segundos finais",
+    "verso": "Título específico? · Tese **na introdução** com porque/então? · D1 e D2 são **razões diferentes**? · Cada repertório tem a frase do 'o que prova'? · A conclusão **decorre** dos dois argumentos? · 20 a 30 linhas? · Nenhum parágrafo começando com oblíquo, nenhuma vírgula entre sujeito e verbo, crase conferida, maiúscula só em nome próprio? · Nome próprio que eu não sei escrever? (então **descreva sem citar**) · **Quadradinho do tema assinalado?**",
+    "dica": null
+   }
+  ]
  }
 ]
