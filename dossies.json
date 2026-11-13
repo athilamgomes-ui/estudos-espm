@@ -22,6 +22,17 @@
   "arquivo": "dossies/atualidades-02-stf-instituicoes.pdf"
  },
  {
+  "slug": "atualidades-03-radar-redacao",
+  "titulo": "Radar da redação — o padrão de 26 temas e as pautas de 2026",
+  "subtitulo": "Redação vale 40 pontos (25% da nota) · o que a ESPM escolhe, de onde ela tira e a janela de tempo",
+  "tipo": "atualidade",
+  "selo": "Atualidades · escrito a 16 dias da prova",
+  "serve": "Redação (40 pts) · Cultura, arte e mídia (37 q) · Atualidades diversas (8 q) · entrevista",
+  "minutos": 120,
+  "fechado_em": "escrito em 12 de novembro de 2026, com as notícias conferidas por busca em 13/11/2026",
+  "arquivo": "dossies/atualidades-03-radar-redacao.pdf"
+ },
+ {
   "slug": "atualidades-eua-brasil",
   "titulo": "Os EUA de Trump, o tarifaço e o Brasil em 2026",
   "subtitulo": "Comércio, soberania e a eleição que acontece dois meses antes da sua prova",

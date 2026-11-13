@@ -1700,5 +1700,121 @@
     "dica": null
    }
   ]
+ },
+ {
+  "id": "radar-da-redacao-e-das-atualidades",
+  "nome": "Radar da redação e das atualidades",
+  "materia": "redacao",
+  "nota": "Do radar · o padrão dos 26 temas, as apostas e as efemérides de 2026",
+  "cartas": [
+   {
+    "id": "radar-da-redacao-e-das-atualidades-01",
+    "frente": "Qual é a distância entre a notícia do texto de apoio e a prova?",
+    "verso": "**Um a três meses.** O caso mais curto registrado: fonte de **27/05/2026** numa prova de **21/06/2026** — **25 dias**.\n\nA prova de 29/11/2025 usou fontes de **20/08** e **30/09/2025**. Logo, a sua janela é **setembro a início de novembro de 2026**.",
+    "dica": "a descoberta do radar"
+   },
+   {
+    "id": "radar-da-redacao-e-das-atualidades-02",
+    "frente": "Os cinco eixos da redação da ESPM, em peso",
+    "verso": "**Tecnologia, IA e mídia — 12 de 26 temas (46%)** · **trabalho e carreira — 7** · **comportamento e saúde mental — 6** · **meio ambiente e consumo — 4** · **desigualdade, cultura e direitos — 4**.",
+    "dica": null
+   },
+   {
+    "id": "radar-da-redacao-e-das-atualidades-03",
+    "frente": "O que NUNCA caiu na redação da ESPM",
+    "verso": "Em 26 temas, **zero** sobre: **guerra e geopolítica** · **eleição e partido** · **STF e instituições** · **economia macro** · temas moralmente polarizados.\n\nÉ decisão de banca, consistente há 7 anos. Ucrânia e Oriente Médio servem para a **objetiva** (geopolítica = 83 q) e para a entrevista — **não** como repertório de redação.",
+    "dica": null
+   },
+   {
+    "id": "radar-da-redacao-e-das-atualidades-04",
+    "frente": "Em quantas provas seguidas a IA apareceu?",
+    "verso": "**Cinco**, sempre por uma porta nova: algoritmos (2022) · IA e sociedade (2023-2) · IA e negócios (2024-2) · IA e arte/Ghibli (2025-2) · IA na publicidade (2026-1) · deepfake e liberdade de expressão (2026-2).\n\nO ângulo grande que **falta** é **IA e trabalho**.",
+    "dica": null
+   },
+   {
+    "id": "radar-da-redacao-e-das-atualidades-05",
+    "frente": "Os três formatos de enunciado, e o que cada um pede",
+    "verso": "**Substantivo + tensão** ('limites e dilemas', 'os desafios de') → análise em 2 ou 3 dimensões nomeadas. **Pergunta direta** ('como lidar com', 'o que pode ser feito') → proposta de intervenção. **Afirmação para discutir** ('a literatura como direito humano') → defender ou refutar.",
+    "dica": null
+   },
+   {
+    "id": "radar-da-redacao-e-das-atualidades-06",
+    "frente": "As regras do caderno de redação",
+    "verso": "**20 a 30 linhas**, dissertativo-argumentativo, **título sugestivo e criativo obrigatório**, assinalar o tema escolhido (1 ou 2). E: *'aderência ao tema é um dos itens de avaliação'*.\n\n30 linhas = **um repertório por parágrafo**, usado para sustentar a tese. Repertório desfilado custa ponto.",
+    "dica": null
+   },
+   {
+    "id": "radar-da-redacao-e-das-atualidades-07",
+    "frente": "ECA Digital",
+    "verso": "**Lei nº 15.211/2025**, sancionada em **setembro de 2025**, **em vigor desde 17/03/2026**. Alcança redes, jogos, streaming e lojas de apps; exige **conta de menor vinculada a responsável** (fontes divergem na faixa: 'menores de 16' ou '13 a 16' — confira), obriga escolas a ter estratégia de **saúde mental** e amplia a responsabilidade por **bullying**.\n\nSome a **Lei 15.100/2025**, do celular na sala de aula.",
+    "dica": "aposta nº 1"
+   },
+   {
+    "id": "radar-da-redacao-e-das-atualidades-08",
+    "frente": "Marco Legal da IA — onde está",
+    "verso": "**PL 2.338/2023**: aprovado no **Senado**, está na **Câmara** com **37 propostas anexadas**, votação **adiada para depois das eleições de outubro de 2026**.\n\nPonto mais polêmico: **remuneração por obras protegidas usadas no treinamento**. Na UE, novas obrigações de transparência do **AI Act** valem desde **agosto de 2026**.",
+    "dica": null
+   },
+   {
+    "id": "radar-da-redacao-e-das-atualidades-09",
+    "frente": "COP31",
+    "verso": "**Antália, Turquia, 9 a 20 de novembro de 2026** — termina **nove dias antes da prova**. A **Turquia sedia e preside** (Murat Kurum) e o australiano **Chris Bowen preside as negociações**.\n\nPauta: energias limpas, segurança alimentar, **cidades resilientes**, indústria, oceanos, resíduos. A fricção é outra vez o **futuro dos combustíveis fósseis** — o item que ficou fora do Pacote de Belém.",
+    "dica": null
+   },
+   {
+    "id": "radar-da-redacao-e-das-atualidades-10",
+    "frente": "O Agente Secreto — a linha do tempo dos prêmios",
+    "verso": "**Cannes, maio/2025**: Melhor Direção (**Kleber Mendonça Filho**) e Melhor Ator (**Wagner Moura**) + FIPRESCI. **Globo de Ouro, 11/01/2026**: Melhor Filme em Língua Não Inglesa **e** Melhor Ator — **1º filme brasileiro com dois prêmios na mesma edição**. Mais de **55 prêmios** no total.\n\n**Oscar, 15/03/2026**: **4 indicações** (Filme, Internacional, Ator, Elenco), igualando *Cidade de Deus*; **não levou nenhuma**. Internacional foi para *Valor Sentimental* (Noruega).",
+    "dica": null
+   },
+   {
+    "id": "radar-da-redacao-e-das-atualidades-11",
+    "frente": "Ainda Estou Aqui",
+    "verso": "De **Walter Salles**: **Oscar de Melhor Filme Internacional em 2025**, o primeiro do Brasil, com **Fernanda Torres** vencendo o Globo de Ouro de atriz.\n\nCaiu **duas vezes**: na prova de **2025-1** (prêmio de roteiro em Veneza) e outra vez na de **2026-2**. A ESPM repete o mesmo objeto cultural.",
+    "dica": null
+   },
+   {
+    "id": "radar-da-redacao-e-das-atualidades-12",
+    "frente": "O padrão das 37 questões de Cultura, arte e mídia",
+    "verso": "**Efeméride.** Aniversário redondo (100 anos da Semana de 22; 100 do Manifesto Surrealista; 50 da morte de Pixinguinha; Rock in Rio 40), **morte recente**, **prêmio recém-ganho** e **lançamento da temporada** (o documentário *Raul Seixas: Eu Sou*, de 26/06/2025, caiu 5 meses depois).\n\nMais o cânone: Da Vinci, Klee, Picasso/Guernica, Dalí, Bernini, Lygia Clark, Portinari, Niemeyer.",
+    "dica": null
+   },
+   {
+    "id": "radar-da-redacao-e-das-atualidades-13",
+    "frente": "Efemérides de 2026",
+    "verso": "**80 anos de *Sagarana*** (1946) e **70 de *Grande Sertão: Veredas*** (1956) — Guimarães Rosa é o 5º autor mais citado nas provas. **90 anos de *Mar Morto***. **40 de *Cabeça Dinossauro***. **110 anos de 'Pelo Telephone'**. **Alceu Valença 80**; Djavan e Guilherme Arantes, 50 de carreira.\n\nE: **Conceição Evaristo completa 80 anos em 29 de novembro** — o dia da prova.",
+    "dica": null
+   },
+   {
+    "id": "radar-da-redacao-e-das-atualidades-14",
+    "frente": "Eleições 2026 — o resultado",
+    "verso": "**Lula reeleito** no 2º turno de **25/10/2026** com **51,79%**, contra **48,21%** de **Flávio Bolsonaro (PL)**.\n\nNo 1º turno, em **4/10**, Flávio liderava: **47,03%** contra **45,16%** — **houve virada entre os turnos**. Comparecimento no 2º turno: **80,78%**.",
+    "dica": null
+   },
+   {
+    "id": "radar-da-redacao-e-das-atualidades-15",
+    "frente": "A escada da professora Fernanda Pessoa, aplicada",
+    "verso": "**Assunto** → **tema** → **problema** → **recorte** → **tese causal**.\n\nEx.: IA → a IA no trabalho → o medo do desemprego esconde a questão real → o trabalhador brasileiro diante dos agentes de IA → **porque** a IA automatiza a execução e não o julgamento, **então** o risco é desvalorizar quem só executa. Tese sem **porque** e **então** não é tese.",
+    "dica": "método da professora Fernanda Pessoa"
+   },
+   {
+    "id": "radar-da-redacao-e-das-atualidades-16",
+    "frente": "Os três erros que custam ponto nesta prova",
+    "verso": "**1.** Repertório desfilado — são 30 linhas, um por parágrafo. **2.** Fugir para a política — o tema vem no eixo comportamento/tecnologia e **aderência ao tema é item declarado**. **3.** Esquecer o **título criativo**, que é exigência explícita do caderno.",
+    "dica": null
+   },
+   {
+    "id": "radar-da-redacao-e-das-atualidades-17",
+    "frente": "Por que 'falta vontade política' não é tese causal",
+    "verso": "Porque não explica **nada**: é a constatação de que o problema existe, vestida de causa. Tese causal precisa dizer **qual mecanismo** produz o problema.\n\nNo clima: *o custo da transição é imediato e local, o benefício é difuso e futuro* — isso é mecanismo, e dele sai a solução (financiar adaptação).",
+    "dica": null
+   },
+   {
+    "id": "radar-da-redacao-e-das-atualidades-18",
+    "frente": "Pareamento: repertório × aposta",
+    "verso": "**Haidt** e **Maryanne Wolf** → telas e infância. **Schwab**, **Isaacson**, **Kate Crawford** → IA e trabalho. **Krenak** + dossiê 07 → clima e cidades. **Harari (*Nexus*)** e **O'Neil** → desinformação e deepfake. **Byung-Chul Han** → saúde mental e trabalho. Dossiê 10 (Censo 2022, 203 milhões) → longevidade.\n\nOs seis autores da entrevista são os dos dois eixos que mais caem na redação.",
+    "dica": null
+   }
+  ]
  }
 ]
