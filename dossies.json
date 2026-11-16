@@ -55,15 +55,15 @@
   "arquivo": "dossies/atualidades-ucrania.pdf"
  },
  {
-  "slug": "conteudo-01-literatura",
-  "titulo": "Literatura brasileira e portuguesa",
-  "subtitulo": "Conteúdo 01 · 119 questões em 15 provas — a linha do tempo inteira, em ordem de prioridade",
+  "slug": "conteudo-01-linha-do-tempo",
+  "titulo": "A linha do tempo — história, literatura e arte",
+  "subtitulo": "174 questões do banco num arquivo só · cada período com o que aconteceu, o que se escreveu e o que se pintou",
   "tipo": "conteudo",
-  "selo": "Conteúdo · substitui as videoaulas de literatura",
-  "serve": "Português (119 questões) · redação (repertório) · Interpretação",
-  "minutos": 180,
-  "fechado_em": "escrito em 30 de outubro de 2026",
-  "arquivo": "dossies/conteudo-01-literatura.pdf"
+  "selo": "Conteúdo · história + literatura + arte, juntas",
+  "serve": "Humanidades (174 q) · Português (119 q) · redação (repertório) · entrevista",
+  "minutos": 600,
+  "fechado_em": "escrito em 16 de novembro de 2026",
+  "arquivo": "dossies/conteudo-01-linha-do-tempo.pdf"
  },
  {
   "slug": "conteudo-02-geopolitica",
@@ -88,39 +88,6 @@
   "arquivo": "dossies/conteudo-03-interpretacao.pdf"
  },
  {
-  "slug": "conteudo-04-historia-brasil",
-  "titulo": "História do Brasil",
-  "subtitulo": "56 questões em 15 provas · a cadeia causal de 1500 a hoje, com o detalhe que a ESPM cobra",
-  "tipo": "conteudo",
-  "selo": "Conteúdo · nível 1 esgotado, nível 2 para reconhecer",
-  "serve": "Humanidades (56 q) · repertório de redação · raiz dos outros dois dossiês de história",
-  "minutos": 120,
-  "fechado_em": "reescrito em 8 de novembro de 2026",
-  "arquivo": "dossies/conteudo-04-historia-brasil.pdf"
- },
- {
-  "slug": "conteudo-05-historia-moderna",
-  "titulo": "História geral moderna e contemporânea",
-  "subtitulo": "48 questões em 15 provas · do Renascimento a 1993, na cadeia de causa e consequência",
-  "tipo": "conteudo",
-  "selo": "Conteúdo · reescrito no padrão do dossiê de História do Brasil",
-  "serve": "Humanidades (48 q) · raiz do dossiê de geopolítica · repertório de redação",
-  "minutos": 180,
-  "fechado_em": "reescrito em 12 de novembro de 2026",
-  "arquivo": "dossies/conteudo-05-historia-moderna.pdf"
- },
- {
-  "slug": "conteudo-06-cultura-midia",
-  "titulo": "Cultura, arte e mídia",
-  "subtitulo": "Conteúdo 06 · 37 questões em 15 provas — a matéria mais \"ESPM\" de todas",
-  "tipo": "conteudo",
-  "selo": "Conteúdo · a banca é de comunicação e publicidade",
-  "serve": "Humanidades (37 q) · redação (repertório) · entrevista",
-  "minutos": 150,
-  "fechado_em": "fechado em 30 de outubro de 2026",
-  "arquivo": "dossies/conteudo-06-cultura-midia.pdf"
- },
- {
   "slug": "conteudo-07-meio-ambiente",
   "titulo": "Meio ambiente, clima e energia",
   "subtitulo": "Conteúdo 07 · 36 questões em 15 provas — do mecanismo do efeito estufa à COP30 em Belém",
@@ -141,17 +108,6 @@
   "minutos": 150,
   "fechado_em": "escrito em 31 de outubro de 2026",
   "arquivo": "dossies/conteudo-08-portugues-gramatica.pdf"
- },
- {
-  "slug": "conteudo-09-historia-antiga-medieval",
-  "titulo": "História antiga e medieval",
-  "subtitulo": "33 questões em 15 provas · de Gilgamesh a 1453 — e Roma é o assunto que mais cai",
-  "tipo": "conteudo",
-  "selo": "Conteúdo · reescrito no padrão do dossiê de História do Brasil",
-  "serve": "Humanidades (33 q) · raiz do dossiê 05 · repertório de redação sobre cidadania e lei",
-  "minutos": 150,
-  "fechado_em": "reescrito em 12 de novembro de 2026",
-  "arquivo": "dossies/conteudo-09-historia-antiga-medieval.pdf"
  },
  {
   "slug": "conteudo-10-geografia-populacao-economia",

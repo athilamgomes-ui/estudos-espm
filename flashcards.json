@@ -140,286 +140,6 @@
   ]
  },
  {
-  "id": "escolas-literarias",
-  "nome": "Escolas literárias",
-  "materia": "portugues",
-  "nota": "119 questões em 15 provas — o maior assunto de português",
-  "cartas": [
-   {
-    "id": "escolas-literarias-01",
-    "frente": "Barroco — traço central e autor",
-    "verso": "**Conflito** entre o terreno e o divino, carne e espírito. Linguagem rebuscada, antítese e paradoxo em toda parte, cultismo (jogo de palavras) e conceptismo (jogo de ideias).\n\nAutor: **Gregório de Matos**, o “Boca do Inferno”.",
-    "dica": "séc. XVII · dualidade"
-   },
-   {
-    "id": "escolas-literarias-02",
-    "frente": "Arcadismo — traço central e autores",
-    "verso": "**Reação ao Barroco**: simplicidade, equilíbrio, razão. Volta ao campo idealizado (*bucolismo*), pastora com nome grego (Marília), e os lemas **fugere urbem** (fugir da cidade), **locus amoenus** (lugar ameno), **carpe diem** e **inutilia truncat** (cortar o inútil).\n\nAutores: **Tomás Antônio Gonzaga** (*Marília de Dirceu*) e **Cláudio Manuel da Costa** — os dois inconfidentes de 1789.",
-    "dica": "séc. XVIII · campo e razão"
-   },
-   {
-    "id": "escolas-literarias-03",
-    "frente": "Romantismo — 1ª geração (nacionalista/indianista)",
-    "verso": "**Indianismo** e construção do herói nacional; exaltação da natureza brasileira; projeto de dar ao país recém-independente um passado épico.\n\nAutores: **Gonçalves Dias** (*I-Juca-Pirama*, *Canção do Exílio*) e **José de Alencar** (*O Guarani*, *Iracema*).",
-    "dica": "o índio como herói"
-   },
-   {
-    "id": "escolas-literarias-04",
-    "frente": "Romantismo — 2ª geração (ultrarromântica / “mal do século”)",
-    "verso": "**Pessimismo**, morte, tédio, amor impossível, escapismo, egocentrismo. É o byronismo brasileiro.\n\nAutor: **Álvares de Azevedo** (*Lira dos Vinte Anos*, *Noite na Taverna*), morto aos 20 anos.",
-    "dica": "morte e tédio"
-   },
-   {
-    "id": "escolas-literarias-05",
-    "frente": "Romantismo — 3ª geração (condoreira / social)",
-    "verso": "Poesia **social e abolicionista**, oratória, imagens grandiosas (o condor, que voa alto).\n\nAutor: **Castro Alves** (*O Navio Negreiro*, *Vozes d'África*).",
-    "dica": "abolicionista"
-   },
-   {
-    "id": "escolas-literarias-06",
-    "frente": "Realismo — traço central e autor",
-    "verso": "**Crítica à burguesia** e ao casamento por interesse; análise psicológica; narrador irônico; objetividade contra a idealização romântica.\n\nAutor: **Machado de Assis** — *Memórias Póstumas de Brás Cubas* (1881) inaugura, *Dom Casmurro* (1899), *Quincas Borba*.",
-    "dica": "1881 · ironia e psicologia"
-   },
-   {
-    "id": "escolas-literarias-07",
-    "frente": "Naturalismo — e como se distingue do Realismo",
-    "verso": "Mesma crítica, mas com **determinismo**: o ser humano é produto de raça, meio e momento. Patologia, instinto, sexualidade, personagem coletivo, linguagem crua e “cientificismo”.\n\nAutor: **Aluísio Azevedo** — *O Cortiço* (1890), em que o cortiço é quase um organismo vivo.\n\nRealismo analisa a **consciência**; Naturalismo explica pelo **determinismo biológico e social**.",
-    "dica": "determinismo"
-   },
-   {
-    "id": "escolas-literarias-08",
-    "frente": "Parnasianismo — traço central e autores",
-    "verso": "**Culto à forma**: soneto, metrificação rigorosa, rima rica, vocabulário raro, temas clássicos, “arte pela arte”. Avesso ao sentimentalismo romântico e à função social.\n\nAutores: **Olavo Bilac** (*Via Láctea*, “Ora, direis, ouvir estrelas!”), Raimundo Correia, Alberto de Oliveira.",
-    "dica": "poesia · forma perfeita"
-   },
-   {
-    "id": "escolas-literarias-09",
-    "frente": "Simbolismo — traço central e autor",
-    "verso": "**Musicalidade**, sinestesia, sugestão em vez de descrição, misticismo, subjetividade; o branco, a névoa, o vago.\n\nAutor: **Cruz e Sousa**, o “Dante Negro” (*Broquéis*).",
-    "dica": "música e sugestão"
-   },
-   {
-    "id": "escolas-literarias-10",
-    "frente": "Pré-Modernismo — o que é e autores",
-    "verso": "Não é escola, é **período de transição** (1902–1922) com obras que denunciam o Brasil real esquecido pela República.\n\n**Euclides da Cunha** (*Os Sertões*, 1902 — Canudos), **Lima Barreto** (*Triste Fim de Policarpo Quaresma* — o subúrbio e o nacionalismo ingênuo), **Monteiro Lobato** (o Jeca Tatu), **Augusto dos Anjos** (*Eu*, vocabulário científico e pessimismo).",
-    "dica": "1902–1922 · o Brasil real"
-   },
-   {
-    "id": "escolas-literarias-11",
-    "frente": "Modernismo — 1ª fase (1922–1930)",
-    "verso": "**Ruptura e destruição**: verso livre, humor, paródia, linguagem coloquial, nacionalismo crítico. Semana de Arte Moderna (1922), *Manifesto Pau-Brasil* (1924) e *Manifesto Antropófago* (1928).\n\nAutores: **Mário de Andrade** (*Macunaíma*, *Paulicéia Desvairada*), **Oswald de Andrade**, **Manuel Bandeira**.",
-    "dica": "1922 · destruir"
-   },
-   {
-    "id": "escolas-literarias-12",
-    "frente": "Modernismo — 2ª fase (1930–1945)",
-    "verso": "**Construção**: o romance regionalista do Nordeste, com seca, latifúndio, migração e denúncia social.\n\nAutores: **Graciliano Ramos** (*Vidas Secas*, *São Bernardo*), **Rachel de Queiroz** (*O Quinze*), **Jorge Amado**, **José Lins do Rego**.\n\nNa poesia: **Drummond** e **Cecília Meireles**.",
-    "dica": "1930 · romance de 30"
-   },
-   {
-    "id": "escolas-literarias-13",
-    "frente": "Modernismo — 3ª fase (1945–1960) / Geração de 45",
-    "verso": "Retorno ao **rigor formal** e experimentação com a linguagem.\n\nAutores: **João Cabral de Melo Neto** (*Morte e Vida Severina*, poesia “de engenharia”), **Clarice Lispector** (fluxo de consciência, epifania), **Guimarães Rosa** (*Grande Sertão: Veredas*, invenção da língua).",
-    "dica": "1945 · rigor e invenção"
-   },
-   {
-    "id": "escolas-literarias-14",
-    "frente": "Concretismo e o pós-1960",
-    "verso": "**Concretismo** (1956): o poema como objeto visual, abandono do verso — irmãos Campos e Décio Pignatari. Depois: poesia marginal dos anos 70 (Ana Cristina Cesar, Paulo Leminski) e a prosa urbana de **Rubem Fonseca** e **Lygia Fagundes Telles** (a autora do texto que caiu em 2026-2).",
-    "dica": null
-   },
-   {
-    "id": "escolas-literarias-15",
-    "frente": "O par que a ESPM adora: Romantismo × Realismo",
-    "verso": "**Romantismo** idealiza (amor eterno, herói, natureza sublime); **Realismo** desmonta (casamento por interesse, personagem ambíguo, narrador irônico).\n\nSe a questão contrasta duas visões do mesmo tema — amor, mulher, país — o eixo é quase sempre esse.",
-    "dica": null
-   },
-   {
-    "id": "escolas-literarias-16",
-    "frente": "Como a ESPM cobra literatura (119 questões)",
-    "verso": "Quase nunca “de que escola é este autor?”. Quase sempre: **um poema ou trecho + que característica de escola ele revela**, ou **comparação entre dois textos**.\n\nEntão o que decide é reconhecer o **traço no texto**: antítese e conflito = Barroco; pastora e campo = Arcadismo; índio herói = 1ª romântica; morte e tédio = 2ª; escravidão = 3ª; ironia e análise = Realismo; determinismo e instinto = Naturalismo; forma perfeita = Parnasianismo; musicalidade = Simbolismo.",
-    "dica": null
-   }
-  ]
- },
- {
-  "id": "matematica-formulas-e-condicoes",
-  "nome": "Matemática — fórmulas e condições",
-  "materia": "matematica",
-  "nota": "As ferramentas que você deixou em branco no simulado",
-  "cartas": [
-   {
-    "id": "matematica-formulas-e-condicoes-01",
-    "frente": "Média aritmética **ponderada**",
-    "verso": "Soma de (valor × peso) dividida pela **soma dos pesos**.\n\nNum gráfico de frequência: Σ(valor × frequência) ÷ Σfrequência.\n\nFoi a Q24 da 2026-2, que você deixou em branco.",
-    "dica": "pesos no divisor"
-   },
-   {
-    "id": "matematica-formulas-e-condicoes-02",
-    "frente": "Quando usar média e quando usar mediana",
-    "verso": "Com **valores extremos** (salários, por exemplo) a média é puxada e **engana**; a **mediana** descreve melhor o típico.\n\nÉ a pergunta conceitual favorita das bancas.",
-    "dica": null
-   },
-   {
-    "id": "matematica-formulas-e-condicoes-03",
-    "frente": "Sistema linear: condição de **infinitas soluções**",
-    "verso": "As duas equações são **a mesma reta**: os três coeficientes são proporcionais.\n\na₁/a₂ = b₁/b₂ = **c₁/c₂**\n\nQuem esquece de testar o **termo constante** cai na alternativa errada — foi a Q22 da 2026-2 (m=3, e o m=4 era a armadilha).",
-    "dica": "proporcional nos TRÊS"
-   },
-   {
-    "id": "matematica-formulas-e-condicoes-04",
-    "frente": "Sistema linear: as três possibilidades",
-    "verso": "**SPD** (uma solução): retas concorrentes, a₁/a₂ ≠ b₁/b₂.\n**SPI** (infinitas): mesma reta, a₁/a₂ = b₁/b₂ = c₁/c₂.\n**SI** (nenhuma): paralelas, a₁/a₂ = b₁/b₂ ≠ c₁/c₂.",
-    "dica": null
-   },
-   {
-    "id": "matematica-formulas-e-condicoes-05",
-    "frente": "Polígono regular: ângulo **interno** × ângulo **central**",
-    "verso": "**Interno** (no vértice, entre dois lados) = (n−2)·180°/n\n**Central** (visto do centro) = 360°/n\n\nNo hexágono: interno **120°**, central **60°**. Confundir os dois foi o seu erro na Q28.",
-    "dica": "interno ≠ central"
-   },
-   {
-    "id": "matematica-formulas-e-condicoes-06",
-    "frente": "Soma dos ângulos **externos** de um polígono convexo",
-    "verso": "**360°, sempre** — não importa o número de lados.\n\nÉ o fato que resolve a Q28 em duas linhas: (n−2)·180 − 360 = 540 → n = **7**.",
-    "dica": "sempre 360"
-   },
-   {
-    "id": "matematica-formulas-e-condicoes-07",
-    "frente": "Soma dos ângulos internos e número de diagonais",
-    "verso": "Soma dos internos = **(n−2)·180°**\nDiagonais = **n(n−3)/2**",
-    "dica": null
-   },
-   {
-    "id": "matematica-formulas-e-condicoes-08",
-    "frente": "Razão de semelhança: lados, áreas e volumes",
-    "verso": "Se a razão entre lados é **k**, a razão entre **áreas é k²** e entre **volumes é k³**.\n\nAumentar o raio em 20% aumenta a área em **44%** (1,2² = 1,44), não 20%.",
-    "dica": "k → k² → k³"
-   },
-   {
-    "id": "matematica-formulas-e-condicoes-09",
-    "frente": "Soma e produto das raízes (2º grau)",
-    "verso": "x₁ + x₂ = **−b/a** · x₁ · x₂ = **c/a**\n\nQuando a questão quer algo *sobre* as raízes (soma, produto, soma dos inversos), usar Bhaskara é trabalhar três vezes mais.",
-    "dica": null
-   },
-   {
-    "id": "matematica-formulas-e-condicoes-10",
-    "frente": "O que o discriminante Δ = b² − 4ac responde",
-    "verso": "**Δ > 0:** duas soluções possíveis.\n**Δ = 0:** exatamente uma (é o caso de fronteira — “para que valor de m há raiz única?”).\n**Δ < 0:** nenhuma real — no contexto, significa “isso nunca acontece”.",
-    "dica": null
-   },
-   {
-    "id": "matematica-formulas-e-condicoes-11",
-    "frente": "Vértice da parábola, e para que serve",
-    "verso": "x_v = **−b/2a** · y_v = **−Δ/4a**\n\nÉ o **máximo** (se a<0) ou o **mínimo** (se a>0). Toda questão de “preço que maximiza a receita” ou “custo mínimo” é vértice.",
-    "dica": null
-   },
-   {
-    "id": "matematica-formulas-e-condicoes-12",
-    "frente": "Regra de três **composta**: o método",
-    "verso": "1. Tabela com uma coluna por grandeza.\n2. Pergunta, **uma grandeza por vez**: se esta aumentar e o resto ficar parado, a incógnita aumenta (direta) ou diminui (inversa)?\n3. Multiplica as razões, **invertendo as das inversas**.\n\nDiretamente proporcional a DUAS grandezas = multiplica as DUAS razões. Foi a Q38: 12.000 × 1,5 × 1,5 = **27.000** (o 18.000 é a armadilha de quem aplica só uma).",
-    "dica": "multiplica as duas"
-   },
-   {
-    "id": "matematica-formulas-e-condicoes-13",
-    "frente": "Porcentagens sucessivas",
-    "verso": "**Multiplicam, nunca somam.**\n+10% depois +10% = 1,1 × 1,1 = **+21%**\n−20% depois +20% = 0,8 × 1,2 = 0,96 = **−4%**, não volta ao original.\n\nPorque o segundo percentual incide sobre o valor **já alterado**.",
-    "dica": null
-   },
-   {
-    "id": "matematica-formulas-e-condicoes-14",
-    "frente": "Pontos percentuais × porcentagem",
-    "verso": "A inflação cai de 8% para 6%: caiu **2 pontos percentuais** e **25% do valor** (2/8).\n\nO enunciado nunca avisa qual dos dois ele quer.",
-    "dica": null
-   },
-   {
-    "id": "matematica-formulas-e-condicoes-15",
-    "frente": "Lucro sobre o custo × margem sobre a venda",
-    "verso": "Custa 80, vende por 100.\nLucro sobre o **custo** = 20/80 = **25%**\nMargem sobre a **venda** = 20/100 = **20%**\n\nLeia sempre “lucro de X% sobre o quê”.",
-    "dica": null
-   },
-   {
-    "id": "matematica-formulas-e-condicoes-16",
-    "frente": "Para manter o preço depois de dar 10% de desconto",
-    "verso": "**Divide** por 0,9 (não multiplica por 1,1).\n\nÉ o raciocínio “por dentro”, o mesmo de imposto embutido no preço.",
-    "dica": "divide"
-   },
-   {
-    "id": "matematica-formulas-e-condicoes-17",
-    "frente": "MMC ou MDC? a pergunta que decide",
-    "verso": "“Quando **coincidem** de novo?” / “menor número que serve para os dois” → **MMC**.\n“Maior pedaço igual em que posso dividir?” → **MDC**.\n\nE: **MMC(a,b) × MDC(a,b) = a × b**",
-    "dica": null
-   },
-   {
-    "id": "matematica-formulas-e-condicoes-18",
-    "frente": "Arranjo × combinação",
-    "verso": "**A ordem importa?** Sim → **arranjo**, A(n,p) = n!/(n−p)! (pódio). Não → **combinação**, C(n,p) = n!/(p!(n−p)!) (comissão).",
-    "dica": "a ordem importa?"
-   },
-   {
-    "id": "matematica-formulas-e-condicoes-19",
-    "frente": "Princípio multiplicativo e o “pelo menos um”",
-    "verso": "Escolhas em sequência: multiplica as opções (3 entradas × 4 pratos × 2 sobremesas = 24).\n\n**“Pelo menos um”** → calcule **o total menos o caso em que não há nenhum**: 1 − P(nenhum).",
-    "dica": null
-   },
-   {
-    "id": "matematica-formulas-e-condicoes-20",
-    "frente": "Contagem de algarismo numa sequência",
-    "verso": "O algarismo da **unidade** cicla a cada 10 números. De 1 a 1000 há **1000 ÷ 10 = 100** ciclos → o “2” aparece **100 vezes** na unidade.\n\nFoi a Q39: você contou 9 centenas quando são **10**.",
-    "dica": null
-   },
-   {
-    "id": "matematica-formulas-e-condicoes-21",
-    "frente": "Probabilidade: união, independentes e complementar",
-    "verso": "P(A ou B) = P(A) + P(B) − **P(A e B)**\nIndependentes: P(A e B) = P(A) × P(B)\nComplementar: P(não A) = 1 − P(A)\n\nE cuidado com **sem reposição**: o denominador muda na segunda retirada.",
-    "dica": null
-   },
-   {
-    "id": "matematica-formulas-e-condicoes-22",
-    "frente": "Propriedades do logaritmo",
-    "verso": "log(a·b) = log a + **log b**\nlog(a/b) = log a − log b\nlog(aⁿ) = **n·log a**\n\nFoi o caminho da Q34: log₂(x−1) + log₂(x+3) = 5 → (x−1)(x+3) = 32 → x = **5**.",
-    "dica": null
-   },
-   {
-    "id": "matematica-formulas-e-condicoes-23",
-    "frente": "Determinante 2×2 e 3×3",
-    "verso": "2×2: **ad − bc**\n3×3: regra de Sarrus.\n\nSe o determinante dos três pontos (com coluna de 1s) dá **zero**, eles são **colineares**.",
-    "dica": null
-   },
-   {
-    "id": "matematica-formulas-e-condicoes-24",
-    "frente": "Retas paralelas e perpendiculares",
-    "verso": "Paralelas: **mesmo m**.\nPerpendiculares: **m₁ × m₂ = −1**.\n\nE m = (y₂−y₁)/(x₂−x₁): a subida dividida pelo avanço.",
-    "dica": null
-   },
-   {
-    "id": "matematica-formulas-e-condicoes-25",
-    "frente": "Os três produtos notáveis, e para que servem",
-    "verso": "(a+b)² = a² + 2ab + b² · (a−b)² = a² − 2ab + b² · (a+b)(a−b) = **a² − b²**\n\nNa prova eles quase nunca são o tema: são o atalho. 98 × 102 = (100−2)(100+2) = **9.996**.",
-    "dica": null
-   },
-   {
-    "id": "matematica-formulas-e-condicoes-26",
-    "frente": "Teorema do resto",
-    "verso": "O resto da divisão de P(x) por (x − a) é **P(a)**.\n\nSe P(a) = 0, então a é raiz e (x − a) divide o polinômio.",
-    "dica": null
-   },
-   {
-    "id": "matematica-formulas-e-condicoes-27",
-    "frente": "1 litro em cm³, e 1 m² em cm²",
-    "verso": "1 litro = 1 dm³ = **1.000 cm³**\n1 m² = **10.000 cm²**\n\nA conversão escondida no enunciado é uma das três armadilhas de geometria.",
-    "dica": null
-   },
-   {
-    "id": "matematica-formulas-e-condicoes-28",
-    "frente": "Juros simples × compostos",
-    "verso": "Simples: M = C(1 + i·n) — reta.\nCompostos: M = C(1 + **i)ⁿ** — exponencial.\n\n2% ao mês não dá 24% ao ano: 1,02¹² ≈ 1,268 = **26,8%**.",
-    "dica": null
-   }
-  ]
- },
- {
   "id": "historia-do-brasil-nomes-datas-e-d",
   "nome": "História do Brasil — nomes, datas e documentos",
   "materia": "humanidades",
@@ -2110,6 +1830,140 @@
   ]
  },
  {
+  "id": "arte-por-periodo-da-caverna-ao-par",
+  "nome": "Arte por período — da caverna ao Parangolé",
+  "materia": "humanidades",
+  "nota": "Do caderno da linha do tempo · a arte de cada época, as 7 vanguardas e a regra de testar as datas",
+  "cartas": [
+   {
+    "id": "arte-por-periodo-da-caverna-ao-par-01",
+    "frente": "A regra de ouro: a banca usa a OBRA para cobrar o PERÍODO",
+    "verso": "A q64 deu um poema do Trilussa (**1871–1950**) e pediu o período histórico — as **datas de vida** já eliminavam a alternativa. A q11 deu um trecho de **1909** e pediu a escola — 1909 é antes de **1922**, logo não é Modernismo. A q17 deu um poema e pediu barroco.\n\n**Antes de pensar no conteúdo, teste as datas.** É o corte mais barato da prova.",
+    "dica": null
+   },
+   {
+    "id": "arte-por-periodo-da-caverna-ao-par-02",
+    "frente": "Platão × Aristóteles sobre a arte",
+    "verso": "**Platão desconfia:** a arte é imitação da imitação, afasta da verdade — na *República* ele **expulsa os poetas** da cidade ideal.\n**Aristóteles defende:** a **mímesis** é natural e prazerosa ao humano, e por isso a arte **ensina**.\n\n**Catarse** (*Poética*): a tragédia provoca **temor e compaixão** e assim purga essas emoções. E: o **poeta** fala do que *poderia* acontecer (universal), o **historiador** do que *aconteceu* (particular) — por isso \"a poesia é mais filosófica que a história\".",
+    "dica": null
+   },
+   {
+    "id": "arte-por-periodo-da-caverna-ao-par-03",
+    "frente": "Arte rupestre — a função, que é o que cai",
+    "verso": "**Mágica e ritual, não decorativa.** Tese da **magia simpática**: pintar o animal ferido para a caça dar certo.\n\n**A evidência:** ficavam nas partes **mais profundas e escuras** das cavernas, onde ninguém morava. E quase não há paisagem nem retrato individual — o que importava era o **animal e o grupo**.\n\nLascaux, Altamira, Chauvet; no Brasil a **Serra da Capivara** (PI), de Niède Guidon.",
+    "dica": null
+   },
+   {
+    "id": "arte-por-periodo-da-caverna-ao-par-04",
+    "frente": "Arte egípcia — as três regras",
+    "verso": "**Lei da frontalidade:** cabeça e pernas de perfil, tronco e olho de frente — convenção para mostrar cada parte na vista mais reconhecível.\n**Hierarquia de tamanho:** o tamanho mede **importância**, não distância (volta na arte medieval; é o oposto da perspectiva).\n**Função funerária:** garantir a vida após a morte.\n\n**E a exceção que prova a regra:** em **Amarna**, Akhenaton muda a religião e a arte fica naturalista. **Arte rígida é escolha política, não incapacidade.**",
+    "dica": null
+   },
+   {
+    "id": "arte-por-periodo-da-caverna-ao-par-05",
+    "frente": "Escultura grega — por que o atleta nu",
+    "verso": "A pólis treinava o corpo do cidadão (a ginástica era parte da **paideia**), os jogos sacralizavam o vitorioso e os deuses eram **antropomórficos** — esculpir o corpo perfeito era esculpir o divino. **A nudez era do cidadão livre, não escândalo** (alternativa que a banca oferece ao contrário).\n\n**Arcaico:** *kouros*/*kore*, rígidos, \"sorriso arcaico\". **Clássico:** Fídias, Mirón (*Discóbolo*), Policleto (*Doríforo* e o **cânone**) — proporção e idealização. **Helenístico:** movimento e dor — *Laocoonte*, *Vitória de Samotrácia*.",
+    "dica": null
+   },
+   {
+    "id": "arte-por-periodo-da-caverna-ao-par-06",
+    "frente": "As três ordens, e o teatro grego",
+    "verso": "**Dórica** capitel simples · **Jônica** volutas em espiral · **Coríntia** folhas de acanto. O Partenon é dórico, e a Acrópole foi paga com o dinheiro da **Liga de Delos**.\n\n**Teatro:** nasce do **ditirambo**, canto coral a **Dionísio**; é **festival cívico** pago pelo Estado. O **coro** é a voz da coletividade. Tragédia: **Ésquilo** (*Oresteia*), **Sófocles** (*Antígona*, *Édipo Rei*), **Eurípides** (*Medeia*). Comédia: **Aristófanes**, que satirizava políticos vivos com nome.",
+    "dica": null
+   },
+   {
+    "id": "arte-por-periodo-da-caverna-ao-par-07",
+    "frente": "Arte romana — o oposto da grega, de propósito",
+    "verso": "**Retrato verista:** rugas, calvície, idade reais. Parecer velho = ***gravitas*** e confiabilidade. **Grego idealiza, romano documenta.**\n**Propaganda:** a **Coluna de Trajano** narra a campanha do ponto de vista de Trajano; o **Ara Pacis** mostra a família de Augusto.\n**Engenharia:** **arco, abóbada, cúpula** e o **concreto** (*opus caementicium*) — Panteão, Coliseu, aquedutos.\n**Vitrúvio:** toda obra precisa de ***firmitas*** (solidez), ***utilitas*** (utilidade) e ***venustas*** (beleza).",
+    "dica": null
+   },
+   {
+    "id": "arte-por-periodo-da-caverna-ao-par-08",
+    "frente": "Virgílio e a bandeira de Minas — a q15",
+    "verso": "***\"Libertas quae sera tamen\"*** — \"liberdade ainda que tardia\" — é de **Virgílio**, nas ***Éclogas*** (livro I). Os **inconfidentes de 1789** adotaram o verso, e ele está hoje na **bandeira de Minas Gerais**.\n\nUm verso pastoril romano do século I a.C. virou divisa de uma conspiração colonial brasileira e caiu numa questão de **português**. Virgílio também escreveu a ***Eneida***, que faz Roma descender de Eneias.",
+    "dica": null
+   },
+   {
+    "id": "arte-por-periodo-da-caverna-ao-par-09",
+    "frente": "\"Pão e circo\": de Juvenal a 1968",
+    "verso": "***Panem et circenses*** é de **Juvenal**, satírico romano: o povo trocou a liberdade política por comida e espetáculo.\n\nEm **1968**, sob censura, o disco ***Tropicália ou Panis et Circensis*** (Caetano, Gil, Gal, Tom Zé, Mutantes) usou a expressão latina para acusar o Brasil do mesmo. **É a antropofagia de Oswald em ação:** devorar o repertório estrangeiro e devolvê-lo brasileiro.\n\nSe cair questão sobre Tropicália, esta é a resposta culta.",
+    "dica": null
+   },
+   {
+    "id": "arte-por-periodo-da-caverna-ao-par-10",
+    "frente": "Românico × Gótico — e as duas regras do medieval",
+    "verso": "**Românico** (XI–XII): arco de **volta perfeita**, parede grossa, janela pequena, interior **escuro**, igreja-fortaleza; escultura didática no **tímpano**.\n**Gótico** (XII–XV): arco **ogival**, abóbada de cruzaria e **arcobotante** jogam o peso para fora → a parede abre em **vitral** → **verticalidade e luz**. Para **Suger** (Saint-Denis), a luz colorida é o divino.\n\n**As duas regras do período:** não há **perspectiva** (tamanho = importância) e a arte é **anônima e coletiva** — o artista genial é invenção renascentista.",
+    "dica": null
+   },
+   {
+    "id": "arte-por-periodo-da-caverna-ao-par-11",
+    "frente": "As quatro cantigas trovadorescas",
+    "verso": "**De amor** — voz **masculina**, dama superior e inacessível (*coita d'amor*), tom palaciano, influência provençal.\n**De amigo** — voz **feminina** (escrita por homem), tom popular, natureza, refrão e paralelismo.\n**De escárnio** — crítica **indireta**, irônica, ambígua, sem nomear.\n**De maldizer** — crítica **direta**, agressiva, com nome.\n\nPrimeira cantiga datada: **1189**.",
+    "dica": null
+   },
+   {
+    "id": "arte-por-periodo-da-caverna-ao-par-12",
+    "frente": "Perspectiva = antropocentrismo",
+    "verso": "A **perspectiva linear** (Brunelleschi, escrita por Alberti) organiza o quadro a partir do **olho de quem olha**. O mundo passa a ser visto de um ponto de vista **humano** — por isso perspectiva e **antropocentrismo** são a mesma coisa em dois idiomas, e por isso o medieval não a tinha.\n\nMais: **mecenato** (os Médici), anatomia, volta à Antiguidade. **Leonardo** (*Mona Lisa*), **Michelangelo** (*Davi*, Sistina), **Rafael** (*Escola de Atenas*: Platão aponta para cima, Aristóteles para a frente).",
+    "dica": null
+   },
+   {
+    "id": "arte-por-periodo-da-caverna-ao-par-13",
+    "frente": "Barroco — por que é teatral, e o Aleijadinho",
+    "verso": "**Contrarreforma e Concílio de Trento (1545–63):** a Igreja decidiu usar a arte para **comover**, não instruir friamente. Daí **claro-escuro dramático**, **tenebrismo** (**Caravaggio** — santos com pés sujos), diagonal, movimento, êxtase (**Bernini**, *Santa Teresa*).\n\n**No Brasil, a cadeia:** ouro em Minas → riqueza e irmandades leigas fortes → encomenda → **Aleijadinho** (Doze Profetas de Congonhas, São Francisco de Ouro Preto) e **Mestre Ataíde** (tetos, com **anjos negros**). A mesma riqueza que fez Congonhas fez a Inconfidência.",
+    "dica": null
+   },
+   {
+    "id": "arte-por-periodo-da-caverna-ao-par-14",
+    "frente": "Neoclássico, e a ironia brasileira",
+    "verso": "Se o Barroco era emoção para a Igreja, o **Neoclássico** é **razão e dever cívico** para o Estado: linha limpa, tema romano, sem excesso. **David** — *O Juramento dos Horácios*, ***A Morte de Marat***, *A Coroação de Napoleão*. **O mesmo pintor serve à República e ao Império.**\n\n**No Brasil chega por decreto:** a **Missão Artística Francesa (1816)** e a futura Academia Imperial — **Debret** (hoje a principal fonte visual da escravidão urbana), Taunay, Grandjean de Montigny. **O estilo da república europeia virou o estilo oficial de um império escravista.**",
+    "dica": null
+   },
+   {
+    "id": "arte-por-periodo-da-caverna-ao-par-15",
+    "frente": "A pintura histórica brasileira é fonte sobre quem encomendou",
+    "verso": "**Pedro Américo**, ***Independência ou Morte***, foi pintado em **1888** — **66 anos depois** do 7 de setembro. O cavalo garboso e o uniforme de gala não são registro, são **construção** encomendada por um Império que precisava de cena fundadora. **Vítor Meirelles**, *A Primeira Missa* (1860), foi pintado a partir da **Carta de Caminha**.\n\n**A pintura histórica é fonte primária sobre a época que a encomendou e fonte ruim sobre o evento.** Mesma lógica da Coluna de Trajano.",
+    "dica": null
+   },
+   {
+    "id": "arte-por-periodo-da-caverna-ao-par-16",
+    "frente": "Realismo e Impressionismo na pintura",
+    "verso": "**Realismo:** **Courbet**, **Millet** (*Os Respigadores*), Daumier — o tema deixa de ser deus e rei e passa a ser o **trabalhador**. Pintar camponês em tamanho de quadro histórico era declaração política.\n**Impressionismo (1874):** pintura **ao ar livre**, pincelada visível, o tema é **a luz num instante**. **Monet** (*Impressão, nascer do sol*, nome dado por zombaria de crítico), Renoir, Degas, Manet. Duas causas externas: a **fotografia** e a **estampa japonesa**.\n**No Brasil:** **Almeida Júnior** (*O Violeiro*, *Caipira Picando Fumo*).",
+    "dica": null
+   },
+   {
+    "id": "arte-por-periodo-da-caverna-ao-par-17",
+    "frente": "As sete vanguardas europeias",
+    "verso": "**Futurismo** 1909, manifesto de **Marinetti** no *Le Figaro* — máquina, velocidade, guerra como \"higiene do mundo\".\n**Cubismo** 1907, *Senhoritas de Avignon* — geometrização e vários pontos de vista ao mesmo tempo (**Picasso**, Braque).\n**Expressionismo** 1905 (*O Grito*, 1893, precursor) — deformação e angústia.\n**Fauvismo** 1905 — cor pura e arbitrária (**Matisse**).\n**Dadaísmo** 1916, Zurique — anti-arte, acaso, *ready-made* (Tzara, **Duchamp**, *Fonte* 1917).\n**Surrealismo** 1924, manifesto de **Breton** — inconsciente e sonho (**Dalí**).\n**Abstracionismo** desde 1910 — lírico (**Kandinsky**) e geométrico (Mondrian).",
+    "dica": null
+   },
+   {
+    "id": "arte-por-periodo-da-caverna-ao-par-18",
+    "frente": "1922 — o que veio antes, e quem não estava",
+    "verso": "**Semana de Arte Moderna, fevereiro de 1922**, Teatro Municipal de SP, no **centenário da Independência**.\n**O estopim:** a exposição de **Anita Malfatti** em **1917**, atacada por **Monteiro Lobato** em *\"Paranoia ou Mistificação?\"*.\n**Quem estava:** Mário, Oswald, Di Cavalcanti, Anita, Brecheret, **Villa-Lobos**.\n⚠️ **Tarsila do Amaral NÃO estava** — estava em Paris, e entrou depois (o \"Grupo dos Cinco\"). Pergunta clássica.\n\nE o Modernismo **não era politicamente homogêneo**: o manifesto **Verde-Amarelo/Anta (1926)** era a ala que derivou para o integralismo.",
+    "dica": null
+   },
+   {
+    "id": "arte-por-periodo-da-caverna-ao-par-19",
+    "frente": "Antropofagia — o quadro gerou o manifesto",
+    "verso": "**Manifesto Antropófago, 1928**, de Oswald: ***\"Tupi or not tupi, that is the question\"***. A tese: não imitar nem recusar o estrangeiro, mas **devorá-lo e devolvê-lo transformado**.\n\n**A origem é um quadro:** Oswald viu o ***Abaporu*** que **Tarsila** lhe deu de aniversário e batizou o movimento. *Abaporu* é tupi para **\"homem que come gente\"**.\n\n**Tarsila em três fases:** Pau-Brasil (*E.F.C.B.*), Antropofágica (*Abaporu*, *A Negra*) e Social (*Operários*). E **Portinari**: *Os Retirantes*, *Café*, e *Guerra e Paz* na **ONU**.",
+    "dica": null
+   },
+   {
+    "id": "arte-por-periodo-da-caverna-ao-par-20",
+    "frente": "Concretismo, Neoconcretismo e Brasília",
+    "verso": "**Concretismo (1956):** o poema como **objeto visual** — Augusto de Campos, Décio Pignatari, Haroldo de Campos, revista *Noigandres*. Fim do verso, espaço branco, tipografia.\n**Neoconcretismo (1959):** **Ferreira Gullar** e o manifesto; a obra passa a pedir o **corpo do espectador** — **Lygia Clark** (*Bichos*), **Hélio Oiticica** (***Parangolés***, e a instalação *Tropicália*, que deu nome ao movimento musical), Lygia Pape. **A obra deixa de ser para olhar e passa a ser para usar.**\n**Brasília (1960):** **Lúcio Costa** (plano), **Niemeyer** (edifícios), **Burle Marx** (jardins).",
+    "dica": null
+   },
+   {
+    "id": "arte-por-periodo-da-caverna-ao-par-21",
+    "frente": "Cinema e música como questão de atualidades",
+    "verso": "**Cinema Novo:** **Glauber Rocha** — *Deus e o Diabo na Terra do Sol*, \"uma câmera na mão e uma ideia na cabeça\", e o manifesto *Estética da Fome*: a precariedade como linguagem.\n**Bossa Nova (1958):** *Chega de Saudade* — samba + jazz, voz baixa, harmonia complexa.\n**MPB como oposição:** *Cálice*, *Apesar de Você*, *Pra não dizer que não falei das flores* (1968).\n**Agora:** ***Ainda Estou Aqui*** (Oscar de filme internacional em 2025, e caiu na sua prova de junho) e ***O Agente Secreto*** (Cannes 2025, 2 Globos de Ouro em 11/01/2026, 4 indicações ao Oscar em 15/03/2026 e nenhuma vitória). 🕐",
+    "dica": null
+   }
+  ]
+ },
+ {
   "id": "pre-historia-eras-geologicas-e-a-a",
   "nome": "Pré-história, eras geológicas e a arte de cada período",
   "materia": "humanidades",
@@ -2308,6 +2162,18 @@
     "frente": "A tabela dos marcos, para a pergunta de data",
     "verso": "**1500** Carta de Caminha · **1572** *Os Lusíadas* · **1601** *Prosopopeia* (Barroco) · **1768** *Obras* de Cláudio Manuel (Arcadismo) · **1836** *Suspiros Poéticos* (Romantismo) · **1881** *Memórias Póstumas* (Realismo) e *O Mulato* (Naturalismo) · **1902** *Os Sertões* (Pré-modernismo) · **1915** *Orpheu* (Portugal) · **1922** Semana de Arte Moderna · **1930** *Alguma Poesia* · **1956** *Grande Sertão* e poesia concreta · **1960** *Quarto de Despejo*.\n\nA data sozinha mata alternativa: um texto de 1909 **não** pode ser Modernismo.",
     "dica": null
+   },
+   {
+    "id": "escolas-literarias-contexto-caract-23",
+    "frente": "O par que a ESPM adora: Romantismo × Realismo",
+    "verso": "**Romantismo** idealiza (amor eterno, herói, natureza sublime); **Realismo** desmonta (casamento por interesse, personagem ambíguo, narrador irônico).\n\nSe a questão contrasta duas visões do mesmo tema — amor, mulher, país — o eixo é quase sempre esse.",
+    "dica": null
+   },
+   {
+    "id": "escolas-literarias-contexto-caract-24",
+    "frente": "Como a ESPM cobra literatura (119 questões)",
+    "verso": "Quase nunca “de que escola é este autor?”. Quase sempre: **um poema ou trecho + que característica de escola ele revela**, ou **comparação entre dois textos**.\n\nEntão o que decide é reconhecer o **traço no texto**: antítese e conflito = Barroco; pastora e campo = Arcadismo; índio herói = 1ª romântica; morte e tédio = 2ª; escravidão = 3ª; ironia e análise = Realismo; determinismo e instinto = Naturalismo; forma perfeita = Parnasianismo; musicalidade = Simbolismo.",
+    "dica": null
    }
   ]
  },
@@ -2411,6 +2277,114 @@
     "id": "matematica-as-formulas-todas-num-l-16",
     "frente": "Média, mediana, moda e porcentagem",
     "verso": "**Média** = soma ÷ quantidade · **Mediana** = o do meio **com os dados ORDENADOS** (se a quantidade é par, média dos dois centrais) · **Moda** = o mais frequente.\n\n**Aumentar x%** = multiplicar por (1 + x/100) · **diminuir x%** = por (1 − x/100).\n⚠️ Aumentar 20% e depois diminuir 20% **não volta ao original**: 1,2 × 0,8 = **0,96**, perdeu 4%.\n\nq39 saiu da média: (x + 76) ÷ 2 = 73 → x = 70.",
+    "dica": null
+   },
+   {
+    "id": "matematica-as-formulas-todas-num-l-17",
+    "frente": "Média aritmética **ponderada**",
+    "verso": "Soma de (valor × peso) dividida pela **soma dos pesos**.\n\nNum gráfico de frequência: Σ(valor × frequência) ÷ Σfrequência.\n\nFoi a Q24 da 2026-2, que você deixou em branco.",
+    "dica": "pesos no divisor"
+   },
+   {
+    "id": "matematica-as-formulas-todas-num-l-18",
+    "frente": "Quando usar média e quando usar mediana",
+    "verso": "Com **valores extremos** (salários, por exemplo) a média é puxada e **engana**; a **mediana** descreve melhor o típico.\n\nÉ a pergunta conceitual favorita das bancas.",
+    "dica": null
+   },
+   {
+    "id": "matematica-as-formulas-todas-num-l-19",
+    "frente": "Sistema linear: condição de **infinitas soluções**",
+    "verso": "As duas equações são **a mesma reta**: os três coeficientes são proporcionais.\n\na₁/a₂ = b₁/b₂ = **c₁/c₂**\n\nQuem esquece de testar o **termo constante** cai na alternativa errada — foi a Q22 da 2026-2 (m=3, e o m=4 era a armadilha).",
+    "dica": "proporcional nos TRÊS"
+   },
+   {
+    "id": "matematica-as-formulas-todas-num-l-20",
+    "frente": "Sistema linear: as três possibilidades",
+    "verso": "**SPD** (uma solução): retas concorrentes, a₁/a₂ ≠ b₁/b₂.\n**SPI** (infinitas): mesma reta, a₁/a₂ = b₁/b₂ = c₁/c₂.\n**SI** (nenhuma): paralelas, a₁/a₂ = b₁/b₂ ≠ c₁/c₂.",
+    "dica": null
+   },
+   {
+    "id": "matematica-as-formulas-todas-num-l-21",
+    "frente": "Soma dos ângulos **externos** de um polígono convexo",
+    "verso": "**360°, sempre** — não importa o número de lados.\n\nÉ o fato que resolve a Q28 em duas linhas: (n−2)·180 − 360 = 540 → n = **7**.",
+    "dica": "sempre 360"
+   },
+   {
+    "id": "matematica-as-formulas-todas-num-l-22",
+    "frente": "Regra de três **composta**: o método",
+    "verso": "1. Tabela com uma coluna por grandeza.\n2. Pergunta, **uma grandeza por vez**: se esta aumentar e o resto ficar parado, a incógnita aumenta (direta) ou diminui (inversa)?\n3. Multiplica as razões, **invertendo as das inversas**.\n\nDiretamente proporcional a DUAS grandezas = multiplica as DUAS razões. Foi a Q38: 12.000 × 1,5 × 1,5 = **27.000** (o 18.000 é a armadilha de quem aplica só uma).",
+    "dica": "multiplica as duas"
+   },
+   {
+    "id": "matematica-as-formulas-todas-num-l-23",
+    "frente": "Porcentagens sucessivas",
+    "verso": "**Multiplicam, nunca somam.**\n+10% depois +10% = 1,1 × 1,1 = **+21%**\n−20% depois +20% = 0,8 × 1,2 = 0,96 = **−4%**, não volta ao original.\n\nPorque o segundo percentual incide sobre o valor **já alterado**.",
+    "dica": null
+   },
+   {
+    "id": "matematica-as-formulas-todas-num-l-24",
+    "frente": "Pontos percentuais × porcentagem",
+    "verso": "A inflação cai de 8% para 6%: caiu **2 pontos percentuais** e **25% do valor** (2/8).\n\nO enunciado nunca avisa qual dos dois ele quer.",
+    "dica": null
+   },
+   {
+    "id": "matematica-as-formulas-todas-num-l-25",
+    "frente": "Lucro sobre o custo × margem sobre a venda",
+    "verso": "Custa 80, vende por 100.\nLucro sobre o **custo** = 20/80 = **25%**\nMargem sobre a **venda** = 20/100 = **20%**\n\nLeia sempre “lucro de X% sobre o quê”.",
+    "dica": null
+   },
+   {
+    "id": "matematica-as-formulas-todas-num-l-26",
+    "frente": "Para manter o preço depois de dar 10% de desconto",
+    "verso": "**Divide** por 0,9 (não multiplica por 1,1).\n\nÉ o raciocínio “por dentro”, o mesmo de imposto embutido no preço.",
+    "dica": "divide"
+   },
+   {
+    "id": "matematica-as-formulas-todas-num-l-27",
+    "frente": "MMC ou MDC? a pergunta que decide",
+    "verso": "“Quando **coincidem** de novo?” / “menor número que serve para os dois” → **MMC**.\n“Maior pedaço igual em que posso dividir?” → **MDC**.\n\nE: **MMC(a,b) × MDC(a,b) = a × b**",
+    "dica": null
+   },
+   {
+    "id": "matematica-as-formulas-todas-num-l-28",
+    "frente": "Princípio multiplicativo e o “pelo menos um”",
+    "verso": "Escolhas em sequência: multiplica as opções (3 entradas × 4 pratos × 2 sobremesas = 24).\n\n**“Pelo menos um”** → calcule **o total menos o caso em que não há nenhum**: 1 − P(nenhum).",
+    "dica": null
+   },
+   {
+    "id": "matematica-as-formulas-todas-num-l-29",
+    "frente": "Contagem de algarismo numa sequência",
+    "verso": "O algarismo da **unidade** cicla a cada 10 números. De 1 a 1000 há **1000 ÷ 10 = 100** ciclos → o “2” aparece **100 vezes** na unidade.\n\nFoi a Q39: você contou 9 centenas quando são **10**.",
+    "dica": null
+   },
+   {
+    "id": "matematica-as-formulas-todas-num-l-30",
+    "frente": "Propriedades do logaritmo",
+    "verso": "log(a·b) = log a + **log b**\nlog(a/b) = log a − log b\nlog(aⁿ) = **n·log a**\n\nFoi o caminho da Q34: log₂(x−1) + log₂(x+3) = 5 → (x−1)(x+3) = 32 → x = **5**.",
+    "dica": null
+   },
+   {
+    "id": "matematica-as-formulas-todas-num-l-31",
+    "frente": "Determinante 2×2 e 3×3",
+    "verso": "2×2: **ad − bc**\n3×3: regra de Sarrus.\n\nSe o determinante dos três pontos (com coluna de 1s) dá **zero**, eles são **colineares**.",
+    "dica": null
+   },
+   {
+    "id": "matematica-as-formulas-todas-num-l-32",
+    "frente": "Teorema do resto",
+    "verso": "O resto da divisão de P(x) por (x − a) é **P(a)**.\n\nSe P(a) = 0, então a é raiz e (x − a) divide o polinômio.",
+    "dica": null
+   },
+   {
+    "id": "matematica-as-formulas-todas-num-l-33",
+    "frente": "1 litro em cm³, e 1 m² em cm²",
+    "verso": "1 litro = 1 dm³ = **1.000 cm³**\n1 m² = **10.000 cm²**\n\nA conversão escondida no enunciado é uma das três armadilhas de geometria.",
+    "dica": null
+   },
+   {
+    "id": "matematica-as-formulas-todas-num-l-34",
+    "frente": "Juros simples × compostos",
+    "verso": "Simples: M = C(1 + i·n) — reta.\nCompostos: M = C(1 + **i)ⁿ** — exponencial.\n\n2% ao mês não dá 24% ao ano: 1,02¹² ≈ 1,268 = **26,8%**.",
     "dica": null
    }
   ]
