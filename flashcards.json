@@ -2110,6 +2110,110 @@
   ]
  },
  {
+  "id": "os-meus-erros-da-prova-2026-1",
+  "nome": "Os meus erros da prova 2026/1",
+  "materia": "matematica",
+  "nota": "As 8 de matemática e as 3 de humanidades que eu errei, com a conta e o conserto de cada uma",
+  "cartas": [
+   {
+    "id": "os-meus-erros-da-prova-2026-1-01",
+    "frente": "O meu diagnóstico de matemática, em uma frase",
+    "verso": "**Não é raciocínio — é memória de fórmula.** Dos 8 erros, **5 foram \"não lembro a fórmula\"** (probabilidade, conjuntos, polinômios, volume, estatística).\n\nE o raciocínio é forte: q34 fatorou e cortou, q37 viu que \"se só uma é incorreta, as outras coincidem\", q33 foi de trás pra frente pelos quadrados perfeitos, q32 reconheceu o triângulo 3-4-5.\n\nEm 13 dias não se aprende matemática. Se decora **esta** lista.",
+    "dica": null
+   },
+   {
+    "id": "os-meus-erros-da-prova-2026-1-02",
+    "frente": "q40 · Helena e o dinheiro — a resposta era a que eu testei",
+    "verso": "**R$ 140,00, alternativa A.** Eu testei A e joguei fora.\n\nRestou após o supermercado: x/2. Após a farmácia: x/2 − 40. A banca gasta **1/3 do que restava**, então sobra **(2/3)(x/2 − 40) = x/7**.\n\n×21: 14(x/2 − 40) = 3x → 7x − 560 = 3x → **x = 140**.\n\nConfere: 140 → gasta 70, resta 70 → gasta 40, resta 30 → gasta 10, **resta 20 = 140/7** ✓",
+    "dica": null
+   },
+   {
+    "id": "os-meus-erros-da-prova-2026-1-03",
+    "frente": "A técnica de \"gastou / restou\"",
+    "verso": "**Acompanhe UMA coluna só: o que RESTA.** E escreva cada fração **sobre o restante anterior**, nunca sobre o x inicial.\n\nO meu erro na q40 foi somar 70 + **30** + 10 = 110: o 30 é um **resto**, não um gasto. O gasto era 70 + **40** + 10 = 120, e 140 − 120 = 20 ✓\n\nDuas colunas misturadas = ponto perdido com a conta certa na mão.",
+    "dica": null
+   },
+   {
+    "id": "os-meus-erros-da-prova-2026-1-04",
+    "frente": "q31 · Girard: três raízes sem dividir polinômio",
+    "verso": "Para **x³ + bx² + cx + d = 0**: soma das raízes = **−b** · soma dos produtos dois a dois = **c** · **produto das três = −d**.\n\nq31: x³ = −2x² + 5x + 6 → x³ + 2x² − 5x − 6 = 0. Produto das três = **+6**. Com uma raiz = −1, o produto das outras duas = 6 ÷ (−1) = **−6** → alternativa **a**, em uma linha.\n\n(As raízes são −1, 2 e −3.)",
+    "dica": null
+   },
+   {
+    "id": "os-meus-erros-da-prova-2026-1-05",
+    "frente": "q28 · Três conjuntos: inclusão-exclusão",
+    "verso": "|A∪B∪C| = |A|+|B|+|C| − |A∩B| − |A∩C| − |B∩C| **+ |A∩B∩C|**\n\nq28: 225 entrevistados, 25 em nenhuma → **200** em pelo menos uma. 110+110+140 = 360; menos 60+70+80 = 210 → 150 + t = 200 → **t = 50**, alternativa **d**.\n\nO primeiro passo é sempre **tirar os \"nenhuma\"** do total.",
+    "dica": null
+   },
+   {
+    "id": "os-meus-erros-da-prova-2026-1-06",
+    "frente": "q22 · Moeda viciada e o padrão binomial",
+    "verso": "Se a chance de cara é **k vezes** a de coroa, então coroa = **1/(k+1)** e cara = **k/(k+1)**. Aqui k = 4 → coroa **1/5**, cara **4/5**.\n\n\"Exatamente 2 coroas em 3 lançamentos\" = **C(n,k) · p^k · q^(n−k)** = **3 · (1/5)² · (4/5)**.\n\nC(3,2) = 3 porque são 3 posições possíveis para a cara. **Não calcule: monte a expressão** — a questão pedia a expressão.",
+    "dica": null
+   },
+   {
+    "id": "os-meus-erros-da-prova-2026-1-07",
+    "frente": "As fórmulas de probabilidade que eu travo",
+    "verso": "P(evento) = casos favoráveis ÷ casos possíveis. · **E** (os dois) = **multiplica**. · **OU** (um ou outro, exclusivos) = **soma**. · P(não A) = 1 − P(A).\n\n**Exatamente k sucessos em n tentativas:** C(n,k) · p^k · q^(n−k).\n\n**C(n,k) = n! ÷ [k!(n−k)!]** — combinação é quando a **ordem não importa**; arranjo é quando importa.",
+    "dica": null
+   },
+   {
+    "id": "os-meus-erros-da-prova-2026-1-08",
+    "frente": "As fórmulas de volume que eu não lembrei (q36)",
+    "verso": "**Prisma e cilindro: V = área da base × altura.** (cilindro: πr²h)\n\n**Pirâmide e cone: V = (área da base × altura) ÷ 3.**\n\n**Esfera: V = (4/3)πr³** · área da superfície = 4πr².\n\nA regra que resolve metade: **o que tem ponta vale um terço do que tem topo reto.**",
+    "dica": null
+   },
+   {
+    "id": "os-meus-erros-da-prova-2026-1-09",
+    "frente": "Média, mediana e moda",
+    "verso": "**Média** = soma ÷ quantidade. **Mediana** = o valor do meio com os dados **em ordem** (se a quantidade é par, média dos dois centrais). **Moda** = o que mais aparece.\n\nq39 saiu disso: (x + 76) ÷ 2 = 73 → x = 70.\n\nPegadinha clássica: **ordenar antes** de achar a mediana. Dado fora de ordem é armadilha, não descuido da banca.",
+    "dica": null
+   },
+   {
+    "id": "os-meus-erros-da-prova-2026-1-10",
+    "frente": "q54 · A armadilha do comando negativo",
+    "verso": "O enunciado era *\"**não** é possível afirmar que\"*. Eu achei a alternativa **verdadeira** (d) em vez da **falsa** (c). Sabia o conteúdo e perdi o ponto.\n\nEssa armadilha apareceu **duas vezes** no mesmo bloco: na q65 eu peguei em segundos, na q54 não.\n\n**Circule a palavra do comando antes de ler as alternativas:** afirmar / não afirmar / INCORRETA / falsa.",
+    "dica": null
+   },
+   {
+    "id": "os-meus-erros-da-prova-2026-1-11",
+    "frente": "A regra dos absolutos",
+    "verso": "Alternativa com **sempre, nunca, uniforme, exclusivamente, apenas, todo** é quase sempre a **falsa**.\n\nNuma questão de \"marque a correta\", elimine. Numa de \"marque a incorreta\", **ela é a resposta**.\n\nq54: \"a reação era **uniforme**, buscando **sempre** a intervenção religiosa\" → falsa, e era a resposta. q67: \"**exclusivamente** presentes nos países desenvolvidos\" → falsa, e eu não cortei.",
+    "dica": null
+   },
+   {
+    "id": "os-meus-erros-da-prova-2026-1-12",
+    "frente": "q67 · Cidades globais — eu tinha a resposta certa",
+    "verso": "Critérios de cidade global: **I poder econômico ✓ · II inovação e tecnologia ✓ · III \"exclusivamente nos países desenvolvidos\" ✗ · IV qualidade de vida ✓**.\n\nCorreto = **I, II e IV**. Marquei só I e II por desconfiança.\n\nIII é falsa porque São Paulo, Xangai, Mumbai e Cidade do México **são** cidades globais. Brenner & Schmid, *Planetary Urbanization*.",
+    "dica": null
+   },
+   {
+    "id": "os-meus-erros-da-prova-2026-1-13",
+    "frente": "q64 · Trilussa, e a data resolve a questão",
+    "verso": "Trilussa viveu **1871–1950**. Resposta: **ascensão e queda do fascismo, as duas guerras mundiais e a transição pós-unificação da Itália**.\n\nEu marquei \"Anos de Chumbo\" — mas ele **morreu em 1950**, antes do período. **A biografia trazia a resposta; eu não precisava conhecer o termo.**\n\nRegra: quando o enunciado dá datas de vida, **teste as datas antes do conteúdo**.",
+    "dica": null
+   },
+   {
+    "id": "os-meus-erros-da-prova-2026-1-14",
+    "frente": "Anos de Chumbo — os dois sentidos",
+    "verso": "**Na Itália** (*anni di piombo*): fim dos anos 1960 aos 1980, terrorismo de extrema esquerda e direita — Brigadas Vermelhas, o sequestro e assassinato de **Aldo Moro (1978)**, a bomba de **Bologna (1980)**. Foi o sentido da ESPM.\n\n**No Brasil**: os anos mais duros da ditadura, **1968–1974** — do **AI-5** ao governo **Médici**, com censura, tortura e desaparecimentos. Este é o que tem mais chance de voltar: História do Brasil são 56 questões.",
+    "dica": null
+   },
+   {
+    "id": "os-meus-erros-da-prova-2026-1-15",
+    "frente": "Trilussa como repertório de redação",
+    "verso": "*\"Eu valho pouco, é verdade — dizia o Um ao Zero —, mas tu, quanto vales? (…) se me coloco à frente de cinco zeros, me torno cem mil. É isso que acontece com o **ditador que cresce em poder quanto mais zeros o seguem**.\"*\n\n🎨 **Arte**, função: dar imagem ao problema. Serve a temas de **autoridade, multidão, engajamento vazio e performance** — e caiu na prova, o que o torna legitimado pela própria banca.",
+    "dica": null
+   },
+   {
+    "id": "os-meus-erros-da-prova-2026-1-16",
+    "frente": "O protocolo de inglês, e onde mais ele serve",
+    "verso": "**10/10 em 11 minutos**: leio o **enunciado primeiro**, depois procuro a palavra dele no texto. Nunca li um texto inteiro.\n\nO que transfere para humanidades e português: **ler o comando antes do texto de apoio**. Foi exatamente isso que faltou na q54.\n\nO que **não** transfere: em humanidades a resposta raramente é uma palavra do texto — ela exige o conteúdo. Caçar palavra-chave ali é armadilha.",
+    "dica": null
+   }
+  ]
+ },
+ {
   "id": "repertorios-funcao-eixo-e-os-16-no",
   "nome": "Repertórios — função, eixo e os 16 novos",
   "materia": "redacao",
