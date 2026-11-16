@@ -1705,7 +1705,7 @@
   "id": "radar-da-redacao-e-das-atualidades",
   "nome": "Radar da redação e das atualidades",
   "materia": "redacao",
-  "nota": "Do radar · o padrão dos 26 temas, as apostas e as efemérides de 2026",
+  "nota": "Do radar · o padrão dos 30 temas, as apostas e as efemérides de 2026",
   "cartas": [
    {
     "id": "radar-da-redacao-e-das-atualidades-01",
@@ -1958,6 +1958,158 @@
   ]
  },
  {
+  "id": "matematica-2-logica-sistemas-progr",
+  "nome": "Matemática 2 — lógica, sistemas, progressões e sequências",
+  "materia": "matematica",
+  "nota": "Do dossiê 15 · 66 das 300 questões do banco, o molde da prova e a ordem de ataque",
+  "cartas": [
+   {
+    "id": "matematica-2-logica-sistemas-progr-01",
+    "frente": "A sua razão ponto/minuto na 2026/1",
+    "verso": "**Inglês 0,91** · Português 0,57 · Humanidades 0,47 · **Matemática 0,14**.\n\nMatemática levou **48% do tempo** para dar **19% dos pontos** — cada ponto custou **6,5× um ponto de inglês**. O problema não é só errar 8: é o tempo que a redação precisa.",
+    "dica": null
+   },
+   {
+    "id": "matematica-2-logica-sistemas-progr-02",
+    "frente": "O molde (blueprint) da matemática",
+    "verso": "Os dois cadernos de **novembro de 2025** (2911 e 3011) coincidem no assunto em **16 das 20 posições** — e três questões são **o mesmo problema reescrito, com a lista de alternativas idêntica**.\n\nO molde se repete entre cadernos do **mesmo dia**, nunca entre datas diferentes.",
+    "dica": null
+   },
+   {
+    "id": "matematica-2-logica-sistemas-progr-03",
+    "frente": "Lógica e sistemas caem em dobro",
+    "verso": "No molde de nov/2025: **lógica nas q21 e q35**, **sistemas nas q24 e q38**. Nas quatro aplicações conferidas, nenhuma ficou sem os dois.\n\nSó esses dois assuntos = **3 a 4 pontos**. Os 4 assuntos do dossiê 15 são **66 das 300 questões (22%)**.",
+    "dica": null
+   },
+   {
+    "id": "matematica-2-logica-sistemas-progr-04",
+    "frente": "A ordem de ataque em três passadas",
+    "verso": "**1ª (15 min)** as de cabeça — se em 40 s não vê o caminho, marca e passa. **2ª (30 min)** as de contas. **3ª (15 min)** as caras, com eliminação.\n\n**Corte duro em 60 min**, mesmo com questões em branco. Nunca na ordem do número: cada questão vale 1 ponto igual.",
+    "dica": null
+   },
+   {
+    "id": "matematica-2-logica-sistemas-progr-05",
+    "frente": "Por que a redação vem antes da matemática",
+    "verso": "Redação **40 pontos** × matemática **20**. A redação é a **única que elimina** (nota < 2,0) e a única que não aceita pressa; matemática é a única que aceita ficar incompleta.\n\nProva: **29/11, 10h às 15h = 300 min** (portões 9h45). Inglês 15 → Português 35 → Humanidades 50 → **Redação 85** → Matemática 60 → 55 de folga.",
+    "dica": null
+   },
+   {
+    "id": "matematica-2-logica-sistemas-progr-06",
+    "frente": "Negar um \"se…então\"",
+    "verso": "~(p → q) = **p E ~q**. Nunca outro \"se\".\n\n\"Se chove, levo guarda-chuva\" → negação: **\"chove E não levo\"**.\n\nE a **recíproca (q → p) não equivale**: é a armadilha preferida da banca.",
+    "dica": null
+   },
+   {
+    "id": "matematica-2-logica-sistemas-progr-07",
+    "frente": "As 4 regras que resolvem 6 questões de lógica",
+    "verso": "**Contrapositiva:** p → q ≡ ~q → ~p (equivale). **\"Se\" em \"ou\":** p → q ≡ ~p ∨ q. **Negação do \"se\":** p ∧ ~q. **De Morgan:** negar troca **e** por **ou**.\n\nEx.: \"Se x=7 **ou** y≠3, então z=5\" → contrapositiva \"Se z≠5, então x≠7 **e** y=3\".",
+    "dica": null
+   },
+   {
+    "id": "matematica-2-logica-sistemas-progr-08",
+    "frente": "Dedução por pistas: o método",
+    "verso": "Comece pela pista **mais restritiva**, não pela primeira da lista.\n\nSe as alternativas são **casos concretos** (AB, CE, DC…), **teste as alternativas** — é mais rápido que montar grade.\n\nEx. 15 segundos: \"a do meio é par **e** maior que 2\", entre 1 e 5 → só **4**.",
+    "dica": null
+   },
+   {
+    "id": "matematica-2-logica-sistemas-progr-09",
+    "frente": "Pior caso (casa dos pombos)",
+    "verso": "\"Quantas no mínimo para **garantir**?\" → **some as duas MAIORES quantidades e +1**.\n\n9 brancas + 8 pretas + 5 vermelhas, uma de cada cor: 9+8 = 17 e ainda nenhuma vermelha → **18**.",
+    "dica": null
+   },
+   {
+    "id": "matematica-2-logica-sistemas-progr-10",
+    "frente": "Todo / algum / nenhum",
+    "verso": "A alternativa certa é a **mais modesta**. \"Todo\", \"nenhum\" e \"sempre\" quase nunca se sustentam se a pista original era \"alguns\".\n\n\"Todo Trong é Flog, alguns Flogs são Plocs\" → só se pode afirmar que **pode haver** Trong que é Ploc.",
+    "dica": null
+   },
+   {
+    "id": "matematica-2-logica-sistemas-progr-11",
+    "frente": "O ruído numérico de propósito",
+    "verso": "\"80 combos a R$ 20,00, receita de **R$ 1.600,00**\" — a receita é **decoração**: 80 × 20 = 1.600 sempre.\n\nAntes da primeira linha de conta: **todo dado aqui é necessário?** Em geral, não.",
+    "dica": null
+   },
+   {
+    "id": "matematica-2-logica-sistemas-progr-12",
+    "frente": "Total T e \"uma categoria = soma das outras\"",
+    "verso": "A resposta é **T ÷ 2**, e você nem calcula as outras duas.\n\nCom \"menos 10\" no meio (X − 10 = Y + Z): **(T + 10) ÷ 2**.\n\n80 combos, A = B + C → **A = 40**. 80 livros, X − 10 = Y + Z → **X = 45**.",
+    "dica": null
+   },
+   {
+    "id": "matematica-2-logica-sistemas-progr-13",
+    "frente": "Três equações, cada incógnita em duas",
+    "verso": "**Some tudo e divida por 2.**\n\nCoxinha+refri = 16, pastel+refri = 18,50, coxinha+pastel = 17,50 → soma = 52 = 2(c+p+r) → **um de cada = R$ 26,00**. Dez segundos, sem resolver o sistema.",
+    "dica": null
+   },
+   {
+    "id": "matematica-2-logica-sistemas-progr-14",
+    "frente": "\"Sobra 3 / falta 1\"",
+    "verso": "São duas equações: **sobra SOMA, falta SUBTRAI**.\n\n8 por caixa sobram 3 → b = 8a + 3. 9 por caixa falta 1 → b = 9a − 1. Iguale: **a = 4, b = 35**, a+b = 39.",
+    "dica": null
+   },
+   {
+    "id": "matematica-2-logica-sistemas-progr-15",
+    "frente": "Classificar sistema 3×3 sem determinante",
+    "verso": "Escalone até uma linha ficar só de números: **0 = 0** → infinitas soluções (indeterminado). **0 = número** → **incompatível**. Valor para cada incógnita → determinado.\n\nSe as alternativas dizem \"y = 1\", ache **só** essa incógnita — não resolva o sistema inteiro.",
+    "dica": null
+   },
+   {
+    "id": "matematica-2-logica-sistemas-progr-16",
+    "frente": "Figura é sistema · e inteiro positivo é equação",
+    "verso": "Balança, quadrinhos, palitos, tubos: **toda figura é um sistema**. O trabalho é nomear as incógnitas.\n\nUma equação com duas incógnitas **não** é insolúvel: se são quantidades, **\"inteiro positivo\" faz o papel da 2ª equação**. 3x + 4y = 30 com x > y → x = 6, y = 3.",
+    "dica": null
+   },
+   {
+    "id": "matematica-2-logica-sistemas-progr-17",
+    "frente": "Soma de PA com quantidade ÍMPAR de termos",
+    "verso": "**Soma = termo do meio × quantidade.** Ache o do meio primeiro; nunca monte a₁.\n\n5 termos somam 35 → a₃ = **7**. 17 pares consecutivos somam 340 → a₉ = **20**.",
+    "dica": null
+   },
+   {
+    "id": "matematica-2-logica-sistemas-progr-18",
+    "frente": "O par da questão 33 (mesma questão, letras diferentes)",
+    "verso": "**2911:** soma 5 termos = 35 → a₃ = 7; 49 + a₄² = 130 → a₄ = 9 → r = **2**. Resposta **7 e 2 (c)**.\n\n**3011:** soma = 40 → a₃ = 8; 64 + a₄² = 185 → a₄ = 11 → r = **3**. Resposta **8 e 3 (d)**.\n\nAlternativas idênticas, **letras diferentes**: não existe padrão de letra.",
+    "dica": null
+   },
+   {
+    "id": "matematica-2-logica-sistemas-progr-19",
+    "frente": "\"Cai x% por período, até o fim\" = PG infinita",
+    "verso": "S = a₁ ÷ (1 − q), só se **−1 < q < 1**.\n\n980 mil caindo 10%/dia → q = 0,9 → 980 ÷ 0,1 = **9,8 milhões**. A questão inteira é uma divisão, se você reconhecer o formato.",
+    "dica": null
+   },
+   {
+    "id": "matematica-2-logica-sistemas-progr-20",
+    "frente": "Contar múltiplos num intervalo",
+    "verso": "(último índice − primeiro índice) **+ 1**.\n\nMúltiplos de 7 entre 1.000 e 9.000: 1.001 = 7×143, 8.995 = 7×1.285 → 1.285 − 143 + 1 = **1.143**.\n\n**Esquecer o +1** dá 1.142 — e a banca oferece 1.142 como alternativa.",
+    "dica": null
+   },
+   {
+    "id": "matematica-2-logica-sistemas-progr-21",
+    "frente": "Sequência: o primeiro movimento é sempre o mesmo",
+    "verso": "**Escreva as diferenças embaixo.** Em 8 das 10 questões o padrão aparece aí.\n\n3−6−12−21−33: diferenças 3, 6, 9, 12 → +15 → **48**. Não é 66: o início **imita uma PG de propósito**.\n\nSempre confira o padrão no **3º e 4º** termo, nunca nos dois primeiros.",
+    "dica": null
+   },
+   {
+    "id": "matematica-2-logica-sistemas-progr-22",
+    "frente": "Quando a diferença não diz nada: olhe os dígitos",
+    "verso": "25−53−36−64: inverte os dígitos e **soma 1** (25→52+1=53; 53→35+1=36; 36→63+1=64) → **47**.\n\nE em código misto (AB2−CD4−EF6−GH8) são **duas trilhas independentes**: letras de 2 em 2 e números de 2 em 2 → **IJ10**.",
+    "dica": null
+   },
+   {
+    "id": "matematica-2-logica-sistemas-progr-23",
+    "frente": "Recorrência: gere e teste",
+    "verso": "Com aₙ = aₙ₋₁ + algo, **não deduza — gere os 4 primeiros e teste as alternativas**.\n\na₁ = 2, aₙ = aₙ₋₁ + 2n − 1 → 2, 5, 10, 17 → bate com **n² + 1**.",
+    "dica": null
+   },
+   {
+    "id": "matematica-2-logica-sistemas-progr-24",
+    "frente": "Resultado feio não é erro",
+    "verso": "a₁ = **−34**, razão negativa, 3 moedas. A banca usa resultado estranho para você **desconfiar de uma conta certa** e refazer tudo.\n\nE a armadilha mais caro de todas: **a pergunta não é o que você acabou de calcular** — ela pede o total, o depois, as notas (e não as moedas). **Sublinhe a pergunta antes da 1ª linha.**",
+    "dica": null
+   }
+  ]
+ },
+ {
   "id": "repertorios-funcao-eixo-e-os-16-no",
   "nome": "Repertórios — função, eixo e os 16 novos",
   "materia": "redacao",
@@ -1996,7 +2148,7 @@
    {
     "id": "repertorios-funcao-eixo-e-os-16-no-06",
     "frente": "Os dois eixos que estavam vazios",
-    "verso": "**Meio ambiente/clima/cidade** tinha 1 repertório e **desigualdade/equidade** tinha **zero** — juntos, **8 dos 26 temas da ESPM, 31% do território**.\n\nPor isso os 16 repertórios novos: 6 de clima e cidade, 6 de equidade e cuidado, 2 de longevidade, 2 de IA e trabalho.",
+    "verso": "**Meio ambiente/clima/cidade** tinha 1 repertório e **desigualdade/equidade** tinha **zero** — juntos, **7 dos 30 temas da ESPM, 23% do território**.\n\nPor isso os 16 repertórios novos: 6 de clima e cidade, 6 de equidade e cuidado, 2 de longevidade, 2 de IA e trabalho.",
     "dica": null
    },
    {

@@ -209,6 +209,17 @@
   "arquivo": "dossies/conteudo-14-matematica-1.pdf"
  },
  {
+  "slug": "conteudo-15-matematica-2",
+  "titulo": "Matemática 2 — lógica, sistemas, progressões e sequências",
+  "subtitulo": "66 das 300 questões do banco · o mapa de posições da prova e a ordem de ataque que devolve tempo",
+  "tipo": "conteudo",
+  "selo": "Matemática · 22% do banco · o dia 16/11",
+  "serve": "Matemática (20 pts) · e o relógio da prova inteira",
+  "minutos": 75,
+  "fechado_em": "escrito em 16 de novembro de 2026, sobre as 66 questões reais destes quatro assuntos",
+  "arquivo": "dossies/conteudo-15-matematica-2.pdf"
+ },
+ {
   "slug": "entrevista-01-inovacao-criatividade",
   "titulo": "A entrevista da ESPM — inovação e criatividade",
   "subtitulo": "Entrevista 01 · as 5 questões do ANEXO I, a cadeia de raciocínio e os exercícios",
