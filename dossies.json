@@ -308,6 +308,28 @@
   "arquivo": "dossies/redacao-04-eixo-1-tensoes.pdf"
  },
  {
+  "slug": "redacao-05-eixo-2-trabalho",
+  "titulo": "Eixo 2 — Trabalho, carreira e formação",
+  "subtitulo": "Doze tensões em quatro assuntos · 7 dos 30 temas já aplicados · com os repertórios por extenso e a frase pronta por ângulo",
+  "tipo": "redacao",
+  "selo": "Redação · as tensões do Eixo 2",
+  "serve": "Redação (40 pts) · o segundo maior eixo — 7 dos 30 temas",
+  "minutos": 160,
+  "fechado_em": "escrito em 24 de novembro de 2026",
+  "arquivo": "dossies/redacao-05-eixo-2-trabalho.pdf"
+ },
+ {
+  "slug": "redacao-06-eixos-3-a-6",
+  "titulo": "Eixos 3 a 6 — comportamento, clima e cidade, direitos, longevidade",
+  "subtitulo": "Vinte tensões com tese causal e esqueleto completo · os quatro eixos restantes, 12 dos 30 temas · sem redações completas, por decisão sua",
+  "tipo": "redacao",
+  "selo": "Redação · os quatro eixos restantes",
+  "serve": "Redação (40 pts) · eixos 3, 4, 5 e 6 — 12 dos 30 temas",
+  "minutos": 170,
+  "fechado_em": "escrito em 24 de novembro de 2026",
+  "arquivo": "dossies/redacao-06-eixos-3-a-6.pdf"
+ },
+ {
   "slug": "repertorio-competencias-futuro",
   "titulo": "Competências para o trabalho com IA",
   "subtitulo": "Soft skills (Lucedile Antunes, org.) e O profissional do futuro (Michelle Schneider) — o que são, por que valem agora e as críticas",
