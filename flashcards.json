@@ -3675,168 +3675,180 @@
   "cartas": [
    {
     "id": "redacao-o-kit-cadeias-conclusoes-e-01",
+    "frente": "A proporção dentro do desenvolvimento: 1 e 3",
+    "verso": "**Uma** frase de repertório e **três** suas: por que acontece (causa), apesar do quê (a concessão), portanto o quê (o fecho).\n\nSe o repertório precisa de duas frases para ser contado, ele é **grande demais** para aquele parágrafo — troque por outro.\n\n**O teste:** cubra a frase do repertório. O que sobrou ainda argumenta? Se não sobrou argumento, o parágrafo era repertório disfarçado.",
+    "dica": null
+   },
+   {
+    "id": "redacao-o-kit-cadeias-conclusoes-e-02",
+    "frente": "O título: último a ser escrito, e ancorado",
+    "verso": "O título é **obrigatório e criativo** na ESPM, e é o **último** elemento a escrever, porque depende do que o texto virou.\n\n**A âncora:** a imagem do título tem de aparecer **dentro** do texto. Se você cortar o trecho que a sustenta, o título fica solto e perde ponto.\n\n**O melhor título** é uma imagem concreta que a última frase do texto fecha — o anel começa no título.",
+    "dica": null
+   },
+   {
+    "id": "redacao-o-kit-cadeias-conclusoes-e-03",
     "frente": "A regra do kit: o que ele dá e o que ele NÃO dá",
     "verso": "**Dá a arquitetura:** pergunta, tese causal, introdução, 2 repertórios, 2 tópicos frasais, conclusão. Oito a dez frases — quase o texto inteiro, porque a ESPM pede só **300 a 400 palavras / 20 a 30 linhas**.\n\n**NÃO dá o conteúdo dos parágrafos.** Esse tem que sair do **texto de apoio**, porque ler o texto motivador é o **critério 1 oficial**. Bloco decorado que ignora o texto perde o critério 1 inteiro.\n\n**Em uma frase:** o kit dá o esqueleto, o texto de apoio dá a carne.",
     "dica": null
    },
    {
-    "id": "redacao-o-kit-cadeias-conclusoes-e-02",
+    "id": "redacao-o-kit-cadeias-conclusoes-e-04",
     "frente": "Os 10 minutos de planejamento, na ordem",
     "verso": "**1–3** ler o texto de apoio e sublinhar o assunto + o dado que ele dá de graça\n**4** fechar o tema numa **pergunta** (\"por que X acontece?\")\n**5** responder com um *porque* → essa é a **tese causal**\n**6** identificar o **eixo** e abrir o tema mais próximo\n**7–8** puxar os 2 repertórios e checar: cada um prova coisa **diferente**?\n**9** escrever os 2 tópicos frasais\n**10** escolher o modelo de conclusão — e **o título por último**",
     "dica": null
    },
    {
-    "id": "redacao-o-kit-cadeias-conclusoes-e-03",
+    "id": "redacao-o-kit-cadeias-conclusoes-e-05",
     "frente": "Conclusão · Modelo 1 — por consequência",
     "verso": "Retoma a tese **com outras palavras** → nomeia a **consequência** de nada mudar → termina no que está em jogo. **Três frases.** É o mais seguro e serve a qualquer tema.\n\n*Molde:* \"Se [mecanismo da tese] seguir operando, [consequência concreta]. O que está em disputa não é [o que o senso comum acha], mas [o que a sua tese mostrou]. [O custo de não decidir].\"",
     "dica": null
    },
    {
-    "id": "redacao-o-kit-cadeias-conclusoes-e-04",
+    "id": "redacao-o-kit-cadeias-conclusoes-e-06",
     "frente": "Conclusão · Modelo 2 — o anel (o SEU modelo)",
     "verso": "Volta ao repertório da **introdução** e mostra que, depois dos dois desenvolvimentos, ele **se lê de outro jeito**. Fecha como um anel.\n\n**É o seu** porque você ancora a introdução em repertório histórico e aprende por cadeia passado→presente. Banca lê isso como domínio, não como repetição.\n\n*Molde:* \"[Repertório da intro] não mostrava apenas [o óbvio]: mostrava [o que os D revelaram]. [Transporta para o presente]. [O que se decide hoje].\"",
     "dica": null
    },
    {
-    "id": "redacao-o-kit-cadeias-conclusoes-e-05",
+    "id": "redacao-o-kit-cadeias-conclusoes-e-07",
     "frente": "Conclusão · Modelo 3 — o do ENEM, como rede",
     "verso": "Retomada + proposta com **agente, ação, meio e finalidade**.\n\n**A ESPM não pede proposta de intervenção.** Ela permitiu o uso (foi dito na reunião), mas custa **4 a 6 linhas** num elemento **não pontuado** — caro em 20 a 30 linhas.\n\n**Use se der branco** nos outros dois, ou se o texto de apoio praticamente pedir uma saída. Não é erro, é só mais caro.",
     "dica": null
    },
    {
-    "id": "redacao-o-kit-cadeias-conclusoes-e-06",
+    "id": "redacao-o-kit-cadeias-conclusoes-e-08",
     "frente": "Eixo 1 (Tecnologia/IA/mídia) — o esqueleto de 3 perguntas",
     "verso": "**11 dos 30 temas.** O maior eixo. Quase todo tema responde a uma destas:\n\n**1. Quem decide?** A tecnologia parece destino, mas alguém escolheu a direção → **C-03** (luditas), **C-17** (O'Neil)\n**2. Quem alcança?** A técnica chega desigual ao território → **C-11** (Milton Santos), **C-18** (Anísio)\n**3. Quem narra?** Quem controla o registro controla a versão → **C-01** (o quadro), **C-02** (Gutenberg), **C-07** (Encyclopédie)",
     "dica": null
    },
    {
-    "id": "redacao-o-kit-cadeias-conclusoes-e-07",
+    "id": "redacao-o-kit-cadeias-conclusoes-e-09",
     "frente": "Eixo 2 (Trabalho/carreira) — o esqueleto de 3 perguntas",
     "verso": "**7 dos 30 temas.** Com o Eixo 1, **60% do tabuleiro**.\n\n**1. Quem fica fora da moldura?** O direito existe para quem está no contrato → **C-09** (CLT) + nº 5 (informalidade)\n**2. Quem decide a direção?** Automação é escolha, não destino → **C-03**, **C-04** (Taylor)\n**3. Quem chega lá?** A porta da nova ocupação é desigual → **C-08** (abolição), **C-18**, nº 2 e 4",
     "dica": null
    },
    {
-    "id": "redacao-o-kit-cadeias-conclusoes-e-08",
+    "id": "redacao-o-kit-cadeias-conclusoes-e-10",
     "frente": "C-01 · Independência ou Morte — a fonte constrói a versão",
     "verso": "**O elo:** Pedro Américo pintou em **Florença, 1886–1888**, **66 anos** depois do 7 de setembro, tomando como **referência formal** (não cópia) *1807, Friedland*, de **Meissonier** — cena napoleônica. A comitiva real era **menor** e subiu a Serra do Mar em **mulas**.\n\n**A cadeia:** encomenda → molde europeu → a imagem vira memória oficial → quem controla o registro controla a versão → hoje o registro é feed, recorte e imagem gerada por máquina.\n\n**A frase:** \"O quadro não documenta a Independência: ele a constrói no molde da epopeia europeia.\"\n\n**Serve a:** mídia e desinformação · IA e criação · memória · publicidade.",
     "dica": null
    },
    {
-    "id": "redacao-o-kit-cadeias-conclusoes-e-09",
+    "id": "redacao-o-kit-cadeias-conclusoes-e-11",
     "frente": "C-02 · Gutenberg — reprodução redistribui autoridade",
     "verso": "**O elo:** a prensa (c. **1450**) tirou da Igreja o monopólio da interpretação. Lutero traduz a Bíblia para o alemão, o fiel lê sozinho, a reação é a **censura e o Index**.\n\n**A cadeia:** barateia a cópia → multiplica quem fala → a autoridade antiga reage com controle → disputa por quem pode publicar → hoje a prensa é a plataforma, e o modelo generativo barateia não a cópia, mas a **autoria**.\n\n**A frase:** \"Desde Gutenberg nenhuma tecnologia de reprodução entrou no mundo sem redistribuir autoridade — e sem que a autoridade anterior tentasse retomá-la.\"\n\n**Serve a:** big techs · IA e criação · desinformação · direito autoral.",
     "dica": null
    },
    {
-    "id": "redacao-o-kit-cadeias-conclusoes-e-10",
+    "id": "redacao-o-kit-cadeias-conclusoes-e-12",
     "frente": "C-03 · Os luditas — a máquina não decide sozinha",
     "verso": "**O elo:** **1811–1816**, tecelões ingleses destruíram máquinas. Virou sinônimo de medo do progresso, mas eles não eram contra o tear: eram contra **quem decidia** o uso dele, e contra salário e jornada definidos sem eles.\n\n**A cadeia:** a máquina chega → quem decide o uso é o dono → a resistência é lida como atraso → o conflito se resolve por **lei**, não por tecnologia → hoje **Acemoglu e Johnson**: a **direção** da tecnologia é escolha política, não destino.\n\n**A frase:** \"O ludismo não foi recusa da máquina, foi disputa por quem decide o que a máquina faz.\"\n\n**Serve a:** IA e trabalho · automação · plataformas · regulação.",
     "dica": null
    },
    {
-    "id": "redacao-o-kit-cadeias-conclusoes-e-11",
+    "id": "redacao-o-kit-cadeias-conclusoes-e-13",
     "frente": "C-04 · Taylor e Tempos Modernos — medir o gesto",
     "verso": "**O elo:** o taylorismo decompôs o trabalho em gestos cronometrados; **Chaplin** filmou em ***Tempos Modernos*, 1936**, o corpo engolido pela engrenagem.\n\n**A cadeia:** medir o gesto → fragmentar a tarefa → o trabalhador perde a visão do todo → a decisão sobe para quem tem o cronômetro → hoje o cronômetro é o **aplicativo**: distribui a tarefa, define o preço e avalia **sem explicar**.\n\n**A frase:** \"O cronômetro de Taylor virou interface: a gestão algorítmica mede, distribui e pune sem precisar de supervisor.\"\n\n**Serve a:** plataforma · IA e trabalho · saúde mental · jornada.",
     "dica": null
    },
    {
-    "id": "redacao-o-kit-cadeias-conclusoes-e-12",
+    "id": "redacao-o-kit-cadeias-conclusoes-e-14",
     "frente": "C-05 · A Zona do Canal — infraestrutura é poder",
     "verso": "**O elo:** a **doutrina Monroe (1823)**, \"a América para os americanos\", vira prática em **1903**: os EUA apoiam a separação do **Panamá** da Colômbia e obtêm a **Zona do Canal**. O que estava em jogo não era território, era **passagem**.\n\n**A cadeia:** quem controla o estreito controla o comércio → o controle se faz por tratado e base, não por conquista → a passagem vira ativo permanente → hoje os pontos de estrangulamento são canais, estreitos, **cabos submarinos, nuvem e chip**.\n\n**A frase:** \"Potência não é quem produz mais, é quem controla a passagem.\"\n\n**Serve a:** soberania digital · geopolítica · cadeias globais · guerra tarifária.",
     "dica": null
    },
    {
-    "id": "redacao-o-kit-cadeias-conclusoes-e-13",
+    "id": "redacao-o-kit-cadeias-conclusoes-e-15",
     "frente": "C-06 · A perspectiva renascentista — técnica carrega visão de mundo",
     "verso": "**O elo:** a perspectiva linear não é só profundidade: põe o **olho humano no centro** da composição. Antropocentrismo virado método. **Vitrúvio**, redescoberto, dá o homem como régua da arquitetura.\n\n**A cadeia:** a técnica organiza o olhar → o olhar organizado parece natural → o que parece natural deixa de ser discutido → hoje o modelo estatístico parece neutro, mas carrega o mundo de quem o treinou.\n\n**A frase:** \"A perspectiva colocou o homem no centro do quadro antes de qualquer filósofo colocá-lo no centro do mundo.\"\n\n**Serve a:** viés algorítmico · IA e criação · publicidade · arte por período.",
     "dica": null
    },
    {
-    "id": "redacao-o-kit-cadeias-conclusoes-e-14",
+    "id": "redacao-o-kit-cadeias-conclusoes-e-16",
     "frente": "C-07 · A Encyclopédie — organizar o saber é ato político",
     "verso": "**O elo:** **Diderot e d'Alembert**, século XVIII. Foi censurada não pelo que inventava, mas pela **ordem** que dava ao que já se sabia: tirou o saber do púlpito e o pôs em ordem alfabética.\n\n**A cadeia:** reunir o saber → escolher a ordem → a ordem define o que é central e o que é nota de pé de página → quem ordena, hierarquiza → hoje quem ordena é o buscador e o modelo de linguagem, e a ordem **não está visível**.\n\n**A frase:** \"Organizar o conhecimento nunca foi tarefa técnica: é a decisão sobre o que ocupa o centro.\"\n\n**Serve a:** IA e educação · desinformação · big techs · currículo · memória.",
     "dica": null
    },
    {
-    "id": "redacao-o-kit-cadeias-conclusoes-e-15",
+    "id": "redacao-o-kit-cadeias-conclusoes-e-17",
     "frente": "C-08 · A abolição sem reparação — desigualdade é herança",
     "verso": "**O elo:** a **Lei Áurea (1888)** libertou sem **terra, escola ou indenização**. **Florestan Fernandes**: o liberto foi lançado num mercado competitivo sem nenhum dos ativos que ele exigia, enquanto o imigrante europeu era **subsidiado** para o posto assalariado.\n\n**A cadeia:** liberdade sem ativo → a geração seguinte herda a ausência → a escola pública chega tarde e desigual → a desigualdade se reproduz **sem lei que a imponha** → hoje o acesso desigual à técnica repete o mecanismo.\n\n**⚠️ CUIDADO:** este é o repertório **correto**. *Casa-Grande & Senzala* é o texto fundador da **democracia racial** e **joga contra** o seu argumento.\n\n**Serve a:** desigualdade · abismo digital · trabalho · educação.",
     "dica": null
    },
    {
-    "id": "redacao-o-kit-cadeias-conclusoes-e-16",
+    "id": "redacao-o-kit-cadeias-conclusoes-e-18",
     "frente": "C-09 · A CLT — direito nasce de conflito, não de concessão",
     "verso": "**O elo:** a consolidação de **1943**, sob **Vargas**, reuniu direitos vindos de décadas de greve e organização operária, num projeto de Estado que ao mesmo tempo os concedia e **tutelava** os sindicatos.\n\n**A cadeia:** conflito → lei → a lei desenha uma **moldura** (jornada, férias, contribuição) → quem está fora da moldura fica sem rede → hoje quase **4 em cada 10 ocupados** são informais, e o trabalho por app cresce fora dela.\n\n**A frase:** \"A CLT não foi um presente: foi a moldura que o conflito arrancou — e o trabalho que cresce hoje é exatamente o que ficou fora dela.\"\n\n**Serve a:** plataforma · informalidade · jornada · cuidado · Era Vargas.",
     "dica": null
    },
    {
-    "id": "redacao-o-kit-cadeias-conclusoes-e-17",
+    "id": "redacao-o-kit-cadeias-conclusoes-e-19",
     "frente": "C-10 · 1922 e a antropofagia — deglutir em vez de imitar",
     "verso": "**O elo:** a **Semana de 22** e, em **1928**, o ***Abaporu*** de **Tarsila** com o manifesto de **Oswald**: \"Tupi or not tupi\". A proposta não era recusar o estrangeiro nem copiá-lo — era **comê-lo** e devolver algo novo.\n\n**A cadeia:** a periferia recebe o repertório do centro → imitar produz cópia subordinada → recusar produz isolamento → **deglutir** produz originalidade → hoje o modelo de IA é treinado sobretudo em repertório estrangeiro, e a escolha brasileira é a mesma de 1928.\n\n**A frase:** \"A antropofagia resolveu em 1928 o problema que a IA recoloca: copiar é submissão, recusar é ausência — resta deglutir.\"\n\n**Serve a:** IA e indústria criativa · identidade · soberania digital · modernismo.",
     "dica": null
    },
    {
-    "id": "redacao-o-kit-cadeias-conclusoes-e-18",
+    "id": "redacao-o-kit-cadeias-conclusoes-e-20",
     "frente": "C-11 · Milton Santos — espaços luminosos e opacos",
     "verso": "**O elo:** Santos divide o território entre **espaços luminosos**, que concentram técnica, informação e capital, e **espaços opacos**, que recebem as sobras. E cunha o **\"cidadão mutilado\"**: aquele cujos direitos existem no papel e não no território onde ele mora.\n\n**A cadeia:** a técnica chega desigual ao território → o lugar define o que a pessoa alcança → a desigualdade passa a ser **geográfica**, não só de renda → hoje **65%** acessam a internet só pelo celular, e nas classes D/E é quase **9 em cada 10**.\n\n**A frase:** \"Para Milton Santos a desigualdade tem endereço: o espaço opaco não é o que falta tecnologia, é o que a recebe pela metade.\"\n\n**Serve a:** abismo digital · cidade · educação · trabalho remoto.",
     "dica": null
    },
    {
-    "id": "redacao-o-kit-cadeias-conclusoes-e-19",
+    "id": "redacao-o-kit-cadeias-conclusoes-e-21",
     "frente": "C-12 · Carolina Maria de Jesus — o quarto de despejo",
     "verso": "**O elo:** ***Quarto de Despejo*, 1960**, escrito em cadernos achados no lixo por uma **catadora** da favela do **Canindé**. A imagem do título é a tese: a cidade tem **sala de visita** e tem **quarto de despejo**, e decide quem vai para cada um.\n\n**A cadeia:** a cidade se organiza por função → algumas funções são empurradas para a borda → a borda recebe infraestrutura por último → quem mora lá paga mais caro e recebe menos → hoje o mesmo endereço define escola, transporte e conexão.\n\n**A frase:** \"Ela nomeou o mecanismo antes da sociologia: a cidade não é desigual por acidente, ela tem sala de visita e quarto de despejo.\"\n\n**Serve a:** cidade · desigualdade · cuidado · literatura brasileira.",
     "dica": null
    },
    {
-    "id": "redacao-o-kit-cadeias-conclusoes-e-20",
+    "id": "redacao-o-kit-cadeias-conclusoes-e-22",
     "frente": "C-13 · Os retirantes, de Portinari — o deslocamento",
     "verso": "**O elo:** **1944**. Corpos alongados, crianças de barriga inchada, urubus ao fundo. A seca do Nordeste virando êxodo, e o êxodo virando **imagem nacional**.\n\n**A cadeia:** o evento climático expulsa → quem sai chega à cidade sem rede → a cidade cresce pela borda → a borda é a mais exposta ao **próximo** evento → hoje enchente e calor extremo repetem o ciclo, e quem perde a casa é quem já morava no lugar mais exposto.\n\n**A frase:** \"O evento climático não atinge todos igual: atinge primeiro quem já estava na borda.\"\n\n**Serve a:** clima e cidade · desigualdade · migração · arte brasileira.",
     "dica": null
    },
    {
-    "id": "redacao-o-kit-cadeias-conclusoes-e-21",
+    "id": "redacao-o-kit-cadeias-conclusoes-e-23",
     "frente": "C-14 · Maryanne Wolf — a leitura profunda é construída",
     "verso": "**O elo:** o cérebro **não nasce** com circuito de leitura: ele o constrói, e constrói diferente dependendo do **suporte**. A tela favorece a **varredura**; a leitura profunda, que sustenta inferência e empatia, exige treino e tempo.\n\n**A cadeia:** ler não é instinto → o suporte molda o circuito → tela treina varredura → varredura localiza bem e **argumenta mal** → hoje a escola é o único lugar que pode ensinar deliberadamente a leitura profunda.\n\n**A frase:** \"Não basta dar o aparelho: o circuito da leitura profunda é construído, e sem escola ele não se constrói.\"\n\n**Serve a:** educação e IA · abismo digital · atenção · infância e telas.",
     "dica": null
    },
    {
-    "id": "redacao-o-kit-cadeias-conclusoes-e-22",
+    "id": "redacao-o-kit-cadeias-conclusoes-e-24",
     "frente": "C-15 · Byung-Chul Han — o sujeito que se explora a si mesmo",
     "verso": "**O elo:** em ***Sociedade do Cansaço***, a passagem do sujeito **obediente** ao sujeito **de desempenho**: ninguém precisa vigiá-lo, porque ele mesmo cobra o próprio rendimento.\n\n**A cadeia:** a ordem externa vira meta interna → o limite desaparece → o cansaço se **individualiza** → quem adoece se culpa → hoje a métrica está no bolso e a jornada não tem porta para fechar.\n\n**A frase:** \"Quando a cobrança vem de dentro, o esgotamento deixa de ser injustiça e passa a parecer incompetência.\"\n\n**Serve a:** saúde mental · trabalho · empreendedorismo · atenção · consumo.",
     "dica": null
    },
    {
-    "id": "redacao-o-kit-cadeias-conclusoes-e-23",
+    "id": "redacao-o-kit-cadeias-conclusoes-e-25",
     "frente": "C-16 · Harari em Nexus — rede de informação não é rede de verdade",
     "verso": "**O elo:** redes de informação se organizam para produzir **ordem**, não verdade, e sobrevivem as que conseguem **se autocorrigir**. A questão não é a quantidade de informação, é a existência de **mecanismo de correção**.\n\n**A cadeia:** mais informação não é mais verdade → a rede premia o que **conecta**, não o que confere → sem correção o erro escala → hoje a correção é mais **lenta** que a propagação.\n\n**A frase:** \"O problema das redes não é o volume de informação, é a ausência de um mecanismo de autocorreção mais rápido que a propagação.\"\n\n**Serve a:** desinformação · big techs · democracia · IA.",
     "dica": null
    },
    {
-    "id": "redacao-o-kit-cadeias-conclusoes-e-24",
+    "id": "redacao-o-kit-cadeias-conclusoes-e-26",
     "frente": "C-17 · Cathy O'Neil — o modelo opaco que decide em escala",
     "verso": "**O elo:** em ***Algoritmos de Destruição em Massa***, os três traços que tornam um modelo perigoso: ele é **opaco**, opera em **escala** e produz **dano que realimenta os próprios dados**. Quem é reprovado pelo modelo gera o dado que o confirma.\n\n**A cadeia:** o modelo aprende do passado → o passado é desigual → a decisão automatizada repete a desigualdade → a repetição gera o dado que a justifica → hoje roda em crédito, seleção, seguro e policiamento.\n\n**A frase:** \"Treinado no passado, o algoritmo não prevê o futuro — ele o repete.\"\n\n**Serve a:** viés algorítmico · trabalho · desigualdade · regulação · liderança.",
     "dica": null
    },
    {
-    "id": "redacao-o-kit-cadeias-conclusoes-e-25",
+    "id": "redacao-o-kit-cadeias-conclusoes-e-27",
     "frente": "C-18 · Anísio Teixeira — a escola pública como condição",
     "verso": "**O elo:** na **Escola Nova** e no **Manifesto dos Pioneiros** (anos **1930**), Anísio defende que a escola pública não é assistência aos pobres: é a **condição material** da cidadania, sem a qual o direito formal **não se exerce**.\n\n**A cadeia:** direito no papel exige capacidade real de exercê-lo → a capacidade se adquire na escola → escola desigual produz cidadania desigual → o resto do sistema herda a diferença → hoje, para a maioria das famílias de baixa renda, a escola é o **único** lugar com computador e conexão.\n\n**A frase:** \"Sem escola pública, o direito existe no papel e não no uso.\"\n\n**Serve a:** abismo digital · educação · desigualdade · novas profissões · primeiro emprego.",
     "dica": null
    },
    {
-    "id": "redacao-o-kit-cadeias-conclusoes-e-26",
+    "id": "redacao-o-kit-cadeias-conclusoes-e-28",
     "frente": "Os seis números coringa",
     "verso": "**1 · 65%** dos brasileiros acessam a internet **só pelo celular** — quase **9 em cada 10** nas classes D/E *(TIC Domicílios 2025)*\n**2 ·** só cerca de **1 em cada 10** domicílios D/E tem **computador** *(TIC Domicílios 2025)*\n**3 ·** as vagas que exigem **IA quase triplicaram em um ano** no Brasil *(PwC, 21/10/2026)*\n**4 ·** mais de **8 em cada 10** dessas vagas pedem **usar**, não construir modelos *(cálculo meu sobre os números da PwC)*\n**5 ·** quase **4 em cada 10** ocupados no Brasil são **informais** *(IBGE/PNAD Contínua, 2026)*\n**6 ·** cerca de **80 das 500** maiores ocupações estão **encolhendo** *(CNC, set/2026)*\n\n**A regra:** só número redondo e que sirva a **3 temas ou mais**. Número de lei, decimal e série histórica ficam fora.",
     "dica": null
    },
    {
-    "id": "redacao-o-kit-cadeias-conclusoes-e-27",
+    "id": "redacao-o-kit-cadeias-conclusoes-e-29",
     "frente": "Como usar número na redação (e como NÃO usar)",
     "verso": "**Nunca como enfeite.** A ordem é: **afirmação → número que a sustenta → frase que diz o que o número prova**. Depois sai do parágrafo.\n\n**Número solto é repertório de vitrine** — a banca lê como enfeite e não conta como prova.\n\n**Teste antes de decorar qualquer número:** ele é redondo o bastante para eu lembrar sob pressão? Ele serve a três temas ou mais? Se falhar num dos dois, não vale o espaço na memória.",
     "dica": null
    },
    {
-    "id": "redacao-o-kit-cadeias-conclusoes-e-28",
+    "id": "redacao-o-kit-cadeias-conclusoes-e-30",
     "frente": "O erro de tese do abismo digital, e a correção",
     "verso": "**❌ A tese circular:** \"porque muitas pessoas não usufruem de tecnologias digitais, as oportunidades de acesso às novas profissões são desiguais\" — isso repete o problema em outras palavras.\n\n**✅ A tese causal correta** (é a sua, está no seu D1): **o abismo digital é, na verdade, econômico**. O acesso que se democratizou foi o de **consumo**; o que as novas profissões exigem é o de **produção**.\n\n**O mecanismo:** celular conecta mas não produz → nº 1, 2 e 4 provam → a escola é o único ponto onde a cadeia pode ser interrompida → **C-18** e **C-08** fecham.",
     "dica": null

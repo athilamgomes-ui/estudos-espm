@@ -198,6 +198,17 @@
   "arquivo": "dossies/redacao-06-eixos-3-a-6.pdf"
  },
  {
+  "slug": "redacao-07-ordem-de-escrita",
+  "titulo": "A ordem de escrita — o que escrever nos cinco dias que faltam",
+  "subtitulo": "Cinco redações completas em ordem de prioridade, projeto em todas as outras tensões, e a lista de conferência para você corrigir sozinha",
+  "tipo": "redacao",
+  "selo": "Redação · o plano dos últimos cinco dias",
+  "serve": "Redação (40 pts) · o plano de execução dos seis eixos",
+  "minutos": 15,
+  "fechado_em": "escrito em 24 de novembro de 2026",
+  "arquivo": "dossies/redacao-07-ordem-de-escrita.pdf"
+ },
+ {
   "slug": "repertorio-competencias-futuro",
   "titulo": "Competências para o trabalho com IA",
   "subtitulo": "Soft skills (Lucedile Antunes, org.) e O profissional do futuro (Michelle Schneider) — o que são, por que valem agora e as críticas",
