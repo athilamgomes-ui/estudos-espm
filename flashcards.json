@@ -3082,165 +3082,195 @@
   ]
  },
  {
-  "id": "redacao-as-teses-do-eixo-1-e-as-fr",
-  "nome": "Redação — AS TESES do Eixo 1 e as frases prontas",
+  "id": "redacao-as-16-tensoes-do-eixo-1",
+  "nome": "Redação — AS 16 TENSÕES do Eixo 1",
   "materia": "redacao",
-  "nota": "Do dossiê 03 · as 10 teses causais do maior eixo e os 12 repertórios com a frase pronta por ângulo, como ela vai no texto",
+  "nota": "Do dossiê 04 · a tese da ESPM é uma posição sobre um dilema, não uma denúncia — as 16 tensões, as 4 regras e os repertórios por extenso",
   "cartas": [
    {
-    "id": "redacao-as-teses-do-eixo-1-e-as-fr-01",
-    "frente": "As 4 regras de escrita do eixo",
-    "verso": "**1 · UM repertório por parágrafo.** Dois no mesmo desenvolvimento dividem a atenção e nenhum é aproveitado até o fim.\n**2 · D1 é a CAUSA, D2 é a CONSEQUÊNCIA.** Se a tese é *porque X, então Y*, o D1 desenvolve o **porque** e o D2 o **então**. Exceção: quando o tema já É a consequência, o D1 vai à causa anterior.\n**3 · NENHUM conectivo repetido no texto inteiro** — nem \"assim\" na introdução e de novo na conclusão.\n**4 · A frase pronta é a frase que VAI no texto**, não um resumo do repertório.",
+    "id": "redacao-as-16-tensoes-do-eixo-1-01",
+    "frente": "A régua: a tese da ESPM é uma TENSÃO, não uma denúncia",
+    "verso": "**Uma posição sobre um dilema entre duas coisas que valem.** Está na letra dos enunciados reais:\n\n*\"é possível manter a **sensibilidade criativa** diante da tecnologia?\"* · *\"limites e **dilemas**\"* · *\"**como lidar** com dispositivos móveis na escola\"* · *\"os **desafios** à liberdade de expressão\"* · *\"**inovações e práticas**\"*\n\n**Nos 30 enunciados já aplicados:** *trabalho* 4 · *negócio* e *tecnologia* 3 · *publicidade*, *criativo*, *mercado* 2 · ***desigualdade* ZERO · *política* ZERO.**\n\nEles pedem **onde fica a linha**, não quem é a vítima. A ótica opressor × oprimido responde uma pergunta que a ESPM não fez — serve ao ENEM.",
     "dica": null
    },
    {
-    "id": "redacao-as-teses-do-eixo-1-e-as-fr-02",
-    "frente": "Por que organizar por TESE e não por tema",
-    "verso": "Dá para fazer **cinquenta previsões de tema** para um único eixo e cair justo a que ninguém previu.\n\n**Tese, não.** Uma tese causal boa atravessa vários temas do mesmo eixo, porque ela não descreve um assunto — descreve um **MECANISMO**. O tema muda; o mecanismo fica.\n\n**Se cair um tema que não está em lista nenhuma**, procure o mecanismo com 4 perguntas: **quem decide · quem alcança · quem narra · quem mede.**",
+    "id": "redacao-as-16-tensoes-do-eixo-1-02",
+    "frente": "As 4 regras de escrita",
+    "verso": "**1 · UM repertório PRINCIPAL por parágrafo, distinto em cada um.** Pode reaparecer, mas não pode **sustentar** dois. Exceção: a conclusão em anel, que retoma o da introdução sem sustentar argumento.\n**2 · D1 = CAUSA, D2 = CONSEQUÊNCIA.** O D1 é o *porque*, o D2 é o *então*. Se o tema já é a consequência, o D1 vai à causa anterior.\n**3 · Nenhum conectivo repetido no texto inteiro**, e todo período abre com um — do 2º em diante.\n**4 · A frase pronta é a frase que VAI no texto**, não um resumo.",
     "dica": null
    },
    {
-    "id": "redacao-as-teses-do-eixo-1-e-as-fr-03",
-    "frente": "A regra do conectivo, calibrada em redações nota 1000",
-    "verso": "Conferido em duas redações nota 1000 do ENEM: de **31 períodos, 30 abrem com conectivo** ou locução de ligação.\n\n**A única exceção é o PRIMEIRO período do texto**, que começa pelo sujeito — porque não há nada atrás para conectar.\n\n**A regra:** todo parágrafo e todo período abrem com conectivo, **do 2º período em diante**, e **nenhum repetido no texto inteiro**. Quatorze conectivos distintos cobrem um texto de 4 parágrafos.",
+    "id": "redacao-as-16-tensoes-do-eixo-1-03",
+    "frente": "A introdução em 4 passos",
+    "verso": "**1 · O REPERTÓRIO** — o fato, a obra ou o autor, com data e descrição concreta\n**2 · A PONTE** — a frase que diz **em que sentido** o repertório conversa com o tema, **com outras palavras**. É o passo que não pode faltar e **não pode ser deixado para a conclusão**\n**3 · O RECORTE** — o \"hoje\": o que mudou, em que escala, por que a pergunta volta\n**4 · A TESE CAUSAL** — *porque X, então Y*, explícito\n\n*Exemplo de ponte:* \"Nesse ajuste está o que separa o artista do artesão: a técnica estava disponível a muitos pintores, mas a decisão sobre o que mostrar era dele.\"",
     "dica": null
    },
    {
-    "id": "redacao-as-teses-do-eixo-1-e-as-fr-04",
-    "frente": "A lista de conectivos por função",
-    "verso": "**Abrir o D1:** Em um primeiro momento · Primeiramente · Sob essa perspectiva · A princípio\n**Abrir o D2:** Sob outra ótica · Sob outro aspecto · Outrossim · Paralelamente · A esse respeito\n**Acrescentar:** Além disso · Ademais · Igualmente · Somado a isso\n**Explicar:** Ou seja · Isto é · Em outras palavras · Vale dizer\n**Introduzir repertório:** Segundo · Conforme · De acordo com · Como observa · Como demonstra\n**Fechar o parágrafo:** Por conseguinte · Dessa maneira · A partir disso · Frente a isso · Por isso\n**Contrapor:** Todavia · Entretanto · Contudo · Em contrapartida\n**Abrir a conclusão:** Em suma · Portanto · Dessa forma · Diante do exposto · Por fim",
+    "id": "redacao-as-16-tensoes-do-eixo-1-04",
+    "frente": "A regra do conectivo, calibrada",
+    "verso": "Conferido em duas redações nota 1000 do ENEM: de **31 períodos, 30 abrem com conectivo**. A única exceção é o **primeiro período do texto** — não há nada atrás para conectar.\n\n**Abrir D1:** Primeiramente · Em um primeiro momento · Sob essa perspectiva · Inicialmente\n**Abrir D2:** Sob outra ótica · Sob outro aspecto · Outrossim · Paralelamente\n**Explicar:** Ou seja · Isto é · Vale dizer\n**Introduzir repertório:** Segundo · Conforme · De acordo com · Como formulou · Ao recorrer a\n**Fechar parágrafo:** Por conseguinte · Dessa maneira · A partir disso · Frente a isso\n**Abrir conclusão:** Em suma · Portanto · Diante do exposto · Logo · Por fim",
     "dica": null
    },
    {
-    "id": "redacao-as-teses-do-eixo-1-e-as-fr-05",
-    "frente": "TESE 1 — o acesso de consumo não é acesso de produção",
-    "verso": "**A tese:** porque o acesso que se democratizou foi o de **consumo** e o que a economia digital exige é o de **produção**, multiplicar aparelhos não multiplicou oportunidades — o abismo digital é **econômico** antes de ser tecnológico.\n\n**Introdução:** Tarsila, *Operários* (1933)\n**D1 (causa):** consumir ≠ produzir — TIC Domicílios\n**D2 (consequência):** a mobilidade social paralisa — Milton Santos\n**Conclusão:** anel, voltando a *Operários*\n\n**Cobre:** abismo digital · novas profissões · inclusão · educação e tecnologia · trabalho e qualificação",
+    "id": "redacao-as-16-tensoes-do-eixo-1-05",
+    "frente": "TENSÃO 1 · Criatividade × escala",
+    "verso": "**A tensão:** a ferramenta democratiza a execução, e a execução era parte do valor de quem cria. Então o que sobra?\n\n**A tese:** porque a IA barateia **a execução** e não **o critério**, o valor do trabalho criativo migra da habilidade técnica para a qualidade da decisão — e quem souber escolher ganha espaço, não perde.\n\n**Esqueleto:** intro Pedro Américo · D1 (causa) PwC · D2 (consequência) antropofagia · conclusão em anel\n**Repertórios:** ⭐Pedro Américo · ⭐antropofagia · PwC · Suzuki · Isaacson · perspectiva renascentista",
     "dica": null
    },
    {
-    "id": "redacao-as-teses-do-eixo-1-e-as-fr-06",
-    "frente": "TESE 2 — a direção da tecnologia é escolha, não destino",
-    "verso": "**A tese:** porque nenhuma tecnologia carrega em si a direção do seu uso — quem decide como ela é aplicada decide quais efeitos produz —, tratar o resultado como **inevitável** é isentar quem decidiu.\n\n**Introdução:** os luditas (1811–1816)\n**D1 (causa):** a decisão sobre o uso está concentrada — Acemoglu e Johnson\n**D2 (consequência):** o ganho não se distribui — PwC, 21/10/2026\n**Conclusão:** por consequência — depende de regra e formação, não da máquina\n\n**Cobre:** IA e trabalho · automação · regulação · plataformas · requalificação",
+    "id": "redacao-as-16-tensoes-do-eixo-1-06",
+    "frente": "TENSÃO 2 · Produtividade × ócio criativo",
+    "verso": "**A tensão:** produzir ficou instantâneo, criar continua lento, e uma atropela a outra.\n\n**A tese:** porque o processo criativo depende de uma lentidão que o imperativo de produtividade não concede, a facilidade de produzir muito tende a reduzir a capacidade de produzir algo **novo**.\n\n**Esqueleto:** intro Suzuki/Miyazaki · D1 (causa) Byung-Chul Han, \"O tédio profundo\" · D2 (consequência) Herbert Simon · conclusão em anel\n**Repertórios:** ⭐Han · ⭐Suzuki · Herbert Simon · Miyazaki · Ken Robinson · Maryanne Wolf",
     "dica": null
    },
    {
-    "id": "redacao-as-teses-do-eixo-1-e-as-fr-07",
-    "frente": "TESE 3 — a plataforma lucra com a circulação e recusa a autoria",
-    "verso": "**A tese:** porque o modelo de negócio remunera o **alcance** e a moldura jurídica foi escrita para quem apenas **hospeda**, as plataformas são **editoras na prática e intermediárias no papel** — e é dessa diferença que nasce a irresponsabilidade.\n\n**Introdução:** a prensa de Gutenberg (c. 1450)\n**D1 (causa):** o algoritmo de distribuição é decisão editorial — Cathy O'Neil\n**D2 (consequência):** a correção chega depois da crença formada — Harari, *Nexus*\n**Conclusão:** anel — muda a escala, não a disputa\n\n**Cobre:** regulação de big techs · desinformação · discurso de ódio · publicidade digital",
+    "id": "redacao-as-16-tensoes-do-eixo-1-07",
+    "frente": "TENSÃO 3 · Autoria × ferramenta",
+    "verso": "**A tensão:** a máquina produz o resultado, mas alguém definiu o problema e escolheu entre as saídas. Quem assina?\n\n**A tese:** porque a ferramenta reproduz **estilo** e não **sentido**, a autoria não desaparece com a automação — ela se desloca da execução para a definição do problema e o julgamento do resultado.\n\n**Esqueleto:** intro Suzuki (\"estilo não é obra\") · D1 (causa) a máquina aprende do que já existe — Miyazaki · D2 (consequência) crédito e responsabilidade migram — Harari · conclusão por consequência",
     "dica": null
    },
    {
-    "id": "redacao-as-teses-do-eixo-1-e-as-fr-08",
-    "frente": "TESE 4 — a rede não falha por volume, falha por falta de correção",
-    "verso": "**A tese:** porque a arquitetura premia o que **engaja** em vez do que se **verifica**, o erro circula mais rápido que o desmentido — o problema da desinformação não é a quantidade de informação, é a **ausência de um mecanismo de correção mais rápido que a propagação**.\n\n**Introdução:** Pedro Américo, *Independência ou Morte* (1888)\n**D1 (causa):** o incentivo é o engajamento — Harari\n**D2 (consequência):** a confiança migra da instituição para a rede — Maryanne Wolf\n**Conclusão:** por consequência\n\n**Cobre:** desinformação · confiança nas instituições · jornalismo · democracia · conteúdo sintético",
+    "id": "redacao-as-16-tensoes-do-eixo-1-08",
+    "frente": "TENSÃO 4 · Eficiência × julgamento",
+    "verso": "**A tensão:** automatizar decisão é mais rápido, barato e consistente — e erra de um jeito diferente do humano.\n\n**A tese:** porque o sistema otimiza o objetivo que recebeu e não os efeitos que produz, delegar decisão é vantajoso onde o erro é **reversível** e perigoso onde é **irreversível** — a questão não é se automatizar, é **onde traçar a linha**.\n\n**Esqueleto:** intro Mianmar · D1 (causa) o sistema persegue a métrica — O'Neil · D2 (consequência) a regra protege o próprio mercado — Harari · conclusão por consequência",
     "dica": null
    },
    {
-    "id": "redacao-as-teses-do-eixo-1-e-as-fr-09",
-    "frente": "TESE 5 — o algoritmo não prevê o futuro, repete o passado",
-    "verso": "**A tese:** porque o modelo aprende de dados **históricos** e o histórico é desigual, a decisão automatizada reproduz a desigualdade **sem precisar de intenção** — e, como o resultado volta como dado novo, ela ainda produz a prova de que estava certa.\n\n**Introdução:** a perspectiva renascentista — nenhuma técnica de representação é neutra\n**D1 (causa):** o dado de treino é o passado — Cathy O'Neil\n**D2 (consequência):** a desigualdade se automatiza e se autojustifica — Florestan Fernandes\n**Conclusão:** por consequência — auditoria é condição, não detalhe\n\n**Cobre:** viés algorítmico · crédito e seguro · seleção · reconhecimento facial · justiça",
+    "id": "redacao-as-16-tensoes-do-eixo-1-09",
+    "frente": "TENSÃO 5 · Acesso × uso produtivo",
+    "verso": "**A tensão:** a conexão chegou, o uso que ela permite não chegou igual — e o aparelho, sozinho, não explica a diferença.\n\n**A tese:** porque o acesso se universalizou no **consumo** e não no **uso produtivo**, ampliar conectividade não amplia por si oportunidade — o que falta não é o aparelho, é a competência de usá-lo para produzir.\n\n**Esqueleto:** intro Ken Robinson · D1 (causa) TIC Domicílios, o dado de uso · D2 (consequência) o retorno depende da escola — Maryanne Wolf · conclusão por consequência",
     "dica": null
    },
    {
-    "id": "redacao-as-teses-do-eixo-1-e-as-fr-10",
-    "frente": "TESE 6 — quem organiza o saber decide o que é central",
-    "verso": "**A tese:** porque toda organização do conhecimento **hierarquiza** — define o que ocupa o centro e o que vira nota de pé de página —, delegar essa organização a um sistema **opaco** é transferir uma decisão política para uma caixa fechada.\n\n**Introdução:** a *Encyclopédie* de Diderot e d'Alembert\n**D1 (causa):** ordenar é hierarquizar, e a ordem do modelo não está visível\n**D2 (consequência):** a escola perde o critério como objeto de ensino — Maryanne Wolf\n**Conclusão:** anel, voltando à *Encyclopédie*\n\n**Cobre:** IA e educação · buscadores · currículo · memória e arquivo · direito ao esquecimento",
+    "id": "redacao-as-16-tensoes-do-eixo-1-10",
+    "frente": "TENSÃO 6 · Imaterial × material",
+    "verso": "**A tensão:** a tecnologia se apresenta leve, limpa e sem lugar — e consome mineral, energia, água e trabalho humano.\n\n**A tese:** porque a palavra \"nuvem\" esconde uma cadeia produtiva física, tratar o digital como imaterial transfere o custo para quem não participou da decisão.\n\n**Esqueleto:** intro Kate Crawford e o mapa com Vladan Joler · D1 (causa) a cadeia: minério, energia, água, rotulagem · D2 (consequência) o custo se instala longe de quem colhe o benefício — Milton Santos · conclusão em anel",
     "dica": null
    },
    {
-    "id": "redacao-as-teses-do-eixo-1-e-as-fr-11",
-    "frente": "TESE 7 — a técnica chega desigual ao território",
-    "verso": "**A tese:** porque a infraestrutura se instala primeiro **onde já existe capital**, a desigualdade digital tem **endereço** — e o lugar de moradia, não o esforço individual, define o alcance de quem mora nele.\n\n**Introdução:** Carolina Maria de Jesus, *Quarto de Despejo* (1960)\n**D1 (causa):** a infraestrutura segue o capital — Milton Santos\n**D2 (consequência):** o endereço define escola, trabalho e conexão — TIC Domicílios\n**Conclusão:** anel, voltando a Carolina\n\n**Cobre:** abismo digital · cidade e periferia · trabalho remoto · EAD · desigualdade regional",
+    "id": "redacao-as-16-tensoes-do-eixo-1-11",
+    "frente": "TENSÃO 7 · Personalização × repertório",
+    "verso": "**A tensão:** o algoritmo que acerta o seu gosto serve ao consumidor e estreita o repertório de quem cria para ele.\n\n**A tese:** porque o sistema de recomendação otimiza **semelhança** com o que você já consumiu, quanto melhor ele acerta, **menos** ele apresenta — e o ganho de conveniência é pago em perda de repertório.\n\n**Esqueleto:** intro Eli Pariser · D1 (causa) a métrica é semelhança, não descoberta · D2 (consequência) repertório estreito produz criação previsível — Bourdieu ou antropofagia · conclusão por consequência",
     "dica": null
    },
    {
-    "id": "redacao-as-teses-do-eixo-1-e-as-fr-12",
-    "frente": "TESE 8 — a economia chamada imaterial tem corpo",
-    "verso": "**A tese:** porque nuvem, modelo e dado exigem **energia, água, mineral e território**, tratar o digital como imaterial transfere a conta para quem não participou da decisão — e o custo aparece longe de onde o benefício é colhido.\n\n**Introdução:** a Zona do Canal do Panamá (1903) — potência é quem controla a passagem\n**D1 (causa):** a nuvem é geografia: ocupa solo, consome água, disputa energia\n**D2 (consequência):** o custo se instala no espaço opaco — Milton Santos ou Portinari\n**Conclusão:** por consequência — regular IA inclui decidir ONDE a máquina fica\n\n**Cobre:** custo ambiental da IA · data centers · transição energética · soberania digital",
+    "id": "redacao-as-16-tensoes-do-eixo-1-12",
+    "frente": "TENSÃO 8 · Conveniência × privacidade",
+    "verso": "**A tensão:** cada atrito removido da sua vida é um dado entregue, e os dois lados são reais.\n\n**A tese:** porque o dado pessoal é o preço do serviço gratuito, a conveniência digital é uma **troca** — e o problema não é que a troca exista, mas que ela **não seja apresentada como troca**.\n\n**Esqueleto:** intro Shoshana Zuboff · D1 (causa) o modelo de receita exige previsão de comportamento · D2 (consequência) sem transparência não há consentimento, e sem consentimento não há confiança — Marco Civil · conclusão por consequência",
     "dica": null
    },
    {
-    "id": "redacao-as-teses-do-eixo-1-e-as-fr-13",
-    "frente": "TESE 9 — copiar é submissão, recusar é ausência",
-    "verso": "**A tese:** porque a criação periférica só se afirma **deglutindo** o que recebe de fora, a resposta a uma IA treinada em acervo estrangeiro não é proibi-la nem imitá-la — é **produzir com ela algo que não estava no acervo**.\n\n**Introdução:** Tarsila, *Abaporu* (1928), e o Manifesto Antropófago — \"Tupi or not tupi\"\n**D1 (causa):** o modelo devolve a média do que foi treinado, e o acervo é estrangeiro\n**D2 (consequência):** a criação local perde preço antes de perder possibilidade — Camões e o Velho do Restelo\n**Conclusão:** anel, voltando ao *Abaporu*\n\n**Cobre:** IA e indústria criativa · direito autoral · identidade cultural · homogeneização da linguagem",
+    "id": "redacao-as-16-tensoes-do-eixo-1-13",
+    "frente": "TENSÃO 9 · Inovação × confiança — a mais útil do caderno",
+    "verso": "**A tensão:** regular parece frear; não regular também cobra um preço, e quem paga é o mercado.\n\n**A tese:** porque nenhum mercado funciona sem previsibilidade, a regra bem desenhada não é freio da inovação, e sim **condição** dela — o que trava investimento é a incerteza, não a norma.\n\n**Por que é a mais útil:** defende **mercado E instituição ao mesmo tempo**, sem opor um ao outro. É o registro exato da ESPM.\n\n**Esqueleto:** intro Marco Civil (2014 e STF em 2025) · D1 (causa) o desalinhamento entre modelo de negócio e moldura jurídica · D2 (consequência) a confiança é insumo de mercado — Harari",
     "dica": null
    },
    {
-    "id": "redacao-as-teses-do-eixo-1-e-as-fr-14",
-    "frente": "TESE 10 — o que se mede molda quem é medido",
-    "verso": "**A tese:** porque toda métrica **induz comportamento**, medir o gesto fragmenta o trabalho e medir o engajamento fragmenta a atenção — a escolha do que se mede é a escolha de **que tipo de pessoa o sistema vai produzir**.\n\n**Introdução:** Chaplin, *Tempos Modernos* (1936)\n**D1 (causa):** medir fragmenta e desloca a decisão para quem tem o cronômetro — Taylor\n**D2 (consequência):** a cobrança se interioriza e o esgotamento se individualiza — Byung-Chul Han\n**Conclusão:** anel — o cronômetro virou interface\n\n**Cobre:** gestão algorítmica · plataforma · economia da atenção · saúde mental · infância e telas",
+    "id": "redacao-as-16-tensoes-do-eixo-1-14",
+    "frente": "TENSÃO 10 · Velocidade × verificação",
+    "verso": "**A tensão:** a liberdade de publicar é um valor, a confiabilidade do registro também — e a correção é mais lenta que a propagação.\n\n**A tese:** porque a arquitetura premia o que engaja antes do que se confere, o erro circula mais rápido que o desmentido — o problema não é o volume de informação, é a ausência de um mecanismo de correção mais rápido que a propagação.\n\n**Esqueleto:** intro o deepfake de Zelensky (2022) · D1 (causa) o estudo do MIT na *Science*, 2018 · D2 (consequência) o dano é a suspensão do julgamento — Hannah Arendt · conclusão em anel",
     "dica": null
    },
    {
-    "id": "redacao-as-teses-do-eixo-1-e-as-fr-15",
-    "frente": "R1 · Tarsila, Operários (1933) — frases prontas",
-    "verso": "**O que é:** óleo da fase social de Tarsila, depois da viagem à URSS e da crise de 1929. Dezenas de rostos sobrepostos, de origens étnicas distintas, ocupam toda a frente; ao fundo, só as chaminés.\n**O mecanismo:** a industrialização incorporou multidões como **força de trabalho** e pouquíssimos como **donos da decisão**. O rosto está na frente; a propriedade não aparece.\n\n**ECONÔMICO:** \"Tarsila do Amaral pintou *Operários* em 1933: dezenas de rostos sobrepostos, de origens distintas, tendo ao fundo as chaminés das fábricas. Naquela tela, a industrialização aparece como de fato foi — uma economia que incorporou multidões como força de trabalho e pouquíssimos como donos da decisão.\"\n**TECNOLÓGICO:** \"Em *Operários*, de 1933, Tarsila pôs na frente do quadro os rostos de quem operava as máquinas e deixou ao fundo apenas as chaminés — a técnica aparece como paisagem, e quem a opera, como multidão sem nome.\"",
+    "id": "redacao-as-16-tensoes-do-eixo-1-15",
+    "frente": "TENSÃO 11 · Registro × versão",
+    "verso": "**A tensão:** toda fonte constrói uma versão — isso sempre foi verdade. O que mudou é **quanto custa** produzir uma versão convincente.\n\n**A tese:** porque nenhuma fonte apenas registra, a questão diante das imagens sintéticas não é distinguir verdade de falsidade, mas **exigir de cada fonte que informe como foi feita**.\n\n**Esqueleto:** intro Pedro Américo e a troca das mulas por cavalos · D1 (causa) construir versão é anterior à tecnologia; ela só baratearia a produção da versão · D2 (consequência) a procedência vale mais que a aparência — deepfake de Zelensky · conclusão em anel",
     "dica": null
    },
    {
-    "id": "redacao-as-teses-do-eixo-1-e-as-fr-16",
-    "frente": "R2 · TIC Domicílios — frases prontas",
-    "verso": "**O que é:** levantamento anual do Cetic.br. **65%** dos brasileiros acessam a internet **só pelo celular**; nas classes **D e E** isso é quase **9 em cada 10**, e só cerca de **1 em cada 10** desses domicílios tem **computador**.\n**O mecanismo:** o aparelho que se popularizou serve para **consumir** — assistir, comprar, responder. Não para **produzir** — programar, editar, analisar.\n\n**ECONÔMICO:** \"Segundo a pesquisa TIC Domicílios, 65% dos brasileiros acessam a internet apenas pelo celular e, nas classes D e E, só cerca de um em cada dez domicílios possui computador.\"\n**EDUCACIONAL:** \"Conforme a TIC Domicílios, a maioria dos estudantes brasileiros de baixa renda tem como único acesso à internet o telefone celular — de modo que a escola é, para eles, o único lugar onde o computador existe.\"\n**TERRITORIAL:** \"De acordo com a TIC Domicílios, o acesso por celular é quase universal nas classes D e E, mas o computador não chega a um em cada dez domicílios — a conexão chegou ao território, o meio de produção não.\"",
+    "id": "redacao-as-16-tensoes-do-eixo-1-16",
+    "frente": "TENSÃO 12 · Conexão × atenção (JÁ CAIU)",
+    "verso": "**Já caiu:** *\"Conectividade e educação: como lidar com o uso de dispositivos móveis no ambiente escolar em um mundo hiperconectado?\"* — caderno 3011. **Leia o texto de apoio original.**\n\n**A tese:** porque a atenção é um recurso finito e o dispositivo disputa continuamente por ela, conectar a sala de aula sem proteger o tempo de concentração **reduz** o aprendizado em vez de ampliá-lo.\n\n**Esqueleto:** intro Herbert Simon · D1 (causa) hiperatenção treina varredura, não leitura profunda — Wolf · D2 (consequência) o resultado mensurável e a resposta institucional — PISA 2025 e a lei do celular",
     "dica": null
    },
    {
-    "id": "redacao-as-teses-do-eixo-1-e-as-fr-17",
-    "frente": "R3 · Milton Santos — frases prontas",
-    "verso": "**O que é:** o território se divide entre **espaços luminosos** (técnica, informação, capital) e **espaços opacos** (as sobras). Dele também o **\"cidadão mutilado\"**: aquele cujos direitos existem na lei e não no lugar onde mora.\n**O mecanismo:** a técnica não chega por igual ao território; o lugar define o que a pessoa alcança. A desigualdade passa a ser **geográfica**, não só de renda.\n\n**TERRITORIAL:** \"Conforme Milton Santos, o território se divide entre espaços luminosos, que concentram técnica e informação, e espaços opacos, que recebem apenas as sobras — e é nos opacos que vive o 'cidadão mutilado', aquele cujos direitos existem no papel e não no lugar onde ele mora.\"\n**MOBILIDADE SOCIAL:** \"Para Milton Santos, a desigualdade brasileira tem endereço: o espaço opaco não é aquele onde falta tecnologia, mas aquele que a recebe pela metade — e é dali que o degrau seguinte da pirâmide não se alcança.\"\n**AMBIENTAL:** \"Como mostrou Milton Santos, a infraestrutura se instala nos espaços luminosos e o seu custo se instala nos opacos, que recebem a obra e não o benefício.\"",
+    "id": "redacao-as-16-tensoes-do-eixo-1-17",
+    "frente": "TENSÃO 13 · Repertório local × repertório global",
+    "verso": "**A tensão:** o repertório que forma o gosto vem de fora. Copiá-lo é submissão e recusá-lo é ausência.\n\n**A tese:** porque a criação periférica só se afirma **deglutindo** o que recebe, a resposta a uma tecnologia treinada em acervo estrangeiro não é proibi-la nem imitá-la — é produzir com ela algo que não estava no acervo.\n\n**Esqueleto:** intro o *Abaporu* e \"Tupi or not tupi\" · D1 (causa) o modelo devolve a média do que foi treinado · D2 (consequência) o diferencial passa a ser o intraduzível — Suzuki · conclusão em anel",
     "dica": null
    },
    {
-    "id": "redacao-as-teses-do-eixo-1-e-as-fr-18",
-    "frente": "R4 · Os luditas (1811–1816) — frases prontas",
-    "verso": "**O que é:** tecelões ingleses invadiram fábricas e destruíram teares mecânicos. O nome virou sinônimo de medo do progresso, mas eles não se opunham à máquina: opunham-se a que **salário, jornada e ritmo** fossem definidos sem eles.\n**O mecanismo:** o conflito nunca foi homem contra máquina — foi sobre **quem decide** o uso dela. E se resolveu por **lei**, não por tecnologia.\n\n**TRABALHO:** \"Entre 1811 e 1816, tecelões ingleses invadiram fábricas e destruíram teares. Desde então, o nome 'ludita' passou a designar quem teme o progresso, embora os tecelões não fossem contra a máquina: eram contra o fato de que salário, jornada e ritmo seriam decididos sem eles.\"\n**REGULAÇÃO:** \"O ludismo do início do século XIX não foi uma recusa do tear, e sim uma disputa por quem decide o que o tear faz — disputa que se encerrou por legislação, não por engenharia.\"",
+    "id": "redacao-as-16-tensoes-do-eixo-1-18",
+    "frente": "TENSÃO 14 · Autenticidade × tendência",
+    "verso": "**A tensão:** a tendência dá alcance imediato, a autenticidade dá permanência — e elas raramente apontam para o mesmo lado.\n\n**A tese:** porque a tendência se esgota na mesma velocidade com que se espalha, apostar em estilo sem substância compra alcance e perde marca — o que o consumidor retém é o que teve **processo**.\n\n**Esqueleto:** intro a onda \"estilo Ghibli\" de 2025 e seu esgotamento · D1 (causa) a IA reproduz estilo, e estilo não é obra — Suzuki · D2 (consequência) o mercado começa a precificar o oposto — a reação da Geração Z · conclusão em anel",
     "dica": null
    },
    {
-    "id": "redacao-as-teses-do-eixo-1-e-as-fr-19",
-    "frente": "R5 · Acemoglu e Johnson — frases prontas",
-    "verso": "**O que é:** **Daron Acemoglu** e **Simon Johnson** argumentam que a mesma tecnologia pode ser dirigida a **substituir** trabalhadores ou a **ampliar** o que eles conseguem fazer, e que a escolha entre as rotas é **política**.\n**O mecanismo:** não existe efeito automático da técnica sobre o emprego. Existe uma decisão, tomada diante de incentivos tributários, trabalhistas e regulatórios.\n\n**TRABALHO E IA:** \"Conforme argumentam Daron Acemoglu e Simon Johnson, a mesma tecnologia pode ser dirigida a substituir trabalhadores ou a ampliar o que eles conseguem fazer, e a escolha entre as duas rotas é política, não técnica.\"\n**REGULAÇÃO:** \"Como mostram Acemoglu e Johnson, chamar de inevitável o desemprego tecnológico é transformar uma deliberação humana em fenômeno da natureza.\"",
+    "id": "redacao-as-16-tensoes-do-eixo-1-19",
+    "frente": "TENSÃO 15 · Distinção × acesso",
+    "verso": "**A tensão:** o consumo comunica posição social. Quando o acesso se amplia, o símbolo de distinção **muda de lugar** em vez de desaparecer.\n\n**A tese:** porque o consumo funciona como linguagem de pertencimento, democratizar o acesso a um bem não elimina a distinção — desloca-a para o que ainda é escasso: hoje o **tempo**, a **atenção** e o **repertório**.\n\n**Esqueleto:** intro Thorstein Veblen (1899) · D1 (causa) o bem comunica posição, não só função · D2 (consequência) o que distingue migra do objeto para o repertório — Bourdieu · conclusão por consequência",
     "dica": null
    },
    {
-    "id": "redacao-as-teses-do-eixo-1-e-as-fr-20",
-    "frente": "R6 · PwC, Barômetro de Empregos de IA (21/10/2026) — frases prontas",
-    "verso": "**O que é:** as vagas que exigem IA no Brasil **quase triplicaram em um ano**, e **mais de 8 em cada 10** pedem alguém capaz de **usar** a ferramenta, não de construir modelos. A CNC identificou cerca de **80 das 500** maiores ocupações **em queda**.\n**O mecanismo:** a IA não apaga o trabalho em bloco — **redistribui** qual tarefa tem valor. E a que subiu de preço é **usar com julgamento**, que se aprende na escola.\n\n**TRABALHO:** \"De acordo com o Barômetro de Empregos de IA divulgado pela PwC em outubro de 2026, as vagas que exigem inteligência artificial quase triplicaram no Brasil em um ano, mas mais de oito em cada dez pedem alguém capaz de usar a ferramenta, não de construí-la.\"\n**EDUCACIONAL:** \"Segundo a PwC, mais de oito em cada dez das novas vagas de inteligência artificial no Brasil exigem domínio de uso, e não de programação — o que desloca a cobrança da universidade para a educação básica.\"",
+    "id": "redacao-as-16-tensoes-do-eixo-1-20",
+    "frente": "TENSÃO 16 · Propósito × performance",
+    "verso": "**A tensão:** a marca precisa comunicar valor e precisa entregar resultado. Quando o discurso corre à frente da prática, o discurso vira passivo.\n\n**A tese:** porque a comunicação cria expectativa **verificável**, anunciar propósito sem sustentá-lo na operação converte reputação em risco — a coerência deixa de ser virtude e passa a ser **cálculo de negócio**.\n\n**Esqueleto:** intro Guy Debord e a recuperação (1967) · D1 (causa) o espetáculo absorve até a crítica que lhe é feita · D2 (consequência) a verificação pelo consumidor virou mecanismo de mercado",
     "dica": null
    },
    {
-    "id": "redacao-as-teses-do-eixo-1-e-as-fr-21",
-    "frente": "R7 · Cathy O'Neil — frases prontas",
-    "verso": "**O que é:** em *Algoritmos de Destruição em Massa*, ela identifica **três traços** que tornam um modelo destrutivo: **opaco**, em **escala**, e com **dano que realimenta os próprios dados**. Quem é reprovado pelo modelo gera o registro que o confirma.\n**O mecanismo:** treinado no passado, o sistema não prevê o futuro — **repete** o passado, e o resultado volta como dado novo.\n\n**VIÉS:** \"Conforme demonstra Cathy O'Neil em *Algoritmos de Destruição em Massa*, um modelo se torna destrutivo quando reúne três traços — opacidade, escala e dano que realimenta os próprios dados.\"\n**PLATAFORMAS:** \"Como observa Cathy O'Neil, a decisão automatizada é editorial mesmo quando se apresenta como cálculo: alguém escolheu o que o sistema deveria otimizar.\"",
+    "id": "redacao-as-16-tensoes-do-eixo-1-21",
+    "frente": "Miyazaki — o \"insulto à própria vida\" (2016)",
+    "verso": "**O que é:** em 2016, para o documentário *Owaranai Hito* (NHK), pesquisadores mostraram a Miyazaki uma figura 3D que aprendera sozinha a se mover; sem saber que corpos têm dor, o programa \"descobriu\" que podia se arrastar usando a cabeça como perna. Ele contou que todo dia encontra um amigo com deficiência para quem até um \"toca aqui\" é difícil, e disse: **\"sinto fortemente que isto é um insulto à própria vida.\"**\n**O mecanismo:** a animação dele nasce da **observação do corpo vivo**. O que o ofendeu foi imitar a aparência da dor **sem saber o que é sofrer**.\n**⚠️ PRECISÃO:** não é veredito sobre IA generativa — em 2016 ela não existia assim. Suzuki disse em 2026 que Miyazaki **nem sabe o que é IA generativa**. Citar com a ressalva mostra domínio.\n**Tensões:** 1 · 2 · 3 · 13 · 14",
     "dica": null
    },
    {
-    "id": "redacao-as-teses-do-eixo-1-e-as-fr-22",
-    "frente": "R8 · Harari, Nexus — frases prontas",
-    "verso": "**O que é:** redes de informação se organizam para produzir **ordem**, não **verdade**, e sobrevivem bem as que conseguem se **autocorrigir** mais rápido do que erram.\n**O mecanismo:** o problema não é o volume de informação. É a ausência de um mecanismo de correção mais rápido que a propagação.\n\n**DESINFORMAÇÃO:** \"Para Yuval Noah Harari, em *Nexus*, uma rede de informação se organiza para produzir ordem, e não verdade — de modo que sobrevive bem apenas a que corrige mais rápido do que erra.\"\n**DEMOCRACIA:** \"Como adverte Harari, o risco das redes contemporâneas não está na quantidade de informação que circula, mas na lentidão da correção diante da velocidade da propagação.\"",
+    "id": "redacao-as-16-tensoes-do-eixo-1-22",
+    "frente": "Toshio Suzuki e a onda \"estilo Ghibli\" (2026)",
+    "verso": "**O que é:** produtor e cofundador do Ghibli. Em março de 2025 um gerador popularizou converter fotos em \"estilo Ghibli\". Ele recusou entrevistas e só falou em **6/09/2026**, ao *Asahi Shimbun*: não comentou porque sabia que as pessoas se cansariam — e se cansaram.\n**O mecanismo:** a máquina aprende **com o que já existe**; Miyazaki criava **se afastando** do que já existe. **Estilo não é obra**, e a diferença entre os dois é o argumento.\n**Frase pronta:** \"O produtor Toshio Suzuki explicou ao *Asahi Shimbun*, em setembro de 2026, por que a IA não imita uma obra do Ghibli: Hayao Miyazaki trabalha isolando-se da informação externa, e é isso que a máquina, treinada no já existente, não alcança.\"\n**Tensões:** 1 · 2 · 3 · 13 · 14",
     "dica": null
    },
    {
-    "id": "redacao-as-teses-do-eixo-1-e-as-fr-23",
-    "frente": "R9 · Pedro Américo, Independência ou Morte (1888) — frases prontas",
-    "verso": "**O que é:** pintado em **Florença, 1886–1888**, **66 anos** depois do 7 de setembro, com **referência formal** (não cópia) a *1807, Friedland*, de **Meissonier** — cena napoleônica. A comitiva real era **menor** e subiu a Serra do Mar em **mulas**.\n**O mecanismo:** a fonte não **registra** o fato: **constrói a versão** dele — e a versão encomendada vira memória oficial.\n\n**MÍDIA E DESINFORMAÇÃO:** \"Pintado em Florença entre 1886 e 1888, sessenta e seis anos depois do evento, o quadro *Independência ou Morte*, de Pedro Américo, mostra D. Pedro I e uma comitiva numerosa em cavalos garbosos — quando a comitiva real era menor e subiu a Serra do Mar em mulas.\"\n**IA E IMAGEM:** \"A tela de Pedro Américo não documenta a Independência: constrói a versão dela no molde da epopeia europeia — e a disputa de hoje não é mais sobre quem pinta o quadro, mas sobre quem treina o modelo que o substitui.\"",
+    "id": "redacao-as-16-tensoes-do-eixo-1-23",
+    "frente": "Kate Crawford — o custo material da IA (Atlas of AI, 2021)",
+    "verso": "**O que é:** pesquisadora australiana. Ficou conhecida por um mapa feito com **Vladan Joler** desenhando tudo o que é necessário para **uma única pergunta** a um assistente de voz funcionar — da mina de lítio ao trabalhador que rotula dados.\n**O mecanismo:** \"nuvem\" esconde que a IA é **feita de matéria e de gente**: minerais, energia crescente, água para resfriar data centers, milhares de trabalhadores mal pagos rotulando imagens. Daí a frase: a IA **\"não é nem artificial nem inteligente\"**.\n**Não é** argumento contra usar IA — é contra achar que ela é imaterial e gratuita.\n**Frase pronta:** \"Discutir a inteligência artificial sem discutir sua cadeia produtiva é repetir, com outra ferramenta, o velho erro de esconder o custo de um produto atrás da embalagem.\"\n**Tensões:** 6 · 15 · 16",
     "dica": null
    },
    {
-    "id": "redacao-as-teses-do-eixo-1-e-as-fr-24",
-    "frente": "R10 · Maryanne Wolf — frases prontas",
-    "verso": "**O que é:** o cérebro **não nasce** com circuito de leitura: ele o **constrói**, e constrói diferente conforme o suporte. A tela favorece a **varredura**; a **leitura profunda**, que sustenta inferência e empatia, exige treino e tempo.\n**O mecanismo:** ler não é instinto. Dar o aparelho não produz o leitor — só a escola produz deliberadamente a leitura profunda.\n\n**EDUCACIONAL:** \"Conforme Maryanne Wolf, o cérebro não nasce com um circuito de leitura: ele o constrói, e o constrói diferente dependendo do suporte — de modo que a leitura profunda, sem ensino deliberado, não se forma.\"\n**ATENÇÃO:** \"Como observa Maryanne Wolf, a leitura em tela treina a varredura, excelente para localizar e insuficiente para argumentar.\"",
+    "id": "redacao-as-16-tensoes-do-eixo-1-24",
+    "frente": "Byung-Chul Han — \"O tédio profundo\" e Vita Contemplativa",
+    "verso": "**⚠️ É FILÓSOFO, não sociólogo.** Sul-coreano radicado na Alemanha.\n**O que é:** no **capítulo 3** de *Sociedade do Cansaço*, \"O tédio profundo\", sustenta que a **hiperatenção** substituiu a **atenção contemplativa**. Ao recorrer a **Walter Benjamin**, compara o tédio profundo a um **pássaro onírico que choca o ovo da experiência**, e nota que **o ninho dele está desaparecendo**. Em ***Vita Contemplativa: Em louvor à inatividade*** (2022), opõe a vida contemplativa à vida ativa.\n**O mecanismo:** o intervalo sem finalidade imediata é **condição** da criação, não desperdício.\n**A nuance que protege o argumento:** **inatividade não é tempo livre nem descanso** — é trabalho de outra natureza.\n**Também dele:** a passagem do sujeito **obediente** ao sujeito **de desempenho**.\n**Tensões:** 2 · 12 · 15",
     "dica": null
    },
    {
-    "id": "redacao-as-teses-do-eixo-1-e-as-fr-25",
-    "frente": "R11 · Byung-Chul Han — frases prontas",
-    "verso": "**O que é:** em *Sociedade do Cansaço*, a passagem do sujeito **obediente** ao sujeito **de desempenho**: ninguém precisa vigiá-lo, porque ele mesmo cobra o próprio rendimento. A exploração se **interioriza**.\n**O mecanismo:** a ordem externa vira meta interna, o limite desaparece, o cansaço se individualiza e quem adoece se culpa.\n\n**SAÚDE MENTAL:** \"Para Byung-Chul Han, em *Sociedade do Cansaço*, o sujeito de desempenho dispensa o vigilante porque cobra de si mesmo o próprio rendimento — e assim o esgotamento deixa de parecer injustiça e passa a parecer incompetência.\"\n**REDES E ATENÇÃO:** \"Como analisa Han, a economia da atenção não precisa nos obrigar a nada: basta que a cobrança venha de dentro, e o tempo se entrega sozinho.\"",
+    "id": "redacao-as-16-tensoes-do-eixo-1-25",
+    "frente": "Herbert Simon — a economia da atenção (1971)",
+    "verso": "**O que é:** economista e cientista cognitivo, Nobel de Economia. Em **1971** formulou que **uma riqueza de informação produz necessariamente uma pobreza de atenção**.\n**O mecanismo:** a informação se multiplica; **a atenção não**. Quando a oferta de conteúdo cresce, o recurso escasso deixa de ser a informação e passa a ser a atenção — e é por ela que se compete.\n**Frase pronta:** \"Como formulou o economista Herbert Simon em 1971, uma riqueza de informação gera uma pobreza de atenção, porque a atenção é o único recurso que não se multiplica.\"\n**O paradoxo que ele entrega:** cada peça adicional disputa a mesma atenção finita, logo **o volume reduz o retorno de cada uma**.\n**Tensões:** 2 · 7 · 12 · 15",
     "dica": null
    },
    {
-    "id": "redacao-as-teses-do-eixo-1-e-as-fr-26",
-    "frente": "R12 · Taylor e Tempos Modernos (1936) — frases prontas",
-    "verso": "**O que é:** o **taylorismo** decompôs o trabalho em gestos cronometrados; **Chaplin** filmou em ***Tempos Modernos***, 1936, o corpo do operário engolido pela engrenagem.\n**O mecanismo:** medir o gesto fragmenta a tarefa, o trabalhador perde a visão do todo, e a decisão sobe para quem tem o cronômetro. Hoje o cronômetro é o **aplicativo**: distribui, precifica e avalia **sem explicar**.\n\n**PLATAFORMA:** \"Em *Tempos Modernos*, de 1936, Chaplin filmou o corpo do operário engolido pela engrenagem do cronômetro — e o cronômetro de Taylor, hoje, virou interface: a gestão algorítmica mede, distribui e pune sem precisar de supervisor no corredor.\"\n**MÉTRICA:** \"Como mostrou Chaplin em *Tempos Modernos*, o que se mede molda quem é medido: ao cronometrar o gesto, o taylorismo não apenas acelerou a produção, mas redesenhou o trabalhador.\"",
+    "id": "redacao-as-16-tensoes-do-eixo-1-26",
+    "frente": "Shoshana Zuboff — o capitalismo de vigilância (2019)",
+    "verso": "**O que é:** professora emérita de Harvard. Descreve um modelo em que a matéria-prima é a **experiência humana**, convertida em dado comportamental para **prever e influenciar** ação futura.\n**O mecanismo:** o serviço é gratuito porque o produto **não é o serviço**: é a **previsão** do seu comportamento, vendida a quem quer influenciá-lo. A conveniência é uma **troca** — e o problema é não ser apresentada como troca.\n**Frase pronta:** \"Conforme analisa Shoshana Zuboff, o capitalismo de vigilância tem como matéria-prima a experiência humana convertida em dado — de modo que o serviço gratuito se paga com a previsão do próprio comportamento de quem o usa.\"\n**Tensões:** 8 · 9 · 16",
+    "dica": null
+   },
+   {
+    "id": "redacao-as-16-tensoes-do-eixo-1-27",
+    "frente": "Eli Pariser — a bolha dos filtros (2011)",
+    "verso": "**O que é:** cunhou **filter bubble** para o efeito de sistemas de recomendação que mostram a cada pessoa o que ela provavelmente já concorda ou já gosta.\n**O mecanismo:** a métrica otimizada é **semelhança**, não descoberta. Como o sistema acerta cada vez melhor o que você já consumiria, **apresenta cada vez menos** o que você ainda não conhece.\n**Frase pronta (personalização):** \"Como advertiu Eli Pariser ao cunhar a expressão 'bolha dos filtros', um sistema de recomendação otimiza semelhança e não descoberta — então, quanto melhor ele acerta o gosto do usuário, menos ele lhe apresenta.\"\n**Frase pronta (criação):** \"O repertório que alimenta a invenção é justamente o que o algoritmo aprende a não mostrar.\"\n**Tensões:** 4 · 7 · 13",
+    "dica": null
+   },
+   {
+    "id": "redacao-as-16-tensoes-do-eixo-1-28",
+    "frente": "MIT na Science (2018) + o deepfake de Zelensky (2022)",
+    "verso": "**MIT / *Science*, 2018:** analisou a difusão de notícias verdadeiras e falsas e concluiu que **a falsidade viaja mais longe, mais rápido e alcança mais gente**. *O mecanismo:* a falsidade é mais **nova** e provoca mais **surpresa e indignação** — e a arquitetura premia isso. **Não precisa supor conspiração: o incentivo basta.**\n\n**Zelensky, 2022:** circulou vídeo falsificado em que ele pedia a rendição das tropas. Era tecnicamente imperfeito e foi desmentido em horas. *O mecanismo:* **o dano não dependeu de convencer — bastou instalar a dúvida.** E, uma vez que qualquer vídeo pode ser falso, o ônus se inverte: passa a ser preciso provar que o verdadeiro é verdadeiro.\n**A consequência:** o valor migra da imagem para a **procedência**.\n**Tensões:** 10 · 11 · 9",
+    "dica": null
+   },
+   {
+    "id": "redacao-as-16-tensoes-do-eixo-1-29",
+    "frente": "Arendt e Postman — os dois avisos sobre mídia",
+    "verso": "**Hannah Arendt:** o efeito mais grave da mentira política organizada **não é fazer acreditar em algo falso, mas destruir a capacidade de julgar**. A meta não é a crença, é o **cinismo** — quem acha que tudo é mentira já parou de verificar.\n\n**Neil Postman, *Divertindo-se até Morrer* (1985):** **Orwell** temia que proibissem os livros; **Huxley** temia que ninguém mais quisesse lê-los. *O mecanismo:* o controle pela **privação** é visível e gera resistência; o controle pela **abundância de entretenimento** não gera resistência porque é agradável — e por isso é mais eficaz.\n**Tensões:** 10 · 11 · 12 · 16",
+    "dica": null
+   },
+   {
+    "id": "redacao-as-16-tensoes-do-eixo-1-30",
+    "frente": "Marco Civil + Debord + Veblen + Bourdieu",
+    "verso": "**Marco Civil (2014) e o STF (2025):** a moldura foi escrita para quem **hospeda**; o modelo de negócio remunera quem **distribui e escolhe** o que cada um vê. *\"O que trava investimento não é a norma, e sim a incerteza sobre ela.\"* → tensões 4 · 8 · 9 · 16\n\n**Guy Debord (1967)** — **recuperação**: o sistema **absorve a crítica** que lhe é feita e a devolve como mercadoria. *\"Quando a crítica vira estética, deixa de custar algo a quem a enuncia.\"* → 7 · 14 · 15 · 16\n\n**Veblen (1899)** — **consumo conspícuo**: parte do consumo não serve à função, mas à **exibição de posição**; o desperdício visível é o que comunica status. → 6 · 14 · 15\n\n**Bourdieu (1979)** — **capital cultural**: o gosto não é natural, é adquirido na família e na escola, e classifica com a eficiência da renda. → 5 · 7 · 13 · 15",
+    "dica": null
+   },
+   {
+    "id": "redacao-as-16-tensoes-do-eixo-1-31",
+    "frente": "Ken Robinson (2006) + TIC Domicílios 2025: o dado de USO",
+    "verso": "**Ken Robinson:** os sistemas escolares foram desenhados para a **era industrial** e treinam a reprodução de respostas em vez da capacidade de criar; o erro, condição de qualquer invenção, é punido. *O mecanismo:* a escola premia **convergência**, criar exige **divergência**.\n\n**TIC Domicílios 2025** — percentuais sobre **usuários de internet**, por classe:\n· mensagens instantâneas **A 99% · DE 84%**\n· redes sociais **A 95% · DE 73%**\n· **estudou por conta própria A 73% · DE 24%**\n· **atividades de trabalho A 79% · DE 19%**\n· **cursos a distância A 40% · DE 7%**\n\n**A síntese:** *no uso de consumo o fosso quase desapareceu; no uso produtivo ele chega a seis vezes.* É mais forte que o dado de posse de computador, porque responde à objeção óbvia: as maneiras de aprender pelo celular **existem** — e são usadas cinco vezes menos.\n**Tensões:** 1 · 2 · 5 · 12 · 15",
     "dica": null
    }
   ]

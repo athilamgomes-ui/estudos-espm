@@ -297,15 +297,15 @@
   "arquivo": "dossies/redacao-01-tudo.pdf"
  },
  {
-  "slug": "redacao-03-teses-eixo-1",
-  "titulo": "As teses do Eixo 1 — IA, tecnologia, mídia e comunicação",
-  "subtitulo": "Dez teses causais e doze repertórios escritos por extenso · porque o tema que cair pode ser um que ninguém previu, mas a tese serve a vários",
+  "slug": "redacao-04-eixo-1-tensoes",
+  "titulo": "Eixo 1 — IA, tecnologia, mídia e comunicação",
+  "subtitulo": "Dezesseis tensões em quatro assuntos · a tese é uma posição sobre um dilema, não uma denúncia · com os repertórios escritos por extenso e a frase pronta por ângulo",
   "tipo": "redacao",
-  "selo": "Redação · teses e repertórios",
-  "serve": "Redação (40 pts) · o maior eixo da prova — 11 dos 30 temas já aplicados",
-  "minutos": 180,
+  "selo": "Redação · as tensões do Eixo 1",
+  "serve": "Redação (40 pts) · o maior eixo — 11 dos 30 temas já aplicados",
+  "minutos": 200,
   "fechado_em": "escrito em 24 de novembro de 2026",
-  "arquivo": "dossies/redacao-03-teses-eixo-1.pdf"
+  "arquivo": "dossies/redacao-04-eixo-1-tensoes.pdf"
  },
  {
   "slug": "repertorio-competencias-futuro",
