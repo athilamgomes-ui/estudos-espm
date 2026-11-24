@@ -297,6 +297,17 @@
   "arquivo": "dossies/redacao-01-tudo.pdf"
  },
  {
+  "slug": "redacao-03-teses-eixo-1",
+  "titulo": "As teses do Eixo 1 — IA, tecnologia, mídia e comunicação",
+  "subtitulo": "Dez teses causais e doze repertórios escritos por extenso · porque o tema que cair pode ser um que ninguém previu, mas a tese serve a vários",
+  "tipo": "redacao",
+  "selo": "Redação · teses e repertórios",
+  "serve": "Redação (40 pts) · o maior eixo da prova — 11 dos 30 temas já aplicados",
+  "minutos": 180,
+  "fechado_em": "escrito em 24 de novembro de 2026",
+  "arquivo": "dossies/redacao-03-teses-eixo-1.pdf"
+ },
+ {
   "slug": "repertorio-competencias-futuro",
   "titulo": "Competências para o trabalho com IA",
   "subtitulo": "Soft skills (Lucedile Antunes, org.) e O profissional do futuro (Michelle Schneider) — o que são, por que valem agora e as críticas",
