@@ -176,6 +176,17 @@
   "arquivo": "dossies/conteudo-15-matematica-2.pdf"
  },
  {
+  "slug": "conteudo-16-arvore-de-formulas",
+  "titulo": "A árvore de decisão das fórmulas",
+  "subtitulo": "Do enunciado para a fórmula — o gargalo não é lembrar, é escolher. 282 questões da ESPM classificadas, organizadas por gatilho de enunciado",
+  "tipo": "conteudo",
+  "selo": "Matemática · o seletor",
+  "serve": "Matemática (20 pts · 300 questões em 15 provas)",
+  "minutos": 110,
+  "fechado_em": "escrito em 24 de novembro de 2026",
+  "arquivo": "dossies/conteudo-16-arvore-de-formulas.pdf"
+ },
+ {
   "slug": "entrevista-01-inovacao-criatividade",
   "titulo": "A entrevista da ESPM — inovação e criatividade",
   "subtitulo": "Entrevista 01 · as 5 questões do ANEXO I, a cadeia de raciocínio e os exercícios",

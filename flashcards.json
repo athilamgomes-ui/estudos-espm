@@ -2178,6 +2178,194 @@
   ]
  },
  {
+  "id": "matematica-do-enunciado-para-a-for",
+  "nome": "Matemática — do ENUNCIADO para a fórmula (o seletor)",
+  "materia": "matematica",
+  "nota": "Do dossiê 16 · o gatilho de cada assunto e as 6 armadilhas de SELEÇÃO — treina o passo que trava, não a conta",
+  "cartas": [
+   {
+    "id": "matematica-do-enunciado-para-a-for-01",
+    "frente": "A triagem de 20 segundos — as 3 perguntas",
+    "verso": "**1. O que ele pede de volta?** uma medida · de quantos jeitos · uma chance · o valor de x · um termo distante · uma conclusão → isso define o **ramo**\n**2. Qual palavra é o gatilho?** circule-a → define o **assunto**\n**3. A ordem importa? tem reposição? é \"pelo menos\"?** → define **qual** fórmula\n\nSó depois escreva a 1ª linha de conta. Se não fechar em 20s, vai para a **2ª passada**.",
+    "dica": null
+   },
+   {
+    "id": "matematica-do-enunciado-para-a-for-02",
+    "frente": "Gatilho: \"área da região SOMBREADA\"",
+    "verso": "**Pare de procurar fórmula — não existe a fórmula da região sombreada.**\n\nÉ sempre **figura maior menos figura menor**. O trabalho é só reconhecer as duas.\n\nEx.: quadrado de lado *a* com círculo inscrito → **a² − πr²**, com r = a/2.",
+    "dica": null
+   },
+   {
+    "id": "matematica-do-enunciado-para-a-for-03",
+    "frente": "Gatilho: a ordem importa? (contagem)",
+    "verso": "**O teste de 5 segundos:** troque dois elementos de lugar. Mudou o resultado?\n\n**Mudou → a ordem importa:** permutação **n!** (usa todos) ou arranjo **n!/(n−p)!** (usa p de n)\n**Não mudou → combinação:** **n!/(p!(n−p)!)**\n\n*Comissão de 3:* trocar João e Maria dá a mesma comissão → **combinação**\n*Pódio de 3:* trocar muda quem é 1º → **arranjo**",
+    "dica": null
+   },
+   {
+    "id": "matematica-do-enunciado-para-a-for-04",
+    "frente": "Gatilho: \"PELO MENOS um\"",
+    "verso": "**Escreva `1 −` antes de pensar em qualquer outra coisa.**\n\n**P(pelo menos um) = 1 − P(nenhum)**\n\nCaso por caso dá 3 ou 4 contas; o complementar dá **uma**. É a armadilha preferida da ESPM em probabilidade.",
+    "dica": null
+   },
+   {
+    "id": "matematica-do-enunciado-para-a-for-05",
+    "frente": "Gatilho: MMC ou MDC?",
+    "verso": "**A regra de uma linha: juntar no futuro → MMC. Repartir agora → MDC.**\n\n**MMC:** \"ao mesmo tempo\" · \"voltam a se encontrar\" · \"o menor número que\" · ônibus/sinais/lâmpadas que coincidem\n**MDC:** \"o maior pedaço possível\" · \"dividir igualmente sem sobrar\" · cortar fitas/barras em partes iguais\n\nA conta é fácil; **escolher** entre os dois é o que erra.",
+    "dica": null
+   },
+   {
+    "id": "matematica-do-enunciado-para-a-for-06",
+    "frente": "Gatilho: dois percentuais seguidos",
+    "verso": "**MULTIPLIQUE os fatores. NUNCA some os percentuais.**\n\nAumento de p% → **×(1 + p/100)** · desconto → **×(1 − p/100)**\n\n⚠️ +10% e depois +10% **não** é 20%, é **21%** (1,10 × 1,10 = 1,21)\n⚠️ +20% e depois −20% **não** volta ao original: **0,96** — perda de 4%\n\nEla cobra isso quase todo ano.",
+    "dica": null
+   },
+   {
+    "id": "matematica-do-enunciado-para-a-for-07",
+    "frente": "Gatilho: figuras semelhantes / em escala",
+    "verso": "**Lados na razão k → ÁREAS na razão k² → VOLUMES na razão k³.**\n\nÉ a armadilha nº 1 de geometria: usar *k* onde o certo é *k²*.\n\nEx.: triângulos semelhantes de razão 3 → a razão entre as áreas é **9**.",
+    "dica": null
+   },
+   {
+    "id": "matematica-do-enunciado-para-a-for-08",
+    "frente": "Gatilho: a incógnita está no EXPOENTE",
+    "verso": "**Tente igualar as bases PRIMEIRO** — é mais rápido e dispensa log.\n\n2ˣ = 32 → 2ˣ = 2⁵ → **x = 5**\n\nSó use logaritmo quando as bases não se igualam.\n\n**Definição:** log_a x = y ⟺ **aʸ = x**",
+    "dica": null
+   },
+   {
+    "id": "matematica-do-enunciado-para-a-for-09",
+    "frente": "Gatilho: \"valor máximo\" ou \"valor mínimo\"",
+    "verso": "**É função quadrática → vértice.**\n\n**x_v = −b/2a** · **y_v = −Δ/4a**\n\n**A concavidade:** *a* > 0 abre para **cima** → tem **mínimo**. *a* < 0 abre para **baixo** → tem **máximo**.\n\n⚠️ Se a questão pede máximo e *a* é positivo, você leu algo errado.",
+    "dica": null
+   },
+   {
+    "id": "matematica-do-enunciado-para-a-for-10",
+    "frente": "Gatilho: \"soma\" ou \"produto\" das raízes",
+    "verso": "**Não resolva a equação.**\n\n**2º grau** (ax²+bx+c): soma = **−b/a** · produto = **c/a**\n**3º grau** (ax³+bx²+cx+d) — relações de **GIRARD**: soma = **−b/a** · soma 2 a 2 = **c/a** · produto = **−d/a**\n\n**Girard** era o nome que faltava: Albert Girard, flamengo, séc. XVII. A ESPM pede exatamente soma ou produto — e aí a resolução inteira é desperdício.",
+    "dica": null
+   },
+   {
+    "id": "matematica-do-enunciado-para-a-for-11",
+    "frente": "Gatilho: \"quantas raízes reais\"",
+    "verso": "**Só o discriminante, não resolva nada.**\n\n**Δ = b² − 4ac**\n\n**Δ > 0** → duas raízes reais distintas\n**Δ = 0** → uma raiz (dupla)\n**Δ < 0** → nenhuma raiz real",
+    "dica": null
+   },
+   {
+    "id": "matematica-do-enunciado-para-a-for-12",
+    "frente": "Gatilho: \"quanto mais… menos…\"",
+    "verso": "**Regra de três INVERSA — inverta uma das colunas.**\n\n\"quanto mais… **mais**…\" → **direta**\n\"quanto mais… **menos**…\" → **inversa**\n\nTípicos de inversa: velocidade × tempo · nº de operários × dias · nº de torneiras × tempo de enchimento.",
+    "dica": null
+   },
+   {
+    "id": "matematica-do-enunciado-para-a-for-13",
+    "frente": "Gatilho: \"capitalizado\", \"ao mês durante n meses\"",
+    "verso": "**Juros COMPOSTOS: M = C·(1 + i)ᵗ**\n\nJuros **simples**: **J = C · i · t** (e M = C + J)\n\nA palavra **capitalizado** é o gatilho de composto. Sem ela, e com \"juros simples\" explícito, é simples.",
+    "dica": null
+   },
+   {
+    "id": "matematica-do-enunciado-para-a-for-14",
+    "frente": "Lógica — as negações (21 questões, 7% da prova)",
+    "verso": "**\"TODO A é B\"** → negação: **\"existe A que NÃO é B\"** (algum não). ⚠️ Nunca \"nenhum\".\n**\"ALGUM A é B\"** → negação: **\"nenhum A é B\"**\n**\"NENHUM A é B\"** → negação: **\"algum A é B\"**\n\n**Contrapositiva:** A → B equivale a **¬B → ¬A**. A recíproca (B → A) **não** equivale.",
+    "dica": null
+   },
+   {
+    "id": "matematica-do-enunciado-para-a-for-15",
+    "frente": "Lógica — a regra de ouro",
+    "verso": "**DESENHE A TABELA.**\n\nÉ a 2ª maior frente da prova (21 questões) e **não tem fórmula nenhuma** — por isso parece difícil: você procura uma fórmula que não existe.\n\nTrês ou mais pessoas e uma mente → **tabela de casos**: suponha cada um dizendo a verdade e veja qual hipótese não gera contradição.\nQuem mora onde / quem bebe o quê → **tabela cruzada** com ✗ no que o enunciado elimina.\n\nQuem resolve de cabeça erra. Custa 1 min e economiza 4.",
+    "dica": null
+   },
+   {
+    "id": "matematica-do-enunciado-para-a-for-16",
+    "frente": "PA ou PG? E as fórmulas",
+    "verso": "**Soma/subtrai sempre o mesmo → PA. Multiplica/divide sempre pelo mesmo → PG.**\n\n**PA:** aₙ = **a₁ + (n−1)·r** · Sₙ = **(a₁ + aₙ)·n / 2**\n**PG:** aₙ = **a₁ · q^(n−1)** · Sₙ = **a₁(qⁿ − 1)/(q − 1)**\n**PG infinita** com |q| < 1: **S = a₁/(1 − q)**\n\n**O atalho que ela cobra:** em PA o **termo do meio é a média dos vizinhos**. E \"quantos termos tem\" sai isolando o **n**.",
+    "dica": null
+   },
+   {
+    "id": "matematica-do-enunciado-para-a-for-17",
+    "frente": "Nem PA nem PG — sequência de padrão",
+    "verso": "Escreva os termos e olhe **as diferenças entre as diferenças**.\n\nSe a 1ª diferença é constante → PA. Se a **2ª** diferença é constante → o termo geral é **quadrático**.\n\nEm sequência de figuras: conte **o que muda** de uma para a outra — quantidade, posição, rotação.",
+    "dica": null
+   },
+   {
+    "id": "matematica-do-enunciado-para-a-for-18",
+    "frente": "Áreas planas — a tabela inteira",
+    "verso": "**Triângulo** b·h/2 · **equilátero de lado a** a²√3/4 (altura a√3/2)\n**Quadrado** a² (diagonal a√2) · **Retângulo** a·b (diagonal √(a²+b²))\n**Losango** D·d/2 · **Trapézio** (B+b)·h/2 · **Paralelogramo** b·h\n**Círculo** πr² (comprimento 2πr)\n**Setor de θ°** πr²·θ/360 (arco 2πr·θ/360)\n**Coroa** π(R² − r²)",
+    "dica": null
+   },
+   {
+    "id": "matematica-do-enunciado-para-a-for-19",
+    "frente": "Polígono regular de n lados",
+    "verso": "**Soma dos ângulos internos: (n − 2)·180**\n**Cada ângulo interno: (n − 2)·180/n**\n**Ângulo externo: 360/n**\n**Número de diagonais: n(n − 3)/2**\n\nEx.: 12 lados → soma 1800° · interno 150° · externo 30° · diagonais **54**.",
+    "dica": null
+   },
+   {
+    "id": "matematica-do-enunciado-para-a-for-20",
+    "frente": "Geometria analítica — a tabela inteira",
+    "verso": "**Distância** √((x₂−x₁)² + (y₂−y₁)²) · **Ponto médio** ((x₁+x₂)/2, (y₁+y₂)/2)\n**Reta** y − y₀ = m(x − x₀), com m = (y₂−y₁)/(x₂−x₁)\n**Paralelas** m₁ = m₂ · **Perpendiculares** m₁·m₂ = **−1**\n**Ponto à reta** |ax₀+by₀+c| / √(a²+b²)\n**Circunferência** (x−a)² + (y−b)² = r²\n**Área com 3 pontos** |determinante| / 2",
+    "dica": null
+   },
+   {
+    "id": "matematica-do-enunciado-para-a-for-21",
+    "frente": "Sólidos — volumes e o gatilho do litro",
+    "verso": "**Cubo** a³ · **Paralelepípedo** a·b·c · **Prisma** A_base·h\n**Cilindro** πr²h (lateral 2πrh, total 2πr(r+h))\n**Cone** πr²h/3 (geratriz g = √(r²+h²), lateral πrg)\n**Pirâmide** A_base·h/3 · **Esfera** 4πr³/3 (área 4πr²)\n\n**Gatilho:** \"litros\", \"capacidade\", \"cabe quanto\" → é **volume**, e **1 L = 1 dm³ = 1.000 cm³**. Ela troca a unidade no meio do enunciado.",
+    "dica": null
+   },
+   {
+    "id": "matematica-do-enunciado-para-a-for-22",
+    "frente": "Probabilidade — \"e\", \"ou\", condicional, reposição",
+    "verso": "**simples** = favoráveis/total\n**\"A E B\"** → **multiplica**: P(A)·P(B)\n**\"A OU B\"** → **soma e desconta**: P(A) + P(B) − P(A∩B)\n**\"sabendo que\", \"dado que\"** → condicional **P(A|B) = P(A∩B)/P(B)**\n**SEM reposição** → o denominador **diminui** a cada retirada\n**COM reposição** → o denominador **não muda**",
+    "dica": null
+   },
+   {
+    "id": "matematica-do-enunciado-para-a-for-23",
+    "frente": "Contagem — os casos especiais",
+    "verso": "**Com repetição** (senha, placa, dado): **n^p**\n**Em círculo / roda / mesa redonda:** **(n − 1)!**\n**Com elementos repetidos** (ARARA, BANANA): **n!/(a!·b!·…)**\n\nBANANA = 6 letras, 3 A e 2 N → **6!/(3!·2!) = 60**",
+    "dica": null
+   },
+   {
+    "id": "matematica-do-enunciado-para-a-for-24",
+    "frente": "Estatística — média, mediana, moda",
+    "verso": "**Média** = soma/n · **Média ponderada** = Σ(xᵢ·wᵢ)/Σwᵢ\n**Mediana** = **ordene primeiro** e pegue o termo do meio (se n é par, média dos dois centrais)\n**Moda** = o mais frequente\n\n⚠️ O erro clássico: calcular mediana **sem ordenar**.",
+    "dica": null
+   },
+   {
+    "id": "matematica-do-enunciado-para-a-for-25",
+    "frente": "Trigonometria — qual lei usar",
+    "verso": "**sen²x + cos²x = 1** (a relação fundamental)\n\n**Triângulo retângulo** → sen/cos/tg ou Pitágoras\n**Triângulo NÃO retângulo:**\n· tem 2 lados e o ângulo **entre** eles, ou os 3 lados → **lei dos cossenos** a² = b² + c² − 2bc·cos A\n· tem lado e ângulos opostos → **lei dos senos** a/sen A = b/sen B",
+    "dica": null
+   },
+   {
+    "id": "matematica-do-enunciado-para-a-for-26",
+    "frente": "Potenciação e produtos notáveis",
+    "verso": "**aᵐ·aⁿ = a^(m+n)** · **aᵐ/aⁿ = a^(m−n)** · **(aᵐ)ⁿ = a^(mn)** · **a⁻ⁿ = 1/aⁿ** · **a^(1/n) = ⁿ√a** · **a⁰ = 1**\n\n**(a+b)² = a² + 2ab + b²** · **(a−b)² = a² − 2ab + b²** · **(a+b)(a−b) = a² − b²**",
+    "dica": null
+   },
+   {
+    "id": "matematica-do-enunciado-para-a-for-27",
+    "frente": "Sistemas — o atalho da soma e da diferença",
+    "verso": "**\"x e y somam S e diferem em D\"** → não monte sistema:\n**x = (S + D)/2** e **y = (S − D)/2**\n\nDuas grandezas desconhecidas + duas informações → **sistema** (18 questões, 3º maior assunto). Substituição ou adição.\n\nx⁴ e x² sem x³ nem x → **biquadrada**: substitua y = x², resolva, volte.",
+    "dica": null
+   },
+   {
+    "id": "matematica-do-enunciado-para-a-for-28",
+    "frente": "Inequação — a única regra que importa",
+    "verso": "Resolva como se fosse equação, **mas inverta o sinal da desigualdade ao multiplicar ou dividir por número negativo**.\n\n−2x > 6 → x **<** −3 (o sinal virou)\n\nÉ o erro que a ESPM espera.",
+    "dica": null
+   },
+   {
+    "id": "matematica-do-enunciado-para-a-for-29",
+    "frente": "As 6 armadilhas de SELEÇÃO (não de conta)",
+    "verso": "**1.** Semelhança: usar *k* para área → é **k²** (volume **k³**)\n**2.** Percentuais sucessivos: somar → **multiplicar**\n**3.** \"Pelo menos\": caso por caso → **1 − P(nenhum)**\n**4.** MMC × MDC trocados → juntar no futuro/repartir agora\n**5.** Arranjo × combinação no chute → **troque dois de lugar**\n**6.** Juros simples onde é composto → gatilho **\"capitalizado\"**",
+    "dica": null
+   },
+   {
+    "id": "matematica-do-enunciado-para-a-for-30",
+    "frente": "A ordem de ataque em matemática, com corte duro",
+    "verso": "Você fez **12/20 em 1h25**. Cada questão vale **1 ponto** — igual a uma de português. Então matemática **não** merece mais tempo por questão que as outras áreas.\n\n**1ª passada · 15 min** — as que você reconhece o gatilho em 20 segundos\n**2ª passada · 30 min** — assunto reconhecido, conta longa\n**3ª passada · 15 min** — elimine o absurdo e marque\n**CORTE EM 60 MIN — pare.** O que não saiu custa mais caro do que vale.",
+    "dica": null
+   }
+  ]
+ },
+ {
   "id": "matematica-as-formulas-todas-num-l",
   "nome": "Matemática — as fórmulas, todas num lugar",
   "materia": "matematica",
