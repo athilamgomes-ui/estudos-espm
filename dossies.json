@@ -1,69 +1,14 @@
 [
  {
-  "slug": "atualidades-01-eleicoes-2026",
-  "titulo": "Eleições brasileiras de 2026",
-  "subtitulo": "Radar 01 · como funciona o sistema, o que aconteceu no 1º turno e o que explica isso",
-  "tipo": "radar",
-  "selo": "Atualidades 01 · janela dez/2025 – nov/2026",
-  "serve": "Humanidades (política brasileira, instituições) · redação · entrevista",
-  "minutos": 110,
-  "fechado_em": "fechado em 7 de outubro de 2026 · 2º turno em 25/10, ainda não realizado",
-  "arquivo": "dossies/atualidades-01-eleicoes-2026.pdf"
- },
- {
-  "slug": "atualidades-02-stf-instituicoes",
-  "titulo": "STF e as instituições brasileiras",
-  "subtitulo": "Radar 02 · quem decide o quê, por que o Supremo virou protagonista e o que está em disputa",
-  "tipo": "radar",
-  "selo": "Atualidades 02 · janela dez/2025 – nov/2026",
-  "serve": "Humanidades (instituições, política brasileira) · redação · entrevista",
-  "minutos": 110,
-  "fechado_em": "fechado em 7 de outubro de 2026",
-  "arquivo": "dossies/atualidades-02-stf-instituicoes.pdf"
- },
- {
   "slug": "atualidades-04-geopolitica-hoje",
-  "titulo": "Geopolítica e atualidades — de 1823 a hoje",
-  "subtitulo": "Por que quem controla a passagem controla o mundo · de Monroe ao Ártico, encadeado · com o que mudou em 2026 verificado fonte por fonte",
+  "titulo": "Geopolítica e atualidades — o dossiê único",
+  "subtitulo": "Geopolítica e atualidades num arquivo só · de Monroe ao Ártico, encadeado · o padrão de identificação que a ESPM usa · e o que mudou em 2026 verificado fonte por fonte",
   "tipo": "atualidades",
   "selo": "Humanidades · o apêndice do presente",
   "serve": "Geopolítica (83 q · a maior frente) · Atualidades · Redação (eixo de poder e tecnologia)",
-  "minutos": 150,
+  "minutos": 360,
   "fechado_em": "escrito em 24 de novembro de 2026",
   "arquivo": "dossies/atualidades-04-geopolitica-hoje.pdf"
- },
- {
-  "slug": "atualidades-eua-brasil",
-  "titulo": "Os EUA de Trump, o tarifaço e o Brasil em 2026",
-  "subtitulo": "Comércio, soberania e a eleição que acontece dois meses antes da sua prova",
-  "tipo": "atualidade",
-  "selo": "Atualidades · Economia e Brasil",
-  "serve": "prova (Humanidades) · redação · entrevista",
-  "minutos": 75,
-  "fechado_em": "fechado em 9 de setembro de 2026",
-  "arquivo": "dossies/atualidades-eua-brasil.pdf"
- },
- {
-  "slug": "atualidades-oriente-medio",
-  "titulo": "Israel, Gaza e Irã",
-  "subtitulo": "O conflito que mais aparece nas provas da ESPM — explicado do começo",
-  "tipo": "atualidade",
-  "selo": "Atualidades · Geopolítica",
-  "serve": "prova (Humanidades) · redação · entrevista",
-  "minutos": 90,
-  "fechado_em": "fechado em 9 de setembro de 2026",
-  "arquivo": "dossies/atualidades-oriente-medio.pdf"
- },
- {
-  "slug": "atualidades-ucrania",
-  "titulo": "Guerra da Ucrânia",
-  "subtitulo": "Por que a Rússia invadiu, o que mudou no mundo e onde está a negociação",
-  "tipo": "atualidade",
-  "selo": "Atualidades · Geopolítica",
-  "serve": "prova (Humanidades) · redação · entrevista",
-  "minutos": 75,
-  "fechado_em": "fechado em 9 de setembro de 2026",
-  "arquivo": "dossies/atualidades-ucrania.pdf"
  },
  {
   "slug": "conteudo-01-linha-do-tempo",
@@ -88,17 +33,6 @@
   "arquivo": "dossies/conteudo-02-geopolitica.pdf"
  },
  {
-  "slug": "conteudo-03-interpretacao",
-  "titulo": "Interpretação e argumentação",
-  "subtitulo": "Conteúdo 03 · 65 questões em 15 provas — como se lê um enunciado da ESPM",
-  "tipo": "conteudo",
-  "selo": "Conteúdo · é método, não matéria",
-  "serve": "Português (65 q) · Inglês (96 q de compreensão) · Matemática (enunciado) · redação",
-  "minutos": 120,
-  "fechado_em": "escrito em 30 de outubro de 2026",
-  "arquivo": "dossies/conteudo-03-interpretacao.pdf"
- },
- {
   "slug": "conteudo-07-meio-ambiente",
   "titulo": "Meio ambiente, clima e energia",
   "subtitulo": "Conteúdo 07 · 36 questões em 15 provas — do mecanismo do efeito estufa à COP30 em Belém",
@@ -108,17 +42,6 @@
   "minutos": 150,
   "fechado_em": "reescrito em 11 de novembro de 2026",
   "arquivo": "dossies/conteudo-07-meio-ambiente.pdf"
- },
- {
-  "slug": "conteudo-08-portugues-gramatica",
-  "titulo": "Gramática, figuras de linguagem e coesão",
-  "subtitulo": "Conteúdo 08 · 92 questões em 15 provas — o que a ESPM realmente cobra de gramática",
-  "tipo": "conteudo",
-  "selo": "Conteúdo · substitui as videoaulas de gramática",
-  "serve": "Português (92 q) · redação (correção) · Interpretação",
-  "minutos": 150,
-  "fechado_em": "escrito em 31 de outubro de 2026",
-  "arquivo": "dossies/conteudo-08-portugues-gramatica.pdf"
  },
  {
   "slug": "conteudo-10-geografia-populacao-economia",
@@ -132,28 +55,6 @@
   "arquivo": "dossies/conteudo-10-geografia-populacao-economia.pdf"
  },
  {
-  "slug": "conteudo-11-matematica-geometria",
-  "titulo": "Geometria — plana, analítica e espacial",
-  "subtitulo": "Conteúdo 11 · 60 questões em 15 provas — a teoria no lugar de 18 horas de videoaula",
-  "tipo": "conteudo",
-  "selo": "Conteúdo · leia e vá direto para as questões",
-  "serve": "Matemática (60 q) · é o maior assunto isolado da prova de exatas",
-  "minutos": 110,
-  "fechado_em": "escrito em 31 de outubro de 2026",
-  "arquivo": "dossies/conteudo-11-matematica-geometria.pdf"
- },
- {
-  "slug": "conteudo-12-matematica-funcoes-dados",
-  "titulo": "Funções, contagem, probabilidade e dados",
-  "subtitulo": "Conteúdo 12 · 104 questões em 15 provas — a teoria no lugar das videoaulas que não cabem",
-  "tipo": "conteudo",
-  "selo": "Conteúdo · leia e vá direto para as questões",
-  "serve": "Matemática (104 q) · leitura de gráfico · raciocínio de negócio",
-  "minutos": 120,
-  "fechado_em": "escrito em 31 de outubro de 2026",
-  "arquivo": "dossies/conteudo-12-matematica-funcoes-dados.pdf"
- },
- {
   "slug": "conteudo-13-o-que-falta",
   "titulo": "O que falta — as últimas 12 questões",
   "subtitulo": "Conteúdo 13 · geografia econômica, inglês, variação linguística e o resto da matemática",
@@ -165,37 +66,26 @@
   "arquivo": "dossies/conteudo-13-o-que-falta.pdf"
  },
  {
-  "slug": "conteudo-14-matematica-1",
-  "titulo": "Matemática 1 — aritmética aplicada e álgebra",
-  "subtitulo": "Frente de 09/11 · 82 questões em 15 provas · a metade da prova que é só raciocínio proporcional",
+  "slug": "conteudo-20-matematica",
+  "titulo": "Matemática — o dossiê único",
+  "subtitulo": "20 pontos · do enunciado para a fórmula, as 300 questões por peso real, lógica sem fórmula, e a ordem de ataque com corte duro",
   "tipo": "conteudo",
-  "selo": "Frente do dia · leia, feche e vá para as listas",
-  "serve": "Matemática (82 q) · é a base de que as outras três frentes dependem",
-  "minutos": 75,
-  "fechado_em": "escrito em 8 de novembro de 2026",
-  "arquivo": "dossies/conteudo-14-matematica-1.pdf"
- },
- {
-  "slug": "conteudo-15-matematica-2",
-  "titulo": "Matemática 2 — lógica, sistemas, progressões e sequências",
-  "subtitulo": "66 das 300 questões do banco · o mapa de posições da prova e a ordem de ataque que devolve tempo",
-  "tipo": "conteudo",
-  "selo": "Matemática · 22% do banco · o dia 16/11",
-  "serve": "Matemática (20 pts) · e o relógio da prova inteira",
-  "minutos": 75,
-  "fechado_em": "escrito em 16 de novembro de 2026, sobre as 66 questões reais destes quatro assuntos",
-  "arquivo": "dossies/conteudo-15-matematica-2.pdf"
- },
- {
-  "slug": "conteudo-16-arvore-de-formulas",
-  "titulo": "A árvore de decisão das fórmulas",
-  "subtitulo": "Do enunciado para a fórmula — o gargalo não é lembrar, é escolher. 282 questões da ESPM classificadas, organizadas por gatilho de enunciado",
-  "tipo": "conteudo",
-  "selo": "Matemática · o seletor",
+  "selo": "Matemática · tudo num arquivo só",
   "serve": "Matemática (20 pts · 300 questões em 15 provas)",
-  "minutos": 110,
-  "fechado_em": "escrito em 24 de novembro de 2026",
-  "arquivo": "dossies/conteudo-16-arvore-de-formulas.pdf"
+  "minutos": 420,
+  "fechado_em": "montado em 24 de novembro de 2026",
+  "arquivo": "dossies/conteudo-20-matematica.pdf"
+ },
+ {
+  "slug": "conteudo-21-portugues",
+  "titulo": "Português — o dossiê único",
+  "subtitulo": "20 pontos · as cinco armadilhas de interpretação, as 119 questões de literatura por autor, e a gramática que a ESPM realmente cobra",
+  "tipo": "conteudo",
+  "selo": "Português · tudo num arquivo só",
+  "serve": "Língua Portuguesa (20 pts · 299 questões em 15 provas)",
+  "minutos": 240,
+  "fechado_em": "montado em 24 de novembro de 2026",
+  "arquivo": "dossies/conteudo-21-portugues.pdf"
  },
  {
   "slug": "entrevista-01-inovacao-criatividade",
@@ -273,17 +163,6 @@
   "minutos": 50,
   "fechado_em": "fechado em 16 de setembro de 2026",
   "arquivo": "dossies/padroes-espm.pdf"
- },
- {
-  "slug": "radar-politica-brasileira",
-  "titulo": "Política brasileira — de 2022 às urnas de outubro de 2026",
-  "subtitulo": "Radar de atualidades 1 · a cadeia causal inteira, os lados de cada debate e o treino",
-  "tipo": "radar",
-  "selo": "Radar 24 meses · Política brasileira e instituições",
-  "serve": "redação · entrevista · Humanidades (política brasileira, atualidades)",
-  "minutos": 150,
-  "fechado_em": "fechado em 29 de setembro de 2026",
-  "arquivo": "dossies/radar-politica-brasileira.pdf"
  },
  {
   "slug": "redacao-01-tudo",
