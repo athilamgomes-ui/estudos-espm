@@ -266,11 +266,11 @@
  {
   "slug": "redacao-01-tudo",
   "titulo": "Redação — o dossiê único",
-  "subtitulo": "40 pontos · como ela corrige, os 30 temas que já caíram com fonte e data, e o kit de encaixe por eixo — tema a tema, com tese, repertório, tópico frasal e conclusão",
+  "subtitulo": "40 pontos · como ela corrige, os 30 temas que já caíram com fonte e data, e os 40 repertórios por função e por eixo",
   "tipo": "redacao",
   "selo": "Redação · tudo num arquivo só",
   "serve": "Redação (40 pts) · entrevista · Interpretação (65 q) · Cultura e mídia (37 q) · Gramática (42 q)",
-  "minutos": 560,
+  "minutos": 420,
   "fechado_em": "escrito em 13 de novembro de 2026",
   "arquivo": "dossies/redacao-01-tudo.pdf"
  },
