@@ -8,7 +8,7 @@
    {
     "id": "metodo-do-projeto-de-texto",
     "nome": "⭐ O método — projeto em 6 linhas e ponte de 4 frases",
-    "n": 18
+    "n": 19
    },
    {
     "id": "dados-conferidos-26-11",
@@ -49,125 +49,132 @@
   "cartas": [
    {
     "id": "metodo-do-projeto-de-texto-01",
+    "frente": "⭐ A FORMA DA TESE: dois ramos, não veredito",
+    "verso": "**Porque [o mecanismo], [A] QUANDO [condição] — e [B] QUANDO ela falha.**\n\n*De onde veio:* no Eixo 2 o meu D1 falava dos caixas americanos (automação tira emprego) e o D2 do dado brasileiro da CNC (emprego crescendo). **Os dois se contradiziam.** A tese que resolveu não escolheu um lado: deu o mecanismo e a condição.\n\n*O modelo:* \"Porque o ganho de produtividade cria demanda que pode crescer no mesmo lugar ou se deslocar para outro, a automação **amplia** o emprego **quando** a demanda permanece onde o trabalhador está — e o **substitui quando** ela migra para funções que ele não ocupa.\"\n\n**Por que funciona:** responde \"defenda ou refute\" sem virar denúncia, e **os dois ramos já são o D1 e o D2**.",
+    "dica": null,
+    "parte": "metodo-do-projeto-de-texto"
+   },
+   {
+    "id": "metodo-do-projeto-de-texto-02",
     "frente": "O projeto de texto: quais são as 6 linhas?",
     "verso": "**0 · TESE** — \"Porque [causa], [consequência]\"\n**1 · INTRODUÇÃO** — repertório → movimento → ponte → recorte → tese\n**2 · TÓPICO DO D1** — a **causa** virada afirmação\n**3 · TÓPICO DO D2** — a **consequência** virada afirmação\n**4 · PONTE DO D1** — 4 frases\n**5 · PONTE DO D2** — 4 frases\n**6 · CONCLUSÃO** — repertório da intro + D1 + D2 + grau\n\nAs seis linhas **são o texto inteiro em esqueleto**. Depois é só escrever.",
     "dica": null,
     "parte": "metodo-do-projeto-de-texto"
    },
    {
-    "id": "metodo-do-projeto-de-texto-02",
+    "id": "metodo-do-projeto-de-texto-03",
     "frente": "O cronômetro: 15 minutos de projeto, repartidos como?",
     "verso": "**Tese — 3 min.** A única parte que exige pensar de verdade.\n**Tópicos do D1 e do D2 — 2 min.** É cópia da tese.\n**Ponte do D1 — 4 min.**\n**Ponte do D2 — 4 min.**\n**Conclusão — 2 min.**\n\n**A regra de ouro:** não volte atrás para melhorar durante o projeto. O teste no fim é que mostra o que ajustar. Voltar no meio é o que transforma 15 minutos em 1 hora.",
     "dica": null,
     "parte": "metodo-do-projeto-de-texto"
    },
    {
-    "id": "metodo-do-projeto-de-texto-03",
+    "id": "metodo-do-projeto-de-texto-04",
     "frente": "⭐ O ATALHO DO TÓPICO FRASAL",
     "verso": "**A sua tese tem duas metades: a causa (o \"Porque...\") e a consequência.**\n\n**O tópico do D1 é a causa virada afirmação.**\n**O tópico do D2 é a consequência virada afirmação.**\n\n**Você não inventa nada. Você copia.**\n\n*Tese:* \"Porque as ferramentas envelhecem mais rápido do que dura uma carreira, a especialização virou aposta concentrada.\"\n→ **D1:** \"Primeiramente, convém observar que as ferramentas passaram a envelhecer mais rápido do que dura uma carreira.\"\n→ **D2:** \"Em decorrência disso, o custo de se renovar recai sobre o próprio profissional.\"",
     "dica": null,
     "parte": "metodo-do-projeto-de-texto"
    },
    {
-    "id": "metodo-do-projeto-de-texto-04",
+    "id": "metodo-do-projeto-de-texto-05",
     "frente": "O erro de tópico frasal que eu cometi — qual era?",
     "verso": "Escrevi como tópico do D2: *\"adaptar-se constantemente é necessário mesmo com especialização\"*.\n\n**Isso é a TESE INTEIRA, não a consequência.**\n\n**Por que custa caro:** tópico que repete a tese deixa o parágrafo sem direção — a ponte vai para um lado e o tópico para outro, e o critério 3 (coerência) pega.\n\n**O conserto:** volte à tese e pegue **só a segunda metade**.",
     "dica": null,
     "parte": "metodo-do-projeto-de-texto"
    },
    {
-    "id": "metodo-do-projeto-de-texto-05",
+    "id": "metodo-do-projeto-de-texto-06",
     "frente": "A ponte de 4 frases: quais são as quatro funções?",
     "verso": "**Frase 1 · FATO** — o repertório: autor, obra ou fonte, e o dado. *Pronto no banco.*\n**Frase 2 · MECANISMO** — *por que* aquilo acontece. *Pronto no banco.*\n**Frase 3 · MOVIMENTO** — inversão, distinção ou objeção. **Sua.**\n**Frase 4 · ELO** — volta à tese e amarra. **Sua.**\n\n**Só as frases 3 e 4 são suas.** É por isso que a ponte leva 4 minutos, e não 20.",
     "dica": null,
     "parte": "metodo-do-projeto-de-texto"
    },
    {
-    "id": "metodo-do-projeto-de-texto-06",
+    "id": "metodo-do-projeto-de-texto-07",
     "frente": "A armadilha da Frase 2 (o mecanismo)",
     "verso": "**O mecanismo NÃO é o fato repetido com outras palavras.**\n\n❌ \"Novas tecnologias estão remodelando o mercado cada vez mais rápido\" — isso é o fato de novo.\n✅ \"Se quase 4 em cada 10 competências mudam em 5 anos, uma carreira de 30 anos atravessa várias trocas de tecnologia.\"\n\n**O teste:** a Frase 2 tem de responder **\"por que isso acontece?\"**. Se ela responde **\"o que acontece?\"**, você escreveu o fato outra vez.",
     "dica": null,
     "parte": "metodo-do-projeto-de-texto"
    },
    {
-    "id": "metodo-do-projeto-de-texto-07",
+    "id": "metodo-do-projeto-de-texto-08",
     "frente": "Movimento 1 · INVERSÃO — como se faz?",
     "verso": "Precisa de **duas coisas**: o senso comum **nomeado**, e a virada. Sem nomear o que se costuma pensar, a inversão não existe.\n\n*Molde:* **\"Ao contrário de [o que se costuma pensar], [o que de fato acontece].\"**\n\n*Exemplo:* \"Ao contrário da imagem do gênio isolado, a inovação nasce do encontro entre repertórios.\"\n\n**O meu erro:** escrevi \"o detalhe esquecido é que...\" sem dizer o que se pensa no lugar — e aí a frase só repetia o fato anterior.",
     "dica": null,
     "parte": "metodo-do-projeto-de-texto"
    },
    {
-    "id": "metodo-do-projeto-de-texto-08",
+    "id": "metodo-do-projeto-de-texto-09",
     "frente": "Movimento 2 · DISTINÇÃO — como se faz?",
     "verso": "**O mais seguro dos quatro, e o que mais combina com o registro da ESPM**, porque reconhece valor nos dois lados da tensão.\n\n*Moldes:* **\"Não foi [A] que mudou, e sim [B].\"** · **\"Entrega-se [A], mas não [B].\"**\n\n*Exemplo:* \"Não foi o domínio aprofundado que perdeu valor, e sim o tempo durante o qual ele permanece útil.\"",
     "dica": null,
     "parte": "metodo-do-projeto-de-texto"
    },
    {
-    "id": "metodo-do-projeto-de-texto-09",
+    "id": "metodo-do-projeto-de-texto-10",
     "frente": "Movimento 3 · OBJEÇÃO — como se faz?",
     "verso": "Antecipa o contra-argumento e responde.\n\n*Molde:* **\"Poder-se-ia objetar que [objeção]; contudo, [resposta].\"**\n\n*Exemplo:* \"Poder-se-ia objetar que o trabalhador informal escolheu a autonomia; contudo, escolher entre uma regra que não o alcança e nenhuma regra não é escolha.\"\n\n**Quando usar:** quando a sua tese tem um contra evidente que o corretor vai pensar sozinho.",
     "dica": null,
     "parte": "metodo-do-projeto-de-texto"
    },
    {
-    "id": "metodo-do-projeto-de-texto-10",
+    "id": "metodo-do-projeto-de-texto-11",
     "frente": "Movimento 4 · GRAU — e por que ele é o da conclusão",
     "verso": "Diz **em que medida** a tese vale. É o fecho que não exagera.\n\n*Molde:* **\"[A] preserva seu valor NA EXATA MEDIDA EM QUE [B].\"**\n\n*Exemplo:* \"A especialização preserva seu valor na exata medida em que é capaz de se renovar.\"\n\n**Por que importa:** é o movimento que responde \"defenda ou refute\" **sem virar denúncia** — exatamente o registro da ESPM.",
     "dica": null,
     "parte": "metodo-do-projeto-de-texto"
    },
    {
-    "id": "metodo-do-projeto-de-texto-11",
+    "id": "metodo-do-projeto-de-texto-12",
     "frente": "Os 5 conectivos de MECANISMO (Frase 2)",
     "verso": "**Isso ocorre porque...**\n**Isso se deve ao fato de que...**\n**Tal fenômeno se explica porque...**\n**A razão disso é que...**\n**Isso acontece na medida em que...**\n\nSão cinco porque **nenhum conectivo se repete no texto** — então você precisa de alternativa quando já usou um.\n\n**Não troque por \"Dessa forma\":** isso é fecho de parágrafo, não explicação.",
     "dica": null,
     "parte": "metodo-do-projeto-de-texto"
    },
    {
-    "id": "metodo-do-projeto-de-texto-12",
+    "id": "metodo-do-projeto-de-texto-13",
     "frente": "Conectivos por função — a tabela inteira",
     "verso": "**Abrir o D1:** Primeiramente · Em primeiro lugar · De início · Convém observar que\n**Abrir o D2 (consequência):** Em decorrência disso · Por conseguinte · Diante disso · Na prática\n**MECANISMO:** Isso ocorre porque · Isso se deve ao fato de que · A razão disso é que\n**Explicar (Frase 3):** Ou seja · Em outras palavras · Isto é\n**Contrapor:** Ao contrário de · Contudo · Todavia · Embora\n**Fechar o parágrafo:** Assim · Dessa maneira · Dessa forma · Portanto · Logo\n**Abrir a conclusão:** Diante do exposto · Em suma · Pelo exposto",
     "dica": null,
     "parte": "metodo-do-projeto-de-texto"
    },
    {
-    "id": "metodo-do-projeto-de-texto-13",
+    "id": "metodo-do-projeto-de-texto-14",
     "frente": "Os dois erros de conectivo que eu peguei sozinha",
     "verso": "**1 · \"Assim\" é FECHO de parágrafo.** Usá-lo na Frase 3 e \"Dessa maneira\" na Frase 4 põe **dois fechos seguidos**. Na Frase 3 vai conectivo de explicação: *Em outras palavras*, *Isto é*.\n\n**2 · \"Sob outra ótica\" só serve se o D2 realmente mudar de ângulo.** Quando o D2 **continua** o D1 mostrando na prática o que ele explicou, o certo é **\"Na prática\"** ou **\"Além disso\"**.\n\nNos dois casos eu estava certa.",
     "dica": null,
     "parte": "metodo-do-projeto-de-texto"
    },
    {
-    "id": "metodo-do-projeto-de-texto-14",
+    "id": "metodo-do-projeto-de-texto-15",
     "frente": "O TESTE de 5 itens — quais são?",
     "verso": "**1 ·** A tese **responde à pergunta** da tensão? (toma posição, não descreve)\n**2 ·** O D1 é *por que* e o D2 é *o que isso produz*? (dois \"por quê\" = **não**)\n**3 ·** A Frase 2 de cada ponte tem **mecanismo**? (fato repetido = **não**)\n**4 ·** O repertório prova **o que eu digo que ele prova**? (diga em voz alta: \"X prova a tese porque...\")\n**5 ·** A conclusão retoma o **D1 E o D2**? (só a introdução = **não**)\n\n**Um \"sim\" generoso é pior que um \"não\".**",
     "dica": null,
     "parte": "metodo-do-projeto-de-texto"
    },
    {
-    "id": "metodo-do-projeto-de-texto-15",
+    "id": "metodo-do-projeto-de-texto-16",
     "frente": "⚠️ O alerta mais importante da prova: a introdução decorada",
     "verso": "Os meus textos de treino abriram com *\"Esse relatório expõe um conflito atual...\"* — introdução trazida pronta de casa.\n\n**Na ESPM isso derruba o critério 1**, que é *compreensão do texto motivador e identificação da problemática* — a problemática **DELE**, não a minha.\n\n**Se o motivador puxar o tema para outro lado, a introdução decorada fica tangente ao tema.**",
     "dica": null,
     "parte": "metodo-do-projeto-de-texto"
    },
    {
-    "id": "metodo-do-projeto-de-texto-16",
+    "id": "metodo-do-projeto-de-texto-17",
     "frente": "O fluxo obrigatório no domingo, em 3 passos",
     "verso": "**1 ·** Leia o motivador e escreva **em uma linha** qual é a problemática dele, **com as palavras dele**.\n**2 ·** A tese da introdução tem de **responder a essa linha**.\n**3 ·** **Só então** escolha, do banco, o repertório que serve a essa problemática.\n\n> **O repertório se adapta ao motivador. Nunca o contrário.**\n\nÉ por isso que o meu caderno é um **banco** de 50 repertórios e não um texto decorado.",
     "dica": null,
     "parte": "metodo-do-projeto-de-texto"
    },
    {
-    "id": "metodo-do-projeto-de-texto-17",
+    "id": "metodo-do-projeto-de-texto-18",
     "frente": "Por que eu escrevo o título por último",
     "verso": "Porque o título depende do que o texto **virou**, não do que eu planejei.\n\n**Na ESPM o título é obrigatório e criativo** — e precisa estar **ancorado**: a imagem dele tem de aparecer **dentro** do texto.\n\n**O melhor título** é uma imagem concreta que a última frase fecha. Aí o anel começa no título.\n\n*Exemplo:* \"A tarefa, não a cadeira\" — cinco palavras que são a tese.",
     "dica": null,
     "parte": "metodo-do-projeto-de-texto"
    },
    {
-    "id": "metodo-do-projeto-de-texto-18",
+    "id": "metodo-do-projeto-de-texto-19",
     "frente": "A conclusão: o que ela tem de retomar?",
     "verso": "**Quatro coisas, nesta ordem:** o repertório da introdução · o D1 · o D2 · o **grau**.\n\n**O erro que me custou ponto:** na redação dos luditas a conclusão só retomava o D1 (a decisão sobre a máquina) e **esquecia o D2** (a distância entre o que as vagas pedem e o que a formação entrega).\n\n**O edital pede \"retomada da argumentação\"** — argumentação é o D1 **e** o D2.\n\n**E não há proposta de intervenção na ESPM.**",
     "dica": null,
@@ -246,336 +253,336 @@
    {
     "id": "as-48-tensoes-em-pergunta-01",
     "frente": "Se produzir ficou barato e instantâneo, o que ainda dá valor ao trabalho criativo?\n\n*(criatividade × escala)*",
-    "verso": "**A TESE.** Porque a inteligência artificial barateia **a execução** e não **o critério**, o valor do trabalho criativo migra da habilidade técnica para a qualidade da decisão — e quem souber escolher ganha espaço, não perde.\n\n**A tensão, em uma linha.** A ferramenta democratiza a execução. A execução era parte do valor de quem cria. Então o que sobra?\n\n**Repertórios.** *(⭐ o mais produtivo)*: ⭐ **Pedro Américo, *Independência ou Morte*** · ⭐ **a antropofagia e o *Abaporu*** · **PwC, Barômetro de Empregos de IA** · **Toshio Suzuki** · **Walter Isaacson, *Os Inovadores*** · **a perspectiva renascentista**.\n\n**O esqueleto.** introdução Pedro Américo · D1 (causa) PwC · D2 (consequência) antropofagia · conclusão em anel.\n\n*Eixo 1 · tecnologia, IA, mídia e consumo · tensão 1*",
+    "verso": "**A TESE — ótica da demanda.** Porque a inteligência artificial barateia a execução e não o critério, a escala **amplia** o trabalho criativo **quando** o valor está no julgamento — e o **substitui quando** o valor estava apenas na execução.\n\n**A tensão, em uma linha.** A ferramenta democratiza a execução. A execução era parte do valor de quem cria. Então o que sobra?\n\n**Repertórios.** *(⭐ o mais produtivo)*: ⭐ **Pedro Américo, *Independência ou Morte*** · ⭐ **a antropofagia e o *Abaporu*** · **PwC, Barômetro de Empregos de IA** · **Toshio Suzuki** · **Walter Isaacson, *Os Inovadores*** · **a perspectiva renascentista**.\n\n**O esqueleto.** introdução Pedro Américo · D1 (causa) PwC · D2 (consequência) antropofagia · conclusão em anel.\n\n*Eixo 1 · tecnologia, IA, mídia e consumo · tensão 1*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-02",
     "frente": "É possível criar algo novo sob a exigência de produzir sem parar?\n\n*(produtividade × ócio criativo)*",
-    "verso": "**A TESE.** Porque o processo criativo depende de uma lentidão que o imperativo de produtividade não concede, a facilidade de produzir muito tende a reduzir a capacidade de produzir algo **novo**.\n\n**A tensão, em uma linha.** Produzir ficou instantâneo. Criar continua lento. As duas coisas são valorizadas, e uma atropela a outra.\n\n**Repertórios.** ⭐ **Byung-Chul Han, \"O tédio profundo\"** · ⭐ **Toshio Suzuki sobre o método de Miyazaki** · **Herbert Simon, a economia da atenção** · **Hayao Miyazaki** · **Ken Robinson** · **Maryanne Wolf**.\n\n**O esqueleto.** introdução Suzuki/Miyazaki · D1 (causa) Han · D2 (consequência) Herbert Simon · conclusão em anel.\n\n*Eixo 1 · tecnologia, IA, mídia e consumo · tensão 2*",
+    "verso": "**A TESE — ótica da demanda.** Porque a velocidade atende a uma demanda real de escala, produzir mais **soma quando** a etapa de concepção é preservada — e **destrói valor quando** o intervalo em que a criação se forma é o primeiro a ser cortado.\n\n**A tensão, em uma linha.** Produzir ficou instantâneo. Criar continua lento. As duas coisas são valorizadas, e uma atropela a outra.\n\n**Repertórios.** ⭐ **Byung-Chul Han, \"O tédio profundo\"** · ⭐ **Toshio Suzuki sobre o método de Miyazaki** · **Herbert Simon, a economia da atenção** · **Hayao Miyazaki** · **Ken Robinson** · **Maryanne Wolf**.\n\n**O esqueleto.** introdução Suzuki/Miyazaki · D1 (causa) Han · D2 (consequência) Herbert Simon · conclusão em anel.\n\n*Eixo 1 · tecnologia, IA, mídia e consumo · tensão 2*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-03",
     "frente": "Quando a máquina executa, quem assina a obra?\n\n*(autoria × ferramenta)*",
-    "verso": "**A TESE.** Porque a ferramenta reproduz **estilo** e não **sentido**, a autoria não desaparece com a automação — ela se desloca da execução para a definição do problema e para o julgamento do resultado.\n\n**A tensão, em uma linha.** A máquina produz o resultado. Alguém definiu o problema e escolheu entre as saídas. Quem assina?\n\n**Repertórios.** ⭐ **Toshio Suzuki** (\"estilo não é obra\") · ⭐ **Hayao Miyazaki** · **Harari, IA é agente** · **Pedro Américo** · **a antropofagia** · **Isaacson, *Os Inovadores***.\n\n**O esqueleto.** introdução Suzuki · D1 (causa) a máquina aprende do que já existe, logo reproduz forma — Miyazaki · D2 (consequência) a responsabilidade e o crédito migram, não se dissolvem — Harari · conclusão por consequência.\n\n*Eixo 1 · tecnologia, IA, mídia e consumo · tensão 3*",
+    "verso": "**A TESE — ótica da demanda.** Porque a ferramenta reproduz estilo e não sentido, a automação **amplia** a autoria **quando** quem assina define o problema e julga o resultado — e a **dissolve quando** o que havia era só execução.\n\n**A tensão, em uma linha.** A máquina produz o resultado. Alguém definiu o problema e escolheu entre as saídas. Quem assina?\n\n**Repertórios.** ⭐ **Toshio Suzuki** (\"estilo não é obra\") · ⭐ **Hayao Miyazaki** · **Harari, IA é agente** · **Pedro Américo** · **a antropofagia** · **Isaacson, *Os Inovadores***.\n\n**O esqueleto.** introdução Suzuki · D1 (causa) a máquina aprende do que já existe, logo reproduz forma — Miyazaki · D2 (consequência) a responsabilidade e o crédito migram, não se dissolvem — Harari · conclusão por consequência.\n\n*Eixo 1 · tecnologia, IA, mídia e consumo · tensão 3*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-04",
     "frente": "Até onde vale delegar uma decisão a um sistema automatizado?\n\n*(eficiência × julgamento)*",
-    "verso": "**A TESE.** Porque o sistema automatizado otimiza o objetivo que recebeu e não os efeitos que produz, delegar decisão a ele é vantajoso onde o erro é **reversível** e perigoso onde o erro é **irreversível** — a questão não é se automatizar, é onde traçar a linha.\n\n**A tensão, em uma linha.** Automatizar decisão é mais rápido, mais barato e mais consistente. E erra de um jeito diferente do humano.\n\n**Repertórios.** ⭐ **Mianmar e o dano por otimização (2016–2017)** · ⭐ **Harari, IA é agente** · **Cathy O'Neil** · **Eli Pariser** · **o Marco Civil e o STF**.\n\n**O esqueleto.** introdução Mianmar · D1 (causa) o sistema persegue a métrica, não o resultado — O'Neil · D2 (consequência) por isso a regra protege o próprio mercado — Harari e o mecanismo de correção · conclusão por consequência.\n\n*Eixo 1 · tecnologia, IA, mídia e consumo · tensão 4*",
+    "verso": "**A TESE — ótica da demanda.** Porque o sistema otimiza o objetivo que recebeu e não os efeitos que produz, delegar decisão **amplia** a capacidade **quando** o erro é reversível e auditável — e a **compromete quando** o erro recai sobre quem não pode recorrer.\n\n**A tensão, em uma linha.** Automatizar decisão é mais rápido, mais barato e mais consistente. E erra de um jeito diferente do humano.\n\n**Repertórios.** ⭐ **Mianmar e o dano por otimização (2016–2017)** · ⭐ **Harari, IA é agente** · **Cathy O'Neil** · **Eli Pariser** · **o Marco Civil e o STF**.\n\n**O esqueleto.** introdução Mianmar · D1 (causa) o sistema persegue a métrica, não o resultado — O'Neil · D2 (consequência) por isso a regra protege o próprio mercado — Harari e o mecanismo de correção · conclusão por consequência.\n\n*Eixo 1 · tecnologia, IA, mídia e consumo · tensão 4*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-05",
     "frente": "Dar acesso à internet basta para ampliar oportunidade?\n\n*(acesso × uso produtivo)*",
-    "verso": "**A TESE.** Porque o acesso se universalizou no **consumo** e não no **uso produtivo**, ampliar conectividade não amplia por si oportunidade — o que falta não é o aparelho, é a competência de usá-lo para produzir.\n\n**A tensão, em uma linha.** A conexão chegou. O uso que ela permite não chegou igual. E o aparelho, sozinho, não explica a diferença.\n\n**Repertórios.** ⭐ **TIC Domicílios 2025, atividades por classe** · ⭐ **Ken Robinson, a escola e a criatividade** · **Milton Santos** · **Maryanne Wolf** · **PwC** · **PISA 2025 e a lei do celular**.\n\n**O esqueleto.** introdução Ken Robinson · D1 (causa) o dado de uso — TIC Domicílios · D2 (consequência) o retorno do investimento em conexão depende da escola — Maryanne Wolf · conclusão por consequência.\n\n*Eixo 1 · tecnologia, IA, mídia e consumo · tensão 5*",
+    "verso": "**A TESE — ótica da demanda.** Porque o acesso se universalizou no consumo e não no uso produtivo, conectar **amplia oportunidade quando** vem com a competência que converte uso em produção — e **amplia apenas consumo quando** não vem.\n\n**A tensão, em uma linha.** A conexão chegou. O uso que ela permite não chegou igual. E o aparelho, sozinho, não explica a diferença.\n\n**Repertórios.** ⭐ **TIC Domicílios 2025, atividades por classe** · ⭐ **Ken Robinson, a escola e a criatividade** · **Milton Santos** · **Maryanne Wolf** · **PwC** · **PISA 2025 e a lei do celular**.\n\n**O esqueleto.** introdução Ken Robinson · D1 (causa) o dado de uso — TIC Domicílios · D2 (consequência) o retorno do investimento em conexão depende da escola — Maryanne Wolf · conclusão por consequência.\n\n*Eixo 1 · tecnologia, IA, mídia e consumo · tensão 5*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-06",
     "frente": "O mundo digital é mesmo imaterial?\n\n*(imaterial × material)*",
-    "verso": "**A TESE.** Porque a palavra \"nuvem\" esconde uma cadeia produtiva física, tratar o digital como imaterial transfere o custo para quem não participou da decisão — e discutir IA sem discutir essa cadeia é repetir o erro de esconder o custo atrás da embalagem.\n\n**A tensão, em uma linha.** A tecnologia se apresenta como leve, limpa e sem lugar. Ela consome mineral, energia, água e trabalho humano.\n\n**Repertórios.** ⭐ **Kate Crawford, *Atlas of AI*** · **a Zona do Canal do Panamá** · **os minerais críticos e o gargalo do refino** · **Milton Santos** · **Veblen**.\n\n**O esqueleto.** introdução Kate Crawford e o mapa com Vladan Joler · D1 (causa) a cadeia: minério, energia, água, rotulagem de dados · D2 (consequência) o custo se instala longe de quem colhe o benefício — Milton Santos · conclusão em anel.\n\n*Eixo 1 · tecnologia, IA, mídia e consumo · tensão 6*",
+    "verso": "**A TESE — ótica da demanda.** Porque a nuvem é uma cadeia física de energia, água e mineral, o digital **reduz custo quando** o território que o hospeda participa do ganho — e **transfere custo quando** ele fica onde não se decidiu nada.\n\n**A tensão, em uma linha.** A tecnologia se apresenta como leve, limpa e sem lugar. Ela consome mineral, energia, água e trabalho humano.\n\n**Repertórios.** ⭐ **Kate Crawford, *Atlas of AI*** · **a Zona do Canal do Panamá** · **os minerais críticos e o gargalo do refino** · **Milton Santos** · **Veblen**.\n\n**O esqueleto.** introdução Kate Crawford e o mapa com Vladan Joler · D1 (causa) a cadeia: minério, energia, água, rotulagem de dados · D2 (consequência) o custo se instala longe de quem colhe o benefício — Milton Santos · conclusão em anel.\n\n*Eixo 1 · tecnologia, IA, mídia e consumo · tensão 6*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-07",
     "frente": "Quanto mais o algoritmo acerta o seu gosto, melhor para você?\n\n*(personalização × repertório)*",
-    "verso": "**A TESE.** Porque o sistema de recomendação otimiza a semelhança com o que você já consumiu, quanto melhor ele acerta, menos ele apresenta — e o ganho de conveniência é pago em perda de repertório.\n\n**A tensão, em uma linha.** O algoritmo que acerta o seu gosto serve ao consumidor e estreita o repertório de quem cria para ele.\n\n**Repertórios.** ⭐ **Eli Pariser, a bolha dos filtros (2011)** · ⭐ **Bourdieu, capital cultural e distinção** · **Guy Debord** · **a antropofagia** · **Herbert Simon**.\n\n**O esqueleto.** introdução Pariser · D1 (causa) a métrica é semelhança, não descoberta · D2 (consequência) repertório estreito produz criação previsível, e o mercado perde o que diferencia — Bourdieu ou antropofagia · conclusão por consequência.\n\n*Eixo 1 · tecnologia, IA, mídia e consumo · tensão 7*",
+    "verso": "**A TESE — ótica da demanda.** Porque a recomendação otimiza a semelhança com o já consumido, a personalização **amplia a descoberta quando** o sistema também oferece o diferente — e a **estreita quando** mede só o acerto imediato.\n\n**A tensão, em uma linha.** O algoritmo que acerta o seu gosto serve ao consumidor e estreita o repertório de quem cria para ele.\n\n**Repertórios.** ⭐ **Eli Pariser, a bolha dos filtros (2011)** · ⭐ **Bourdieu, capital cultural e distinção** · **Guy Debord** · **a antropofagia** · **Herbert Simon**.\n\n**O esqueleto.** introdução Pariser · D1 (causa) a métrica é semelhança, não descoberta · D2 (consequência) repertório estreito produz criação previsível, e o mercado perde o que diferencia — Bourdieu ou antropofagia · conclusão por consequência.\n\n*Eixo 1 · tecnologia, IA, mídia e consumo · tensão 7*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-08",
     "frente": "O que se paga por um serviço gratuito — e isso é um problema?\n\n*(conveniência × privacidade)*",
-    "verso": "**A TESE.** Porque o dado pessoal é o preço do serviço gratuito, a conveniência digital é uma troca — e o problema não é que a troca exista, mas que ela não seja apresentada como troca.\n\n**A tensão, em uma linha.** Cada atrito removido da sua vida é um dado entregue. Os dois lados são reais.\n\n**Repertórios.** ⭐ **Shoshana Zuboff, o capitalismo de vigilância (2019)** · **Cathy O'Neil** · **Harari** · **o Marco Civil e o STF** · **Herbert Simon**.\n\n**O esqueleto.** introdução Zuboff · D1 (causa) o modelo de receita exige previsão de comportamento · D2 (consequência) sem transparência não há consentimento e, sem consentimento, não há confiança — Marco Civil · conclusão por consequência.\n\n*Eixo 1 · tecnologia, IA, mídia e consumo · tensão 8*",
+    "verso": "**A TESE — ótica da demanda.** Porque o dado é o preço do serviço gratuito, a troca **é legítima quando** o usuário consegue ver o que paga — e **deixa de ser troca quando** o preço é invisível.\n\n**A tensão, em uma linha.** Cada atrito removido da sua vida é um dado entregue. Os dois lados são reais.\n\n**Repertórios.** ⭐ **Shoshana Zuboff, o capitalismo de vigilância (2019)** · **Cathy O'Neil** · **Harari** · **o Marco Civil e o STF** · **Herbert Simon**.\n\n**O esqueleto.** introdução Zuboff · D1 (causa) o modelo de receita exige previsão de comportamento · D2 (consequência) sem transparência não há consentimento e, sem consentimento, não há confiança — Marco Civil · conclusão por consequência.\n\n*Eixo 1 · tecnologia, IA, mídia e consumo · tensão 8*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-09",
     "frente": "Regular a tecnologia trava a inovação ou sustenta?\n\n*(inovação × confiança)*",
-    "verso": "**A TESE.** Porque nenhum mercado funciona sem previsibilidade, a regra bem desenhada não é freio da inovação, e sim condição dela — o que trava investimento é a incerteza, não a norma.\n\n**A tensão, em uma linha.** Regular parece frear. Não regular também cobra um preço — e quem paga é o mercado.\n\n**Repertórios.** ⭐ **o Marco Civil da Internet e o STF (2014 e 2025)** · ⭐ **Harari e o mecanismo de correção** · **Cathy O'Neil** · **Mianmar** · **Zuboff**.\n\n**O esqueleto.** introdução o Marco Civil · D1 (causa) o desalinhamento entre modelo de negócio e moldura jurídica · D2 (consequência) a confiança é insumo de mercado, e sua perda é mais cara que a conformidade — Harari · conclusão por consequência.\n\n*Eixo 1 · tecnologia, IA, mídia e consumo · tensão 9*",
+    "verso": "**A TESE — ótica da demanda.** Porque nenhum mercado opera sem previsibilidade, a regra **acelera a inovação quando** reduz incerteza para quem investe — e a **trava quando** muda sem aviso.\n\n**A tensão, em uma linha.** Regular parece frear. Não regular também cobra um preço — e quem paga é o mercado.\n\n**Repertórios.** ⭐ **o Marco Civil da Internet e o STF (2014 e 2025)** · ⭐ **Harari e o mecanismo de correção** · **Cathy O'Neil** · **Mianmar** · **Zuboff**.\n\n**O esqueleto.** introdução o Marco Civil · D1 (causa) o desalinhamento entre modelo de negócio e moldura jurídica · D2 (consequência) a confiança é insumo de mercado, e sua perda é mais cara que a conformidade — Harari · conclusão por consequência.\n\n*Eixo 1 · tecnologia, IA, mídia e consumo · tensão 9*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-10",
     "frente": "Por que a informação falsa chega sempre antes do desmentido?\n\n*(velocidade × verificação)*",
-    "verso": "**A TESE.** Porque a arquitetura das redes premia o que engaja antes do que se confere, o erro circula mais rápido que o desmentido — e o problema não é o volume de informação, mas a ausência de um mecanismo de correção mais rápido que a propagação.\n\n**A tensão, em uma linha.** A liberdade de publicar é um valor. A confiabilidade do registro também. E a correção é mais lenta que a propagação.\n\n**Repertórios.** ⭐ **o estudo do MIT sobre notícias falsas (*Science*, 2018)** · ⭐ **o deepfake de Zelensky (2022)** · **Harari** · **Hannah Arendt** · **Orwell × Huxley, por Postman**.\n\n**O esqueleto.** introdução o deepfake de Zelensky · D1 (causa) o estudo do MIT: a falsidade viaja mais longe e mais rápido · D2 (consequência) o dano não é a crença na mentira, é a suspensão do julgamento — Arendt · conclusão em anel.\n\n*Eixo 1 · tecnologia, IA, mídia e consumo · tensão 10*",
+    "verso": "**A TESE — ótica da demanda.** Porque a rede premia o que engaja antes do que se confere, a velocidade **informa quando** a verificação corre no mesmo circuito — e **desinforma quando** o desmentido corre por fora dele.\n\n**A tensão, em uma linha.** A liberdade de publicar é um valor. A confiabilidade do registro também. E a correção é mais lenta que a propagação.\n\n**Repertórios.** ⭐ **o estudo do MIT sobre notícias falsas (*Science*, 2018)** · ⭐ **o deepfake de Zelensky (2022)** · **Harari** · **Hannah Arendt** · **Orwell × Huxley, por Postman**.\n\n**O esqueleto.** introdução o deepfake de Zelensky · D1 (causa) o estudo do MIT: a falsidade viaja mais longe e mais rápido · D2 (consequência) o dano não é a crença na mentira, é a suspensão do julgamento — Arendt · conclusão em anel.\n\n*Eixo 1 · tecnologia, IA, mídia e consumo · tensão 10*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-11",
     "frente": "Diante de imagens sintéticas, ainda dá para confiar no que se vê?\n\n*(registro × versão)*",
-    "verso": "**A TESE.** Porque nenhuma fonte apenas registra — toda fonte escolhe o que mostrar —, a questão diante das imagens sintéticas não é distinguir verdade de falsidade, mas exigir de cada fonte que informe como foi feita.\n\n**A tensão, em uma linha.** Toda fonte constrói uma versão. Isso sempre foi verdade. O que mudou é quanto custa produzir uma versão convincente.\n\n**Repertórios.** ⭐ **Pedro Américo, *Independência ou Morte*** · ⭐ **o deepfake de Zelensky** · **Hannah Arendt** · **Orwell × Huxley** · **a perspectiva renascentista**.\n\n**O esqueleto.** introdução Pedro Américo e a troca das mulas por cavalos · D1 (causa) a construção de versão é anterior à tecnologia; o que a tecnologia fez foi baratear a produção da versão · D2 (consequência) por isso a procedência vale mais que a aparência — o deepfake de Zelensky · conclusão em anel.\n\n*Eixo 1 · tecnologia, IA, mídia e consumo · tensão 11*",
+    "verso": "**A TESE — ótica da demanda.** Porque toda fonte escolhe o que mostrar, a imagem **prova quando** o critério de quem registrou é conhecido — e **engana quando** esse critério fica oculto.\n\n**A tensão, em uma linha.** Toda fonte constrói uma versão. Isso sempre foi verdade. O que mudou é quanto custa produzir uma versão convincente.\n\n**Repertórios.** ⭐ **Pedro Américo, *Independência ou Morte*** · ⭐ **o deepfake de Zelensky** · **Hannah Arendt** · **Orwell × Huxley** · **a perspectiva renascentista**.\n\n**O esqueleto.** introdução Pedro Américo e a troca das mulas por cavalos · D1 (causa) a construção de versão é anterior à tecnologia; o que a tecnologia fez foi baratear a produção da versão · D2 (consequência) por isso a procedência vale mais que a aparência — o deepfake de Zelensky · conclusão em anel.\n\n*Eixo 1 · tecnologia, IA, mídia e consumo · tensão 11*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-12",
     "frente": "Conectar a sala de aula melhora o aprendizado?\n\n*(conexão × atenção)*",
-    "verso": "**A TESE.** Porque a atenção é um recurso finito e o dispositivo disputa continuamente por ela, conectar a sala de aula sem proteger o tempo de concentração reduz o aprendizado em vez de ampliá-lo.\n\n**A tensão, em uma linha.** O aparelho que dá acesso a tudo é o mesmo que interrompe. Na escola, isso deixa de ser preferência e vira política.\n\n**Repertórios.** ⭐ **Herbert Simon, a economia da atenção (1971)** · ⭐ **Maryanne Wolf** · **o PISA 2025 e a lei do celular na escola** · **Byung-Chul Han** · **Ken Robinson**.\n\n**O esqueleto.** introdução Herbert Simon · D1 (causa) hiperatenção treina varredura, não leitura profunda — Wolf · D2 (consequência) o resultado mensurável e a resposta institucional — PISA e a lei do celular · conclusão por consequência.\n\n*Eixo 1 · tecnologia, IA, mídia e consumo · tensão 12*",
+    "verso": "**A TESE — ótica da demanda.** Porque a atenção é finita e o dispositivo disputa por ela, conectar a escola **amplia o aprendizado quando** o tempo de concentração é protegido — e o **reduz quando** não é.\n\n**A tensão, em uma linha.** O aparelho que dá acesso a tudo é o mesmo que interrompe. Na escola, isso deixa de ser preferência e vira política.\n\n**Repertórios.** ⭐ **Herbert Simon, a economia da atenção (1971)** · ⭐ **Maryanne Wolf** · **o PISA 2025 e a lei do celular na escola** · **Byung-Chul Han** · **Ken Robinson**.\n\n**O esqueleto.** introdução Herbert Simon · D1 (causa) hiperatenção treina varredura, não leitura profunda — Wolf · D2 (consequência) o resultado mensurável e a resposta institucional — PISA e a lei do celular · conclusão por consequência.\n\n*Eixo 1 · tecnologia, IA, mídia e consumo · tensão 12*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-13",
     "frente": "Como a criação brasileira responde a uma tecnologia treinada em acervo estrangeiro?\n\n*(repertório local × repertório global)*",
-    "verso": "**A TESE.** Porque a criação periférica só se afirma **deglutindo** o que recebe, a resposta a uma tecnologia treinada em acervo estrangeiro não é proibi-la nem imitá-la — é produzir com ela algo que não estava no acervo.\n\n**A tensão, em uma linha.** O repertório que forma o gosto vem de fora. Copiá-lo é submissão e recusá-lo é ausência.\n\n**Repertórios.** ⭐ **a antropofagia, o *Abaporu* e o Manifesto de 1928** · ⭐ **Toshio Suzuki** · **Camões e o Velho do Restelo** · **Bourdieu** · **Eli Pariser** · **Miyazaki**.\n\n**O esqueleto.** introdução o *Abaporu* e \"Tupi or not tupi\" · D1 (causa) o modelo devolve a média do que foi treinado · D2 (consequência) o diferencial competitivo passa a ser o que é intraduzível — Suzuki · conclusão em anel.\n\n*Eixo 1 · tecnologia, IA, mídia e consumo · tensão 13*",
+    "verso": "**A TESE — ótica da demanda.** Porque a criação periférica se afirma deglutindo o que recebe, a tecnologia treinada em acervo estrangeiro **amplia o repertório local quando** é digerida — e o **apaga quando** é apenas imitada.\n\n**A tensão, em uma linha.** O repertório que forma o gosto vem de fora. Copiá-lo é submissão e recusá-lo é ausência.\n\n**Repertórios.** ⭐ **a antropofagia, o *Abaporu* e o Manifesto de 1928** · ⭐ **Toshio Suzuki** · **Camões e o Velho do Restelo** · **Bourdieu** · **Eli Pariser** · **Miyazaki**.\n\n**O esqueleto.** introdução o *Abaporu* e \"Tupi or not tupi\" · D1 (causa) o modelo devolve a média do que foi treinado · D2 (consequência) o diferencial competitivo passa a ser o que é intraduzível — Suzuki · conclusão em anel.\n\n*Eixo 1 · tecnologia, IA, mídia e consumo · tensão 13*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-14",
     "frente": "Seguir a tendência constrói ou consome uma marca?\n\n*(autenticidade × tendência)*",
-    "verso": "**A TESE.** Porque a tendência se esgota na mesma velocidade com que se espalha, apostar em estilo sem substância compra alcance e perde marca — o que o consumidor retém é o que teve processo.\n\n**A tensão, em uma linha.** A tendência dá alcance imediato. A autenticidade dá permanência. Elas raramente apontam para o mesmo lado.\n\n**Repertórios.** ⭐ **Toshio Suzuki e a onda \"estilo Ghibli\"** · ⭐ **a Geração Z contra o artificial** · **Guy Debord e a recuperação** · **Miyazaki** · **Veblen**.\n\n**O esqueleto.** introdução a onda \"estilo Ghibli\" de 2025 e seu esgotamento · D1 (causa) a IA reproduz estilo, e estilo não é obra — Suzuki · D2 (consequência) o mercado começa a precificar o oposto — a reação da Geração Z · conclusão em anel.\n\n*Eixo 1 · tecnologia, IA, mídia e consumo · tensão 14*",
+    "verso": "**A TESE — ótica da demanda.** Porque a tendência se esgota na mesma velocidade com que se espalha, aderir a ela **amplia a marca quando** há substância que sobrevive à onda — e a **consome quando** não há.\n\n**A tensão, em uma linha.** A tendência dá alcance imediato. A autenticidade dá permanência. Elas raramente apontam para o mesmo lado.\n\n**Repertórios.** ⭐ **Toshio Suzuki e a onda \"estilo Ghibli\"** · ⭐ **a Geração Z contra o artificial** · **Guy Debord e a recuperação** · **Miyazaki** · **Veblen**.\n\n**O esqueleto.** introdução a onda \"estilo Ghibli\" de 2025 e seu esgotamento · D1 (causa) a IA reproduz estilo, e estilo não é obra — Suzuki · D2 (consequência) o mercado começa a precificar o oposto — a reação da Geração Z · conclusão em anel.\n\n*Eixo 1 · tecnologia, IA, mídia e consumo · tensão 14*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-15",
     "frente": "Quando quase todos podem comprar, o que passa a distinguir?\n\n*(distinção × acesso)*",
-    "verso": "**A TESE.** Porque o consumo funciona como linguagem de pertencimento, democratizar o acesso a um bem não elimina a distinção — desloca-a para o que ainda é escasso, hoje o tempo, a atenção e o repertório.\n\n**A tensão, em uma linha.** O consumo comunica posição social. Quando o acesso se amplia, o símbolo de distinção muda de lugar em vez de desaparecer.\n\n**Repertórios.** ⭐ **Thorstein Veblen, o consumo conspícuo (1899)** · ⭐ **Bourdieu, capital cultural e distinção (1979)** · **Guy Debord** · **Byung-Chul Han** · **Herbert Simon**.\n\n**O esqueleto.** introdução Veblen · D1 (causa) o bem comunica posição, não só função · D2 (consequência) o que distingue migra do objeto para o repertório — Bourdieu · conclusão por consequência.\n\n*Eixo 1 · tecnologia, IA, mídia e consumo · tensão 15*",
+    "verso": "**A TESE — ótica da demanda.** Porque o consumo funciona como linguagem de pertencimento, ampliar o acesso **aumenta o mercado quando** a marca desloca o valor para o que entrega — e o **perde quando** ela dependia só da escassez.\n\n**A tensão, em uma linha.** O consumo comunica posição social. Quando o acesso se amplia, o símbolo de distinção muda de lugar em vez de desaparecer.\n\n**Repertórios.** ⭐ **Thorstein Veblen, o consumo conspícuo (1899)** · ⭐ **Bourdieu, capital cultural e distinção (1979)** · **Guy Debord** · **Byung-Chul Han** · **Herbert Simon**.\n\n**O esqueleto.** introdução Veblen · D1 (causa) o bem comunica posição, não só função · D2 (consequência) o que distingue migra do objeto para o repertório — Bourdieu · conclusão por consequência.\n\n*Eixo 1 · tecnologia, IA, mídia e consumo · tensão 15*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-16",
     "frente": "Anunciar propósito é ativo ou risco para a empresa?\n\n*(propósito × performance)*",
-    "verso": "**A TESE.** Porque a comunicação cria expectativa verificável, anunciar propósito sem sustentá-lo na operação converte reputação em risco — a coerência deixa de ser virtude e passa a ser cálculo de negócio.\n\n**A tensão, em uma linha.** A marca precisa comunicar valor e precisa entregar resultado. Quando o discurso corre à frente da prática, o próprio discurso vira passivo.\n\n**Repertórios.** ⭐ **Guy Debord, espetáculo e recuperação (1967)** · ⭐ **a Geração Z contra o artificial** · **Veblen** · **Zuboff** · **o Marco Civil**.\n\n**O esqueleto.** introdução Debord e a recuperação · D1 (causa) o espetáculo absorve até a crítica que lhe é feita · D2 (consequência) por isso a verificação pelo consumidor virou mecanismo de mercado · conclusão por consequência.\n\n*Eixo 1 · tecnologia, IA, mídia e consumo · tensão 16*",
+    "verso": "**A TESE — ótica da demanda.** Porque a comunicação cria expectativa verificável, anunciar propósito **constrói reputação quando** a operação sustenta o anúncio — e a **destrói quando** não sustenta.\n\n**A tensão, em uma linha.** A marca precisa comunicar valor e precisa entregar resultado. Quando o discurso corre à frente da prática, o próprio discurso vira passivo.\n\n**Repertórios.** ⭐ **Guy Debord, espetáculo e recuperação (1967)** · ⭐ **a Geração Z contra o artificial** · **Veblen** · **Zuboff** · **o Marco Civil**.\n\n**O esqueleto.** introdução Debord e a recuperação · D1 (causa) o espetáculo absorve até a crítica que lhe é feita · D2 (consequência) por isso a verificação pelo consumidor virou mecanismo de mercado · conclusão por consequência.\n\n*Eixo 1 · tecnologia, IA, mídia e consumo · tensão 16*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-17",
     "frente": "A automação tira empregos ou muda o que se faz dentro deles?\n\n*(substituição × complementaridade)*",
-    "verso": "**A TESE.** Porque a automação atinge **tarefas** e não **ocupações**, o efeito sobre o emprego depende de qual tarefa se automatiza primeiro — e essa escolha responde a incentivos, não a uma lei da técnica.\n\n**A tensão, em uma linha.** A mesma ferramenta pode tirar o trabalho de alguém ou multiplicar o que essa pessoa consegue fazer. As duas coisas acontecem, e não por acaso.\n\n**Repertórios.** *(⭐ o mais produtivo)*: ⭐ **Acemoglu e Johnson** · ⭐ **PwC, Barômetro de Empregos de IA** · **os luditas** · **a CNC e as ocupações em queda** · **Walter Isaacson** · **Ken Robinson**.\n\n**O esqueleto.** introdução os luditas · D1 (causa) a direção é escolha — Acemoglu e Johnson · D2 (consequência) o mercado já revela para onde foi — PwC e CNC · conclusão por consequência.\n\n*Eixo 2 · trabalho, carreira e formação · tensão 1*",
+    "verso": "**A TESE — ótica da demanda.** Porque a automação atinge tarefas e não ocupações, ela **amplia o trabalho quando** libera tempo para tarefas que seguem humanas — e o **substitui quando** a ocupação era feita só da tarefa automatizada.\n\n**A tensão, em uma linha.** A mesma ferramenta pode tirar o trabalho de alguém ou multiplicar o que essa pessoa consegue fazer. As duas coisas acontecem, e não por acaso.\n\n**Repertórios.** *(⭐ o mais produtivo)*: ⭐ **Acemoglu e Johnson** · ⭐ **PwC, Barômetro de Empregos de IA** · **os luditas** · **a CNC e as ocupações em queda** · **Walter Isaacson** · **Ken Robinson**.\n\n**O esqueleto.** introdução os luditas · D1 (causa) a direção é escolha — Acemoglu e Johnson · D2 (consequência) o mercado já revela para onde foi — PwC e CNC · conclusão por consequência.\n\n*Eixo 2 · trabalho, carreira e formação · tensão 1*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-18",
     "frente": "Ganhar produtividade significa precisar de menos gente?\n\n*(produtividade × emprego)*",
-    "verso": "**A TESE.** Porque o ganho de produtividade pode ser convertido em **mais produto** ou em **menos gente**, a automação só reduz emprego quando a empresa não encontra demanda para o excedente que ela liberou.\n\n**A tensão, em uma linha.** Produzir mais com menos gente é a definição de produtividade e também a definição de demissão. Depende do que se faz com o ganho.\n\n**Repertórios.** ⭐ **Acemoglu e Johnson** · ⭐ **a CNC e as 80 ocupações em queda** · **Herbert Simon** · **os luditas** · **Harari**.\n\n**O esqueleto.** introdução a Revolução Industrial e o emprego que cresceu depois dela · D1 (causa) o ganho precisa de demanda para virar vaga · D2 (consequência) onde a demanda não aparece, o ajuste é por pessoa — CNC · conclusão por consequência.\n\n*Eixo 2 · trabalho, carreira e formação · tensão 2*",
+    "verso": "**A TESE — ótica da demanda.** Porque o ganho de produtividade cria demanda que pode crescer no mesmo lugar ou se deslocar para outro, a automação **amplia o emprego quando** a demanda permanece onde o trabalhador está — e o **substitui quando** ela migra para funções que ele não ocupa.\n\n**A tensão, em uma linha.** Produzir mais com menos gente é a definição de produtividade e também a definição de demissão. Depende do que se faz com o ganho.\n\n**Repertórios.** ⭐ **Acemoglu e Johnson** · ⭐ **a CNC e as 80 ocupações em queda** · **Herbert Simon** · **os luditas** · **Harari**.\n\n**O esqueleto.** introdução a Revolução Industrial e o emprego que cresceu depois dela · D1 (causa) o ganho precisa de demanda para virar vaga · D2 (consequência) onde a demanda não aparece, o ajuste é por pessoa — CNC · conclusão por consequência.\n\n*Eixo 2 · trabalho, carreira e formação · tensão 2*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-19",
     "frente": "Vale apostar numa especialização profunda ou na capacidade de mudar?\n\n*(especialização × adaptabilidade)*",
-    "verso": "**A TESE.** Porque o ciclo de obsolescência das ferramentas ficou mais curto que o de uma carreira, a aposta exclusiva na especialização transfere ao profissional o risco de uma mudança que ele não controla — e a adaptabilidade deixou de ser virtude para se tornar seguro.\n\n**A tensão, em uma linha.** Especializar-se dá valor imediato e prende. Ser adaptável dá mobilidade e dilui.\n\n**Repertórios.** ⭐ **Walter Isaacson, *Os Inovadores*** · ⭐ **Ken Robinson** · **Acemoglu e Johnson** · **PwC** · **Bourdieu**.\n\n**O esqueleto.** introdução Isaacson e a inovação na interseção entre artes e ciências · D1 (causa) o ciclo encurtou · D2 (consequência) o repertório amplo virou ativo econômico — Robinson · conclusão por consequência.\n\n*Eixo 2 · trabalho, carreira e formação · tensão 3*",
+    "verso": "**A TESE — ótica da demanda.** Porque o ciclo da ferramenta ficou mais curto que o de uma carreira, a especialização **aumenta o valor quando** vem acompanhada de renovação — e o **concentra num ativo que expira quando** não vem.\n\n**A tensão, em uma linha.** Especializar-se dá valor imediato e prende. Ser adaptável dá mobilidade e dilui.\n\n**Repertórios.** ⭐ **Walter Isaacson, *Os Inovadores*** · ⭐ **Ken Robinson** · **Acemoglu e Johnson** · **PwC** · **Bourdieu**.\n\n**O esqueleto.** introdução Isaacson e a inovação na interseção entre artes e ciências · D1 (causa) o ciclo encurtou · D2 (consequência) o repertório amplo virou ativo econômico — Robinson · conclusão por consequência.\n\n*Eixo 2 · trabalho, carreira e formação · tensão 3*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-20",
     "frente": "O diploma ainda diz ao empregador o que ele precisa saber?\n\n*(diploma × competência demonstrável)*",
-    "verso": "**A TESE.** Porque o diploma sinaliza **trajetória** e o empregador precisa prever **desempenho**, quanto mais rápido muda o conteúdo da ocupação, menos o certificado informa — e o portfólio passa a competir com ele.\n\n**A tensão, em uma linha.** O diploma é o sinal mais barato de triagem que o mercado tem. E é um sinal cada vez pior do que a pessoa sabe fazer.\n\n**Repertórios.** ⭐ **Bourdieu, capital cultural** · ⭐ **Ken Robinson** · **PwC** · **TIC Domicílios, o dado de uso** · **Isaacson**.\n\n**O esqueleto.** introdução Bourdieu e o diploma como capital cultural institucionalizado · D1 (causa) o sinal se descola do conteúdo · D2 (consequência) a triagem migra para evidência de trabalho — PwC · conclusão por consequência.\n\n*Eixo 2 · trabalho, carreira e formação · tensão 4*",
+    "verso": "**A TESE — ótica da demanda.** Porque o diploma sinaliza trajetória e o empregador precisa prever desempenho, o certificado **basta quando** o conteúdo da ocupação é estável — e **deixa de bastar quando** ele muda mais rápido que o curso.\n\n**A tensão, em uma linha.** O diploma é o sinal mais barato de triagem que o mercado tem. E é um sinal cada vez pior do que a pessoa sabe fazer.\n\n**Repertórios.** ⭐ **Bourdieu, capital cultural** · ⭐ **Ken Robinson** · **PwC** · **TIC Domicílios, o dado de uso** · **Isaacson**.\n\n**O esqueleto.** introdução Bourdieu e o diploma como capital cultural institucionalizado · D1 (causa) o sinal se descola do conteúdo · D2 (consequência) a triagem migra para evidência de trabalho — PwC · conclusão por consequência.\n\n*Eixo 2 · trabalho, carreira e formação · tensão 4*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-21",
     "frente": "Exigir experiência prévia seleciona mesmo o melhor candidato?\n\n*(experiência exigida × porta de entrada)*",
-    "verso": "**A TESE.** Porque exigir experiência prévia transfere ao candidato o custo da formação inicial, a exigência seleciona por **renda** antes de selecionar por **capacidade** — e o filtro devolve à empresa um recorte mais estreito do que o talento disponível.\n\n**A tensão, em uma linha.** A empresa precisa reduzir risco de contratação. O jovem precisa de alguém que assuma esse risco uma primeira vez.\n\n**Repertórios.** ⭐ **TIC Domicílios, uso produtivo por classe** · ⭐ **Florestan Fernandes, a entrada no mercado sem ativo** · **Bourdieu** · **Ken Robinson** · **Milton Santos**.\n\n**O esqueleto.** introdução Ken Robinson · D1 (causa) o custo da formação inicial foi deslocado · D2 (consequência) a empresa perde repertório de candidatos — TIC Domicílios · conclusão por consequência.\n\n*Eixo 2 · trabalho, carreira e formação · tensão 5*",
+    "verso": "**A TESE — ótica da demanda.** Porque exigir experiência transfere ao candidato o custo da formação inicial, a exigência **seleciona capacidade quando** existe porta de entrada que a produza — e **seleciona renda quando** não existe.\n\n**A tensão, em uma linha.** A empresa precisa reduzir risco de contratação. O jovem precisa de alguém que assuma esse risco uma primeira vez.\n\n**Repertórios.** ⭐ **TIC Domicílios, uso produtivo por classe** · ⭐ **Florestan Fernandes, a entrada no mercado sem ativo** · **Bourdieu** · **Ken Robinson** · **Milton Santos**.\n\n**O esqueleto.** introdução Ken Robinson · D1 (causa) o custo da formação inicial foi deslocado · D2 (consequência) a empresa perde repertório de candidatos — TIC Domicílios · conclusão por consequência.\n\n*Eixo 2 · trabalho, carreira e formação · tensão 5*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-22",
     "frente": "Medir só o resultado final é medir mérito?\n\n*(mérito × herança de ativos)*",
-    "verso": "**A TESE.** Porque a competência se constrói com ativos que não são distribuídos por igual — tempo, equipamento, repertório, língua —, medir só o resultado final confunde desempenho com ponto de partida, e isso faz a seleção errar candidatos que teriam entregado mais.\n\n**A tensão, em uma linha.** O mérito é um critério legítimo e necessário. Ele mede o resultado de uma corrida que começou em pontos diferentes.\n\n**Repertórios.** ⭐ **Bourdieu** · ⭐ **TIC Domicílios** · **Florestan Fernandes** · **Cathy O'Neil** · **Milton Santos**.\n\n**O esqueleto.** introdução Bourdieu · D1 (causa) o ativo precede a competência · D2 (consequência) o critério cego ao ponto de partida produz erro de seleção — O'Neil · conclusão por consequência.\n\n*Eixo 2 · trabalho, carreira e formação · tensão 6*",
+    "verso": "**A TESE — ótica da demanda.** Porque a competência se constrói com ativos desigualmente distribuídos, medir resultado **mede mérito quando** o ponto de partida é comparável — e **mede herança quando** não é.\n\n**A tensão, em uma linha.** O mérito é um critério legítimo e necessário. Ele mede o resultado de uma corrida que começou em pontos diferentes.\n\n**Repertórios.** ⭐ **Bourdieu** · ⭐ **TIC Domicílios** · **Florestan Fernandes** · **Cathy O'Neil** · **Milton Santos**.\n\n**O esqueleto.** introdução Bourdieu · D1 (causa) o ativo precede a competência · D2 (consequência) o critério cego ao ponto de partida produz erro de seleção — O'Neil · conclusão por consequência.\n\n*Eixo 2 · trabalho, carreira e formação · tensão 6*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-23",
     "frente": "A liberdade de horário compensa a perda de previsibilidade?\n\n*(flexibilidade × previsibilidade)*",
-    "verso": "**A TESE.** Porque a flexibilidade concedida é de **horário** e a decisão sobre tarefa, preço e avaliação permanece com a plataforma, o trabalhador recebe a variabilidade sem receber o controle — e é a assimetria, não a flexibilidade, que produz a precariedade.\n\n**A tensão, em uma linha.** Escolher o próprio horário é liberdade real. Não saber quanto vai ganhar na semana que vem é insegurança real. A mesma arranjo entrega as duas.\n\n**Repertórios.** ⭐ **o precariado e a uberização** · ⭐ **a CLT de 1943 e a moldura** · **Cathy O'Neil** · **Byung-Chul Han** · **Harari**.\n\n**O esqueleto.** introdução a CLT como moldura arrancada pelo conflito · D1 (causa) a assimetria de decisão · D2 (consequência) quem está fora da moldura não tem rede — o precariado · conclusão por consequência.\n\n*Eixo 2 · trabalho, carreira e formação · tensão 7*",
+    "verso": "**A TESE — ótica da demanda.** Porque a flexibilidade concedida é de horário e a decisão sobre tarefa e preço permanece na plataforma, ela **amplia autonomia quando** vem com previsibilidade de renda — e **vira só variabilidade quando** não vem.\n\n**A tensão, em uma linha.** Escolher o próprio horário é liberdade real. Não saber quanto vai ganhar na semana que vem é insegurança real. A mesma arranjo entrega as duas.\n\n**Repertórios.** ⭐ **o precariado e a uberização** · ⭐ **a CLT de 1943 e a moldura** · **Cathy O'Neil** · **Byung-Chul Han** · **Harari**.\n\n**O esqueleto.** introdução a CLT como moldura arrancada pelo conflito · D1 (causa) a assimetria de decisão · D2 (consequência) quem está fora da moldura não tem rede — o precariado · conclusão por consequência.\n\n*Eixo 2 · trabalho, carreira e formação · tensão 7*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-24",
     "frente": "Por que o esgotamento virou falha pessoal e não falha de organização?\n\n*(produtividade × saúde mental)*",
-    "verso": "**A TESE.** Porque a meta externa se converteu em exigência interna, o esgotamento deixou de ser lido como falha de organização e passou a ser lido como falha pessoal — e um sistema que não reconhece a própria causa não a corrige.\n\n**A tensão, em uma linha.** Cobrar resultado é legítimo e necessário. A cobrança sem limite destrói a capacidade de entregar resultado.\n\n**Repertórios.** ⭐ **Byung-Chul Han, o sujeito de desempenho** · ⭐ **Han, \"O tédio profundo\"** · **Herbert Simon** · **Maryanne Wolf** · **Chaplin** *(use com cuidado: o taylorismo é anterior ao toyotismo e precisa provar que alcança o presente)*.\n\n**O esqueleto.** introdução Han e a passagem do sujeito obediente ao de desempenho · D1 (causa) a cobrança se interioriza · D2 (consequência) o custo reaparece como queda de produtividade e rotatividade — Herbert Simon ou o tédio profundo · conclusão por consequência.\n\n*Eixo 2 · trabalho, carreira e formação · tensão 8*",
+    "verso": "**A TESE — ótica da demanda.** Porque a meta externa se converteu em exigência interna, cobrar resultado **aumenta a produtividade quando** o limite é desenhado pela organização — e a **destrói quando** o limite é deixado para o indivíduo.\n\n**A tensão, em uma linha.** Cobrar resultado é legítimo e necessário. A cobrança sem limite destrói a capacidade de entregar resultado.\n\n**Repertórios.** ⭐ **Byung-Chul Han, o sujeito de desempenho** · ⭐ **Han, \"O tédio profundo\"** · **Herbert Simon** · **Maryanne Wolf** · **Chaplin** *(use com cuidado: o taylorismo é anterior ao toyotismo e precisa provar que alcança o presente)*.\n\n**O esqueleto.** introdução Han e a passagem do sujeito obediente ao de desempenho · D1 (causa) a cobrança se interioriza · D2 (consequência) o custo reaparece como queda de produtividade e rotatividade — Herbert Simon ou o tédio profundo · conclusão por consequência.\n\n*Eixo 2 · trabalho, carreira e formação · tensão 8*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-25",
     "frente": "Trabalhar por conta própria é mais autonomia ou menos proteção?\n\n*(autonomia × proteção)*",
-    "verso": "**A TESE.** Porque a proteção social brasileira foi desenhada em torno do **vínculo de emprego**, o crescimento do trabalho autônomo não ampliou autonomia protegida — ampliou autonomia desprotegida, e isso é um problema de desenho institucional, não de escolha individual.\n\n**A tensão, em uma linha.** Quem trabalha por conta própria ganha autonomia e perde rede. Querer as duas ao mesmo tempo é a pergunta política do trabalho hoje.\n\n**Repertórios.** ⭐ **a CLT de 1943** · ⭐ **o precariado e a uberização** · **a informalidade brasileira** · **Harari e o mecanismo de correção** · **o Marco Civil** *(como exemplo de moldura que envelheceu em relação ao modelo de negócio)*.\n\n**O esqueleto.** introdução a CLT · D1 (causa) a proteção foi amarrada ao vínculo · D2 (consequência) a maior parte do crescimento recente acontece fora dele · conclusão por consequência.\n\n*Eixo 2 · trabalho, carreira e formação · tensão 9*",
+    "verso": "**A TESE — ótica da demanda.** Porque a proteção brasileira foi desenhada em torno do vínculo de emprego, o trabalho autônomo **amplia liberdade quando** a regra o alcança — e **amplia desproteção quando** não alcança.\n\n**A tensão, em uma linha.** Quem trabalha por conta própria ganha autonomia e perde rede. Querer as duas ao mesmo tempo é a pergunta política do trabalho hoje.\n\n**Repertórios.** ⭐ **a CLT de 1943** · ⭐ **o precariado e a uberização** · **a informalidade brasileira** · **Harari e o mecanismo de correção** · **o Marco Civil** *(como exemplo de moldura que envelheceu em relação ao modelo de negócio)*.\n\n**O esqueleto.** introdução a CLT · D1 (causa) a proteção foi amarrada ao vínculo · D2 (consequência) a maior parte do crescimento recente acontece fora dele · conclusão por consequência.\n\n*Eixo 2 · trabalho, carreira e formação · tensão 9*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-26",
     "frente": "Estender a licença-paternidade é custo ou cálculo empresarial?\n\n*(equidade × custo para a empresa)* · **tema que já caiu**",
-    "verso": "**A TESE.** Porque a assimetria no cuidado dos filhos recai sobre a trabalhadora e interrompe a carreira dela, estender a licença-paternidade é menos uma concessão social e mais um **instrumento de retenção de talento** — o custo imediato compra redução de rotatividade e ampliação do funil de liderança.\n\n**A tensão, em uma linha.** Ampliar licença custa à empresa no curto prazo. Não ampliar custa à empresa no longo, porque mantém metade do talento com dupla jornada.\n\n**Repertórios.** ⭐ **a licença-paternidade brasileira e a pesquisa da Copai** · ⭐ **a Amazon Brasil e as seis semanas** · **a CLT** · **Bourdieu** · **Veblen** *(a distinção migra: benefício como sinal de empregador desejável)*.\n\n**O esqueleto.** introdução o contraste entre os 5 dias da CLT e as 6 semanas de uma empresa privada · D1 (causa) a assimetria do cuidado interrompe a carreira de um dos dois · D2 (consequência) o efeito empresarial: rotatividade, funil de liderança e reputação de empregador · conclusão por consequência.\n\n*Eixo 2 · trabalho, carreira e formação · tensão 10*",
+    "verso": "**A TESE — ótica da demanda.** Porque a assimetria no cuidado interrompe a carreira da trabalhadora, estender a licença **é custo quando** se olha a folha do mês — e **é retenção de talento quando** se olha a permanência da equipe.\n\n**A tensão, em uma linha.** Ampliar licença custa à empresa no curto prazo. Não ampliar custa à empresa no longo, porque mantém metade do talento com dupla jornada.\n\n**Repertórios.** ⭐ **a licença-paternidade brasileira e a pesquisa da Copai** · ⭐ **a Amazon Brasil e as seis semanas** · **a CLT** · **Bourdieu** · **Veblen** *(a distinção migra: benefício como sinal de empregador desejável)*.\n\n**O esqueleto.** introdução o contraste entre os 5 dias da CLT e as 6 semanas de uma empresa privada · D1 (causa) a assimetria do cuidado interrompe a carreira de um dos dois · D2 (consequência) o efeito empresarial: rotatividade, funil de liderança e reputação de empregador · conclusão por consequência.\n\n*Eixo 2 · trabalho, carreira e formação · tensão 10*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-27",
     "frente": "Por que o cuidado não aparece como trabalho?\n\n*(trabalho remunerado × trabalho de cuidado)*",
-    "verso": "**A TESE.** Porque o cuidado foi classificado como obrigação afetiva e não como trabalho, ele não aparece em jornada, remuneração nem proteção — e o que não é contado não é negociado, de modo que o seu custo fica inteiro com quem o executa.\n\n**A tensão, em uma linha.** O trabalho de cuidado sustenta toda a economia remunerada e não entra na conta dela.\n\n**Repertórios.** ⭐ **a licença-paternidade e a Copai** · ⭐ **Carolina Maria de Jesus** · **a CLT** · **a informalidade brasileira** · **Veblen**.\n\n**O esqueleto.** introdução Carolina Maria de Jesus, catadora e mãe de três · D1 (causa) o cuidado ficou fora da nomeação de trabalho · D2 (consequência) a oferta de mão de obra qualificada encolhe artificialmente · conclusão em anel.\n\n*Eixo 2 · trabalho, carreira e formação · tensão 11*",
+    "verso": "**A TESE — ótica da demanda.** Porque o cuidado foi classificado como obrigação afetiva e não como trabalho, ele **sustenta a economia quando** alguém o absorve de graça — e **desaparece da conta quando** chega a hora de dividi-lo.\n\n**A tensão, em uma linha.** O trabalho de cuidado sustenta toda a economia remunerada e não entra na conta dela.\n\n**Repertórios.** ⭐ **a licença-paternidade e a Copai** · ⭐ **Carolina Maria de Jesus** · **a CLT** · **a informalidade brasileira** · **Veblen**.\n\n**O esqueleto.** introdução Carolina Maria de Jesus, catadora e mãe de três · D1 (causa) o cuidado ficou fora da nomeação de trabalho · D2 (consequência) a oferta de mão de obra qualificada encolhe artificialmente · conclusão em anel.\n\n*Eixo 2 · trabalho, carreira e formação · tensão 11*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-28",
     "frente": "Uma vida de noventa anos cabe em estudar, trabalhar e aposentar?\n\n*(carreira longa × desenho em três blocos)*",
-    "verso": "**A TESE.** Porque formação, trabalho e aposentadoria foram desenhados em três blocos sequenciais para uma expectativa de vida menor, manter esse desenho empurra o trabalhador mais velho para a informalidade e desperdiça experiência que o mercado diz valorizar.\n\n**A tensão, em uma linha.** As pessoas vivem e trabalham mais. A carreira continua desenhada como estudar, trabalhar e parar — nessa ordem e uma vez só.\n\n**Repertórios.** ⭐ **a informalidade brasileira** · ⭐ **Ken Robinson** · **a CLT** · **Byung-Chul Han** · **PwC e a requalificação**.\n\n**O esqueleto.** introdução o desenho em três blocos e sua origem · D1 (causa) a moldura pressupõe carreira curta e contínua · D2 (consequência) a saída é a informalidade, e a experiência se perde — conclusão por consequência.\n\n*Eixo 2 · trabalho, carreira e formação · tensão 12*",
+    "verso": "**A TESE — ótica da demanda.** Porque o desenho em três blocos foi feito para uma expectativa de vida menor, ele **organiza a carreira quando** ela dura trinta anos — e **empurra para a informalidade quando** dura cinquenta.\n\n**A tensão, em uma linha.** As pessoas vivem e trabalham mais. A carreira continua desenhada como estudar, trabalhar e parar — nessa ordem e uma vez só.\n\n**Repertórios.** ⭐ **a informalidade brasileira** · ⭐ **Ken Robinson** · **a CLT** · **Byung-Chul Han** · **PwC e a requalificação**.\n\n**O esqueleto.** introdução o desenho em três blocos e sua origem · D1 (causa) a moldura pressupõe carreira curta e contínua · D2 (consequência) a saída é a informalidade, e a experiência se perde — conclusão por consequência.\n\n*Eixo 2 · trabalho, carreira e formação · tensão 12*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-29",
     "frente": "Estar sempre conectado aproxima as pessoas?\n\n*(conexão × vínculo)*",
-    "verso": "**A TESE.** Porque a conexão digital reduz o **custo** do contato e não a **profundidade** dele, multiplicar interações não produz vínculo — e o vínculo, que exige tempo e exposição ao desconforto, compete com a facilidade que o substitui.\n\n**A tensão, em uma linha.** Nunca foi tão fácil falar com alguém, e o relato de solidão não parou de crescer. As duas coisas são verdadeiras ao mesmo tempo.\n\n**Repertórios.** \n\n**O esqueleto.** introdução Jane Jacobs e os \"olhos da rua\" — o vínculo que nasce do encontro repetido e não planejado · D1 (causa) o contato barato substitui o encontro custoso · D2 (consequência) a competência de sustentar desconforto atrofia — Han ou Wolf · conclusão em anel.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 1*",
+    "verso": "**A TESE — ótica da demanda.** Porque a conexão barateia o contato e não a profundidade, ela **amplia o vínculo quando** encurta a distância entre quem já se importa — e o **dilui quando** substitui o encontro.\n\n**A tensão, em uma linha.** Nunca foi tão fácil falar com alguém, e o relato de solidão não parou de crescer. As duas coisas são verdadeiras ao mesmo tempo.\n\n**Repertórios.** \n\n**O esqueleto.** introdução Jane Jacobs e os \"olhos da rua\" — o vínculo que nasce do encontro repetido e não planejado · D1 (causa) o contato barato substitui o encontro custoso · D2 (consequência) a competência de sustentar desconforto atrofia — Han ou Wolf · conclusão em anel.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 1*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-30",
     "frente": "O que se perde quando a vida passa a ser vivida para ser mostrada?\n\n*(exposição × intimidade)*",
-    "verso": "**A TESE.** Porque toda experiência compartilhada passa a ser **editada para quem assiste**, a exposição contínua desloca o critério de valor do viver para o mostrar — e o que não rende registro tende a ser abandonado antes de ser vivido.\n\n**A tensão, em uma linha.** Compartilhar a vida cria pertencimento e audiência. Também transforma a experiência em material, e material é para os outros.\n\n**Repertórios.** \n\n**O esqueleto.** introdução Debord e a conversão da vida em representação · D1 (causa) o registro muda a experiência registrada · D2 (consequência) o critério de valor migra para a audiência — Veblen · conclusão por consequência.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 2*",
+    "verso": "**A TESE — ótica da demanda.** Porque o que é compartilhado passa a ser editado para quem assiste, expor **constrói reputação quando** há vida que não entra no quadro — e **esvazia a experiência quando** tudo entra.\n\n**A tensão, em uma linha.** Compartilhar a vida cria pertencimento e audiência. Também transforma a experiência em material, e material é para os outros.\n\n**Repertórios.** \n\n**O esqueleto.** introdução Debord e a conversão da vida em representação · D1 (causa) o registro muda a experiência registrada · D2 (consequência) o critério de valor migra para a audiência — Veblen · conclusão por consequência.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 2*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-31",
     "frente": "Por que a comparação on-line nunca termina em suficiência?\n\n*(autoestima × comparação)*",
-    "verso": "**A TESE.** Porque a comparação deixou de ser local e passou a ser com o melhor recorte de milhões de pessoas, o parâmetro de suficiência se tornou inalcançável por construção — e um parâmetro inalcançável não motiva, paralisa.\n\n**A tensão, em uma linha.** Ver o que os outros fazem motiva e também corrói. A mesma informação produz os dois efeitos.\n\n**Repertórios.** \n\n**O esqueleto.** introdução Veblen e a exibição de posição · D1 (causa) o grupo de comparação deixou de ser a vizinhança · D2 (consequência) o esgotamento se individualiza — Han · conclusão por consequência.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 3*",
+    "verso": "**A TESE — ótica da demanda.** Porque a comparação deixou de ser local e passou a ser com o melhor recorte de milhões, ela **orienta quando** o parâmetro é alcançável — e **corrói quando** é construído para não ser.\n\n**A tensão, em uma linha.** Ver o que os outros fazem motiva e também corrói. A mesma informação produz os dois efeitos.\n\n**Repertórios.** \n\n**O esqueleto.** introdução Veblen e a exibição de posição · D1 (causa) o grupo de comparação deixou de ser a vizinhança · D2 (consequência) o esgotamento se individualiza — Han · conclusão por consequência.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 3*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-32",
     "frente": "Dar nome clínico ao sofrimento ajuda ou atrapalha quem sofre?\n\n*(nomear o sofrimento × patologizar a vida)*",
-    "verso": "**A TESE.** Porque o vocabulário clínico se popularizou mais rápido que o acesso ao cuidado, nomear virou substituto de tratar — e a banalização do termo prejudica justamente quem depende de que ele signifique algo.\n\n**A tensão, em uma linha.** Dar nome ao sofrimento permite tratá-lo e pedir ajuda. O mesmo vocabulário, usado para tudo, esvazia o diagnóstico de quem precisa.\n\n**Repertórios.** \n\n**O esqueleto.** introdução Han e a individualização do cansaço · D1 (causa) o termo circula mais rápido que o serviço · D2 (consequência) a imprecisão da palavra reduz a eficácia dela — Arendt · conclusão por consequência.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 4*",
+    "verso": "**A TESE — ótica da demanda.** Porque o vocabulário clínico se popularizou mais rápido que o acesso ao cuidado, nomear o sofrimento **ajuda quando** abre porta para tratamento — e **atrapalha quando** vira substituto dele.\n\n**A tensão, em uma linha.** Dar nome ao sofrimento permite tratá-lo e pedir ajuda. O mesmo vocabulário, usado para tudo, esvazia o diagnóstico de quem precisa.\n\n**Repertórios.** \n\n**O esqueleto.** introdução Han e a individualização do cansaço · D1 (causa) o termo circula mais rápido que o serviço · D2 (consequência) a imprecisão da palavra reduz a eficácia dela — Arendt · conclusão por consequência.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 4*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-33",
     "frente": "Dá para pertencer a um grupo sem se adequar a ele?\n\n*(pertencimento × autenticidade)*",
-    "verso": "**A TESE.** Porque todo grupo cobra sinais de pertencimento como condição de aceitação, a pressão por adequação cresce com a visibilidade — e quanto mais público o grupo, mais caro custa divergir dele.\n\n**A tensão, em uma linha.** Pertencer a um grupo exige adotar seus códigos. Ser autêntico exige às vezes recusá-los.\n\n**Repertórios.** \n\n**O esqueleto.** introdução Bourdieu e o gosto como código de reconhecimento · D1 (causa) o sinal de pertencimento é condição de entrada · D2 (consequência) a saída não é recusar nem copiar, é deglutir — a antropofagia · conclusão em anel.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 5*",
+    "verso": "**A TESE — ótica da demanda.** Porque todo grupo cobra sinais de pertencimento, adequar-se **protege quando** o custo é de forma — e **apaga quando** o custo é de conteúdo.\n\n**A tensão, em uma linha.** Pertencer a um grupo exige adotar seus códigos. Ser autêntico exige às vezes recusá-los.\n\n**Repertórios.** \n\n**O esqueleto.** introdução Bourdieu e o gosto como código de reconhecimento · D1 (causa) o sinal de pertencimento é condição de entrada · D2 (consequência) a saída não é recusar nem copiar, é deglutir — a antropofagia · conclusão em anel.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 5*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-34",
     "frente": "Até onde o adolescente deve decidir sozinho o próprio uso de tela?\n\n*(autonomia do jovem × proteção)*",
-    "verso": "**A TESE.** Porque o produto digital é desenhado por equipes profissionais para capturar atenção, esperar que o adolescente equilibre isso sozinho transfere ao indivíduo uma assimetria que é **de projeto** — e proteção, nesse caso, é condição da autonomia futura, não o seu oposto.\n\n**A tensão, em uma linha.** Proteger limita a autonomia de quem está aprendendo a decidir. Não proteger entrega a decisão a quem ainda não tem repertório para ela.\n\n**Repertórios.** \n\n**O esqueleto.** introdução Wolf e o circuito de leitura que se constrói na infância · D1 (causa) a assimetria entre quem projeta e quem usa · D2 (consequência) a resposta institucional e o resultado medido — PISA e a lei do celular · conclusão por consequência.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 6*",
+    "verso": "**A TESE — ótica da demanda.** Porque o produto digital é desenhado por equipes profissionais para capturar atenção, dar autonomia ao jovem **forma quando** o desenho é equilibrado por regra — e **transfere a ele um problema que não é seu quando** não é.\n\n**A tensão, em uma linha.** Proteger limita a autonomia de quem está aprendendo a decidir. Não proteger entrega a decisão a quem ainda não tem repertório para ela.\n\n**Repertórios.** \n\n**O esqueleto.** introdução Wolf e o circuito de leitura que se constrói na infância · D1 (causa) a assimetria entre quem projeta e quem usa · D2 (consequência) a resposta institucional e o resultado medido — PISA e a lei do celular · conclusão por consequência.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 6*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-35",
     "frente": "Quem paga a conta de reduzir emissão hoje?\n\n*(urgência climática × custo da transição)*",
-    "verso": "**A TESE.** Porque o custo de reduzir emissão é **imediato e localizado** e o benefício é **difuso e futuro**, o impasse climático não é de ambição, é de **distribuição do custo** — e enquanto o dano não tiver preço, nenhuma decisão econômica o levará em conta.\n\n**A tensão, em uma linha.** Agir rápido é caro agora. Agir devagar é mais caro depois. E quem paga em cada caso é diferente.\n\n**Repertórios.** \n\n**O esqueleto.** introdução a COP30 em Belém · D1 (causa) externalidade: sem preço, o preço mente · D2 (consequência) o padrão das COPs — avança no dinheiro, trava na fonte · conclusão por consequência.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 7*",
+    "verso": "**A TESE — ótica da demanda.** Porque o custo de reduzir emissão é imediato e localizado e o benefício é difuso e futuro, a transição **avança quando** o custo é distribuído — e **trava quando** recai inteiro sobre quem menos pode pagá-lo.\n\n**A tensão, em uma linha.** Agir rápido é caro agora. Agir devagar é mais caro depois. E quem paga em cada caso é diferente.\n\n**Repertórios.** \n\n**O esqueleto.** introdução a COP30 em Belém · D1 (causa) externalidade: sem preço, o preço mente · D2 (consequência) o padrão das COPs — avança no dinheiro, trava na fonte · conclusão por consequência.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 7*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-36",
     "frente": "É possível crescer dentro de um limite físico?\n\n*(crescimento × limite material)*",
-    "verso": "**A TESE.** Porque todo produto carrega uma cadeia física de extração, energia e descarte, tratar crescimento e limite como opostos impede a única saída real — mudar **o que** se produz, e não apenas **quanto**.\n\n**A tensão, em uma linha.** Crescer tira gente da pobreza. Crescer consome matéria que não se repõe no mesmo ritmo.\n\n**Repertórios.** \n\n**O esqueleto.** introdução Crawford e o mapa de tudo o que uma única pergunta a um assistente de voz exige · D1 (causa) a cadeia física existe e está escondida no preço · D2 (consequência) a transição energética criou nova dependência antes de resolver a antiga — minerais críticos · conclusão em anel.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 8*",
+    "verso": "**A TESE — ótica da demanda.** Porque todo produto carrega uma cadeia física de extração e descarte, crescer **convive com o limite quando** o valor se desloca para serviço e durabilidade — e **colide com ele quando** depende de extrair mais.\n\n**A tensão, em uma linha.** Crescer tira gente da pobreza. Crescer consome matéria que não se repõe no mesmo ritmo.\n\n**Repertórios.** \n\n**O esqueleto.** introdução Crawford e o mapa de tudo o que uma única pergunta a um assistente de voz exige · D1 (causa) a cadeia física existe e está escondida no preço · D2 (consequência) a transição energética criou nova dependência antes de resolver a antiga — minerais críticos · conclusão em anel.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 8*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-37",
     "frente": "Por que o descartável parece mais barato do que é?\n\n*(conveniência × resíduo)* · **tema que já caiu**",
-    "verso": "**A TESE.** Porque o preço do descartável não inclui o custo do seu descarte, o consumidor escolhe racionalmente a opção que o mercado faz parecer mais barata — e corrigir isso é questão de **preço**, não de consciência individual.\n\n**A tensão, em uma linha.** O descartável resolve um problema real de tempo, higiene e custo. E transfere um problema permanente para depois.\n\n**Repertórios.** \n\n**O esqueleto.** introdução externalidade e o preço que mente · D1 (causa) o custo do descarte não entra na conta de quem compra · D2 (consequência) o comum sem instituição colapsa — Ostrom · conclusão por consequência.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 9*",
+    "verso": "**A TESE — ótica da demanda.** Porque o preço do descartável não inclui o custo do descarte, o consumidor **escolhe bem quando** o preço diz a verdade — e **escolhe mal quando** o custo foi empurrado para fora da conta.\n\n**A tensão, em uma linha.** O descartável resolve um problema real de tempo, higiene e custo. E transfere um problema permanente para depois.\n\n**Repertórios.** \n\n**O esqueleto.** introdução externalidade e o preço que mente · D1 (causa) o custo do descarte não entra na conta de quem compra · D2 (consequência) o comum sem instituição colapsa — Ostrom · conclusão por consequência.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 9*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-38",
     "frente": "Investir em se proteger do clima ou em evitar que ele mude?\n\n*(adaptação × mitigação)*",
-    "verso": "**A TESE.** Porque mitigação depende de acordo global e adaptação depende de obra local, países e cidades têm incentivo para investir na segunda e esperar pela primeira — e esse incentivo explica por que a conta global não fecha.\n\n**A tensão, em uma linha.** Mitigar evita o problema e só funciona coletivamente. Adaptar protege quem adapta e não evita nada.\n\n**Repertórios.** \n\n**O esqueleto.** introdução as enchentes de 2024 no Rio Grande do Sul · D1 (causa) adaptação é obra e uso do solo, não discurso · D2 (consequência) o incentivo individual trava o acordo coletivo — COP30 · conclusão por consequência.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 10*",
+    "verso": "**A TESE — ótica da demanda.** Porque mitigação depende de acordo global e adaptação depende de obra local, investir em adaptação **protege quando** a mitigação avança em paralelo — e **apenas adia o problema quando** ela não avança.\n\n**A tensão, em uma linha.** Mitigar evita o problema e só funciona coletivamente. Adaptar protege quem adapta e não evita nada.\n\n**Repertórios.** \n\n**O esqueleto.** introdução as enchentes de 2024 no Rio Grande do Sul · D1 (causa) adaptação é obra e uso do solo, não discurso · D2 (consequência) o incentivo individual trava o acordo coletivo — COP30 · conclusão por consequência.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 10*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-39",
     "frente": "Morar longe é mesmo mais barato?\n\n*(adensamento × espraiamento urbano)*",
-    "verso": "**A TESE.** Porque o preço do solo central empurra moradia para a borda e a borda exige transporte, infraestrutura e tempo, o espraiamento parece mais barato para quem compra e sai mais caro para a cidade inteira — e é o desenho, não a escolha individual, que produz o resultado.\n\n**A tensão, em uma linha.** A cidade compacta é eficiente e cara. A cidade espalhada é acessível e insustentável.\n\n**Repertórios.** \n\n**O esqueleto.** introdução Jane Jacobs e a rua com uso misto · D1 (causa) o preço do solo organiza quem mora onde — Maricato · D2 (consequência) o custo da dispersão recai sobre o orçamento público e o tempo de quem mora longe · conclusão em anel.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 11*",
+    "verso": "**A TESE — ótica da demanda.** Porque o preço do solo central empurra a moradia para a borda, espraiar **barateia a casa quando** a infraestrutura já existe — e **encarece a vida quando** ela precisa ser construída depois.\n\n**A tensão, em uma linha.** A cidade compacta é eficiente e cara. A cidade espalhada é acessível e insustentável.\n\n**Repertórios.** \n\n**O esqueleto.** introdução Jane Jacobs e a rua com uso misto · D1 (causa) o preço do solo organiza quem mora onde — Maricato · D2 (consequência) o custo da dispersão recai sobre o orçamento público e o tempo de quem mora longe · conclusão em anel.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 11*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-40",
     "frente": "Descarbonizar reduz a dependência externa ou só troca de dono?\n\n*(transição energética × segurança energética)*",
-    "verso": "**A TESE.** Porque a transição substitui dependência de combustível por dependência de **mineral e refino**, descarbonizar sem política industrial troca um risco por outro — e o Brasil decide isso do lado da **oferta**, não do consumo.\n\n**A tensão, em uma linha.** Trocar a matriz reduz emissão e aumenta dependência de quem domina a nova cadeia. Manter a antiga garante suprimento e paga o custo climático.\n\n**Repertórios.** \n\n**O esqueleto.** introdução a contradição brasileira — matriz elétrica renovável e produção de petróleo em expansão · D1 (causa) a nova cadeia tem gargalo no refino · D2 (consequência) o Brasil é potência de insumo, e insumo é o degrau mais baixo da cadeia de valor · conclusão por consequência.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 12*",
+    "verso": "**A TESE — ótica da demanda.** Porque a transição troca dependência de combustível por dependência de mineral e refino, descarbonizar **aumenta a segurança quando** vem com política industrial — e **apenas troca o credor quando** não vem.\n\n**A tensão, em uma linha.** Trocar a matriz reduz emissão e aumenta dependência de quem domina a nova cadeia. Manter a antiga garante suprimento e paga o custo climático.\n\n**Repertórios.** \n\n**O esqueleto.** introdução a contradição brasileira — matriz elétrica renovável e produção de petróleo em expansão · D1 (causa) a nova cadeia tem gargalo no refino · D2 (consequência) o Brasil é potência de insumo, e insumo é o degrau mais baixo da cadeia de valor · conclusão por consequência.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 12*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-41",
     "frente": "Política pública para todos ou só para quem precisa?\n\n*(universalidade × focalização)*",
-    "verso": "**A TESE.** Porque identificar quem precisa custa informação e produz exclusão por erro cadastral, o desenho de uma política pública envolve sempre uma troca entre **custo** e **cobertura** — e escolher sem admitir a troca é o que produz as duas falhas ao mesmo tempo.\n\n**A tensão, em uma linha.** Política para todos é simples, caríssima e desperdiça. Política focalizada é eficiente, cria estigma e erra o alvo.\n\n**Repertórios.** \n\n**O esqueleto.** introdução Anísio Teixeira e a escola como condição material da cidadania · D1 (causa) identificar quem precisa custa informação · D2 (consequência) o erro de cadastro exclui exatamente quem o programa buscava — O'Neil · conclusão por consequência.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 13*",
+    "verso": "**A TESE — ótica da demanda.** Porque identificar quem precisa custa informação e produz exclusão por erro cadastral, focalizar **rende mais quando** o cadastro é bom — e **exclui quem mais precisa quando** não é.\n\n**A tensão, em uma linha.** Política para todos é simples, caríssima e desperdiça. Política focalizada é eficiente, cria estigma e erra o alvo.\n\n**Repertórios.** \n\n**O esqueleto.** introdução Anísio Teixeira e a escola como condição material da cidadania · D1 (causa) identificar quem precisa custa informação · D2 (consequência) o erro de cadastro exclui exatamente quem o programa buscava — O'Neil · conclusão por consequência.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 13*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-42",
     "frente": "Como um país que produz comida de sobra ainda tem fome?\n\n*(abundância × fome)* · **tema que já caiu**",
-    "verso": "**A TESE.** Porque a produção brasileira é orientada à **exportação de commodities** e o acesso ao alimento depende de **renda**, produzir mais não alimenta mais — a fome brasileira é um problema de poder de compra e de logística, não de safra.\n\n**A tensão, em uma linha.** O Brasil é um dos maiores produtores de alimento do mundo e tem insegurança alimentar. Os dois fatos convivem e não se contradizem.\n\n**Repertórios.** \n\n**O esqueleto.** introdução Carolina Maria de Jesus e a fome narrada de dentro · D1 (causa) o acesso depende de renda, não de oferta · D2 (consequência) o evento climático e o deslocamento agravam o que a renda já determinava — Portinari · conclusão em anel.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 14*",
+    "verso": "**A TESE — ótica da demanda.** Porque o acesso ao alimento depende de renda e a produção é orientada à exportação, produzir mais **alimenta quando** a renda acompanha — e **apenas exporta quando** não acompanha.\n\n**A tensão, em uma linha.** O Brasil é um dos maiores produtores de alimento do mundo e tem insegurança alimentar. Os dois fatos convivem e não se contradizem.\n\n**Repertórios.** \n\n**O esqueleto.** introdução Carolina Maria de Jesus e a fome narrada de dentro · D1 (causa) o acesso depende de renda, não de oferta · D2 (consequência) o evento climático e o deslocamento agravam o que a renda já determinava — Portinari · conclusão em anel.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 14*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-43",
     "frente": "Ampliar a representatividade baixa o nível de uma equipe?\n\n*(representatividade × competência)*",
-    "verso": "**A TESE.** Porque o processo de seleção premia trajetórias que exigem ativos distribuídos de forma desigual, ampliar o funil de candidatos **aumenta** a competência média contratada — logo representatividade e competência não se opõem: a ausência da primeira é que produz erro na segunda.\n\n**A tensão, em uma linha.** É apresentada como dilema e não é. Mas você precisa saber desmontá-la, porque a banca pode oferecer o falso dilema na proposta.\n\n**Repertórios.** \n\n**O esqueleto.** introdução Bourdieu e o gosto como credencial · D1 (causa) o critério premia o ponto de partida · D2 (consequência) o funil estreito devolve um recorte pior do talento disponível — O'Neil · conclusão por consequência.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 15*",
+    "verso": "**A TESE — ótica da demanda.** Porque o funil de seleção premia trajetórias que exigem ativos desiguais, ampliá-lo **aumenta a competência média quando** o critério de avaliação permanece — e **vira só símbolo quando** o critério é abandonado.\n\n**A tensão, em uma linha.** É apresentada como dilema e não é. Mas você precisa saber desmontá-la, porque a banca pode oferecer o falso dilema na proposta.\n\n**Repertórios.** \n\n**O esqueleto.** introdução Bourdieu e o gosto como credencial · D1 (causa) o critério premia o ponto de partida · D2 (consequência) o funil estreito devolve um recorte pior do talento disponível — O'Neil · conclusão por consequência.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 15*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-44",
     "frente": "Garantir o direito no papel é garantir o direito?\n\n*(direito formal × condição material)*",
-    "verso": "**A TESE.** Porque exercer um direito exige capacidade adquirida — leitura, informação, transporte, tempo —, garantir o direito sem garantir a condição produz igualdade no papel e desigualdade no uso.\n\n**A tensão, em uma linha.** A lei garante. O exercício depende de ter como. As duas coisas não andam juntas automaticamente.\n\n**Repertórios.** \n\n**O esqueleto.** introdução Milton Santos e o cidadão mutilado · D1 (causa) o direito pressupõe capacidade de exercê-lo · D2 (consequência) a escola é o único ponto onde a cadeia se interrompe — Anísio Teixeira · conclusão em anel.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 16*",
+    "verso": "**A TESE — ótica da demanda.** Porque exercer um direito exige capacidade adquirida, garantir na lei **basta quando** a condição material já existe — e **produz igualdade só no papel quando** não existe.\n\n**A tensão, em uma linha.** A lei garante. O exercício depende de ter como. As duas coisas não andam juntas automaticamente.\n\n**Repertórios.** \n\n**O esqueleto.** introdução Milton Santos e o cidadão mutilado · D1 (causa) o direito pressupõe capacidade de exercê-lo · D2 (consequência) a escola é o único ponto onde a cadeia se interrompe — Anísio Teixeira · conclusão em anel.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 16*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-45",
     "frente": "Viver mais exige redesenhar a vida em etapas?\n\n*(longevidade × desenho de vida em três blocos)*",
-    "verso": "**A TESE.** Porque esse desenho foi feito para uma expectativa de vida menor, mantê-lo empurra o trabalhador mais velho para a informalidade e desperdiça experiência que o próprio mercado diz valorizar.\n\n**A tensão, em uma linha.** Vive-se mais. Formação, trabalho e aposentadoria continuam desenhados como três blocos sequenciais, uma vez só.\n\n**Repertórios.** \n\n**O esqueleto.** introdução o desenho em três blocos e a expectativa de vida para a qual foi feito · D1 (causa) a moldura pressupõe carreira curta e contínua · D2 (consequência) a saída é a informalidade e a experiência se perde · conclusão por consequência.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 17*",
+    "verso": "**A TESE — ótica da demanda.** Porque o desenho de vida em três blocos foi feito para durar menos, ele **serve quando** a carreira termina aos sessenta — e **desperdiça experiência quando** a vida ativa passa disso.\n\n**A tensão, em uma linha.** Vive-se mais. Formação, trabalho e aposentadoria continuam desenhados como três blocos sequenciais, uma vez só.\n\n**Repertórios.** \n\n**O esqueleto.** introdução o desenho em três blocos e a expectativa de vida para a qual foi feito · D1 (causa) a moldura pressupõe carreira curta e contínua · D2 (consequência) a saída é a informalidade e a experiência se perde · conclusão por consequência.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 17*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-46",
     "frente": "O Brasil tem como pagar o próprio envelhecimento?\n\n*(envelhecimento × financiamento)*",
-    "verso": "**A TESE.** Porque o Brasil está envelhecendo **antes** de enriquecer, a janela demográfica se fecha sem que a produtividade tenha acompanhado — e isso transforma o envelhecimento de pauta de saúde em pauta de produtividade e de economia do cuidado.\n\n**A tensão, em uma linha.** Mais gente vivendo mais é conquista. Menos gente em idade de trabalhar sustentando mais dependentes é aritmética.\n\n**Repertórios.** \n\n**O esqueleto.** introdução o dado do Censo e a projeção de pico populacional · D1 (causa) a mortalidade caiu antes da natalidade, e agora as duas caíram · D2 (consequência) a conta previdenciária e a demanda por cuidado · conclusão por consequência.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 18*",
+    "verso": "**A TESE — ótica da demanda.** Porque o Brasil está envelhecendo antes de enriquecer, a longevidade **é dividendo quando** a produtividade acompanha — e **é passivo quando** não acompanha.\n\n**A tensão, em uma linha.** Mais gente vivendo mais é conquista. Menos gente em idade de trabalhar sustentando mais dependentes é aritmética.\n\n**Repertórios.** \n\n**O esqueleto.** introdução o dado do Censo e a projeção de pico populacional · D1 (causa) a mortalidade caiu antes da natalidade, e agora as duas caíram · D2 (consequência) a conta previdenciária e a demanda por cuidado · conclusão por consequência.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 18*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-47",
     "frente": "Por que a publicidade ignora quem mais tem poder de compra?\n\n*(consumo sênior × publicidade que o ignora)*",
-    "verso": "**A TESE.** Porque a publicidade mede desejabilidade pela juventude e o poder de compra se desloca para a faixa mais velha, o mercado deixa de atender o consumidor que mais pode pagar — e isso é erro de leitura de mercado, não questão de representatividade.\n\n**A tensão, em uma linha.** O público com mais renda acumulada é o mais velho. A comunicação de marca continua desenhada para o jovem.\n\n**Repertórios.** \n\n**O esqueleto.** introdução Veblen e o consumo como linguagem de posição · D1 (causa) a comunicação associa desejabilidade a juventude · D2 (consequência) o deslocamento da renda deixa demanda sem oferta · conclusão por consequência.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 19*",
+    "verso": "**A TESE — ótica da demanda.** Porque o poder de compra se deslocou para a faixa mais velha, a publicidade **cresce quando** passa a falar com ela — e **perde mercado quando** continua medindo desejabilidade por juventude.\n\n**A tensão, em uma linha.** O público com mais renda acumulada é o mais velho. A comunicação de marca continua desenhada para o jovem.\n\n**Repertórios.** \n\n**O esqueleto.** introdução Veblen e o consumo como linguagem de posição · D1 (causa) a comunicação associa desejabilidade a juventude · D2 (consequência) o deslocamento da renda deixa demanda sem oferta · conclusão por consequência.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 19*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
    {
     "id": "as-48-tensoes-em-pergunta-48",
     "frente": "A experiência ainda vale quando a ferramenta muda a cada dois anos?\n\n*(experiência × obsolescência)*",
-    "verso": "**A TESE.** Porque o ciclo das ferramentas ficou mais curto que o de uma carreira, a experiência só se mantém valiosa quando acompanhada de reaprendizagem — e tratá-la como suficiente, ou como descartável, custa nas duas pontas.\n\n**A tensão, em uma linha.** A experiência acumulada é ativo. Também é o lugar onde moram hábitos que já não servem.\n\n**Repertórios.** \n\n**O esqueleto.** introdução Isaacson e a inovação na interseção de repertórios · D1 (causa) o ciclo encurtou · D2 (consequência) o mercado perde nas duas pontas — PwC · conclusão por consequência.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 20*",
+    "verso": "**A TESE — ótica da demanda.** Porque o ciclo da ferramenta ficou mais curto que o de uma carreira, a experiência **se valoriza quando** vem com reaprendizagem — e **vira obsolescência quando** é tratada como substituto dela.\n\n**A tensão, em uma linha.** A experiência acumulada é ativo. Também é o lugar onde moram hábitos que já não servem.\n\n**Repertórios.** \n\n**O esqueleto.** introdução Isaacson e a inovação na interseção de repertórios · D1 (causa) o ciclo encurtou · D2 (consequência) o mercado perde nas duas pontas — PwC · conclusão por consequência.\n\n*Eixos 3 a 6 · comportamento, clima, direitos e longevidade · tensão 20*",
     "dica": null,
     "parte": "as-48-tensoes-em-pergunta"
    },
