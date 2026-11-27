@@ -2097,6 +2097,11 @@
   "nota": "História, geografia e arte — a maior área da prova, 30 das 160 questões",
   "partes": [
    {
+    "id": "baterias-fp-humanas",
+    "nome": "⭐ As baterias da FP — vale o tempo? (humanas)",
+    "n": 21
+   },
+   {
     "id": "antiga-e-medieval-lei-cidadania-e-",
     "nome": "Antiga e medieval — lei, cidadania e feudo",
     "n": 44
@@ -2143,6 +2148,153 @@
    }
   ],
   "cartas": [
+   {
+    "id": "baterias-fp-humanas-01",
+    "frente": "⭐ As baterias da FP valem o meu tempo? O veredito",
+    "verso": "**A bateria da FP é a *Ficha de Exercícios* de cada aula** — cerca de 10 questões, quase todas de **ENEM, UECE e UNICAMP**. Ou seja: **treinam conteúdo em formato de ENEM**, não o estilo da ESPM.\n\n**O que eu medi no banco de 450 questões de humanidades da ESPM:**\n• População e urbanização **24%** · Economia e globalização **20%** · Geopolítica **17%** · História Geral **16%** · Clima e energia **13%** · História do Brasil **12%** · Geografia física **6%**\n• **Filosofia 1%** · **Sociologia 1%**\n\n**As três decisões que saem disso:**\n1. **Pular Filosofia e Sociologia** — são **70 aulas** para 1% da prova cada.\n2. **Pular as 25 aulas de Competências do ENEM** — é a matriz de outra prova.\n3. **Não estudar População pela FP** — é a frente que mais cai (24%) e a que ela menos cobre (2 aulas).",
+    "dica": null,
+    "parte": "baterias-fp-humanas"
+   },
+   {
+    "id": "baterias-fp-humanas-02",
+    "frente": "**Bateria FP · Geografia**\n\nGEOPOLÍTICA E GEOECONOMIA\n\n*14 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** ALTÍSSIMO · 78 de 450 (17%) — a maior frente\n\n**O que a bateria treina.** Mundialização do capitalismo, blocos econômicos, nova DIT, Guerra Fria, conflitos na África, América Latina, China, inserção do Brasil.\n\n**Como a ESPM cobra isso.** Recorte de notícia **com URL e data** pedindo que você **identifique** país, pessoa, organismo ou acordo. Não pede opinião.\n\n**Onde está no meu caderno.** Atualidades → *Geopolítica hoje* e *Descrição → nome* · Humanas → *Geopolítica*",
+    "dica": null,
+    "parte": "baterias-fp-humanas"
+   },
+   {
+    "id": "baterias-fp-humanas-03",
+    "frente": "**Bateria FP · Geografia**\n\nPOPULAÇÃO\n\n*2 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** ALTÍSSIMO · 110 de 450 (24%) — e a FP dá só 2 aulas\n\n**O que a bateria treina.** Teorias demográficas e os novos processos de migração.\n\n**Como a ESPM cobra isso.** Pirâmide etária, transição demográfica, migração e envelhecimento — **muitas vezes com gráfico**, e a pegadinha está em ler o eixo.\n\n**Onde está no meu caderno.** Humanas → *População, globalização e economia*. ⚠️ **Maior desproporção do curso: a frente que mais cai é a que a FP menos cobre. Não estude população pela FP.**",
+    "dica": null,
+    "parte": "baterias-fp-humanas"
+   },
+   {
+    "id": "baterias-fp-humanas-04",
+    "frente": "**Bateria FP · Geografia**\n\nMEIO AMBIENTE E ENERGIA\n\n*4 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** ALTO · 61 de 450 (13%)\n\n**O que a bateria treina.** Problemas ambientais, política ambiental brasileira, mudanças climáticas e conferências, matriz energética.\n\n**Como a ESPM cobra isso.** A **cadeia das COPs** (Rio-92 → Kyoto → Paris → Belém 2025 → Antália 2026) e a composição da matriz energética brasileira.\n\n**Onde está no meu caderno.** Humanas → *Clima, energia e acordos* · Atualidades → cadeia das COPs",
+    "dica": null,
+    "parte": "baterias-fp-humanas"
+   },
+   {
+    "id": "baterias-fp-humanas-05",
+    "frente": "**Bateria FP · Geografia**\n\nINDUSTRIALIZAÇÃO E URBANIZAÇÃO\n\n*4 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** ALTO · dentro dos 20% de economia\n\n**O que a bateria treina.** Industrialização brasileira, redes urbanas, metropolização e transportes.\n\n**Como a ESPM cobra isso.** Substituição de importações, Plano de Metas de JK, concentração no Sudeste e **êxodo rural → favelização**.\n\n**Onde está no meu caderno.** Humanas → *População, globalização e economia* e *História do Brasil*",
+    "dica": null,
+    "parte": "baterias-fp-humanas"
+   },
+   {
+    "id": "baterias-fp-humanas-06",
+    "frente": "**Bateria FP · Geografia**\n\nGEOGRAFIA FÍSICA\n\n*8 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** MÉDIO-BAIXO · 30 de 450 (6%) — 8 aulas para 6%\n\n**O que a bateria treina.** Cartografia, relevo, hidrografia, clima e domínios de vegetação.\n\n**Como a ESPM cobra isso.** Quase sempre **ligada a ambiente ou a uso do solo**, raramente como física pura. Cartografia aparece em leitura de mapa.\n\n**Onde está no meu caderno.** Humanas → *Clima, energia e acordos*. **Não vale assistir as 8 aulas: leia o caderno.**",
+    "dica": null,
+    "parte": "baterias-fp-humanas"
+   },
+   {
+    "id": "baterias-fp-humanas-07",
+    "frente": "**Bateria FP · Geografia**\n\nGEOGRAFIA AGRÁRIA\n\n*2 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** MÉDIO\n\n**O que a bateria treina.** Industrialização da agricultura, produção agropecuária e conflitos no campo.\n\n**Como a ESPM cobra isso.** Agronegócio × agricultura familiar, e a **contradição exportação × fome** — que também é tensão de redação (Eixo 5).\n\n**Onde está no meu caderno.** Humanas → *População e economia* · Redação → Eixo 5, tensão *abundância × fome*",
+    "dica": null,
+    "parte": "baterias-fp-humanas"
+   },
+   {
+    "id": "baterias-fp-humanas-08",
+    "frente": "**Bateria FP · Geografia**\n\nCULTURA, REGIONALIZAÇÃO E ESTADO\n\n*2 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** MÉDIO-BAIXO\n\n**O que a bateria treina.** Regionalização do mundo e do Brasil, Estado e território.\n\n**Como a ESPM cobra isso.** Critérios de regionalização (Norte/Sul, centro/periferia) e as regiões do IBGE.\n\n**Onde está no meu caderno.** Humanas → *Geopolítica* e *População*",
+    "dica": null,
+    "parte": "baterias-fp-humanas"
+   },
+   {
+    "id": "baterias-fp-humanas-09",
+    "frente": "**Bateria FP · Geografia**\n\nATUALIDADES\n\n*1 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** ALTÍSSIMO como frente — mas a aula é só saúde/SUS\n\n**O que a bateria treina.** Uma aula: Geografia da Saúde, a saúde no Brasil e a importância do SUS.\n\n**Como a ESPM cobra isso.** ⚠️ **A FP não cobre atualidades de verdade.** A ESPM cobra fato de 2025–2026 por identificação, e isso só existe no seu caderno.\n\n**Onde está no meu caderno.** Atualidades → *Geopolítica hoje* (19 partes) e *Descrição → nome*",
+    "dica": null,
+    "parte": "baterias-fp-humanas"
+   },
+   {
+    "id": "baterias-fp-humanas-10",
+    "frente": "**Bateria FP · Geografia**\n\nINTRODUÇÃO AOS ESTUDOS DA GEOGRAFIA\n\n*1 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** BAIXO\n\n**O que a bateria treina.** História do pensamento geográfico, conceitos e princípios.\n\n**Como a ESPM cobra isso.** Só indiretamente, quando aparece **Milton Santos** (espaços luminosos e opacos, o cidadão mutilado).\n\n**Onde está no meu caderno.** Redação → verbete de Milton Santos no banco do Eixo 1",
+    "dica": null,
+    "parte": "baterias-fp-humanas"
+   },
+   {
+    "id": "baterias-fp-humanas-11",
+    "frente": "**Bateria FP · História do Brasil**\n\nBRASIL REPÚBLICA\n\n*9 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** ALTO · dentro dos 58 de 450 de Brasil\n\n**O que a bateria treina.** República Velha, Era Vargas, democracia de 46, ditadura militar e Nova República.\n\n**Como a ESPM cobra isso.** **Descrição → evento** por marca de época. Vargas e ditadura são os picos; documento citado costuma entregar o período.\n\n**Onde está no meu caderno.** Humanas → *História do Brasil* e *o texto deve ser relacionado a*",
+    "dica": null,
+    "parte": "baterias-fp-humanas"
+   },
+   {
+    "id": "baterias-fp-humanas-12",
+    "frente": "**Bateria FP · História do Brasil**\n\nBRASIL COLÔNIA\n\n*11 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** MÉDIO · 11 aulas para um peso médio\n\n**O que a bateria treina.** Pré-colonial, capitanias, açúcar, bandeirismo, mineração, escravidão e crise do sistema colonial.\n\n**Como a ESPM cobra isso.** Escravidão, abolição e o **par obrigatório com Florestan Fernandes** (o liberto entra no mercado sem o subsídio que o imigrante recebeu).\n\n**Onde está no meu caderno.** Humanas → *História do Brasil* · Redação → verbete de Florestan",
+    "dica": null,
+    "parte": "baterias-fp-humanas"
+   },
+   {
+    "id": "baterias-fp-humanas-13",
+    "frente": "**Bateria FP · História do Brasil**\n\nBRASIL IMPÉRIO\n\n*7 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** MÉDIO\n\n**O que a bateria treina.** Independência, Primeiro Reinado, Regências, Segundo Reinado e a queda da monarquia.\n\n**Como a ESPM cobra isso.** **A independência pela imagem** — é aqui que mora o seu melhor repertório, o quadro de Pedro Américo e a contradição das mulas.\n\n**Onde está no meu caderno.** Humanas → *História do Brasil* · Redação → verbete *Independência ou Morte*",
+    "dica": null,
+    "parte": "baterias-fp-humanas"
+   },
+   {
+    "id": "baterias-fp-humanas-14",
+    "frente": "**Bateria FP · História do Brasil**\n\nCIVILIZAÇÕES PRÉ-COLOMBIANAS\n\n*1 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** BAIXO\n\n**O que a bateria treina.** Astecas, maias e incas.\n\n**Como a ESPM cobra isso.** Raro, e quando aparece é junto da conquista da América.\n\n**Onde está no meu caderno.** Humanas → *História do Brasil*",
+    "dica": null,
+    "parte": "baterias-fp-humanas"
+   },
+   {
+    "id": "baterias-fp-humanas-15",
+    "frente": "**Bateria FP · História Geral**\n\nIDADE CONTEMPORÂNEA\n\n*12 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** ALTÍSSIMO · o pico de História Geral\n\n**O que a bateria treina.** Revoluções, imperialismo, as duas guerras, entreguerras, Guerra Fria e descolonização.\n\n**Como a ESPM cobra isso.** **O entreguerras é o pico**: Weimar, fascismo, nazismo. Padrão *descrição → evento*, e a alternativa certa nomeia **o processo**, não o episódio.\n\n**Onde está no meu caderno.** Humanas → *História moderna — da Reforma a 1993* e *o texto deve ser relacionado a*",
+    "dica": null,
+    "parte": "baterias-fp-humanas"
+   },
+   {
+    "id": "baterias-fp-humanas-16",
+    "frente": "**Bateria FP · História Geral**\n\nIDADE MODERNA\n\n*8 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** ALTO · 48 questões\n\n**O que a bateria treina.** Renascimento, Reforma, absolutismo, mercantilismo, iluminismo e revoluções burguesas.\n\n**Como a ESPM cobra isso.** Reforma e Revolução Francesa. **A pegadinha recorrente: trocar Termidor por Brumário.** Termidor = fim do Terror; Brumário = Napoleão.\n\n**Onde está no meu caderno.** Humanas → *História moderna*",
+    "dica": null,
+    "parte": "baterias-fp-humanas"
+   },
+   {
+    "id": "baterias-fp-humanas-17",
+    "frente": "**Bateria FP · História Geral**\n\nHISTÓRIA ANTIGA\n\n*5 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** MÉDIO-ALTO · Roma é 9 das 33 de antiga+medieval\n\n**O que a bateria treina.** Egito, Mesopotâmia, Grécia e Roma.\n\n**Como a ESPM cobra isso.** **Trecho de historiador + \"assinale o correto sobre [a instituição]\"** — testa como a instituição funcionava, não a data. Cidadania em Atenas e magistratura em Roma.\n\n**Onde está no meu caderno.** Humanas → *Antiga e medieval — lei, cidadania e feudo*",
+    "dica": null,
+    "parte": "baterias-fp-humanas"
+   },
+   {
+    "id": "baterias-fp-humanas-18",
+    "frente": "**Bateria FP · História Geral**\n\nIDADE MÉDIA\n\n*4 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** MÉDIO\n\n**O que a bateria treina.** Feudalismo, Igreja, cruzadas e renascimento comercial.\n\n**Como a ESPM cobra isso.** **Como o feudo funcionava** — relações de suserania e vassalagem, servidão, e a transição para o comércio.\n\n**Onde está no meu caderno.** Humanas → *Antiga e medieval*",
+    "dica": null,
+    "parte": "baterias-fp-humanas"
+   },
+   {
+    "id": "baterias-fp-humanas-19",
+    "frente": "**Bateria FP · História Geral**\n\nINTRODUÇÃO À HISTÓRIA\n\n*2 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** BAIXO\n\n**O que a bateria treina.** Teoria e fundamentos da história, fontes e periodização.\n\n**Como a ESPM cobra isso.** Indiretamente — mas sustenta **o melhor movimento de redação que você tem**: toda fonte escolhe o que mostra.\n\n**Onde está no meu caderno.** Redação → Eixo 1, tensão *registro × versão*",
+    "dica": null,
+    "parte": "baterias-fp-humanas"
+   },
+   {
+    "id": "baterias-fp-humanas-20",
+    "frente": "**Bateria FP · Filosofia**\n\nTODOS OS 9 MÓDULOS (35 aulas)\n\n*35 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** BAIXÍSSIMO · 6 de 450 questões (1%)\n\n**O que a bateria treina.** Clássica, helenística, medieval, moderna, política, antropologia, moral e contemporânea (16 aulas só nesta).\n\n**Como a ESPM cobra isso.** ⚠️ **Praticamente não cai.** Medi no banco: 6 questões em 450. O que aparece vem junto de história ou de um texto de apoio.\n\n**Onde está no meu caderno.** **Decisão: não estude Filosofia pela FP para a ESPM.** O que de filosofia vale a pena está no banco de repertórios da redação (Han, Arendt, Bourdieu).",
+    "dica": null,
+    "parte": "baterias-fp-humanas"
+   },
+   {
+    "id": "baterias-fp-humanas-21",
+    "frente": "**Bateria FP · Sociologia**\n\nTODOS OS 6 MÓDULOS (35 aulas)\n\n*35 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** BAIXÍSSIMO · 6 de 450 questões (1%)\n\n**O que a bateria treina.** Teoria, movimentos sociais, trabalho e sociedade, discussões sociológicas (19 aulas), sociólogos contemporâneos e sociologia no Brasil.\n\n**Como a ESPM cobra isso.** ⚠️ **Praticamente não cai como disciplina.** 6 em 450. Os temas (trabalho, desigualdade) caem, mas **na redação**, não em questão.\n\n**Onde está no meu caderno.** **Decisão: não estude Sociologia pela FP para a ESPM.** Use *A sociologia no Brasil* só por causa de Florestan e Gilberto Freyre, que são repertório.",
+    "dica": null,
+    "parte": "baterias-fp-humanas"
+   },
    {
     "id": "antiga-e-medieval-lei-cidadania-e--01",
     "frente": "A cadeia do neolítico, em ordem",
@@ -3720,6 +3872,11 @@
   "nota": "Literatura é o maior assunto de português — 119 questões; gramática vem por último",
   "partes": [
    {
+    "id": "baterias-fp-linguagens",
+    "nome": "⭐ As baterias da FP — vale o tempo? (linguagens)",
+    "n": 21
+   },
+   {
     "id": "escolas-literarias-contexto-caract",
     "nome": "Escolas literárias — contexto, traço e autores",
     "n": 24
@@ -3736,6 +3893,153 @@
    }
   ],
   "cartas": [
+   {
+    "id": "baterias-fp-linguagens-01",
+    "frente": "⭐ As baterias da FP valem o meu tempo? O veredito",
+    "verso": "**A bateria da FP é a *Ficha de Exercícios* de cada aula** — cerca de 10 questões, quase todas de **ENEM, UECE e UNICAMP**. Ou seja: **treinam conteúdo em formato de ENEM**, não o estilo da ESPM.\n\n**O que eu medi no banco de 450 questões de humanidades da ESPM:**\n• População e urbanização **24%** · Economia e globalização **20%** · Geopolítica **17%** · História Geral **16%** · Clima e energia **13%** · História do Brasil **12%** · Geografia física **6%**\n• **Filosofia 1%** · **Sociologia 1%**\n\n**As três decisões que saem disso:**\n1. **Pular Filosofia e Sociologia** — são **70 aulas** para 1% da prova cada.\n2. **Pular as 25 aulas de Competências do ENEM** — é a matriz de outra prova.\n3. **Não estudar População pela FP** — é a frente que mais cai (24%) e a que ela menos cobre (2 aulas).",
+    "dica": null,
+    "parte": "baterias-fp-linguagens"
+   },
+   {
+    "id": "baterias-fp-linguagens-02",
+    "frente": "**Bateria FP · Artes e Literatura**\n\nSEMANA DE ARTE MODERNA E MODERNISMO\n\n*7 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** ALTÍSSIMO · literatura é 119 questões, o maior assunto\n\n**O que a bateria treina.** Semana de 22, as três fases do modernismo brasileiro, poesia e prosa de 30 e 45.\n\n**Como a ESPM cobra isso.** **Texto → escola ou autor.** Antropofagia, Tarsila, Oswald, Drummond, Graciliano, Clarice. O par **Graciliano × Clarice** é clássico.\n\n**Onde está no meu caderno.** Linguagens → *Escolas literárias* e *Literatura por autor* · Redação → antropofagia",
+    "dica": null,
+    "parte": "baterias-fp-linguagens"
+   },
+   {
+    "id": "baterias-fp-linguagens-03",
+    "frente": "**Bateria FP · Artes e Literatura**\n\nREALISMO, NATURALISMO, PARNASIANISMO E SIMBOLISMO\n\n*5 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** ALTÍSSIMO\n\n**O que a bateria treina.** Machado, Aluísio Azevedo, Olavo Bilac, Cruz e Sousa.\n\n**Como a ESPM cobra isso.** **O par Machado × Aluísio** é o contraste que a ESPM mais usa: análise psicológica contra determinismo de meio e raça.\n\n**Onde está no meu caderno.** Linguagens → *Escolas literárias* e *Literatura por autor*",
+    "dica": null,
+    "parte": "baterias-fp-linguagens"
+   },
+   {
+    "id": "baterias-fp-linguagens-04",
+    "frente": "**Bateria FP · Artes e Literatura**\n\nIMPRESSIONISMO, PÓS-IMPRESSIONISMO, PRÉ-MODERNISMO E VANGUARDAS\n\n*6 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** ALTO\n\n**O que a bateria treina.** Vanguardas europeias e o pré-modernismo brasileiro (Euclides, Lima Barreto, Augusto dos Anjos).\n\n**Como a ESPM cobra isso.** **As 7 vanguardas** e a ponte delas com a Semana de 22. Também cai em Arte: cubismo, futurismo, expressionismo.\n\n**Onde está no meu caderno.** Linguagens → *Escolas literárias* · Humanas → *Arte por período*",
+    "dica": null,
+    "parte": "baterias-fp-linguagens"
+   },
+   {
+    "id": "baterias-fp-linguagens-05",
+    "frente": "**Bateria FP · Artes e Literatura**\n\nQUINHENTISMO, BARROCO E ARCADISMO\n\n*7 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** MÉDIO-ALTO · 7 aulas\n\n**O que a bateria treina.** Carta de Caminha, Gregório de Matos, Padre Vieira, Cláudio Manuel, Tomás Antônio Gonzaga.\n\n**Como a ESPM cobra isso.** Contraste barroco × árcade: **conflito e antítese** contra **equilíbrio e pastoral**. Vieira cai pelo sermão.\n\n**Onde está no meu caderno.** Linguagens → *Escolas literárias*",
+    "dica": null,
+    "parte": "baterias-fp-linguagens"
+   },
+   {
+    "id": "baterias-fp-linguagens-06",
+    "frente": "**Bateria FP · Artes e Literatura**\n\nROMANTISMO\n\n*3 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** ALTO\n\n**O que a bateria treina.** As três gerações da poesia, o romance urbano, indianista e regionalista.\n\n**Como a ESPM cobra isso.** As **três gerações** e o indianismo como projeto de identidade nacional. Castro Alves é a 3ª, condoreira.\n\n**Onde está no meu caderno.** Linguagens → *Escolas literárias* e *Literatura por autor*",
+    "dica": null,
+    "parte": "baterias-fp-linguagens"
+   },
+   {
+    "id": "baterias-fp-linguagens-07",
+    "frente": "**Bateria FP · Artes e Literatura**\n\nARTE CONTEMPORÂNEA\n\n*5 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** MÉDIO-ALTO\n\n**O que a bateria treina.** Neoconcretismo, Lygia Clark, Hélio Oiticica, arte conceitual, performance.\n\n**Como a ESPM cobra isso.** **O Parangolé** e a passagem de obra-para-ver a obra-para-vestir. A ESPM gosta de arte que exige participação.\n\n**Onde está no meu caderno.** Humanas → *Arte por período — da caverna ao Parangolé*",
+    "dica": null,
+    "parte": "baterias-fp-linguagens"
+   },
+   {
+    "id": "baterias-fp-linguagens-08",
+    "frente": "**Bateria FP · Artes e Literatura**\n\nOUTRAS MANIFESTAÇÕES ARTÍSTICAS\n\n*1 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** BAIXO\n\n**O que a bateria treina.** Cinema, música e manifestações populares.\n\n**Como a ESPM cobra isso.** Raro como questão própria; às vezes como texto de apoio.\n\n**Onde está no meu caderno.** Humanas → *Arte por período*",
+    "dica": null,
+    "parte": "baterias-fp-linguagens"
+   },
+   {
+    "id": "baterias-fp-linguagens-09",
+    "frente": "**Bateria FP · Interpretação de Texto**\n\nESTRATÉGIAS DE PROVA\n\n*10 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** ALTÍSSIMO · interpretação é a maior parte dos 20 pontos de português\n\n**O que a bateria treina.** Dez aulas de método de leitura e eliminação de alternativa.\n\n**Como a ESPM cobra isso.** ⚠️ **É treino de ENEM.** Serve para a mecânica, mas o recorte da ESPM é outro: texto curto, pergunta de inferência e **precisão lexical**.\n\n**Onde está no meu caderno.** Linguagens → a parte de interpretação do dossiê de Português (as 5 armadilhas)",
+    "dica": null,
+    "parte": "baterias-fp-linguagens"
+   },
+   {
+    "id": "baterias-fp-linguagens-10",
+    "frente": "**Bateria FP · Interpretação de Texto**\n\nCOMPETÊNCIAS DA PROVA DE LINGUAGENS DO ENEM\n\n*25 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** BAIXO para a ESPM · 25 aulas\n\n**O que a bateria treina.** As competências e habilidades da matriz do ENEM, uma a uma.\n\n**Como a ESPM cobra isso.** ⚠️ **A matriz do ENEM não é a da ESPM.** São 25 aulas desenhadas para outra prova.\n\n**Onde está no meu caderno.** **Decisão: pular.** Esse tempo rende muito mais em literatura, que é 119 questões.",
+    "dica": null,
+    "parte": "baterias-fp-linguagens"
+   },
+   {
+    "id": "baterias-fp-linguagens-11",
+    "frente": "**Bateria FP · Interpretação de Texto**\n\nTIPOS E GÊNEROS TEXTUAIS\n\n*1 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** MÉDIO\n\n**O que a bateria treina.** Tipologia e gêneros.\n\n**Como a ESPM cobra isso.** Aparece em questão de **tirinha e cartum**, que é lista própria da ESPM.\n\n**Onde está no meu caderno.** Lista da ESPM → *Tirinha e cartum*",
+    "dica": null,
+    "parte": "baterias-fp-linguagens"
+   },
+   {
+    "id": "baterias-fp-linguagens-12",
+    "frente": "**Bateria FP · Gramática**\n\nCONCORDÂNCIA, CRASE E REGÊNCIA\n\n*4 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** ALTO dentro de gramática\n\n**O que a bateria treina.** O trio que mais decide prova.\n\n**Como a ESPM cobra isso.** Crase e concordância verbal aparecem em questão de reescrita. **E o critério 4 da redação é norma-padrão.**\n\n**Onde está no meu caderno.** Linguagens → parte de gramática · Redação → critério 4",
+    "dica": null,
+    "parte": "baterias-fp-linguagens"
+   },
+   {
+    "id": "baterias-fp-linguagens-13",
+    "frente": "**Bateria FP · Gramática**\n\nSEMÂNTICA, ESTILO E FIGURAS DE LINGUAGEM\n\n*1 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** ALTO · foram os seus 2 erros de português\n\n**O que a bateria treina.** Semântica, estilo e figuras.\n\n**Como a ESPM cobra isso.** **Os seus dois erros da 2026-2 (Q17 e Q19) eram disso.** Metonímia, catacrese, hipérbato e eufemismo.\n\n**Onde está no meu caderno.** Linguagens → *Figuras de linguagem* (22 cartas)",
+    "dica": null,
+    "parte": "baterias-fp-linguagens"
+   },
+   {
+    "id": "baterias-fp-linguagens-14",
+    "frente": "**Bateria FP · Gramática**\n\nMORFOLOGIA — CLASSES E FORMAÇÃO DE PALAVRAS\n\n*9 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** MÉDIO-BAIXO · 9 aulas\n\n**O que a bateria treina.** As dez classes e os processos de formação.\n\n**Como a ESPM cobra isso.** Pouco como questão direta; mais como apoio para interpretação e reescrita.\n\n**Onde está no meu caderno.** Linguagens → parte de gramática. **Você fez 19/20 em português: não vale 9 aulas.**",
+    "dica": null,
+    "parte": "baterias-fp-linguagens"
+   },
+   {
+    "id": "baterias-fp-linguagens-15",
+    "frente": "**Bateria FP · Gramática**\n\nORTOGRAFIA E PONTUAÇÃO\n\n*5 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** MÉDIO\n\n**O que a bateria treina.** Ortografia, acentuação e pontuação.\n\n**Como a ESPM cobra isso.** Pontuação cai pouco em questão, **mas vale na redação**: vírgula de oração elíptica e travessão.\n\n**Onde está no meu caderno.** Redação → critério 4",
+    "dica": null,
+    "parte": "baterias-fp-linguagens"
+   },
+   {
+    "id": "baterias-fp-linguagens-16",
+    "frente": "**Bateria FP · Gramática**\n\nSINTAXE DO PERÍODO SIMPLES E COMPOSTO\n\n*6 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** MÉDIO\n\n**O que a bateria treina.** Termos da oração, coordenação, subordinação e relações lógico-semânticas.\n\n**Como a ESPM cobra isso.** **As relações lógico-semânticas são o que sustenta o uso correto dos conectivos** — e conectivo errado é o seu erro recorrente de redação.\n\n**Onde está no meu caderno.** Redação → *Conectivos por função* no caderno do método",
+    "dica": null,
+    "parte": "baterias-fp-linguagens"
+   },
+   {
+    "id": "baterias-fp-linguagens-17",
+    "frente": "**Bateria FP · Gramática**\n\nCOMPREENSÃO, INTERPRETAÇÃO E PRODUÇÃO DE TEXTOS\n\n*3 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** MÉDIO\n\n**O que a bateria treina.** Leitura, inferência e produção.\n\n**Como a ESPM cobra isso.** Sobrepõe-se a interpretação.\n\n**Onde está no meu caderno.** Linguagens → interpretação",
+    "dica": null,
+    "parte": "baterias-fp-linguagens"
+   },
+   {
+    "id": "baterias-fp-linguagens-18",
+    "frente": "**Bateria FP · Gramática**\n\nTIPOS E GÊNEROS TEXTUAIS\n\n*4 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** MÉDIO\n\n**O que a bateria treina.** Tipologias e gêneros, de novo (repete com Interpretação).\n\n**Como a ESPM cobra isso.** Tirinha, cartum, charge e texto publicitário — **e publicidade é assunto da casa**.\n\n**Onde está no meu caderno.** Lista da ESPM → *Tirinha e cartum* e *Cultura, arte e mídia*",
+    "dica": null,
+    "parte": "baterias-fp-linguagens"
+   },
+   {
+    "id": "baterias-fp-linguagens-19",
+    "frente": "**Bateria FP · Gramática**\n\nGRAMÁTICA NA PRÁTICA\n\n*4 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** ALTO como treino\n\n**O que a bateria treina.** Aplicação em questões.\n\n**Como a ESPM cobra isso.** É a parte mais parecida com prova. **Se for assistir gramática, assista esta.**\n\n**Onde está no meu caderno.** Linguagens → parte de gramática",
+    "dica": null,
+    "parte": "baterias-fp-linguagens"
+   },
+   {
+    "id": "baterias-fp-linguagens-20",
+    "frente": "**Bateria FP · Inglês**\n\nTEXT COMPREHENSION e VOCABULARY\n\n*35 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** BAIXA PRIORIDADE · você fez 10/10 em 11 minutos\n\n**O que a bateria treina.** Compreensão de texto e vocabulário, 35 aulas.\n\n**Como a ESPM cobra isso.** A ESPM cobra 10 questões de inglês, e você **acertou as 10**.\n\n**Onde está no meu caderno.** **Decisão: não estude. É o seu melhor desempenho medido.**",
+    "dica": null,
+    "parte": "baterias-fp-linguagens"
+   },
+   {
+    "id": "baterias-fp-linguagens-21",
+    "frente": "**Bateria FP · Inglês**\n\nGRAMMAR\n\n*23 aulas — vale o tempo?*",
+    "verso": "**RETORNO NA ESPM:** BAIXA PRIORIDADE · 23 aulas\n\n**O que a bateria treina.** Gramática inglesa.\n\n**Como a ESPM cobra isso.** Idem. Phrasal verbs é o único ponto que a lista da ESPM destaca.\n\n**Onde está no meu caderno.** Lista da ESPM → *Vocabulário e phrasal verbs*, se sobrar tempo",
+    "dica": null,
+    "parte": "baterias-fp-linguagens"
+   },
    {
     "id": "escolas-literarias-contexto-caract-01",
     "frente": "Quinhentismo (1500–1601) — informação e catequese",
