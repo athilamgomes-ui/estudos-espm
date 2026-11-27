@@ -175,19 +175,16 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
   </header>
 
   <nav class="abas" role="tablist">
-    <button role="tab" data-t="hoje" aria-selected="true">Hoje</button>
-    <button role="tab" data-t="painel" aria-selected="false">Painel</button>
-    <button role="tab" data-t="cronograma" aria-selected="false">Cronograma</button>
+    <button role="tab" data-t="painel" aria-selected="true">Painel</button>
     <button role="tab" data-t="prioridades" aria-selected="false">Prioridades</button>
     <button role="tab" data-t="listas" aria-selected="false">Listas</button>
     <button role="tab" data-t="atualidades" aria-selected="false">Atualidades</button>
     <button role="tab" data-t="flashcards" aria-selected="false">Flashcards</button>
-    <button role="tab" data-t="aulas" aria-selected="false">Aulas</button>
     <button role="tab" data-t="redacoes" aria-selected="false">Redações</button>
     <button role="tab" data-t="simulados" aria-selected="false">Simulados</button>
   </nav>
 
-  <section id="hoje">
+  <section id="hoje" hidden>
     <div id="hojeTopo" style="margin-bottom:14px"></div>
     <div id="hojeFoco" style="margin-bottom:14px"></div>
     <div id="hojeRecuperacao"></div>
@@ -204,7 +201,7 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
     </p>
   </section>
 
-  <section id="painel" hidden>
+  <section id="painel">
     <h2 style="margin-bottom:11px">Progresso por matéria</h2>
     <div class="grade" id="cards"></div>
     <p class="tiny" style="margin-top:14px">
@@ -452,7 +449,7 @@ const KEY_SB = 'sb_publishable_eX7i_P76hKCfb4ocJ7zTzg_UilLA6J_'
 const sb = createClient(URL_SB, KEY_SB)
 // Selo desta versao do site. Serve para pedir os arquivos estaticos sem cair no
 // cache velho do navegador (GitHub Pages segura 10 min).
-const BUILD = '2026-11-26e'
+const BUILD = '2026-11-26f'
 
 const PROVA = new Date('2026-11-29T00:00:00-03:00')
 // ROTINA — a fonte da verdade do dia (08/09/2026).
@@ -1087,8 +1084,13 @@ function pintarContagem () {}
 
 
 // ---------------------------------------------------------------- abas
-const ABAS = ['hoje', 'painel', 'cronograma', 'prioridades', 'listas', 'atualidades',
-  'flashcards', 'aulas', 'redacoes', 'simulados']
+// 26/11/2026 — ela pediu para tirar Hoje, Cronograma e Aulas do painel. As
+// secoes continuam no DOM (escondidas) para nao quebrar o codigo que escreve
+// nelas; so sairam da navegacao. Para devolver, basta repor os botoes no nav
+// e os ids aqui.
+const ABAS = ['hoje', 'cronograma', 'aulas',
+  'painel', 'prioridades', 'listas', 'atualidades',
+  'flashcards', 'redacoes', 'simulados']
 document.querySelectorAll('nav.abas button').forEach(b => b.onclick = () => {
   document.querySelectorAll('nav.abas button').forEach(x => x.setAttribute('aria-selected', x === b))
   ABAS.forEach(t => $('#' + t).hidden = t !== b.dataset.t)
