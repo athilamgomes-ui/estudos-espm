@@ -154,6 +154,17 @@
   "arquivo": "dossies/padroes-espm.pdf"
  },
  {
+  "slug": "previsoes-29-11-2026",
+  "titulo": "As previsões para 29/11/2026 — o que os dados dizem",
+  "subtitulo": "Tiradas das 15 provas do banco (1.199 questões) e dos 30 temas de redação · com o grau de confiança de cada uma",
+  "tipo": "radar",
+  "selo": "A aposta final",
+  "serve": "Toda a prova · onde colocar as últimas horas",
+  "minutos": 20,
+  "fechado_em": "escrito em 26 de novembro de 2026",
+  "arquivo": "dossies/previsoes-29-11-2026.pdf"
+ },
+ {
   "slug": "redacao-01-tudo",
   "titulo": "Redação — o dossiê único",
   "subtitulo": "40 pontos · como ela corrige, os 30 temas que já caíram com fonte e data, e os 40 repertórios por função e por eixo",
