@@ -452,7 +452,7 @@ const KEY_SB = 'sb_publishable_eX7i_P76hKCfb4ocJ7zTzg_UilLA6J_'
 const sb = createClient(URL_SB, KEY_SB)
 // Selo desta versao do site. Serve para pedir os arquivos estaticos sem cair no
 // cache velho do navegador (GitHub Pages segura 10 min).
-const BUILD = '2026-11-24k'
+const BUILD = '2026-11-26a'
 
 const PROVA = new Date('2026-11-29T00:00:00-03:00')
 // ROTINA — a fonte da verdade do dia (08/09/2026).
@@ -3403,6 +3403,18 @@ function pintarFlashcards () {
   $('#flashLista').innerHTML = BARALHOS.map(b => {
     const v = b.cartas.filter(c => flashVence(c.id)).length
     const d = b.cartas.filter(c => flashDominada(c.id)).length
+    // 26/11/2026: uma area por cartao, com as partes separaveis dentro dela
+    const partes = (b.partes || []).map(p => {
+      const cs = b.cartas.filter(c => c.parte === p.id)
+      const pv = cs.filter(c => flashVence(c.id)).length
+      const pd = cs.filter(c => flashDominada(c.id)).length
+      return `
+        <button class="small" data-baralho="${b.id}" data-parte="${p.id}"
+          style="display:block;width:100%;text-align:left;margin-top:7px;line-height:1.35">
+          ${p.nome}
+          <span class="tiny muted">&nbsp;· ${cs.length} cartas${pv ? ` · <strong style="color:var(--accent)">${pv} hoje</strong>` : ''}${pd ? ` · ${pd} dominadas` : ''}</span>
+        </button>`
+    }).join('')
     return `
     <div class="card" style="padding:15px 17px;margin-top:11px">
       <div class="row" style="justify-content:space-between;align-items:flex-start;gap:12px">
@@ -3415,22 +3427,27 @@ function pintarFlashcards () {
         </div>
         <button class="primary small" data-baralho="${b.id}" style="flex:none">${v ? 'Estudar' : 'Revisar tudo'}</button>
       </div>
+      ${partes ? `<div style="margin-top:10px;padding-top:9px;border-top:1px solid var(--line)">
+        <div class="tiny muted" style="margin-bottom:2px">ou estude só uma parte</div>${partes}</div>` : ''}
     </div>`
   }).join('') || '<div class="card vazio">Nenhum baralho carregado.</div>'
   $('#flashLista').querySelectorAll('button[data-baralho]').forEach(btn =>
-    btn.onclick = () => abrirFlashSessao(btn.dataset.baralho))
+    btn.onclick = () => abrirFlashSessao(btn.dataset.baralho, btn.dataset.parte || null))
 }
 
-function abrirFlashSessao (idBaralho) {
+function abrirFlashSessao (idBaralho, parte) {
   const b = BARALHOS.find(x => x.id === idBaralho)
   if (!b) return
-  let fila = b.cartas.filter(c => flashVence(c.id))
-  if (!fila.length) fila = [...b.cartas]      // "revisar tudo" quando nada vence
+  const base = parte ? b.cartas.filter(c => c.parte === parte) : b.cartas
+  if (!base.length) return
+  let fila = base.filter(c => flashVence(c.id))
+  if (!fila.length) fila = [...base]          // "revisar tudo" quando nada vence
   // ordem aleatoria: carta sempre na mesma sequencia vira memoria de posicao
   for (let i = fila.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));[fila[i], fila[j]] = [fila[j], fila[i]]
   }
-  flashSessao = { baralho: b, fila, total: fila.length, feitas: 0, acertos: 0, virada: false }
+  const pn = parte ? ((b.partes || []).find(p => p.id === parte) || {}).nome : null
+  flashSessao = { baralho: b, parte: pn, fila, total: fila.length, feitas: 0, acertos: 0, virada: false }
   pintarFlashcards()
 }
 
@@ -3460,7 +3477,7 @@ function pintarFlashEstudo () {
     $('#flashEstudo').innerHTML = `
       <div class="card" style="padding:22px;text-align:center">
         <div style="font-size:34px">${pct >= 70 ? '✅' : '🔁'}</div>
-        <strong style="font-size:17px;display:block;margin:8px 0 4px">${s.baralho.nome}</strong>
+        <strong style="font-size:17px;display:block;margin:8px 0 4px">${s.parte ? s.parte : s.baralho.nome}</strong>
         <div class="small muted">${s.acertos} de ${s.total} de primeira · ${pct}%</div>
         <div class="tiny" style="margin:12px 0 16px">${pct >= 70
           ? 'Acima de 70% de primeira: este baralho já está no lugar. As que você errou voltam nos próximos dias.'
@@ -3475,7 +3492,7 @@ function pintarFlashEstudo () {
   $('#flashEstudo').innerHTML = `
     <div class="row" style="justify-content:space-between;align-items:center;margin-bottom:9px">
       <button class="small" id="flashSair">← baralhos</button>
-      <span class="tiny muted">${s.baralho.nome} · ${s.fila.length} na fila</span>
+      <span class="tiny muted">${s.parte ? s.parte : s.baralho.nome} · ${s.fila.length} na fila</span>
     </div>
     <div class="barra" style="margin-bottom:12px"><i style="width:${pct}%"></i></div>
     <div class="card" id="flashCard" style="padding:24px 20px;min-height:210px;display:flex;

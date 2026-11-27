@@ -209,6 +209,17 @@
   "arquivo": "dossies/redacao-07-ordem-de-escrita.pdf"
  },
  {
+  "slug": "redacao-08-projeto-de-texto",
+  "titulo": "O projeto de texto em 6 linhas — e a ponte de 4 frases",
+  "subtitulo": "O método que você treinou no chat Redação, depurado e com os dados conferidos fonte por fonte em 26 de novembro",
+  "tipo": "redacao",
+  "selo": "Redação · o método de execução",
+  "serve": "Redação (40 pts) · como sair de 1 hora para 15 minutos por projeto",
+  "minutos": 25,
+  "fechado_em": "escrito em 26 de novembro de 2026",
+  "arquivo": "dossies/redacao-08-projeto-de-texto.pdf"
+ },
+ {
   "slug": "repertorio-competencias-futuro",
   "titulo": "Competências para o trabalho com IA",
   "subtitulo": "Soft skills (Lucedile Antunes, org.) e O profissional do futuro (Michelle Schneider) — o que são, por que valem agora e as críticas",
